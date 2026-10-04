@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PostCard from '../../components/PostCard.astro';
+import { posts } from '../../data/posts';
+
+export const getStaticPaths = () => posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+
+const { post } = Astro.props;
+const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+---
+
+<BaseLayout title={post.metaTitle} description={post.metaDescription}>
+  <PageHeader title={post.title} crumb="Bài viết" parent={{ href: '/cam-nang', label: 'Cẩm nang' }} />
+
+  <section class="section" data-reveal>
+    <article class="container-page max-w-3xl">
+      <Image
+        src={post.cover}
+        alt={`Công trình Gia Khánh thi công – minh họa bài: ${post.title}`}
+        width={1000}
+        class="aspect-[3/2] w-full object-cover"
+      />
+      <p class="mt-8 text-lg italic leading-relaxed text-muted">{post.excerpt}</p>
+      {
+        post.body ? (
+          <div class="post-body mt-6" set:html={post.body} />
+        ) : (
+          <p class="mt-6 rounded-lg border border-dashed border-line p-6 text-muted">TODO: nội dung bài viết đang được cập nhật.</p>
+        )
+      }
+      <div class="mt-12 flex flex-wrap gap-4">
+        {!post.body && <a href="/lien-he" class="btn btn-primary">Nhận báo giá miễn phí</a>}
+        <a href="/cam-nang" class="btn btn-outline">← Tất cả bài viết</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <h2 class="mb-8 text-2xl font-bold">Bài viết khác</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        {related.map((p, i) => <PostCard post={p} index={i} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

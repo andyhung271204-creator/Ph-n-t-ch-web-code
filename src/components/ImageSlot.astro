@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import { imagesIn } from '../data/images';
+
+interface Props {
+  /** Thư mục ảnh (tên duy nhất). Thả ảnh vào src/assets/anh-dich-vu/<dir>/ là tự hiện. */
+  dir: string;
+  /** Mô tả ảnh: dùng làm alt và làm chú thích khi chưa có ảnh */
+  alt: string;
+  class?: string;
+}
+const { dir, alt, class: cls = 'aspect-[4/3] rounded-lg' } = Astro.props;
+const img = imagesIn(dir)[0];
+---
+
+{
+  img ? (
+    <Image src={img} alt={alt} width={Math.min(img.width, 1000)} class:list={[cls, 'w-full object-cover']} />
+  ) : (
+    <div
+      class:list={[cls, 'flex w-full flex-col items-center justify-center gap-2 border-2 border-dashed border-primary/40 bg-primary-light p-6 text-center text-sm text-muted']}
+    >
+      <span class="font-semibold text-primary">TODO: ảnh</span>
+      <span>{alt}</span>
+      <code class="text-xs break-all">src/assets/anh-dich-vu/{dir}/</code>
+    </div>
+  )
+}

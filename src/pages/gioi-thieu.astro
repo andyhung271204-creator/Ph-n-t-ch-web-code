@@ -1,0 +1,200 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import logo from '../assets/logo-gia-khanh.png';
+import { company, values } from '../data/company';
+import { services } from '../data/services';
+
+const legal = [
+  ['Tên đầy đủ', company.name],
+  ['Tên tiếng Anh', company.nameEn],
+  ['Mã số thuế', company.taxCode],
+  ['Người đại diện', company.representative],
+  ['Trụ sở', company.address],
+];
+
+const menu = [
+  { href: '#ve-chung-toi', label: 'Về chúng tôi' },
+  { href: '#tam-nhin', label: 'Tầm nhìn – Sứ mệnh' },
+  { href: '#dich-vu', label: 'Dịch vụ' },
+  { href: '#doi-ngu', label: 'Đội ngũ' },
+  { href: '#phap-ly', label: 'Thông tin pháp lý' },
+  { href: '/lien-he', label: 'Liên hệ' },
+];
+
+// Bố cục theo mẫu betaviet.vn/ve-betaviet: 2 thẻ trái – hình tầng giữa – 2 thẻ phải
+const pillars = [
+  { title: 'Tầm nhìn', text: company.vision },
+  { title: 'Sứ mệnh', text: company.mission },
+  { title: 'Giá trị cốt lõi', text: values.map((v) => v.name).join(' · ') },
+  { title: 'Lĩnh vực hoạt động', text: `Nhà ở dân dụng tại ${company.area}.` },
+];
+---
+
+<BaseLayout
+  title="Giới thiệu"
+  description="Công ty TNHH Xây dựng và Đầu tư Gia Khánh tại Đông Anh, Hà Nội: đội ngũ hơn 10 kỹ sư, kiến trúc sư với trên 10 năm kinh nghiệm thi công nhà ở dân dụng."
+>
+  <PageHeader title="Giới thiệu Gia Khánh" crumb="Giới thiệu" subtitle={company.slogan} />
+
+  <section class="bg-primary-light py-10 md:py-16" data-reveal>
+    <div class="container-page grid gap-8 lg:grid-cols-[16rem_1fr] lg:items-start">
+      <!-- Thanh bên -->
+      <aside class="overflow-hidden rounded-lg bg-white shadow-sm lg:sticky lg:top-24" data-reveal>
+        <div class="hidden bg-primary p-5 lg:block">
+          <div class="rounded-md bg-white p-3">
+            <Image src={logo} alt="Logo Gia Khánh" width={200} class="mx-auto h-28 w-auto" />
+          </div>
+        </div>
+        <nav aria-label="Mục lục trang giới thiệu">
+          <ul class="flex flex-wrap gap-2 p-3 lg:block lg:p-0">
+            {
+              menu.map((m) => (
+                <li class="lg:border-b lg:border-line lg:last:border-0">
+                  <a
+                    href={m.href}
+                    class="flex min-h-11 items-center justify-center rounded-md border border-line px-3 text-sm transition-colors hover:border-primary hover:text-primary lg:rounded-none lg:border-0 lg:border-l-4 lg:border-transparent lg:text-base lg:hover:border-primary lg:hover:bg-primary-light"
+                  >
+                    {m.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Nội dung -->
+      <div class="min-w-0 rounded-lg bg-white px-4 py-10 shadow-sm md:px-10">
+        <section id="ve-chung-toi" class="scroll-mt-24" data-reveal>
+          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Về chúng tôi</h2>
+          <span class="divider" aria-hidden="true"></span>
+          <div class="mx-auto max-w-prose space-y-4 leading-relaxed text-muted">
+            {company.about.map((p) => <p>{p}</p>)}
+          </div>
+        </section>
+
+        <section id="tam-nhin" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
+          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Tầm nhìn – Sứ mệnh</h2>
+          <span class="divider" aria-hidden="true"></span>
+          <!-- auto-rows-fr: 4 thẻ cao bằng nhau -->
+          <div class="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-[1fr_11rem_1fr] lg:gap-x-4">
+            {
+              pillars.map((p, i) => (
+                <div
+                  class:list={['pillar card', i < 2 ? 'lg:col-start-1' : 'lg:col-start-3', i % 2 ? 'lg:row-start-2' : 'lg:row-start-1']}
+                  data-reveal
+                  style={`--d:${i * 90}ms`}
+                >
+                  <h3>{p.title}</h3>
+                  <p>{p.text}</p>
+                </div>
+              ))
+            }
+            <!-- Hình tầng: 4 lớp xếp chồng = 4 trụ cột -->
+            <svg viewBox="0 0 200 220" class="mx-auto hidden w-44 self-center lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:block" aria-hidden="true" data-reveal style="--d:120ms">
+              <path d="M100 120 190 160 100 200 10 160Z" class="fill-primary-light" />
+              <path d="M100 90 190 130 100 170 10 130Z" class="fill-primary-bright/40" />
+              <path d="M100 60 190 100 100 140 10 100Z" class="fill-primary-bright" />
+              <path d="M100 20 190 60 100 100 10 60Z" class="fill-primary" />
+            </svg>
+          </div>
+          <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+            {
+              values.map((v, i) => (
+                <li class="border-l-4 border-primary-bright pl-4" data-reveal style={`--d:${(i % 2) * 90}ms`}>
+                  <h3 class="font-semibold text-primary">{v.name}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-muted">{v.text}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section id="dich-vu" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
+          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Dịch vụ của Gia Khánh</h2>
+          <span class="divider" aria-hidden="true"></span>
+          <p class="mx-auto max-w-prose leading-relaxed text-muted">{company.intro}</p>
+          <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+            {
+              services.map((s, i) => (
+                <li data-reveal style={`--d:${(i % 2) * 90}ms`}>
+                  <a href={`/dich-vu/${s.slug}`} class="card flex h-full gap-4 p-5 hover:border-primary">
+                    <svg viewBox="0 0 24 24" class="size-6 shrink-0 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={s.icon} /></svg>
+                    <span>
+                      <span class="block font-semibold">{s.name}</span>
+                      <span class="mt-1 block text-sm leading-relaxed text-muted">{s.short}</span>
+                    </span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section id="doi-ngu" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
+          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Đội ngũ</h2>
+          <span class="divider" aria-hidden="true"></span>
+          <p class="mx-auto max-w-prose text-center leading-relaxed text-muted">
+            Hơn 10 người gồm kỹ sư xây dựng, kiến trúc sư và quản lý thi công, do ông Đỗ Như Duy đứng đầu. Đội ngũ có trên 10 năm
+            kinh nghiệm thi công nhà ở dân dụng tại Hà Nội.
+          </p>
+        </section>
+
+        <section id="phap-ly" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
+          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Thông tin pháp lý</h2>
+          <span class="divider" aria-hidden="true"></span>
+          <dl class="mx-auto max-w-2xl divide-y divide-line rounded-lg border border-line">
+            {
+              legal.map(([k, v]) => (
+                <div class="grid gap-1 p-4 sm:grid-cols-3">
+                  <dt class="text-sm text-muted">{k}</dt>
+                  <dd class="font-medium sm:col-span-2">{v}</dd>
+                </div>
+              ))
+            }
+          </dl>
+          <div class="mt-10 text-center">
+            <a href="/lien-he" class="btn btn-primary">Nhận báo giá miễn phí</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Gạch trang trí kiểu mẫu: đường – chấm – đường */
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 1rem auto 2.5rem;
+  }
+  .divider::before,
+  .divider::after {
+    content: '';
+    width: 2.5rem;
+    height: 1px;
+    background: var(--color-muted);
+    opacity: 0.5;
+  }
+  .divider {
+    background: radial-gradient(circle, var(--color-primary-bright) 3px, transparent 3.5px) center / 8px 8px no-repeat;
+  }
+  .pillar {
+    padding: 1.25rem 1.5rem;
+  }
+  .pillar h3 {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+  .pillar p {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+</style>

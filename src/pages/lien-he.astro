@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { company } from '../data/company';
+---
+
+<BaseLayout
+  title="Liên hệ – Nhận báo giá miễn phí"
+  description={`Liên hệ Gia Khánh để được khảo sát và báo giá miễn phí: hotline / Zalo ${company.phoneDisplay}, trụ sở tại Đông Anh, Hà Nội.`}
+>
+  <PageHeader title="Liên hệ" subtitle={company.cta} />
+
+  <section class="section" data-reveal>
+    <div class="container-page grid gap-10 lg:grid-cols-2">
+      <div>
+        <h2 class="text-xl font-bold">{company.name}</h2>
+        <dl class="mt-6 space-y-4 leading-relaxed">
+          <div>
+            <dt class="text-sm text-muted">Hotline / Zalo</dt>
+            <dd>
+              <a href={company.telUrl} class="text-lg font-semibold text-primary">{company.phoneDisplay}</a>
+            </dd>
+          </div>
+          <div>
+            <dt class="text-sm text-muted">Trụ sở</dt>
+            <dd>{company.address}</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-muted">Email</dt>
+            <dd>{company.email}</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-muted">Fanpage</dt>
+            <dd>{company.fanpage}</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-muted">Giờ làm việc</dt>
+            <dd>{company.hours}</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-muted">Khu vực phục vụ</dt>
+            <dd>{company.area}</dd>
+          </div>
+        </dl>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href={company.telUrl} class="btn btn-primary">Gọi ngay</a>
+          <a href={company.zaloUrl} target="_blank" rel="noopener" class="btn btn-outline">Chat Zalo</a>
+        </div>
+      </div>
+      <div class="rounded-lg border border-line" data-reveal style="--d:90ms">
+        <QuoteForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  rows: { item: string; value: string }[];
+}
+const { rows } = Astro.props;
+---
+
+<dl class="divide-y divide-line rounded-lg border border-line bg-white">
+  {
+    rows.map((r) => (
+      <div class="flex justify-between gap-4 p-4">
+        <dt>{r.item}</dt>
+        <dd class="shrink-0 text-right font-semibold text-primary">{r.value}</dd>
+      </div>
+    ))
+  }
+</dl>

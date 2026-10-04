@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { company, prices, designPrices, packages, areaRules, areaExample, warranty, commitments, faqs } from '../data/company';
+
+const th = 'bg-primary-light p-4 text-left font-semibold';
+const td = 'border-t border-line p-4 align-top';
+---
+
+<BaseLayout
+  title="Báo giá xây nhà trọn gói Hà Nội"
+  description="Đơn giá xây nhà theo m² của Gia Khánh: gói phần thô, gói trọn gói chìa khóa trao tay, cách tính diện tích, chính sách bảo hành và câu hỏi thường gặp."
+>
+  <PageHeader
+    title="Báo giá xây nhà"
+    subtitle="Gia Khánh báo giá xây nhà theo m² sàn quy đổi, chia theo loại nhà và gói thi công."
+  />
+
+  <section id="don-gia" class="section scroll-mt-24" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Đơn giá theo m²" />
+      <div class="overflow-x-auto rounded-lg border border-line">
+        <table class="w-full min-w-[640px] border-collapse">
+          <thead>
+            <tr>
+              <th class={th} scope="col">Loại nhà</th>
+              <th class={th} scope="col">Phần thô + nhân công hoàn thiện</th>
+              <th class={th} scope="col">Trọn gói (chìa khóa trao tay)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              prices.map((p) => (
+                <tr>
+                  <th class={`${td} text-left font-medium`} scope="row">{p.type}</th>
+                  <td class={td}>{p.rough}</td>
+                  <td class={`${td} font-semibold text-primary`}>{p.full}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-6 rounded-lg bg-primary-light p-4 font-medium">{company.priceNote}</p>
+
+      <div class="mt-16" data-reveal>
+        <SectionHeading title="Báo giá thiết kế" />
+        <dl class="mx-auto max-w-2xl divide-y divide-line rounded-lg border border-line">
+          {
+            designPrices.map((d) => (
+              <div class="flex justify-between gap-4 p-4">
+                <dt>{d.item}</dt>
+                <dd class="shrink-0 font-semibold text-primary">{d.price}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Các gói thi công" />
+      <ul class="grid gap-6 md:grid-cols-3 md:gap-8">
+        {
+          packages.map((p, i) => (
+            <li class="card p-6" data-reveal style={`--d:${i * 90}ms`}>
+              <h3 class="text-lg font-semibold text-primary">{p.name}</h3>
+              <p class="mt-4 text-sm font-semibold">Bao gồm</p>
+              <p class="mt-1 text-sm leading-relaxed text-muted">{p.includes}</p>
+              <p class="mt-4 text-sm font-semibold">Chủ nhà tự lo</p>
+              <p class="mt-1 text-sm leading-relaxed text-muted">{p.owner}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section id="dien-tich" class="section scroll-mt-24" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Cách tính diện tích xây dựng" />
+      <div class="grid gap-8 lg:grid-cols-2">
+        <dl class="divide-y divide-line rounded-lg border border-line">
+          {
+            areaRules.map((r) => (
+              <div class="flex justify-between gap-4 p-4">
+                <dt>{r.item}</dt>
+                <dd class="shrink-0 font-semibold text-primary">{r.rate}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="rounded-lg bg-primary-light p-6">
+          <h3 class="font-semibold">Ví dụ</h3>
+          <p class="mt-2 leading-relaxed">{areaExample.text}</p>
+          <ul class="mt-4 space-y-2 font-medium">
+            {areaExample.results.map((r) => <li>{r}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Bảo hành & cam kết" />
+      <div class="grid gap-8 lg:grid-cols-2">
+        <dl class="divide-y divide-line rounded-lg border border-line bg-white">
+          {
+            warranty.map((w) => (
+              <div class="flex justify-between gap-4 p-4">
+                <dt>{w.item}</dt>
+                <dd class="shrink-0 font-semibold text-primary">{w.period}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <ul class="space-y-4">
+          {
+            commitments.map((c) => (
+              <li class="flex gap-3 leading-relaxed">
+                <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                {c}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section scroll-mt-24" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Câu hỏi thường gặp" />
+      <div class="mx-auto max-w-3xl space-y-4">
+        {
+          faqs.map((f) => (
+            <details class="rounded-lg border border-line p-4">
+              <summary class="flex min-h-11 cursor-pointer items-center font-semibold">{f.q}</summary>
+              <p class="mt-2 leading-relaxed text-muted">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

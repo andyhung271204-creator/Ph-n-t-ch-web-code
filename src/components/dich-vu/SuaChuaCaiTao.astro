@@ -1,0 +1,260 @@
+---
+// Nội dung: noi-dung/dich-vu-sua-chua-cai-tao-nha.md
+import SectionHeading from '../SectionHeading.astro';
+import Bullets from '../Bullets.astro';
+import InfoList from '../InfoList.astro';
+import ImageSlot from '../ImageSlot.astro';
+import ServiceSteps from '../ServiceSteps.astro';
+import Faq from '../Faq.astro';
+import ServiceCta from '../ServiceCta.astro';
+import { company, daXacNhan, warranty } from '../../data/company';
+
+const groups = [
+  {
+    name: 'Cải tạo – sửa chữa nhà',
+    dir: 'sua-chua-cai-tao',
+    alt: 'Nhà cũ đang được Gia Khánh cải tạo',
+    text: 'Cải tạo nhà cũ, nâng tầng, mở rộng, thay đổi công năng. Cả những việc nhỏ như lát lại nền, thay trần, sơn lại, sửa mái.',
+    points: ['Giữ lại phần kết cấu còn tốt, chỉ làm phần cần làm.', 'Thi công nhanh, hạn chế ảnh hưởng sinh hoạt của gia đình.'],
+  },
+  {
+    name: 'Chống thấm và xử lý nứt',
+    dir: 'sua-chua-chong-tham',
+    alt: 'Thợ Gia Khánh thi công chống thấm sân thượng',
+    text: 'Chống thấm sân thượng, mái, nhà vệ sinh, tường. Xử lý nứt tường và thấm dột cho nhà cũ.',
+    points: [
+      'Kỹ sư xác định điểm thấm, nguyên nhân rồi mới đề xuất phương án.',
+      'Bảo hành chống thấm theo từng hạng mục.',
+    ],
+  },
+  {
+    name: 'Điện nước và bảo trì nhà',
+    dir: 'sua-chua-dien-nuoc',
+    alt: 'Thợ Gia Khánh sửa chữa hệ thống điện nước',
+    text: 'Lắp đặt, sửa chữa hệ thống điện, cấp thoát nước. Bảo trì định kỳ cho nhà ở gia đình, văn phòng, cửa hàng nhỏ.',
+    points: [
+      'Nhận cả việc nhỏ, không chê công trình bé.',
+      ...(daXacNhan ? ['Có mặt nhanh trong nội thành: trong 24 giờ.'] : []),
+    ],
+  },
+];
+
+const steps = [
+  {
+    name: 'Tiếp nhận và tư vấn',
+    text: `Gọi hotline, chat Zalo hoặc để lại số trên form. Gia Khánh gọi lại tư vấn sơ bộ${daXacNhan ? ' trong 2 giờ làm việc' : ''}.`,
+  },
+  {
+    name: 'Khảo sát hiện trạng (miễn phí)',
+    text: 'Kỹ sư đến tận nơi đo đạc, tìm nguyên nhân, ghi nhận nhu cầu và ngân sách của bạn.',
+  },
+  { name: 'Đề xuất phương án và báo giá', text: 'Bảng dự toán từng hạng mục, vật tư ghi rõ chủng loại.' },
+  { name: 'Ký hợp đồng', text: 'Hợp đồng ghi giá trị, tiến độ theo mốc, thanh toán theo giai đoạn và chế độ bảo hành.' },
+  {
+    name: 'Thi công và giám sát',
+    text: 'Kỹ sư phụ trách giám sát tại công trình, gửi ảnh tiến độ hằng ngày qua Zalo, nghiệm thu từng giai đoạn cùng chủ nhà.',
+  },
+  {
+    name: 'Bàn giao và bảo hành',
+    text: 'Nghiệm thu tổng thể, bàn giao hồ sơ, kích hoạt bảo hành, vệ sinh sạch sẽ trước khi giao nhà.',
+  },
+];
+
+const tips = [
+  ['Nói rõ phạm vi từ đầu.', 'Liệt kê việc nào bắt buộc, việc nào muốn có. Hợp đồng càng rõ, càng ít phát sinh.'],
+  ['Giữ lại phần còn tốt.', 'Kết cấu, nền, tường còn chắc thì không cần đập đi làm lại.'],
+  [
+    'Xử lý nguyên nhân trước khi làm đẹp.',
+    'Tường đang thấm mà sơn lại ngay thì vài tháng sau sẽ bong. Chống thấm xong rồi mới hoàn thiện.',
+  ],
+  [
+    'Chọn vật tư theo từng khu vực.',
+    'Nhà vệ sinh, sân thượng cần vật liệu chịu ẩm tốt; phòng ngủ có thể chọn khác để cân đối ngân sách.',
+  ],
+  ['Gom việc cùng một đợt.', 'Sửa điện nước, chống thấm và hoàn thiện cùng lúc thường đỡ phải đập phá nhiều lần.'],
+];
+
+const reasons = [
+  { name: 'Kỹ sư phụ trách từng công trình', text: 'Bạn liên hệ trực tiếp một người, không qua nhiều đầu mối.' },
+  { name: 'Cập nhật tiến độ hằng ngày', text: 'Ảnh công trình gửi qua Zalo, chủ nhà ở xa vẫn nắm được tình hình.' },
+  {
+    name: 'Kỹ sư, kiến trúc sư, quản lý thi công',
+    text: 'Hơn 10 người, am hiểu nhà ở Hà Nội: nhà ống, nhà trong ngõ, nhà cũ nhiều năm.',
+  },
+  { name: 'Báo giá minh bạch', text: 'Từng hạng mục, vật tư ghi rõ.' },
+];
+
+const faqs = [
+  {
+    q: 'Gia Khánh có khảo sát và báo giá miễn phí không?',
+    a: 'Có. Kỹ sư đến tận nơi khảo sát và gửi báo giá chi tiết miễn phí trong khu vực Hà Nội.',
+  },
+  {
+    q: 'Gia Khánh có nhận sửa chữa nhỏ không?',
+    a: 'Có. Gia Khánh nhận cả việc nhỏ như sửa điện nước, chống thấm một khu vực, sơn lại phòng.',
+  },
+  {
+    q: 'Vì sao nhà tôi thấm dù đã sơn lại?',
+    a: 'Sơn chỉ che bề mặt, không ngăn được nước đi vào từ bên trong hoặc từ trên mái, sân thượng. Muốn hết thấm cần tìm đúng điểm thấm và xử lý tại nguồn. Kỹ sư sẽ kiểm tra khi khảo sát.',
+  },
+  {
+    q: 'Vết nứt tường có nguy hiểm không?',
+    a: 'Tùy vết nứt. Nhiều vết nứt chỉ ở lớp trát, nhưng vết nứt lớn, dài ra theo thời gian hoặc chạy qua dầm, cột cần kỹ sư xem trực tiếp. Bạn nên chụp ảnh và gọi để được tư vấn.',
+  },
+  {
+    q: 'Sửa nhà có phải chuyển ra ngoài ở không?',
+    a: 'Tùy phạm vi. Việc nhỏ hoặc sửa từng khu vực thường vẫn ở được. Gia Khánh thi công để hạn chế ảnh hưởng sinh hoạt; với cải tạo lớn, kỹ sư sẽ tư vấn từ khâu khảo sát.',
+  },
+  // TODO: hồ sơ chưa có thời gian thi công tham khảo cho sửa chữa
+  {
+    q: 'Sửa nhà mất bao lâu?',
+    a: 'Tùy hiện trạng và phạm vi việc. Thời gian cụ thể được ghi theo mốc trong hợp đồng sau khi khảo sát.',
+  },
+  {
+    q: 'Có phát sinh chi phí khi đang thi công không?',
+    a: 'Chỉ khi bạn thay đổi yêu cầu. Phần thay đổi được báo giá trước và chỉ làm khi bạn đồng ý bằng văn bản hoặc tin nhắn.',
+  },
+  {
+    q: 'Gia Khánh nhận sửa nhà ở khu vực nào?',
+    a: 'Nội thành Hà Nội và các huyện lân cận như Đông Anh, Gia Lâm, Hoài Đức, Thanh Trì, Hà Đông.',
+  },
+];
+---
+
+<section class="section" data-reveal>
+  <div class="container-page grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+    <div>
+      <h2 class="text-2xl font-bold md:text-3xl">Khi nào nhà cần sửa</h2>
+      <p class="mt-4 leading-relaxed text-muted">Bạn nên gọi kỹ sư xem nhà khi gặp một trong các dấu hiệu sau:</p>
+      <Bullets
+        class="mt-6"
+        items={[
+          [
+            'Thấm dột:',
+            'vệt ố ở trần, tường ẩm, sân thượng hoặc mái đọng nước, nhà vệ sinh thấm sang phòng bên dưới.',
+          ],
+          ['Nứt tường, nứt trần, nứt nền:', 'vết nứt mới xuất hiện hoặc đang dài thêm.'],
+          ['Điện nước cũ:', 'nhảy áp-tô-mát, đèn chập chờn, ống nước rỉ, thoát nước chậm.'],
+          [
+            'Nhà không còn hợp với gia đình:',
+            'cần thêm phòng, nâng tầng, mở rộng, đổi bếp, đổi công năng.',
+          ],
+          ['Xuống cấp theo thời gian:', 'sơn bong, gạch ốp lát hỏng, trần xuống cấp, mái cũ.'],
+        ]}
+      />
+      <p class="mt-6 rounded-lg bg-primary-light p-4 leading-relaxed">
+        Chưa chắc có cần sửa không? Cứ để lại số điện thoại. Kỹ sư xem hiện trạng và cho bạn biết việc nào cần làm ngay,
+        việc nào có thể để sau.
+      </p>
+    </div>
+    <ImageSlot dir="sua-chua-dau-hieu" alt="Trần nhà bị thấm dột, tường nứt cần sửa chữa" />
+  </div>
+</section>
+
+<section class="section bg-primary-light" data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Ba mảng dịch vụ" />
+    <ul class="grid gap-6 md:gap-8 lg:grid-cols-3">
+      {
+        groups.map((g, i) => (
+          <li class="card overflow-hidden" data-reveal style={`--d:${i * 90}ms`}>
+            <ImageSlot dir={g.dir} alt={g.alt} class="aspect-[4/3]" />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-primary">{g.name}</h3>
+              <p class="mt-2 leading-relaxed text-muted">{g.text}</p>
+              <Bullets class="mt-4 text-sm" items={g.points} />
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section" data-reveal>
+  <div class="container-page grid gap-12 lg:grid-cols-2">
+    <div>
+      <h2 class="text-2xl font-bold md:text-3xl">Chi phí sửa nhà phụ thuộc vào đâu</h2>
+      <p class="mt-4 leading-relaxed text-muted">
+        Mỗi căn nhà một khác, nên Gia Khánh báo giá theo hạng mục sau khi khảo sát, không báo một con số chung. Chi phí
+        thường phụ thuộc vào:
+      </p>
+      <Bullets
+        class="mt-6"
+        items={[
+          ['Hiện trạng nhà:', 'xuống cấp nặng thì phải xử lý nhiều hơn.'],
+          ['Quy mô:', 'sửa một khu vực hay cải tạo cả căn.'],
+          ['Điều kiện thi công:', 'nhà trong ngõ nhỏ, mặt bằng chật, vừa sửa vừa ở.'],
+          ['Vật tư bạn chọn:', 'phổ thông hay cao cấp hơn ở từng khu vực.'],
+          ['Thay đổi khi thi công:', 'nếu bạn đổi yêu cầu, phần đổi được báo giá riêng.'],
+        ]}
+      />
+      <p class="mt-6 rounded-lg bg-primary-light p-4 font-medium">{company.priceNote}</p>
+      <p class="mt-4 leading-relaxed text-muted">
+        Mọi phát sinh đều được báo giá và chỉ thực hiện khi bạn đồng ý bằng văn bản hoặc tin nhắn.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold md:text-3xl">Vài mẹo để sửa nhà đỡ tốn kém</h2>
+      <ol class="mt-6 space-y-4">
+        {
+          tips.map(([b, t], i) => (
+            <li class="flex gap-4 leading-relaxed">
+              <span class="shrink-0 font-bold text-primary">{String(i + 1).padStart(2, '0')}</span>
+              <span><strong>{b}</strong> {t}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<ServiceSteps title="Quy trình làm việc: 6 bước" steps={steps} />
+
+<section class="section" data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Cam kết và bảo hành" subtitle="Thời hạn bảo hành ghi bằng văn bản trong hợp đồng." />
+    <div class="grid gap-8 lg:grid-cols-2">
+      <div>
+        <h3 class="font-semibold">Cam kết với khách hàng</h3>
+        <Bullets
+          class="mt-4"
+          items={[
+            'Không phát sinh chi phí khi chưa có xác nhận của chủ nhà.',
+            'Dùng đúng vật tư, chủng loại ghi trong hợp đồng.',
+            'Thanh toán theo giai đoạn, chỉ sau khi hạng mục đã nghiệm thu.',
+            'Vệ sinh công trình sạch sẽ trước khi bàn giao.',
+          ]}
+        />
+      </div>
+      <InfoList rows={warranty.slice(1).map((w) => ({ item: w.item, value: w.period }))} />
+    </div>
+  </div>
+</section>
+
+<section class="section bg-primary-light" data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Vì sao chọn Gia Khánh" />
+    <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <ul class="grid gap-6 sm:grid-cols-2">
+        {
+          reasons.map((r, i) => (
+            <li class="card p-6" data-reveal style={`--d:${(i % 2) * 90}ms`}>
+              <h3 class="font-semibold text-primary">{r.name}</h3>
+              <p class="mt-2 leading-relaxed text-muted">{r.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <ImageSlot dir="sua-chua-truoc-sau" alt="Hình ảnh trước và sau khi Gia Khánh sửa chữa một căn nhà" />
+    </div>
+  </div>
+</section>
+
+<Faq items={faqs} />
+
+<ServiceCta
+  title="Nhà bạn đang cần sửa?"
+  subtitle="Để lại số điện thoại, Gia Khánh gọi lại tư vấn miễn phí."
+/>

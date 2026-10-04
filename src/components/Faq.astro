@@ -1,0 +1,25 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  items: { q: string; a: string }[];
+  class?: string;
+}
+const { items, class: cls } = Astro.props;
+---
+
+<section class:list={['section', cls]} data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Câu hỏi thường gặp" />
+    <div class="mx-auto max-w-3xl space-y-4">
+      {
+        items.map((f) => (
+          <details class="rounded-lg border border-line p-4">
+            <summary class="flex min-h-11 cursor-pointer items-center font-semibold">{f.q}</summary>
+            <p class="mt-2 leading-relaxed text-muted">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,133 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import logo from '../assets/logo-gia-khanh.png';
+import banner from '../assets/banner.jpg';
+import { company } from '../data/company';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const fullTitle = `${title} | ${company.brand}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(banner.src, Astro.site);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  name: company.name,
+  alternateName: company.brand,
+  slogan: company.slogan,
+  telephone: company.phone,
+  taxID: company.taxCode,
+  address: { '@type': 'PostalAddress', streetAddress: company.address, addressLocality: 'Hà Nội', addressCountry: 'VN' },
+  areaServed: company.areaList,
+  url: Astro.site,
+  image: ogImage,
+};
+---
+
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={logo.src} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-3">Bỏ qua điều hướng</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Nút nổi: Messenger, Zalo, Gọi. Messenger và Zalo giữ màu thương hiệu gốc, không tô theo theme -->
+    <div class="fixed bottom-4 right-4 z-40 flex flex-col gap-3">
+      <a
+        href={company.messengerUrl}
+        target="_blank"
+        rel="noopener"
+        class="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-line"
+        aria-label="Nhắn Messenger cho Gia Khánh"
+      >
+        <svg viewBox="0 0 24 24" class="h-8 w-8" aria-hidden="true">
+          <defs>
+            <radialGradient id="messenger-gradient" cx="19%" cy="99%" r="109%">
+              <stop offset="0" stop-color="#0099FF"></stop>
+              <stop offset="0.6" stop-color="#A033FF"></stop>
+              <stop offset="0.9" stop-color="#FF5280"></stop>
+              <stop offset="1" stop-color="#FF7061"></stop>
+            </radialGradient>
+          </defs>
+          <path
+            fill="url(#messenger-gradient)"
+            d="M12 0C5.24 0 0 4.952 0 11.64c0 3.499 1.434 6.521 3.769 8.61a.96.96 0 0 1 .323.683l.065 2.135a.96.96 0 0 0 1.347.85l2.381-1.053a.96.96 0 0 1 .641-.046A13 13 0 0 0 12 23.28c6.76 0 12-4.952 12-11.64S18.76 0 12 0m6.806 7.44c.522-.03.971.567.63 1.094l-4.178 6.457a.707.707 0 0 1-.977.208l-3.87-2.504a.44.44 0 0 0-.49.007l-4.363 3.01c-.637.438-1.415-.317-.995-.966l4.179-6.457a.706.706 0 0 1 .977-.21l3.87 2.505c.15.097.344.094.491-.007l4.362-3.008a.7.7 0 0 1 .364-.13"
+          ></path>
+        </svg>
+      </a>
+      <a
+        href={company.zaloUrl}
+        target="_blank"
+        rel="noopener"
+        class="flex h-12 w-12 items-center justify-center rounded-full bg-[#0068FF] text-white shadow-md"
+        aria-label="Chat Zalo với Gia Khánh"
+      >
+        <svg viewBox="0 0 24 24" class="h-8 w-8" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12.49 10.2722v-.4496h1.3467v6.3218h-.7704a.576.576 0 01-.5763-.5729l-.0006.0005a3.273 3.273 0 01-1.9372.6321c-1.8138 0-3.2844-1.4697-3.2844-3.2823 0-1.8125 1.4706-3.2822 3.2844-3.2822a3.273 3.273 0 011.9372.6321l.0006.0005zM6.9188 7.7896v.205c0 .3823-.051.6944-.2995 1.0605l-.03.0343c-.0542.0615-.1815.206-.2421.2843L2.024 14.8h4.8948v.7682a.5764.5764 0 01-.5767.5761H0v-.3622c0-.4436.1102-.6414.2495-.8476L4.8582 9.23H.1922V7.7896h6.7266zm8.5513 8.3548a.4805.4805 0 01-.4803-.4798v-7.875h1.4416v8.3548H15.47zM20.6934 9.6C22.52 9.6 24 11.0807 24 12.9044c0 1.8252-1.4801 3.306-3.3066 3.306-1.8264 0-3.3066-1.4808-3.3066-3.306 0-1.8237 1.4802-3.3044 3.3066-3.3044zm-10.1412 5.253c1.0675 0 1.9324-.8645 1.9324-1.9312 0-1.065-.865-1.9295-1.9324-1.9295s-1.9324.8644-1.9324 1.9295c0 1.0667.865 1.9312 1.9324 1.9312zm10.1412-.0033c1.0737 0 1.945-.8707 1.945-1.9453 0-1.073-.8713-1.9436-1.945-1.9436-1.0753 0-1.945.8706-1.945 1.9436 0 1.0746.8697 1.9453 1.945 1.9453z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        href={company.telUrl}
+        class="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-md hover:bg-primary-dark"
+        aria-label={`Gọi ngay ${company.phoneDisplay}`}
+      >
+        <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 5a2 2 0 0 1 2-2h2.3a1 1 0 0 1 1 .7l1.2 3.6a1 1 0 0 1-.5 1.2L7.5 9.3a11 11 0 0 0 7.2 7.2l.8-1.5a1 1 0 0 1 1.2-.5l3.6 1.2a1 1 0 0 1 .7 1V19a2 2 0 0 1-2 2h-1C9.7 21 3 14.3 3 6V5z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+
+    <script>
+      const els = document.querySelectorAll('[data-reveal]');
+      const io = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }),
+        { rootMargin: '0px 0px -10% 0px' },
+      );
+      els.forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #178a3e;
+  --color-primary-bright: #3dbe3a;
+  --color-primary-dark: #0d5a2c;
+  --color-primary-light: #ecf7ee;
+  --color-ink: #1a2433;
+  --color-muted: #5b6b7f;
+  --color-line: #e3e8ef;
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto max-w-6xl px-4 md:px-6;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 py-2.5 font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+  .btn-outline {
+    @apply border border-primary text-primary hover:bg-primary-light;
+  }
+  .card {
+    @apply rounded-lg border border-line bg-white shadow-sm transition-shadow hover:shadow-md;
+  }
+  .field {
+    @apply min-h-11 w-full rounded-md border border-line bg-white px-3 py-2 text-ink;
+  }
+}
+
+/* Thân bài cẩm nang (HTML sinh từ noi-dung/cam-nang/*.md) */
+.post-body {
+  @apply leading-relaxed;
+  & > * + * { @apply mt-4; }
+  & h2 { @apply mt-12 text-2xl font-bold text-ink; }
+  & h3 { @apply mt-8 text-lg font-semibold text-ink; }
+  & ul { @apply list-disc space-y-2 pl-6; }
+  & ol { @apply list-decimal space-y-2 pl-6; }
+  & ul:has(input[type="checkbox"]) { @apply list-none pl-0; }
+  & input[type="checkbox"] { @apply mr-2 accent-primary; }
+  & a:not(.btn) { @apply font-semibold text-primary underline hover:text-primary-dark; }
+  & blockquote { @apply rounded-r-md border-l-4 border-primary bg-primary-light px-4 py-3 font-medium; }
+  & hr { @apply my-10 border-line; }
+  & .table-wrap { @apply overflow-x-auto rounded-lg border border-line; }
+  & table { @apply w-full min-w-[32rem] text-left text-sm; }
+  & th { @apply bg-primary-light px-3 py-2 font-semibold; }
+  & td { @apply border-t border-line px-3 py-2 align-top; }
+  & details { @apply mt-3 rounded-lg border border-line p-4; }
+  & summary { @apply min-h-11 cursor-pointer font-semibold; }
+  & details p { @apply mt-2; }
+  & .post-cta { @apply flex flex-wrap gap-3; }
+}
+/* Đánh dấu cho biên tập — xóa marker trong file .md là mất */
+.img-placeholder {
+  @apply flex aspect-[3/2] items-center justify-center rounded-lg border-2 border-dashed border-primary/40 bg-primary-light p-6 text-center text-sm text-muted;
+}
+.note-xn {
+  @apply rounded bg-amber-200 px-1 text-sm text-amber-900;
+}
+
+/* Scroll reveal: chỉ ẩn khi có JS (class "js" gắn ở <head>) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+  transition-delay: var(--d, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

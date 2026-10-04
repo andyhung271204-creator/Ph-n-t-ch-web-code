@@ -1,0 +1,19 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import QuoteForm from './QuoteForm.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+}
+const { title, subtitle } = Astro.props;
+---
+
+<section id="bao-gia" class="section scroll-mt-20 bg-primary-light" data-reveal>
+  <div class="container-page">
+    <SectionHeading title={title} subtitle={subtitle} />
+    <div class="mx-auto max-w-2xl rounded-lg border border-line">
+      <QuoteForm />
+    </div>
+  </div>
+</section>

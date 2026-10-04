@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import { services } from '../data/services';
+import { imagesIn } from '../data/images';
+---
+
+<!-- 1 hàng 4 thẻ, tràn hết chiều ngang như mẫu. Ảnh thẻ: thả 1 ảnh vào src/assets/dich-vu/<slug>/ -->
+<ul class="flex flex-wrap justify-center gap-2 px-2">
+  {
+    services.map((s, i) => {
+      const img = imagesIn(s.slug)[0];
+      return (
+        <li class="w-full sm:w-[calc(50%-0.25rem)] lg:w-[calc(25%-0.375rem)]" data-reveal style={`--d:${(i % 4) * 90}ms`}>
+          <a
+            href={`/dich-vu/${s.slug}`}
+            class:list={[
+              i === 0 && 'lg:origin-left',
+              i === 3 && 'lg:origin-right',
+              'group relative block aspect-[5/8] overflow-hidden bg-primary-dark transition duration-300 ease-out hover:z-10 hover:scale-[1.08] hover:shadow-md focus-visible:z-10 focus-visible:scale-[1.08] motion-reduce:transition-none motion-reduce:hover:scale-100',
+            ]}
+          >
+            {img ? (
+              <Image src={img} alt="" width={Math.min(img.width, 800)} class="absolute inset-0 h-full w-full object-cover" />
+            ) : (
+              <span class="absolute inset-x-0 top-6 text-center text-sm text-white/60">TODO: ảnh dịch vụ</span>
+            )}
+            <!-- Rê chuột: tấm trắng mờ phủ 70% dưới, ảnh còn rõ ở 30% trên -->
+            <span
+              class="absolute inset-x-0 bottom-0 top-[30%] bg-white/85 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+              aria-hidden="true"
+            />
+            <span class="absolute inset-x-0 bottom-0 block pb-10 text-white transition-colors duration-300 group-hover:top-[30%] group-hover:pt-4 group-hover:text-ink group-focus-visible:top-[30%] group-focus-visible:pt-4 group-focus-visible:text-ink">
+              <!-- Trạng thái thường: dải tối mờ sau tiêu đề + mô tả -->
+              <span class="block bg-ink/55 px-8 py-4 transition-colors duration-300 group-hover:bg-transparent group-focus-visible:bg-transparent">
+                <span class="block text-2xl uppercase leading-snug">{s.name}</span>
+                <span class="mt-3 line-clamp-3 leading-relaxed group-hover:line-clamp-5 group-hover:text-muted group-focus-visible:line-clamp-5 group-focus-visible:text-muted">
+                  {s.description}
+                </span>
+              </span>
+              <span class="ml-8 mt-2 inline-flex min-h-11 items-center rounded-full border border-primary-bright bg-ink/55 px-6 transition-colors duration-300 group-hover:border-primary group-hover:bg-primary group-hover:font-semibold group-hover:text-white group-focus-visible:border-primary group-focus-visible:bg-primary group-focus-visible:font-semibold group-focus-visible:text-white">
+                Xem chi tiết
+              </span>
+            </span>
+          </a>
+        </li>
+      );
+    })
+  }
+</ul>

@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import bg from '../assets/page-hero.png';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  /** Trang cha (cho trang chi tiết), hiện giữa "Trang chủ" và tiêu đề trong chỉ dẫn vị trí */
+  parent?: { href: string; label: string };
+  /** Tên ngắn trong chỉ dẫn vị trí khi tiêu đề dài */
+  crumb?: string;
+}
+const { title, subtitle, parent, crumb = title } = Astro.props;
+const crumbs = [{ href: '/', label: 'Trang chủ' }, ...(parent ? [parent] : [])];
+---
+
+<section class="relative isolate overflow-hidden bg-white pb-12 md:pb-16" data-reveal>
+  <Image
+    src={bg}
+    alt=""
+    width={1920}
+    loading="eager"
+    class="absolute inset-0 -z-20 h-full w-full object-cover object-left lg:object-[right_bottom]"
+  />
+  <!-- Lớp trắng giữ chữ dễ đọc: phủ đều trên mobile, mờ dần sang phải trên desktop -->
+  <div
+    class="absolute inset-0 -z-10 bg-white/75 lg:bg-transparent lg:bg-linear-to-r lg:from-white/90 lg:via-white/60 lg:to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="container-page">
+    <nav aria-label="Chỉ dẫn vị trí" class="text-[13px]">
+      <ol class="flex flex-wrap items-center gap-x-2">
+        {
+          crumbs.map((c) => (
+            <li class="flex items-center gap-x-2">
+              <a href={c.href} class="flex min-h-11 items-center text-primary hover:text-primary-dark">
+                {c.label}
+              </a>
+              <span aria-hidden="true">»</span>
+            </li>
+          ))
+        }
+        <li aria-current="page">{crumb}</li>
+      </ol>
+    </nav>
+    <h1 class="mt-6 text-3xl font-bold md:mt-10 md:text-4xl">{title}</h1>
+    {subtitle && <p class="mt-4 max-w-prose leading-relaxed text-muted">{subtitle}</p>}
+    <slot />
+  </div>
+</section>

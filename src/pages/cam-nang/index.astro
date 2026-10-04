@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import PostCard from '../../components/PostCard.astro';
+import { categories, posts } from '../../data/posts';
+---
+
+<BaseLayout
+  title="Cẩm nang xây nhà"
+  description="Chi phí xây nhà, lưu ý khi thiết kế, sửa chữa cải tạo và hoàn thiện nội thất — cẩm nang từ đội ngũ Gia Khánh."
+>
+  <PageHeader title="Cẩm nang xây nhà" subtitle="Chi phí, thiết kế và những điều cần biết trước khi xây hoặc sửa nhà." />
+  {
+    categories.map((c, ci) => (
+      <section id={c.slug} class:list={['section scroll-mt-24', ci % 2 && 'bg-primary-light']} data-reveal>
+        <div class="container-page">
+          <SectionHeading title={c.name} />
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            {posts
+              .filter((p) => p.category === c.slug)
+              .map((p, i) => (
+                <PostCard post={p} index={i % 3} />
+              ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+</BaseLayout>

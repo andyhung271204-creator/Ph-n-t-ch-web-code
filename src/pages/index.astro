@@ -1,0 +1,122 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import { company, stats, reasons, steps } from '../data/company';
+import PostCard from '../components/PostCard.astro';
+import { categories, posts } from '../data/posts';
+import hero from '../assets/hero.png';
+---
+
+<BaseLayout
+  title="Xây nhà trọn gói, sửa nhà tại Hà Nội"
+  description="Gia Khánh nhận xây nhà trọn gói, sửa chữa – cải tạo, hoàn thiện nội thất và chống thấm tại Hà Nội, Đông Anh. Báo giá minh bạch, khảo sát miễn phí, bảo hành bằng văn bản."
+>
+  <!-- 1. Hero -->
+  <section class="relative isolate overflow-hidden bg-white" data-reveal>
+    <Image
+      src={hero}
+      alt=""
+      width={1920}
+      loading="eager"
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-right"
+    />
+    <!-- Lớp trắng giữ chữ dễ đọc: phủ đều trên mobile, mờ dần sang phải trên desktop -->
+    <div
+      class="absolute inset-0 -z-10 bg-white/75 md:bg-transparent md:bg-linear-to-r md:from-white/90 md:via-white/50 md:to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="container-page py-20 md:py-32">
+      <p class="font-semibold uppercase tracking-wide text-primary">{company.slogan}</p>
+      <h1 class="mt-4 max-w-2xl text-4xl font-bold md:text-5xl">Xây nhà trọn gói, sửa nhà tại Hà Nội</h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed">
+        Báo giá minh bạch, tiến độ rõ ràng và bảo hành bằng văn bản cho mọi gia đình.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/lien-he" class="btn btn-primary">Nhận báo giá miễn phí</a>
+        <a href={company.telUrl} class="btn btn-outline bg-white">Gọi ngay {company.phoneDisplay}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Con số -->
+  <section class="border-b border-line py-12" data-reveal>
+    <ul class="container-page grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+      {
+        stats.map((s, i) => (
+          <li class="text-center" data-reveal style={`--d:${i * 90}ms`}>
+            <p class="text-3xl font-bold text-primary">{s.value}</p>
+            <p class="mt-2 text-sm text-muted">{s.label}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- 3. Dịch vụ -->
+  <section class="section" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Dịch vụ" subtitle="4 nhóm dịch vụ cho nhà ở dân dụng tại Hà Nội." />
+    </div>
+    <ServiceGrid />
+  </section>
+
+  <!-- 4. Cẩm nang xây nhà -->
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Cẩm nang xây nhà" subtitle="Chi phí, thiết kế và những điều cần biết trước khi xây hoặc sửa nhà." />
+      <nav aria-label="Chủ đề cẩm nang" class="mb-10 flex flex-wrap justify-center gap-3">
+        {
+          categories.map((c) => (
+            <a href={`/cam-nang#${c.slug}`} class="inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-white transition hover:opacity-90">
+              {c.name}
+            </a>
+          ))
+        }
+      </nav>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        {posts.slice(0, 5).map((p, i) => <PostCard post={p} index={i} large={i === 0} class={i === 0 ? 'sm:col-span-2 lg:row-span-2' : undefined} />)}
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/cam-nang" class="btn btn-outline bg-white">Xem tất cả bài viết</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Vì sao chọn + Quy trình -->
+  <section class="section" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Vì sao chọn Gia Khánh" subtitle="Nói rõ, làm đúng, bàn giao đủ — theo quy trình 6 bước." />
+      <div class="grid gap-12 lg:grid-cols-2">
+        <ul class="grid gap-6 sm:grid-cols-2">
+          {
+            reasons.map((r, i) => (
+              <li data-reveal style={`--d:${(i % 2) * 90}ms`}>
+                <h3 class="font-semibold text-primary">{r.name}</h3>
+                <p class="mt-1 text-sm leading-relaxed text-muted">{r.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+        <ol class="space-y-4">
+          {
+            steps.map((s, i) => (
+              <li class="flex gap-4" data-reveal style={`--d:${i * 80}ms`}>
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 class="font-semibold">{s.name}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-muted">{s.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

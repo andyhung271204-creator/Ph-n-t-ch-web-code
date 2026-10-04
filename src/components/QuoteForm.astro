@@ -1,0 +1,51 @@
+---
+import { company } from '../data/company';
+---
+
+<!-- Không có backend: gửi form = sao chép nội dung rồi mở Zalo. Tắt JS thì form vẫn mở Zalo. -->
+<form data-quote action={company.zaloUrl} method="get" target="_blank" class="grid gap-4 rounded-lg bg-white p-6 text-ink shadow-sm">
+  <div class="grid gap-4 sm:grid-cols-2">
+    <label class="block text-sm font-medium">
+      Họ tên
+      <input class="field mt-1" type="text" name="ho-ten" autocomplete="name" required />
+    </label>
+    <label class="block text-sm font-medium">
+      Số điện thoại
+      <input class="field mt-1" type="tel" name="sdt" autocomplete="tel" inputmode="tel" pattern="[0-9+ .]{9,15}" required />
+    </label>
+  </div>
+  <label class="block text-sm font-medium">
+    Khu vực
+    <input class="field mt-1" type="text" name="khu-vuc" placeholder="Ví dụ: Đông Anh, Hà Nội" />
+  </label>
+  <label class="block text-sm font-medium">
+    Nhu cầu
+    <textarea class="field mt-1" name="nhu-cau" rows="3" placeholder="Xây mới, sửa chữa, chống thấm…"></textarea>
+  </label>
+  <div class="flex flex-wrap gap-3">
+    <button type="submit" class="btn btn-primary">Nhận báo giá miễn phí</button>
+    <a href={company.telUrl} class="btn btn-outline">Gọi ngay {company.phoneDisplay}</a>
+  </div>
+  <p class="text-sm text-muted" data-quote-note role="status">
+    Bấm gửi sẽ mở Zalo của Gia Khánh; nội dung bạn nhập được sao chép sẵn để dán vào khung chat.
+  </p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-quote]').forEach((form) =>
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      const text = `Yêu cầu báo giá\nHọ tên: ${d.get('ho-ten')}\nSĐT: ${d.get('sdt')}\nKhu vực: ${d.get('khu-vuc')}\nNhu cầu: ${d.get('nhu-cau')}`;
+      const win = window.open(form.action, '_blank');
+      const copied = await navigator.clipboard.writeText(text).then(
+        () => true,
+        () => false,
+      );
+      form.querySelector('[data-quote-note]')!.textContent = copied
+        ? 'Đã sao chép nội dung — hãy dán vào khung chat Zalo vừa mở.'
+        : 'Zalo đã mở — vui lòng nhắn nội dung yêu cầu cho Gia Khánh.';
+      if (!win) location.href = form.action;
+    }),
+  );
+</script>

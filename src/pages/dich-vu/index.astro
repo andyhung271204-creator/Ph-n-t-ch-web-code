@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+---
+
+<BaseLayout
+  title="Dịch vụ xây dựng, sửa chữa nhà ở Hà Nội"
+  description="4 nhóm dịch vụ của Gia Khánh: xây nhà trọn gói, sửa chữa – cải tạo (chống thấm, điện nước, bảo trì), thiết kế, hoàn thiện nội thất tại Hà Nội."
+>
+  <PageHeader title="Dịch vụ" subtitle="Gia Khánh cung cấp 4 nhóm dịch vụ cho nhà ở dân dụng tại Hà Nội." />
+  <section class="section" data-reveal>
+    <ServiceGrid />
+  </section>
+</BaseLayout>
