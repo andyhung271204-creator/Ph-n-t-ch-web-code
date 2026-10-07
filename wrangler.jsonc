@@ -1,0 +1,10 @@
+// Cloudflare Workers (static assets). Deploy: npm run deploy
+{
+  "name": "xaydunggiakhanh",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./dist" },
+  "routes": [
+    { "pattern": "xaydunggiakhanh.vn", "custom_domain": true },
+    { "pattern": "www.xaydunggiakhanh.vn", "custom_domain": true }
+  ]
+}
