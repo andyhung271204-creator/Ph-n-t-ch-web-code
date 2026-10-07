@@ -1,151 +1,98 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { company, prices, designPrices, packages, areaRules, areaExample, warranty, commitments, faqs } from '../data/company';
+import QuoteForm from '../components/QuoteForm.astro';
+import { company, houseModels } from '../data/company';
+import { imagesIn } from '../data/images';
 
+const tien = (v: number) =>
+  v >= 1e9
+    ? `${(v / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 })} tỷ`
+    : `${Math.round(v / 1e7) * 10} triệu`;
+
+// Mobile: mỗi dòng thành thẻ 3 cột, nhãn lấy từ data-label; từ md trở lên là bảng thường.
 const th = 'bg-primary-light p-4 text-left font-semibold';
-const td = 'border-t border-line p-4 align-top';
+const td =
+  'whitespace-nowrap md:border-t md:border-line md:p-4 md:align-middle before:block before:text-sm before:font-normal before:text-muted before:content-[attr(data-label)] md:before:hidden';
 ---
 
 <BaseLayout
-  title="Báo giá xây nhà trọn gói Hà Nội"
-  description="Đơn giá xây nhà theo m² của Gia Khánh: gói phần thô, gói trọn gói chìa khóa trao tay, cách tính diện tích, chính sách bảo hành và câu hỏi thường gặp."
+  title="Báo giá xây nhà theo mẫu tại Hà Nội"
+  description="Bảng giá ước tính xây 48 mẫu nhà phố, nhà ống, biệt thự của Gia Khánh: gói phần thô và gói trọn gói. Để lại thông tin để nhận báo giá chi tiết miễn phí."
 >
   <PageHeader
     title="Báo giá xây nhà"
-    subtitle="Gia Khánh báo giá xây nhà theo m² sàn quy đổi, chia theo loại nhà và gói thi công."
+    subtitle="Giá ước tính theo từng mẫu nhà. Để lại thông tin, kỹ sư Gia Khánh sẽ khảo sát và gửi báo giá chính xác miễn phí."
   />
 
-  <section id="don-gia" class="section scroll-mt-24" data-reveal>
+  <section class="section" data-reveal>
     <div class="container-page">
-      <SectionHeading title="Đơn giá theo m²" />
+      <SectionHeading
+        title="Bảng giá theo mẫu nhà"
+        subtitle="Giá ước tính theo diện tích sàn quy đổi phổ biến của từng mẫu. Ảnh là mẫu phối cảnh tham khảo."
+      />
       <div class="overflow-x-auto rounded-lg border border-line">
-        <table class="w-full min-w-[640px] border-collapse">
-          <thead>
+        <table class="block w-full border-collapse md:table">
+          <thead class="hidden md:table-header-group">
             <tr>
-              <th class={th} scope="col">Loại nhà</th>
+              <th class={th} scope="col">Mẫu nhà</th>
+              <th class={th} scope="col">Diện tích sàn ước tính</th>
               <th class={th} scope="col">Phần thô + nhân công hoàn thiện</th>
-              <th class={th} scope="col">Trọn gói (chìa khóa trao tay)</th>
+              <th class={th} scope="col">Trọn gói</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="block md:table-row-group">
             {
-              prices.map((p) => (
-                <tr>
-                  <th class={`${td} text-left font-medium`} scope="row">{p.type}</th>
-                  <td class={td}>{p.rough}</td>
-                  <td class={`${td} font-semibold text-primary`}>{p.full}</td>
+              houseModels.map((m) => (
+                <tr class="grid grid-cols-3 gap-x-3 gap-y-3 border-t border-line p-4 first:border-t-0 md:table-row md:p-0">
+                  <th class="col-span-3 text-left font-medium md:border-t md:border-line md:p-4 md:align-middle" scope="row">
+                    <span class="flex items-center gap-4">
+                      <Image
+                        src={imagesIn(`mau-nha/${m.id}`)[0]}
+                        alt={`Phối cảnh mẫu ${m.id}: ${m.name.toLowerCase()}`}
+                        width={192}
+                        class="aspect-[4/3] w-24 shrink-0 rounded-md object-cover"
+                      />
+                      <span>
+                        <span class="block text-sm text-muted">Mẫu {m.id}</span>
+                        {m.name}
+                      </span>
+                    </span>
+                  </th>
+                  <td class={td} data-label="Diện tích">~{m.area} m²</td>
+                  <td class={td} data-label="Phần thô">≈ {tien(m.rough)}</td>
+                  <td class={`${td} font-semibold text-primary`} data-label="Trọn gói">≈ {tien(m.full)}</td>
                 </tr>
               ))
             }
           </tbody>
         </table>
       </div>
-      <p class="mt-6 rounded-lg bg-primary-light p-4 font-medium">{company.priceNote}</p>
+      <p class="mt-6 rounded-lg bg-primary-light p-4 font-medium">
+        Giá trên chỉ để tham khảo, tính theo diện tích ước tính của mẫu. {company.priceNote}
+      </p>
+    </div>
+  </section>
 
-      <div class="mt-16" data-reveal>
-        <SectionHeading title="Báo giá thiết kế" />
-        <dl class="mx-auto max-w-2xl divide-y divide-line rounded-lg border border-line">
-          {
-            designPrices.map((d) => (
-              <div class="flex justify-between gap-4 p-4">
-                <dt>{d.item}</dt>
-                <dd class="shrink-0 font-semibold text-primary">{d.price}</dd>
-              </div>
-            ))
-          }
-        </dl>
+  <section id="nhan-bao-gia" class="section scroll-mt-20 bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading
+        title="Nhận báo giá chi tiết"
+        subtitle="Để lại thông tin và mẫu nhà bạn quan tâm, Gia Khánh sẽ gọi lại tư vấn miễn phí."
+      />
+      <div class="mx-auto max-w-2xl rounded-lg border border-line">
+        <QuoteForm>
+          <label class="block text-sm font-medium">
+            Mẫu nhà quan tâm
+            <select class="field mt-1" name="mau-nha">
+              <option value="">Chưa chọn / thiết kế riêng</option>
+              {houseModels.map((m) => <option value={`Mẫu ${m.id} – ${m.name}`}>Mẫu {m.id} – {m.name}</option>)}
+            </select>
+          </label>
+        </QuoteForm>
       </div>
     </div>
   </section>
-
-  <section class="section bg-primary-light" data-reveal>
-    <div class="container-page">
-      <SectionHeading title="Các gói thi công" />
-      <ul class="grid gap-6 md:grid-cols-3 md:gap-8">
-        {
-          packages.map((p, i) => (
-            <li class="card p-6" data-reveal style={`--d:${i * 90}ms`}>
-              <h3 class="text-lg font-semibold text-primary">{p.name}</h3>
-              <p class="mt-4 text-sm font-semibold">Bao gồm</p>
-              <p class="mt-1 text-sm leading-relaxed text-muted">{p.includes}</p>
-              <p class="mt-4 text-sm font-semibold">Chủ nhà tự lo</p>
-              <p class="mt-1 text-sm leading-relaxed text-muted">{p.owner}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <section id="dien-tich" class="section scroll-mt-24" data-reveal>
-    <div class="container-page">
-      <SectionHeading title="Cách tính diện tích xây dựng" />
-      <div class="grid gap-8 lg:grid-cols-2">
-        <dl class="divide-y divide-line rounded-lg border border-line">
-          {
-            areaRules.map((r) => (
-              <div class="flex justify-between gap-4 p-4">
-                <dt>{r.item}</dt>
-                <dd class="shrink-0 font-semibold text-primary">{r.rate}</dd>
-              </div>
-            ))
-          }
-        </dl>
-        <div class="rounded-lg bg-primary-light p-6">
-          <h3 class="font-semibold">Ví dụ</h3>
-          <p class="mt-2 leading-relaxed">{areaExample.text}</p>
-          <ul class="mt-4 space-y-2 font-medium">
-            {areaExample.results.map((r) => <li>{r}</li>)}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section bg-primary-light" data-reveal>
-    <div class="container-page">
-      <SectionHeading title="Bảo hành & cam kết" />
-      <div class="grid gap-8 lg:grid-cols-2">
-        <dl class="divide-y divide-line rounded-lg border border-line bg-white">
-          {
-            warranty.map((w) => (
-              <div class="flex justify-between gap-4 p-4">
-                <dt>{w.item}</dt>
-                <dd class="shrink-0 font-semibold text-primary">{w.period}</dd>
-              </div>
-            ))
-          }
-        </dl>
-        <ul class="space-y-4">
-          {
-            commitments.map((c) => (
-              <li class="flex gap-3 leading-relaxed">
-                <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" aria-hidden="true" />
-                {c}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="section scroll-mt-24" data-reveal>
-    <div class="container-page">
-      <SectionHeading title="Câu hỏi thường gặp" />
-      <div class="mx-auto max-w-3xl space-y-4">
-        {
-          faqs.map((f) => (
-            <details class="rounded-lg border border-line p-4">
-              <summary class="flex min-h-11 cursor-pointer items-center font-semibold">{f.q}</summary>
-              <p class="mt-2 leading-relaxed text-muted">{f.a}</p>
-            </details>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
 </BaseLayout>

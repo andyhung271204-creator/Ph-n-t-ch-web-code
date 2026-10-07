@@ -18,6 +18,7 @@ import { company } from '../data/company';
     Khu vực
     <input class="field mt-1" type="text" name="khu-vuc" placeholder="Ví dụ: Đông Anh, Hà Nội" />
   </label>
+  <slot />
   <label class="block text-sm font-medium">
     Nhu cầu
     <textarea class="field mt-1" name="nhu-cau" rows="3" placeholder="Xây mới, sửa chữa, chống thấm…"></textarea>
@@ -36,7 +37,7 @@ import { company } from '../data/company';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const d = new FormData(form);
-      const text = `Yêu cầu báo giá\nHọ tên: ${d.get('ho-ten')}\nSĐT: ${d.get('sdt')}\nKhu vực: ${d.get('khu-vuc')}\nNhu cầu: ${d.get('nhu-cau')}`;
+      const text = `Yêu cầu báo giá\nHọ tên: ${d.get('ho-ten')}\nSĐT: ${d.get('sdt')}\nKhu vực: ${d.get('khu-vuc')}${d.get('mau-nha') ? `\nMẫu nhà: ${d.get('mau-nha')}` : ''}\nNhu cầu: ${d.get('nhu-cau')}`;
       const win = window.open(form.action, '_blank');
       const copied = await navigator.clipboard.writeText(text).then(
         () => true,

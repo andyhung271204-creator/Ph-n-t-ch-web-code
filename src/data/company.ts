@@ -87,13 +87,6 @@ export const reasons = [
   { name: 'Am hiểu nhà ở Hà Nội', text: 'Quen với nhà ống, nhà trong ngõ, quy định cấp phép tại địa phương.' },
 ];
 
-export const commitments = [
-  'Không phát sinh chi phí khi chưa có xác nhận của chủ nhà.',
-  'Sử dụng đúng vật tư, chủng loại đã ghi trong hợp đồng.',
-  'Chậm tiến độ do lỗi của Gia Khánh sẽ bồi thường theo điều khoản hợp đồng.',
-  'Vệ sinh công trình sạch sẽ trước khi bàn giao.',
-];
-
 // Thời hạn theo mức phổ biến trên thị trường (trùng số trong hồ sơ), chủ site yêu cầu hiển thị.
 // TODO: công ty xác nhận lại trước khi đưa vào hợp đồng
 export const warranty = [
@@ -110,12 +103,6 @@ export const prices = [
   { type: 'Nhà phố, nhà ống 2 – 5 tầng', rough: '3.300.000 đ/m²', full: '5.000.000 đ/m²' },
   { type: 'Nhà phố tân cổ điển, nhà từ 6 tầng trở lên', rough: xn('3.600.000 đ/m²'), full: xn('5.500.000 đ/m²') },
   { type: 'Biệt thự, nhà vườn', rough: xn('3.900.000 đ/m²'), full: xn('6.500.000 đ/m²') },
-];
-
-// TODO: chưa có đơn giá thiết kế — điền số thật vào xn('...') khi công ty cung cấp
-export const designPrices = [
-  { item: 'Thiết kế kiến trúc', price: xn('') },
-  { item: 'Thiết kế nội thất', price: xn('') },
 ];
 
 export const packages = [
@@ -137,40 +124,70 @@ export const packages = [
   },
 ];
 
-export const areaRules = [
-  { item: 'Móng', rate: '40% diện tích' },
-  { item: 'Các tầng, tầng tum có mái che', rate: '100% diện tích' },
-  { item: 'Sân, sân thượng không có mái che', rate: '30% diện tích' },
-];
+// Bảng giá 48 mẫu nhà (/bao-gia). Ảnh trong src/assets/mau-nha/<id>/ là ảnh mẫu sưu tầm, KHÔNG phải công trình của Gia Khánh.
+// Giá ƯỚC TÍNH = diện tích sàn quy đổi × đơn giá/m² (bảng prices ở trên).
+// ponytail: diện tích đoán từ ảnh phối cảnh; thay số thật khi có hồ sơ thiết kế từng mẫu.
+const donGia = {
+  pho: [3_300_000, 5_000_000], // nhà phố, nhà ống
+  coDien: [3_600_000, 5_500_000], // nhà phố tân cổ điển
+  bietThu: [3_900_000, 6_500_000], // biệt thự, nhà vườn
+} as const;
 
-export const areaExample = {
-  text: 'Nhà phố 2 tầng + tum, mặt bằng 60 m², tum có mái 20 m², sân thượng 40 m² → diện tích tính giá = 24 + 60 + 60 + 20 + 12 = 176 m².',
-  results: [
-    'Gói trọn gói: 176 × 5.000.000 = 880 triệu đồng',
-    'Gói phần thô + nhân công hoàn thiện: 176 × 3.300.000 = 580,8 triệu đồng',
-  ],
-};
+const mau = (id: string, name: string, loai: keyof typeof donGia, area: number) => ({
+  id,
+  name,
+  area,
+  rough: area * donGia[loai][0],
+  full: area * donGia[loai][1],
+});
 
-export const faqs = [
-  {
-    q: 'Gia Khánh có khảo sát và báo giá miễn phí không?',
-    a: 'Có. Kỹ sư sẽ đến tận nơi khảo sát và gửi báo giá chi tiết hoàn toàn miễn phí trong khu vực Hà Nội.',
-  },
-  {
-    q: 'Xây một căn nhà mất bao lâu?',
-    a: `${daXacNhan ? 'Nhà phố 3–4 tầng thường mất khoảng 4–6 tháng tùy diện tích và thời tiết. ' : 'Thời gian tùy diện tích và thời tiết. '}Tiến độ cụ thể được ghi trong hợp đồng.`,
-  },
-  { q: 'Thanh toán như thế nào?', a: 'Thanh toán theo từng giai đoạn, chỉ sau khi hạng mục đã được nghiệm thu cùng chủ nhà.' },
-  {
-    q: 'Có phát sinh chi phí trong quá trình thi công không?',
-    a: 'Mọi phát sinh (nếu chủ nhà thay đổi yêu cầu) đều được báo giá và chỉ thực hiện khi chủ nhà đồng ý bằng văn bản hoặc tin nhắn.',
-  },
-  {
-    q: 'Gia Khánh có nhận sửa chữa nhỏ không?',
-    a: 'Có. Chúng tôi nhận cả việc nhỏ như sửa điện nước, chống thấm một khu vực, sơn lại phòng.',
-  },
-  {
-    q: 'Tôi ở xa, làm sao theo dõi công trình?',
-    a: 'Kỹ sư gửi ảnh và video tiến độ hằng ngày qua Zalo; chủ nhà có thể đến công trình bất cứ lúc nào.',
-  },
+export const houseModels = [
+  mau('01', 'Biệt thự 2 tầng mái Thái', 'bietThu', 300),
+  mau('02', 'Nhà phố 2 tầng hiện đại', 'pho', 200),
+  mau('03', 'Nhà 2 tầng mái Thái', 'pho', 220),
+  mau('04', 'Biệt thự 2 tầng mái Thái', 'bietThu', 300),
+  mau('05', 'Biệt thự 2 tầng tân cổ điển', 'bietThu', 320),
+  mau('06', 'Nhà 2 tầng hiện đại có giàn hoa', 'pho', 220),
+  mau('07', 'Biệt thự 2 tầng mái Nhật', 'bietThu', 300),
+  mau('08', 'Biệt thự 2 tầng tân cổ điển mái Thái', 'bietThu', 280),
+  mau('09', 'Biệt thự 2 tầng tân cổ điển', 'bietThu', 320),
+  mau('10', 'Biệt thự 2 tầng mái Thái', 'bietThu', 320),
+  mau('11', 'Nhà 2 tầng mái Thái', 'pho', 200),
+  mau('12', 'Nhà phố 2 tầng + tum hiện đại', 'pho', 220),
+  mau('13', 'Nhà 2 tầng mái Nhật', 'pho', 220),
+  mau('14', 'Biệt thự 2 tầng tân cổ điển', 'bietThu', 340),
+  mau('15', 'Nhà phố 2 tầng mái Thái kết hợp kinh doanh', 'pho', 240),
+  mau('16', 'Nhà ống 5 tầng hiện đại', 'pho', 340),
+  mau('17', 'Nhà ống 5 tầng hiện đại', 'pho', 340),
+  mau('18', 'Biệt thự 2 tầng hiện đại', 'bietThu', 320),
+  mau('19', 'Biệt thự 3 tầng tân cổ điển', 'bietThu', 450),
+  mau('20', 'Biệt thự nhà vườn 1 tầng', 'bietThu', 220),
+  mau('21', 'Nhà ống 4 tầng hiện đại', 'pho', 280),
+  mau('22', 'Nhà ống 4 tầng hiện đại', 'pho', 280),
+  mau('23', 'Nhà phố 4 tầng tân cổ điển', 'coDien', 300),
+  mau('24', 'Biệt thự 2 tầng tân cổ điển', 'bietThu', 340),
+  mau('25', 'Biệt thự 3 tầng tân cổ điển', 'bietThu', 420),
+  mau('26', 'Nhà ống 5 tầng hiện đại', 'pho', 320),
+  mau('27', 'Nhà ống 5 tầng hiện đại', 'pho', 320),
+  mau('28', 'Nhà phố 4 tầng hiện đại', 'pho', 320),
+  mau('29', 'Nhà phố 3 tầng hiện đại', 'pho', 270),
+  mau('30', 'Biệt thự 3 tầng hiện đại', 'bietThu', 420),
+  mau('31', 'Nhà phố 3 tầng hiện đại', 'pho', 280),
+  mau('32', 'Nhà ống 4 tầng hiện đại', 'pho', 260),
+  mau('33', 'Nhà phố 3 tầng hiện đại', 'pho', 270),
+  mau('34', 'Nhà phố 3 tầng hiện đại', 'pho', 280),
+  mau('35', 'Nhà phố 3 tầng tân cổ điển', 'coDien', 270),
+  mau('36', 'Biệt thự lâu đài cổ điển', 'bietThu', 650),
+  mau('37', 'Biệt thự 3 tầng tân cổ điển', 'bietThu', 420),
+  mau('38', 'Nhà 2 tầng mái Thái hiện đại', 'pho', 240),
+  mau('39', 'Biệt thự 2 tầng hiện đại', 'bietThu', 300),
+  mau('40', 'Nhà phố 4 tầng hiện đại', 'pho', 300),
+  mau('41', 'Biệt thự 3 tầng tân cổ điển', 'bietThu', 450),
+  mau('42', 'Nhà phố 3 tầng kết hợp kinh doanh', 'pho', 300),
+  mau('43', 'Nhà phố 4 tầng hiện đại', 'pho', 320),
+  mau('44', 'Nhà phố 3 tầng hiện đại', 'pho', 250),
+  mau('45', 'Nhà phố 3 tầng tân cổ điển', 'coDien', 260),
+  mau('46', 'Biệt thự 3 tầng tân cổ điển', 'bietThu', 420),
+  mau('47', 'Biệt thự 2 tầng mái Thái', 'bietThu', 300),
+  mau('48', 'Nhà ống 4 tầng kết hợp kinh doanh', 'pho', 280),
 ];

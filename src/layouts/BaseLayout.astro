@@ -14,6 +14,7 @@ const { title, description } = Astro.props;
 const fullTitle = `${title} | ${company.brand}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(banner.src, Astro.site);
+const gaId = import.meta.env.PUBLIC_GA_ID; // vd. G-XXXXXXXXXX, đặt trong .env; trống thì không nạp GA
 
 const schema = {
   '@context': 'https://schema.org',
@@ -55,6 +56,17 @@ const schema = {
       document.documentElement.classList.add('js');
     </script>
     <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+    {gaId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script is:inline define:vars={{ gaId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
   </head>
   <body>
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-3">Bỏ qua điều hướng</a>
