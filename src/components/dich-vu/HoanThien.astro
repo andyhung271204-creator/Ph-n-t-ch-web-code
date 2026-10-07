@@ -13,7 +13,7 @@ const compare = [
   {
     name: 'Hoàn thiện',
     dir: 'hoan-thien-so-sanh',
-    alt: 'Phòng khách sau khi hoàn thiện ốp lát, sơn bả, trần thạch cao',
+    alt: 'Phối cảnh biệt thự 2 tầng mái ngói, cửa gỗ và ban công',
     what: 'Những hạng mục gắn liền với ngôi nhà, làm sau phần thô để nhà có thể sử dụng.',
     examples: 'Ốp lát, sơn bả, trần thạch cao, cửa nhôm kính, lan can, mái che, giếng trời, lắp thiết bị.',
     when: 'Nhà vừa xong phần thô, hoặc nhà cũ cần làm mới lớp hoàn thiện.',
@@ -21,7 +21,7 @@ const compare = [
   {
     name: 'Thi công nội thất',
     dir: 'noi-that-so-sanh',
-    alt: 'Tủ bếp và đồ gỗ nội thất do Gia Khánh thi công theo thiết kế',
+    alt: 'Phối cảnh hiên nghỉ và quầy bar ngoài trời của biệt thự hiện đại',
     what: 'Đồ đạc làm theo kích thước căn nhà của bạn, đặt vào sau khi hoàn thiện xong.',
     examples: 'Tủ bếp, tủ quần áo, đồ gỗ theo thiết kế.',
     when: 'Khi đã chốt công năng từng phòng, hoặc muốn đồ đạc khớp từng góc nhà.',
@@ -155,7 +155,7 @@ const warrantyRows = [
 
 <section class="section bg-primary-light" data-reveal>
   <div class="container-page grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-    <ImageSlot dir="hoan-thien-cho-ai" alt="Căn nhà vừa xong phần thô, chuẩn bị hoàn thiện" />
+    <ImageSlot dir="hoan-thien-cho-ai" alt="Phối cảnh nhà 3 tầng hiện đại, mặt tiền ốp đá vân trắng" />
     <div>
       <h2 class="text-2xl font-bold md:text-3xl">Dịch vụ dành cho ai</h2>
       <Bullets
@@ -176,12 +176,12 @@ const warrantyRows = [
     <SectionHeading title="Hạng mục Gia Khánh nhận thi công" />
     <div class="grid gap-8 md:grid-cols-2 lg:gap-12">
       <div data-reveal>
-        <ImageSlot dir="hoan-thien-hang-muc" alt="Thợ Gia Khánh ốp lát và làm trần thạch cao tại công trình" />
+        <ImageSlot dir="hoan-thien-hang-muc" alt="Phối cảnh biệt thự tân cổ điển 2 tầng lên đèn" />
         <h3 class="mt-6 text-xl font-bold">Hoàn thiện</h3>
         <Bullets class="mt-4" items={finishing.map(([b, t]) => (t ? [b, t] : b))} />
       </div>
       <div data-reveal style="--d:90ms">
-        <ImageSlot dir="noi-that-hang-muc" alt="Tủ quần áo, đồ gỗ nội thất Gia Khánh làm theo thiết kế" />
+        <ImageSlot dir="noi-that-hang-muc" alt="Phối cảnh nhà 2 tầng mái bằng, mặt tiền nan gỗ" />
         <h3 class="mt-6 text-xl font-bold">Nội thất</h3>
         <Bullets
           class="mt-4"

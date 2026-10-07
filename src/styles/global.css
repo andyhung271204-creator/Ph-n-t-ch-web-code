@@ -89,7 +89,22 @@
   opacity: 1;
   transform: none;
 }
+/* Nút nổi: cứ 20s lắc nhẹ + glow trong 1,5s (7,5% chu kỳ) rồi về như cũ */
+.fab {
+  animation: fab-attn 20s infinite;
+}
+@keyframes fab-attn {
+  0%, 92.5%, 100% { transform: none; box-shadow: 0 0 0 0 transparent; }
+  93.5% { transform: rotate(-12deg); box-shadow: 0 0 14px 4px var(--glow); }
+  95%   { transform: rotate(10deg);  box-shadow: 0 0 20px 7px var(--glow); }
+  96.5% { transform: rotate(-8deg);  box-shadow: 0 0 14px 4px var(--glow); }
+  98%   { transform: rotate(6deg);   box-shadow: 0 0 20px 7px var(--glow); }
+  99%   { transform: rotate(-3deg);  box-shadow: 0 0 10px 3px var(--glow); }
+}
 @media (prefers-reduced-motion: reduce) {
+  .fab {
+    animation: none;
+  }
   html {
     scroll-behavior: auto;
   }

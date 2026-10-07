@@ -2,13 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
-import { Image } from 'astro:assets';
+import QuoteForm from '../../components/QuoteForm.astro';
+import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 // Mỗi thư mục src/assets/mau-nha/<NN>/ là một mẫu nhà Gia Khánh đã thi công (chủ đầu tư xác nhận 10/2026), 3 ảnh.
 const files = import.meta.glob<{ default: ImageMetadata }>('/src/assets/mau-nha/*/*.jpg', { eager: true });
 const models = [...Map.groupBy(Object.keys(files).sort(), (p) => p.split('/').at(-2)).values()].map((ps) =>
   ps.slice(0, 3).map((p) => files[p].default),
+);
+// Bản lớn cho khung phóng to khi click ảnh.
+const zoomSrc = await Promise.all(
+  models.map((imgs) => Promise.all(imgs.map(async (img) => (await getImage({ src: img, width: Math.min(img.width, 1600) })).src))),
 );
 ---
 
@@ -26,12 +31,12 @@ const models = [...Map.groupBy(Object.keys(files).sort(), (p) => p.split('/').at
       <ol class="space-y-6 md:space-y-10">
         {
           models.map((imgs, i) => {
-            const n = String(i + 1).padStart(2, '0');
+            const name = `Mẫu nhà ${i + 1}`;
             // Hàng nhà ống (đa số ảnh dọc) dùng khung dọc để không cắt mất tầng.
             const tall = imgs.filter((img) => img.height > img.width).length >= 2;
             return (
               <li data-reveal>
-                <h3 class="mb-2 text-sm font-semibold md:mb-3 md:text-base">Mẫu {n}</h3>
+                <h3 class="mb-2 text-sm font-semibold md:mb-3 md:text-base">{name}</h3>
                 <ul class="grid grid-cols-3 gap-2 md:gap-4">
                   {imgs.map((img, k) => (
                     <li
@@ -39,13 +44,15 @@ const models = [...Map.groupBy(Object.keys(files).sort(), (p) => p.split('/').at
                       data-reveal
                       style={`--d:${k * 90}ms`}
                     >
-                      <Image
-                        src={img}
-                        alt={`Mẫu nhà ${n} Gia Khánh đã thi công – góc nhìn ${k + 1}`}
-                        width={Math.min(img.width, 640)}
-                        sizes="(min-width: 1280px) 400px, 33vw"
-                        class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
+                      <button type="button" class="h-full w-full cursor-zoom-in" data-zoom={zoomSrc[i][k]} data-model={name}>
+                        <Image
+                          src={img}
+                          alt={`${name} Gia Khánh đã thi công – góc nhìn ${k + 1}`}
+                          width={Math.min(img.width, 640)}
+                          sizes="(min-width: 1280px) 400px, 33vw"
+                          class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                        />
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -56,4 +63,40 @@ const models = [...Map.groupBy(Object.keys(files).sort(), (p) => p.split('/').at
       </ol>
     </div>
   </section>
+
+  <dialog
+    id="zoom"
+    aria-labelledby="zoom-title"
+    class="m-auto max-h-[calc(100dvh-1.5rem)] w-[min(72rem,calc(100%-1.5rem))] overflow-y-auto rounded-lg bg-white p-0 backdrop:bg-black/75"
+  >
+    <div class="grid md:grid-cols-[3fr_2fr]">
+      <div class="flex items-center justify-center bg-ink">
+        <img data-zoom-img alt="" class="max-h-[50dvh] w-full object-contain md:max-h-[calc(100dvh-1.5rem)]" />
+      </div>
+      <div class="p-4 md:p-6">
+        <div class="flex items-start justify-between gap-2">
+          <h2 id="zoom-title" class="text-xl font-bold" data-zoom-title></h2>
+          <button type="button" data-zoom-close aria-label="Đóng" class="-mr-2 -mt-2 grid size-11 place-items-center text-2xl text-muted hover:text-ink">×</button>
+        </div>
+        <p class="mb-4 text-sm text-muted">Để lại thông tin để Gia Khánh gửi chi tiết mẫu nhà này cho bạn.</p>
+        <QuoteForm><input type="hidden" name="mau-nha" data-zoom-model /></QuoteForm>
+      </div>
+    </div>
+  </dialog>
 </BaseLayout>
+
+<script>
+  const dlg = document.querySelector<HTMLDialogElement>('#zoom')!;
+  const big = dlg.querySelector<HTMLImageElement>('[data-zoom-img]')!;
+  document.querySelectorAll<HTMLButtonElement>('[data-zoom]').forEach((btn) =>
+    btn.addEventListener('click', () => {
+      big.src = btn.dataset.zoom!;
+      big.alt = btn.querySelector('img')!.alt;
+      dlg.querySelector('[data-zoom-title]')!.textContent = btn.dataset.model!;
+      dlg.querySelector<HTMLInputElement>('[data-zoom-model]')!.value = btn.dataset.model!;
+      dlg.showModal();
+    }),
+  );
+  dlg.querySelector('[data-zoom-close]')!.addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => e.target === dlg && dlg.close()); // click nền tối để đóng
+</script>

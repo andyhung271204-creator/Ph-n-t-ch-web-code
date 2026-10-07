@@ -21,9 +21,11 @@ export const company = {
   telUrl: `tel:${phone}`,
   zaloUrl: `https://zalo.me/${phone}`,
   mapUrl: `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`,
-  email: '[Email]', // TODO: chưa có
-  fanpage: '[Fanpage]', // TODO: chưa có
-  messengerUrl: 'https://m.me/TODO-fanpage', // TODO: thay TODO-fanpage bằng username fanpage chính thức
+  email: 'donhuminh071105@gmail.com',
+  fanpageLabel: 'Fanpage của Gia Khánh',
+  fanpageUrl: 'https://www.facebook.com/share/1BPoXGH4yX/',
+  // TODO: đổi sang https://m.me/<username-fanpage> khi có username để mở thẳng Messenger
+  messengerUrl: 'https://www.facebook.com/share/1BPoXGH4yX/',
   hours: xn('Thứ 2 – Thứ 7, 8:00 – 17:30'),
   area: 'Hà Nội: nội thành và các huyện lân cận (Đông Anh, Gia Lâm, Hoài Đức, Thanh Trì, Hà Đông…)',
   areaList: ['Hà Nội', 'Đông Anh', 'Gia Lâm', 'Hoài Đức', 'Thanh Trì', 'Hà Đông'],

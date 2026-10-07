@@ -1,7 +1,7 @@
 import { imagesIn } from './images';
 import { company } from './company';
 
-// Bài cẩm nang (blog). Ảnh bìa lấy từ thư mục công trình thật trong src/assets/.
+// Bài cẩm nang (blog). Ảnh bìa: src/assets/cam-nang/<slug>/ (chọn từ thư mục "tệp ảnh 1").
 // Thân bài lấy từ noi-dung/cam-nang/<slug>.md (xem toHtml bên dưới).
 export const categories = [
   { slug: 'chi-phi', name: 'Chi phí xây nhà' },
@@ -17,35 +17,35 @@ const raw = [
     title: 'Chi phí xây nhà phố trọn gói: những yếu tố quyết định tổng chi phí',
     excerpt:
       'Đơn giá theo m² chỉ là điểm bắt đầu. Diện tích sàn, phần móng – mái, vật tư hoàn thiện và điều kiện thi công thực tế mới quyết định con số cuối cùng.',
-    img: 'nha-da-hoan-thien',
+    img: 'cam-nang/chi-phi-xay-nha-pho-tron-goi',
   },
   {
     slug: 'cach-tinh-dien-tich-xay-dung',
     category: 'chi-phi',
     title: 'Cách tính diện tích xây dựng để dự trù ngân sách',
     excerpt: 'Hiểu cách quy đổi móng, sàn, mái ra diện tích để ước tính chi phí trước khi khảo sát.',
-    img: 'cong-trinh-11',
+    img: 'cam-nang/cach-tinh-dien-tich-xay-dung',
   },
   {
     slug: 'luu-y-khi-thiet-ke-nha-pho',
     category: 'thiet-ke',
     title: 'Những điều cần lưu ý khi thiết kế nhà phố',
     excerpt: 'Ánh sáng, thông gió, cầu thang và công năng từng tầng — những điểm nên chốt sớm khi thiết kế.',
-    img: 'cong-trinh-06',
+    img: 'cam-nang/luu-y-khi-thiet-ke-nha-pho',
   },
   {
     slug: 'kiem-tra-truoc-khi-cai-tao-nha-cu',
     category: 'sua-chua',
     title: 'Sửa nhà cũ: cần kiểm tra gì trước khi cải tạo?',
     excerpt: 'Kết cấu, thấm dột, hệ thống điện nước — những hạng mục cần kiểm tra trước khi quyết định sửa.',
-    img: 'cong-trinh-05',
+    img: 'cam-nang/kiem-tra-truoc-khi-cai-tao-nha-cu',
   },
   {
     slug: 'chon-vat-lieu-hoan-thien-noi-that',
     category: 'noi-that',
     title: 'Hoàn thiện nội thất: chọn vật liệu phù hợp ngân sách',
     excerpt: 'Gỗ, sơn, gạch, trần — cách cân đối vật liệu hoàn thiện theo ngân sách gia đình.',
-    img: 'noi-that',
+    img: 'cam-nang/chon-vat-lieu-hoan-thien-noi-that',
   },
 ];
 

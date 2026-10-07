@@ -14,7 +14,15 @@ import { company } from '../data/company';
           Hotline / Zalo:
           <a href={company.telUrl} class="font-semibold text-white underline">{company.phoneDisplay}</a>
         </li>
-        <li>Email: {company.email}</li>
+        <li>
+          Email:
+          <a href={`mailto:${company.email}`} class="font-semibold text-white underline">{company.email}</a>
+        </li>
+        <li>
+          <a href={company.fanpageUrl} target="_blank" rel="noopener" class="font-semibold text-white underline"
+            >{company.fanpageLabel}</a
+          >
+        </li>
         <li>Giờ làm việc: {company.hours}</li>
       </ul>
     </div>

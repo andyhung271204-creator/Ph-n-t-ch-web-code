@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import logo from '../assets/logo-gia-khanh.png';
 import { company, values } from '../data/company';
-import { services } from '../data/services';
+import ServiceGrid from '../components/ServiceGrid.astro';
 
 const legal = [
   ['Tên đầy đủ', company.name],
@@ -116,21 +116,9 @@ const pillars = [
           <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Dịch vụ của Gia Khánh</h2>
           <span class="divider" aria-hidden="true"></span>
           <p class="mx-auto max-w-prose leading-relaxed text-muted">{company.intro}</p>
-          <ul class="mt-8 grid gap-4 sm:grid-cols-2">
-            {
-              services.map((s, i) => (
-                <li data-reveal style={`--d:${(i % 2) * 90}ms`}>
-                  <a href={`/dich-vu/${s.slug}`} class="card flex h-full gap-4 p-5 hover:border-primary">
-                    <svg viewBox="0 0 24 24" class="size-6 shrink-0 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={s.icon} /></svg>
-                    <span>
-                      <span class="block font-semibold">{s.name}</span>
-                      <span class="mt-1 block text-sm leading-relaxed text-muted">{s.short}</span>
-                    </span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
+          <div class="mt-8">
+            <ServiceGrid cols={2} />
+          </div>
         </section>
 
         <section id="doi-ngu" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>

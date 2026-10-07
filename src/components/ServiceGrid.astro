@@ -2,6 +2,9 @@
 import { Image } from 'astro:assets';
 import { services } from '../data/services';
 import { imagesIn } from '../data/images';
+
+// cols=2 cho cột nội dung hẹp (trang giới thiệu có thanh bên)
+const { cols = 4 } = Astro.props as { cols?: 2 | 4 };
 ---
 
 <!-- 1 hàng 4 thẻ, tràn hết chiều ngang như mẫu. Ảnh thẻ: thả 1 ảnh vào src/assets/dich-vu/<slug>/ -->
@@ -10,12 +13,12 @@ import { imagesIn } from '../data/images';
     services.map((s, i) => {
       const img = imagesIn(s.slug)[0];
       return (
-        <li class="w-full sm:w-[calc(50%-0.25rem)] lg:w-[calc(25%-0.375rem)]" data-reveal style={`--d:${(i % 4) * 90}ms`}>
+        <li class:list={['w-full sm:w-[calc(50%-0.25rem)]', cols === 4 && 'lg:w-[calc(25%-0.375rem)]']} data-reveal style={`--d:${(i % cols) * 90}ms`}>
           <a
             href={`/dich-vu/${s.slug}`}
             class:list={[
-              i === 0 && 'lg:origin-left',
-              i === 3 && 'lg:origin-right',
+              i % cols === 0 && 'lg:origin-left',
+              i % cols === cols - 1 && 'lg:origin-right',
               'group relative block aspect-[5/8] overflow-hidden bg-primary-dark transition duration-300 ease-out hover:z-10 hover:scale-[1.08] hover:shadow-md focus-visible:z-10 focus-visible:scale-[1.08] motion-reduce:transition-none motion-reduce:hover:scale-100',
             ]}
           >

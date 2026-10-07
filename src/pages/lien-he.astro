@@ -28,11 +28,15 @@ import { company } from '../data/company';
           </div>
           <div>
             <dt class="text-sm text-muted">Email</dt>
-            <dd>{company.email}</dd>
+            <dd><a href={`mailto:${company.email}`} class="font-semibold text-primary underline">{company.email}</a></dd>
           </div>
           <div>
             <dt class="text-sm text-muted">Fanpage</dt>
-            <dd>{company.fanpage}</dd>
+            <dd>
+              <a href={company.fanpageUrl} target="_blank" rel="noopener" class="font-semibold text-primary underline"
+                >{company.fanpageLabel}</a
+              >
+            </dd>
           </div>
           <div>
             <dt class="text-sm text-muted">Giờ làm việc</dt>
