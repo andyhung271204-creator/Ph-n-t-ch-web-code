@@ -1,8 +1,17 @@
-// Cloudflare Workers (static assets). Deploy: npm run deploy
+// Cloudflare Workers (Astro SSR + static assets). Deploy: npm run deploy
 {
   "name": "xaydunggiakhanh",
+  "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2026-10-01",
-  "assets": { "directory": "./dist" },
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": "./dist/client", "binding": "ASSETS" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "xaydunggiakhanh-db",
+      "database_id": "e116afc9-0518-4133-9024-ba2c16a69358"
+    }
+  ],
   "routes": [
     { "pattern": "xaydunggiakhanh.vn", "custom_domain": true },
     { "pattern": "www.xaydunggiakhanh.vn", "custom_domain": true }

@@ -1,9 +1,17 @@
 ---
 import { company } from '../data/company';
+
+const { title } = Astro.props as { title?: string };
 ---
 
-<!-- Không có backend: gửi form = sao chép nội dung rồi mở Zalo. Tắt JS thì form vẫn mở Zalo. -->
-<form data-quote action={company.zaloUrl} method="get" target="_blank" class="grid gap-4 rounded-lg bg-white p-6 text-ink shadow-sm">
+<!-- Gửi form = lưu lead vào D1 (/api/lead), sao chép nội dung rồi mở Zalo. Tắt JS thì form vẫn mở Zalo (không lưu). -->
+<form data-quote action={company.zaloUrl} method="get" target="_blank" class="grid gap-4 rounded-lg border-t-4 border-primary bg-white p-6 text-ink shadow-md md:p-8">
+  {title && (
+    <div>
+      <h3 class="text-xl font-bold md:text-2xl">{title}</h3>
+      <p class="mt-1 text-sm text-muted">Kỹ sư Gia Khánh sẽ gọi lại tư vấn, khảo sát miễn phí.</p>
+    </div>
+  )}
   <div class="grid gap-4 sm:grid-cols-2">
     <label class="block text-sm font-medium">
       Họ tên
@@ -18,6 +26,7 @@ import { company } from '../data/company';
     Khu vực
     <input class="field mt-1" type="text" name="khu-vuc" placeholder="Ví dụ: Đông Anh, Hà Nội" />
   </label>
+  <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
   <slot />
   <label class="block text-sm font-medium">
     Nhu cầu
@@ -39,6 +48,7 @@ import { company } from '../data/company';
       const d = new FormData(form);
       const text = `Yêu cầu báo giá\nHọ tên: ${d.get('ho-ten')}\nSĐT: ${d.get('sdt')}\nKhu vực: ${d.get('khu-vuc')}${d.get('mau-nha') ? `\nMẫu nhà: ${d.get('mau-nha')}` : ''}\nNhu cầu: ${d.get('nhu-cau')}`;
       const win = window.open(form.action, '_blank');
+      fetch('/api/lead', { method: 'POST', body: d }).catch(() => {}); // lưu lead; lỗi mạng không chặn việc mở Zalo
       const copied = await navigator.clipboard.writeText(text).then(
         () => true,
         () => false,
