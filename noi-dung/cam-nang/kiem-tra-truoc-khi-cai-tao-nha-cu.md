@@ -1,17 +1,17 @@
 ---
+title: 'Sửa nhà cũ: cần kiểm tra gì trước khi cải tạo?'
 slug: kiem-tra-truoc-khi-cai-tao-nha-cu
 category: sua-chua
 date: 2026-10-13T01:00:00.000Z
 draft: false
+excerpt: Kết cấu, thấm dột, hệ thống điện nước — những hạng mục cần kiểm tra trước khi quyết định sửa.
 cover: /src/assets/cam-nang/kiem-tra-truoc-khi-cai-tao-nha-cu/anh-bia.jpg
+meta_title: 'Sửa nhà cũ: cần kiểm tra gì trước khi cải tạo?'
+meta_description: Kiểm tra kết cấu, thấm dột, điện nước, mối mọt và giấy phép trước khi sửa nhà cũ. Có checklist và cách chọn sửa hay xây lại. Khảo sát miễn phí tại Hà Nội.
 url: /cam-nang/kiem-tra-truoc-khi-cai-tao-nha-cu
-title: "Sửa nhà cũ: cần kiểm tra gì trước khi cải tạo?"
-excerpt: "Kết cấu, thấm dột, hệ thống điện nước — những hạng mục cần kiểm tra trước khi quyết định sửa."
-meta_title: "Sửa nhà cũ: cần kiểm tra gì trước khi cải tạo?"
-meta_description: "Kiểm tra kết cấu, thấm dột, điện nước, mối mọt và giấy phép trước khi sửa nhà cũ. Có checklist và cách chọn sửa hay xây lại. Khảo sát miễn phí tại Hà Nội."
 ---
 
-<!-- meta_title: 47 ký tự; meta_description: ~155 ký tự -->
+<!-- meta_title: 47 ký tự; meta_description: \~155 ký tự -->
 
 # Sửa nhà cũ: cần kiểm tra gì trước khi cải tạo?
 
@@ -91,7 +91,7 @@ Sửa nhà trong ngõ nhỏ khó hơn vì vật liệu phải vận chuyển th�
 Không có công thức chung, nhưng có thể so sánh theo các tiêu chí sau:
 
 | Tiêu chí | Nghiêng về sửa, cải tạo | Nghiêng về xây lại |
-|---|---|---|
+| --- | --- | --- |
 | Kết cấu | Móng, cột, dầm còn tốt; hư hỏng cục bộ | Lún nghiêng, nứt kết cấu nhiều chỗ, bê tông xuống cấp diện rộng |
 | Công năng | Thay đổi vừa phải (đổi bếp, thêm phòng) | Muốn đổi toàn bộ mặt bằng, thêm nhiều tầng |
 | Chi phí | Chi phí sửa thấp hơn rõ so với xây mới | Chi phí sửa gần bằng xây mới [cần xác nhận: so sánh bằng dự toán thực tế] |
@@ -105,7 +105,7 @@ Cách ra quyết định hợp lý: khảo sát hiện trạng, có dự toán h
 ## 9. Bảng checklist kiểm tra nhà cũ
 
 | Hạng mục | Dấu hiệu | Mức độ cần xử lý |
-|---|---|---|
+| --- | --- | --- |
 | Kết cấu: nứt chéo, nứt ngang qua dầm cột | Vết nứt dài ra, rộng thêm | Cao: cần kỹ sư xem, cân nhắc kiểm định |
 | Móng, nền: lún nghiêng | Nhà nghiêng, cửa kẹt, nền lệch | Cao |
 | Sàn, dầm: võng, cốt thép gỉ lộ | Sàn xệ, bê tông tróc | Cao |
@@ -158,18 +158,3 @@ Gia Khánh nhận khảo sát miễn phí nhà ở khu vực Hà Nội: kỹ sư
 > Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.
 
 **[Nhận báo giá miễn phí]** · **[Gọi ngay]** (Hotline / Zalo: 0964 531 577) · **[Chat Zalo]**
-
----
-
-## Nguồn tham khảo
-
-(Để biên tập, không đăng.)
-
-- Luật Xây dựng 135/2025/QH15, hiệu lực và Điều 43: https://thuvienphapluat.vn/phap-luat-nha-dat/luat-xay-dung-2025-luat-so-1352025qh15-co-hieu-luc-tu-khi-nao-13359.html
-- Bộ Tư pháp, nhóm công trình miễn giấy phép: https://moj.gov.vn/portal/tin-tuc/infographic/nhom-cong-trinh-nao-uoc-mien-giay-phep-xay-dung-tizpq0dc57.html
-- Công trình miễn giấy phép (tổng hợp, ngưỡng dưới 7 tầng, 500 m2): https://lsvn.vn/nhung-loai-cong-trinh-duoc-mien-giay-phep-xay-dung-a167990.html
-- Nhà ở riêng lẻ dưới 7 tầng miễn phép: https://lsvn.vn/nha-o-rieng-le-duoi-7-tang-duoc-mien-giay-phep-trong-mot-so-truong-hop-a174362.html
-- Nghị định 06/2021/NĐ-CP (kiểm định, bảo trì): https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Decree-No-06-2021-ND-CP-quality-management-construction-maintenance-of-construction-works-466498.aspx?tab=1
-- Dấu hiệu thay dây điện: https://fptshop.com.vn/tin-tuc/dien-may/bao-lau-nen-thay-day-dien-trong-nha-209104
-- Biên bản thỏa thuận an toàn hộ liền kề: https://hoatieu.vn/bieu-mau/bien-ban-thoa-thuan-bao-dam-an-toan-cho-ho-lien-ke-khi-xay-dung-100634
-- Lưu ý: chưa đọc được toàn văn Điều 43 (một số trang chặn truy cập); biên tập viên cần đối chiếu văn bản gốc. Phần dấu hiệu kết cấu, nước, mối mọt là kiến thức kỹ thuật chung, nên nhờ kỹ sư Gia Khánh rà lại.

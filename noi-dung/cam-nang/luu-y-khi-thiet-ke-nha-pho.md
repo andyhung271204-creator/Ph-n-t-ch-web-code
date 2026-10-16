@@ -1,17 +1,17 @@
 ---
+title: Những điều cần lưu ý khi thiết kế nhà phố
 slug: luu-y-khi-thiet-ke-nha-pho
 category: thiet-ke
 date: 2026-10-14T01:00:00.000Z
 draft: false
+excerpt: Ánh sáng, thông gió, cầu thang và công năng từng tầng — những điểm nên chốt sớm khi thiết kế.
 cover: /src/assets/cam-nang/luu-y-khi-thiet-ke-nha-pho/anh-bia.jpg
+meta_title: Lưu ý khi thiết kế nhà phố, nhà ống ở Hà Nội | Gia Khánh
+meta_description: 'Giếng trời, cầu thang, công năng từng tầng, WC, chiều cao tầng và quy chuẩn xây dựng: những điều cần chốt khi thiết kế nhà phố tại Hà Nội. Nhận báo giá miễn phí.'
 url: /cam-nang/luu-y-khi-thiet-ke-nha-pho
-title: "Những điều cần lưu ý khi thiết kế nhà phố"
-excerpt: "Ánh sáng, thông gió, cầu thang và công năng từng tầng — những điểm nên chốt sớm khi thiết kế."
-meta_title: "Lưu ý khi thiết kế nhà phố, nhà ống ở Hà Nội | Gia Khánh"
-meta_description: "Giếng trời, cầu thang, công năng từng tầng, WC, chiều cao tầng và quy chuẩn xây dựng: những điều cần chốt khi thiết kế nhà phố tại Hà Nội. Nhận báo giá miễn phí."
 ---
 
-<!-- meta_title: 55 ký tự; meta_description: ~156 ký tự -->
+<!-- meta_title: 55 ký tự; meta_description: \~156 ký tự -->
 
 # Những điều cần lưu ý khi thiết kế nhà phố
 
@@ -111,7 +111,7 @@ Phần lớn chi phí phát sinh đến từ việc đổi ý khi nhà đã xây
 
 Hãy xem phối cảnh, đi từng tầng trên bản vẽ như đang sống trong nhà, và ký xác nhận hồ sơ trước khi nhà thầu bắt đầu. Hợp đồng nên ghi rõ phạm vi, vật tư và cách xử lý khi cần thay đổi. Nếu chọn thi công cùng đơn vị thiết kế, xem [xây nhà trọn gói](/dich-vu/xay-nha-tron-goi).
 
----
+***
 
 ## Checklist chốt thiết kế
 
@@ -126,7 +126,7 @@ Hãy xem phối cảnh, đi từng tầng trên bản vẽ như đang sống tro
 - [ ] Đã chừa chỗ cho thang máy nếu có nhu cầu.
 - [ ] Đã xem phối cảnh, ký xác nhận hồ sơ trước khi thi công.
 
----
+***
 
 ## Câu hỏi thường gặp
 
@@ -155,7 +155,7 @@ Tùy trường hợp và khu vực. Hà Nội có quy định chi tiết riêng,
 Nên hạn chế. Sửa trong lúc thi công thường tăng chi phí và kéo dài tiến độ. Hãy chốt thiết kế và vật tư trước khi khởi công.
 </details>
 
----
+***
 
 ## Bạn đang chuẩn bị thiết kế nhà phố?
 
@@ -163,21 +163,4 @@ Nên hạn chế. Sửa trong lúc thi công thường tăng chi phí và kéo d
 
 **[Nhận báo giá miễn phí]** · **[Gọi ngay]** (0964 531 577) · **[Chat Zalo]**
 
-*Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.*
-
----
-
-## Nguồn tham khảo
-
-(Để biên tập, không đăng.)
-
-1. QCVN 01:2021/BXD, Thông tư 01/2021/TT-BXD ngày 19/05/2021 — bản gốc cần tra tại thuvienphapluat.vn hoặc moc.gov.vn (chưa đọc trực tiếp, số liệu mục 7 lấy qua bài tổng hợp).
-2. Tổng hợp mật độ xây dựng (Luật Minh Khuê): https://luatminhkhue.vn/quy-dinh-ve-mat-do-xay-dung-nha-rieng-le-moi-nhat.aspx (không truy cập được khi kiểm tra; số liệu xác nhận qua kết quả tìm kiếm)
-3. Ban công được vươn ra bao nhiêu (Hoatieu): https://hoatieu.vn/phap-luat/ban-cong-duoc-phep-xay-dung-tho-ra-ngoai-bao-nhieu-6496
-4. Quyết định 07/2022/QĐ-UBND Hà Nội: https://caselaw.vn/van-ban-phap-luat/410646-quyet-dinh-so-07-2022-qd-ubnd-ngay-13-01-2022-cua-thanh-pho-ha-noi-huong-dan-ve-cap-giay-phep-xay-dung-tren-dia-ban-thanh-pho-ha-noi
-5. Hà Nội quy định chi tiết về cấp phép xây dựng (VnEconomy, 17/01/2022): https://vneconomy.vn/ha-noi-quy-dinh-chi-tiet-ve-cap-phep-xay-dung-tren-dia-ban-thanh-pho.htm
-6. Thời hạn giấy phép có thời hạn tại Hà Nội (LuatVietnam): https://luatvietnam.vn/tin-van-ban-moi/na-o-cap-giay-phep-xay-dung-co-thoi-han-186-35007-article.html
-7. Những cách thông gió cho nhà mặt phố (VnExpress): https://vnexpress.net/nhung-cach-thong-gio-cho-nha-mat-pho-4469885.html
-8. Vì sao nhà phố 2 giếng trời vẫn bí? (Pháp luật TP.HCM): https://plo.vn/vi-sao-nha-pho-2-gieng-troi-van-bi-post447349.html
-9. Có nên làm giếng trời cho ngôi nhà không? (Thư viện nhà đất): https://thuviennhadat.vn/khong-gian-song/co-nen-lam-gieng-troi-cho-ngoi-nha-khong-638673.html
-10. Thông báo hướng dẫn cấp phép Hà Nội (PDF, 2026, chưa đọc được nội dung): https://datafiles.hanoi.gov.vn/gov-hni/6976/VanBan/2026/4/15/TB Hướng dẫn CẤP PHÉP (1).signed.pdf
+_Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế._

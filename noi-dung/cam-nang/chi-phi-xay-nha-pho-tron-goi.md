@@ -1,17 +1,17 @@
 ---
+title: 'Chi phí xây nhà phố trọn gói: những yếu tố quyết định tổng chi phí'
 slug: chi-phi-xay-nha-pho-tron-goi
 category: chi-phi
 date: 2026-10-16T01:00:00.000Z
 draft: false
+excerpt: Đơn giá theo m² chỉ là điểm bắt đầu. Diện tích sàn, phần móng – mái, vật tư hoàn thiện và điều kiện thi công thực tế mới quyết định con số cuối cùng.
 cover: /src/assets/cam-nang/chi-phi-xay-nha-pho-tron-goi/anh-bia.jpg
+meta_title: 'Chi phí xây nhà phố trọn gói: yếu tố quyết định | Gia Khánh'
+meta_description: Đơn giá/m² chỉ là điểm bắt đầu. Diện tích sàn quy đổi, móng, mái, vật tư, ngõ hẹp, địa chất và chi phí ngoài quyết định tổng chi phí xây nhà phố trọn gói.
 url: /cam-nang/chi-phi-xay-nha-pho-tron-goi
-title: "Chi phí xây nhà phố trọn gói: những yếu tố quyết định tổng chi phí"
-meta_title: "Chi phí xây nhà phố trọn gói: yếu tố quyết định | Gia Khánh"
-meta_description: "Đơn giá/m² chỉ là điểm bắt đầu. Diện tích sàn quy đổi, móng, mái, vật tư, ngõ hẹp, địa chất và chi phí ngoài quyết định tổng chi phí xây nhà phố trọn gói."
-excerpt: "Đơn giá theo m² chỉ là điểm bắt đầu. Diện tích sàn, phần móng – mái, vật tư hoàn thiện và điều kiện thi công thực tế mới quyết định con số cuối cùng."
 ---
 
-<!-- meta_title: ~59 ký tự; meta_description: ~157 ký tự -->
+<!-- meta_title: \~59 ký tự; meta_description: \~157 ký tự -->
 
 # Chi phí xây nhà phố trọn gói: những yếu tố quyết định tổng chi phí
 
@@ -31,7 +31,7 @@ Với nhà phố, nhà ống 2 – 5 tầng, đơn giá của Gia Khánh là 3.3
 Tổng chi phí = diện tích xây dựng quy đổi × đơn giá. Diện tích quy đổi gồm nhiều phần, mỗi phần nhân một hệ số riêng.
 
 | Hạng mục | Cách tính phổ biến trên thị trường |
-|---|---|
+| --- | --- |
 | Các tầng có mái che | 100% diện tích sàn |
 | Móng đơn | khoảng 30 – 40% diện tích sàn |
 | Móng băng | khoảng 20 – 70% tùy số băng và nguồn tính |
@@ -41,33 +41,40 @@ Tổng chi phí = diện tích xây dựng quy đổi × đơn giá. Diện tíc
 | Sân thượng, tum | từ 30 – 100% tùy quy mô và hạng mục đi kèm |
 | Tầng hầm | khoảng 150 – 250% |
 
-*Mức tham khảo thị trường Hà Nội 2025–2026 theo batdongsan.com.vn và VTC News [cần xác nhận]. Hệ số thực tế do từng nhà thầu quy định trong hợp đồng.*
+_Mức tham khảo thị trường Hà Nội 2025–2026 theo batdongsan.com.vn và VTC News [cần xác nhận]. Hệ số thực tế do từng nhà thầu quy định trong hợp đồng._
 
 Ví dụ trong nguồn tham khảo: nhà 3 tầng, sàn 50 m², móng băng, mái bê tông cốt thép quy đổi ra khoảng 200 m² tính giá. Vì vậy hãy yêu cầu nhà thầu ghi **từng hệ số** vào báo giá. Cách tính chi tiết xem thêm tại [Cách tính diện tích xây dựng](/cam-nang/cach-tinh-dien-tich-xay-dung).
 
 ## 3. Các yếu tố quyết định tổng chi phí
 
 ### Diện tích và số tầng
+
 Nhà càng nhiều tầng, chi phí móng và khung chịu lực càng tăng. Nhà quá nhỏ lại khiến đơn giá trên mỗi m² cao hơn, vì cầu thang, vệ sinh, hệ thống điện nước chiếm tỷ trọng lớn.
 
 ### Loại móng
+
 Móng đơn, móng băng, móng bè (hoặc móng cọc) cho ra khối lượng bê tông và thép rất khác nhau. Loại móng phụ thuộc tải trọng, số tầng và nền đất, nên cần kỹ sư xem hiện trạng thay vì chọn theo thói quen.
 
 ### Mái
+
 Mái bê tông cốt thép, mái tôn, mái ngói hay mái thái khác nhau cả về khối lượng lẫn nhân công và chống thấm. Mái dốc, nhiều góc thường tốn hơn mái bằng.
 
 ### Vật tư hoàn thiện
+
 Đây là phần dễ làm lệch ngân sách nhất. Cùng một căn nhà, chọn gạch, sơn, thiết bị vệ sinh, cửa ở phân khúc khác nhau có thể kéo tổng chi phí lên hoặc xuống rõ rệt. Hãy yêu cầu bảng vật tư ghi thương hiệu, mã sản phẩm, quy cách.
 
 ### Mặt tiền, ngõ hẹp và vận chuyển
+
 Nhà trong ngõ nhỏ, xe tải không vào được, phải trung chuyển vật liệu bằng sức người hoặc xe nhỏ sẽ tốn thêm nhân công và thời gian. Công trình mặt phố cấm tải theo giờ cũng cần sắp xếp lịch đổ bê tông, giao vật liệu.
 
 [ẢNH: Vận chuyển vật liệu trong ngõ hẹp tại một công trình Gia Khánh đang thi công]
 
 ### Địa chất và hiện trạng đất
+
 Nền đất yếu, có ao, hố, mực nước ngầm cao có thể phải gia cố hoặc ép cọc. Địa hình phức tạp cần san lấp, thêm máy móc. Cần khảo sát thực tế trước khi chốt giá.
 
 ### Thiết kế phức tạp
+
 Mặt tiền nhiều phào chỉ, kiến trúc tân cổ điển, giếng trời, ban công cong, nhịp lớn đều làm tăng khối lượng và công sức thi công. Thiết kế tối giản giúp tiết kiệm đáng kể.
 
 ## 4. Các khoản chi phí ngoài đơn giá
@@ -131,16 +138,3 @@ Sau khi khảo sát đất, chốt thiết kế và bảng vật tư, bạn sẽ
 Gửi địa chỉ, diện tích đất và số tầng dự kiến, Gia Khánh sẽ khảo sát miễn phí và gửi dự toán chi tiết từng hạng mục.
 
 **[Nhận báo giá miễn phí]** · Hotline/Zalo: **0964 531 577**
-
----
-
-## Nguồn tham khảo
-
-<!-- Mục biên tập, không đăng -->
-
-- VTC News (07/07/2025), Xây nhà 3 tầng 50m2 hết bao nhiêu: https://vtcnews.vn/xay-nha-3-tang-50m2-het-bao-nhieu-ar952708.html
-- batdongsan.com.vn (cập nhật 16/09/2024), Cách tính đơn giá xây dựng theo m2: https://wiki.batdongsan.com.vn/wiki/cach-tinh-don-gia-xay-dung-theo-m2-816030
-- batdongsan.com.vn (2023), Cách tính m2 xây dựng: https://wiki.batdongsan.com.vn/wiki/cach-tinh-m2-xay-dung-105184
-- VnExpress (07/07/2023), Cách tính chi phí xây nhà (các khoản ngoài dự toán): https://vnexpress.net/cach-tinh-chi-phi-xay-nha-4625479.html
-- VTC News (2024), Các yếu tố ảnh hưởng tới dự toán xây nhà: https://vtcnews.vn/cac-yeu-to-nao-anh-huong-toi-du-toan-xay-nha-ar871527.html
-- VTC News (06/01/2024), Cách tính chi phí xây nhà theo m2: https://vtcnews.vn/cach-tinh-chi-phi-xay-nha-theo-m2-ar844074.html

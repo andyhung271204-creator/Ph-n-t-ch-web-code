@@ -1,23 +1,23 @@
 ---
+title: 'Hoàn thiện nội thất: chọn vật liệu phù hợp ngân sách'
 slug: chon-vat-lieu-hoan-thien-noi-that
 category: noi-that
 date: 2026-10-12T01:00:00.000Z
 draft: false
+excerpt: Gỗ, sơn, gạch, trần — cách cân đối vật liệu hoàn thiện theo ngân sách gia đình.
 cover: /src/assets/cam-nang/chon-vat-lieu-hoan-thien-noi-that/anh-bia.jpg
+meta_title: Chọn vật liệu hoàn thiện nội thất theo ngân sách
+meta_description: Cách chọn gỗ, sàn, sơn, trần, cửa và thiết bị vệ sinh theo ngân sách, hợp khí hậu nồm ẩm Hà Nội. Có bảng so sánh 3 phân khúc và mẹo tránh hàng nhái.
 url: /cam-nang/chon-vat-lieu-hoan-thien-noi-that
-title: "Hoàn thiện nội thất: chọn vật liệu phù hợp ngân sách"
-excerpt: "Gỗ, sơn, gạch, trần — cách cân đối vật liệu hoàn thiện theo ngân sách gia đình."
-meta_title: "Chọn vật liệu hoàn thiện nội thất theo ngân sách"
-meta_description: "Cách chọn gỗ, sàn, sơn, trần, cửa và thiết bị vệ sinh theo ngân sách, hợp khí hậu nồm ẩm Hà Nội. Có bảng so sánh 3 phân khúc và mẹo tránh hàng nhái."
 ---
 
-<!-- meta_title: 49 ký tự; meta_description: ~160 ký tự -->
+<!-- meta_title: 49 ký tự; meta_description: \~160 ký tự -->
 
 # Hoàn thiện nội thất: chọn vật liệu phù hợp ngân sách
 
 Hoàn thiện là giai đoạn chi tiền nhiều quyết định nhất: cùng một căn nhà, chọn vật liệu khác nhau có thể làm tổng chi phí chênh lệch đáng kể. Bài viết này giúp bạn biết nên dồn tiền vào đâu, tiết kiệm ở đâu, và loại vật liệu nào hợp với khí hậu nồm ẩm của Hà Nội.
 
----
+***
 
 ## 1. Nguyên tắc: dồn tiền cho thứ khó thay, tiết kiệm thứ dễ thay
 
@@ -96,7 +96,7 @@ Chọn sơn có khả năng chống ẩm, chống nấm mốc cho phòng ngủ, 
 Bảng chỉ so chủng loại, không nêu giá. Giá thực tế phụ thuộc thương hiệu, thời điểm và khối lượng; xin báo giá cụ thể sau khảo sát.
 
 | Hạng mục | Tiết kiệm | Trung bình | Khá |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Tủ, kệ | MFC phủ melamine | MDF lõi xanh phủ laminate | Plywood hoặc HDF, phủ laminate/acrylic |
 | Tủ bếp | MDF chống ẩm, melamine | MDF/plywood, laminate | Plywood chống ẩm, acrylic hoặc sơn |
 | Sàn khu sinh hoạt | Gạch ceramic hoặc SPC phổ thông | Gạch porcelain hoặc SPC dày | Gạch porcelain khổ lớn hoặc sàn gỗ cao cấp |
@@ -122,7 +122,7 @@ Mùa nồm, độ ẩm cao làm tường, sàn, đồ gỗ hút ẩm và nổi m
 - **Đối chiếu mẫu duyệt với hàng giao:** chụp ảnh nhãn thùng, kiểm tra trước khi thi công.
 - **Cẩn thận giá rẻ bất thường** so với mặt bằng chung.
 
----
+***
 
 ## Câu hỏi thường gặp
 
@@ -141,7 +141,7 @@ Tấm thường có thể hút ẩm ở khu ẩm. Nhà vệ sinh, bếp nên dù
 **Nên tự mua vật liệu hay để nhà thầu lo trọn gói?**
 Tự mua cho bạn chủ động chọn mẫu nhưng phải tự kiểm hàng, vận chuyển. Trọn gói tiện một đầu mối nhưng cần ghi rõ chủng loại trong hợp đồng. Xem thêm [dịch vụ hoàn thiện & thi công nội thất](/dich-vu/hoan-thien-thi-cong-noi-that) và [bảng báo giá](/bao-gia).
 
----
+***
 
 ## Cần tư vấn chọn vật liệu theo ngân sách?
 
@@ -152,18 +152,3 @@ Tự mua cho bạn chủ động chọn mẫu nhưng phải tự kiểm hàng, v
 **[Gọi ngay]** Hotline/Zalo 0964 531 577 · **[Chat Zalo]**
 
 > Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.
-
----
-
-## Nguồn tham khảo
-
-(Để biên tập, không đăng)
-
-- VnExpress, "Những công đoạn chuẩn bị sơn nhà": https://vnexpress.net/nhung-cong-doan-chuan-bi-son-nha-2831982.html
-- Hoatieu.vn, "Hàng hóa thông dụng không bắt buộc cung cấp C/O, C/Q": https://hoatieu.vn/phap-luat/hang-hoa-thong-dung-khong-bat-buoc-cung-cap-co-cq-126567
-- Knauf Việt Nam, trần chìm: https://knauf.com/vi-VN/ung-dung/tran/tran-thach-cao/tran-chim
-- Knauf Việt Nam, trần thả: https://knauf.com/vi-VN/ung-dung/tran/tran-thach-cao/tran-noi
-- Saint-Gobain Việt Nam, brochure khung trần chìm chống gỉ: https://www.saint-gobain.com.vn/index.php/system/files/files/documents/MB_BROCHURE%20KHUNG%20TRAN%20CHIM%20CHONG%20CHIU%20RI%20SET%20C800X_Apr%2723.pdf
-- Nippon Paint Professional, Interior Sealer spec: https://professional.nipponpaint.com.vn/sites/default/files/2025-10/INTERIOR%20SEALER%20-%20SPEC%20-%20VNESE%20-%20PJ.pdf
-- (Tiếng Anh, tham khảo MDF/MFC/plywood) Made in Britain: https://www.madeinbritain.org/news/plywood-vs-mdf-vs-mfc-how-should-a-premium-kitchen-be-specified-jul-26
-- (Tiếng Anh, tham khảo SPC) Material Depot: https://materialdepot.com/qna/best-spc-for-bathroom

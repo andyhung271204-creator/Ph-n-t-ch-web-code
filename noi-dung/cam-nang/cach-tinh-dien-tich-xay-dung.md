@@ -1,17 +1,17 @@
 ---
+title: Cách tính diện tích xây dựng để dự trù ngân sách
 slug: cach-tinh-dien-tich-xay-dung
-title: "Cách tính diện tích xây dựng để dự trù ngân sách"
-excerpt: "Hiểu cách quy đổi móng, sàn, mái ra diện tích để ước tính chi phí trước khi khảo sát."
+category: chi-phi
 date: 2026-10-15T01:00:00.000Z
 draft: false
+excerpt: Hiểu cách quy đổi móng, sàn, mái ra diện tích để ước tính chi phí trước khi khảo sát.
 cover: /src/assets/cam-nang/cach-tinh-dien-tich-xay-dung/anh-bia.jpg
+meta_title: Cách tính diện tích xây dựng dự trù ngân sách | Gia Khánh
+meta_description: Phân biệt diện tích xây dựng, diện tích sàn và diện tích tính giá; bảng hệ số quy đổi móng, mái, sân thượng và ví dụ tính nhà 5x20m, 4 tầng + tum.
 url: /cam-nang/cach-tinh-dien-tich-xay-dung
-category: chi-phi
-meta_title: "Cách tính diện tích xây dựng dự trù ngân sách | Gia Khánh"
-meta_description: "Phân biệt diện tích xây dựng, diện tích sàn và diện tích tính giá; bảng hệ số quy đổi móng, mái, sân thượng và ví dụ tính nhà 5x20m, 4 tầng + tum."
 ---
 
-<!-- meta_title: 57 ký tự; meta_description: ~150 ký tự -->
+<!-- meta_title: 57 ký tự; meta_description: \~150 ký tự -->
 
 # Cách tính diện tích xây dựng để dự trù ngân sách
 
@@ -38,7 +38,7 @@ Diện tích quy đổi của từng bộ phận = diện tích thực tế × h
 Trang [Báo giá](/bao-gia) của Gia Khánh đang áp dụng ba quy tắc sau:
 
 | Bộ phận | Hệ số tính trên diện tích |
-|---|---|
+| --- | --- |
 | Móng | 40% |
 | Các tầng, tầng tum có mái che | 100% |
 | Sân, sân thượng không có mái che | 30% |
@@ -50,7 +50,7 @@ Các hạng mục còn lại (ban công, mái, hầm, ô thông tầng…) đư�
 Mỗi nhà thầu quy đổi một kiểu. Dưới đây là mức tham khảo phổ biến trên thị trường, tổng hợp từ các bài hướng dẫn công khai. Các con số chỉ để hình dung, không phải cam kết của Gia Khánh. [cần xác nhận: toàn bộ bảng này]
 
 | Bộ phận | Hệ số tham khảo phổ biến |
-|---|---|
+| --- | --- |
 | Móng đơn | 20% – 40% diện tích sàn tầng trệt |
 | Móng băng | 50% (một số nơi 30% – 50% tùy số băng) |
 | Móng cọc (đài móng trên cọc) | 30% – 50% |
@@ -76,13 +76,13 @@ Mỗi nhà thầu quy đổi một kiểu. Dưới đây là mức tham khảo p
 [ẢNH: Mặt cắt minh họa nhà 5 × 20 m, 4 tầng + tum, ghi diện tích từng phần: móng, 4 sàn, tum, sân thượng, sân trước (hình vẽ)]
 
 | Bộ phận | Diện tích thực | Hệ số | Quy đổi |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Móng (băng) | 80 m² | 40% | 32 m² |
 | 4 tầng | 4 × 80 = 320 m² | 100% | 320 m² |
 | Tum có mái che | 20 m² | 100% | 20 m² |
 | Sân thượng không mái | 60 m² | 30% | 18 m² |
 | Sân trước | 20 m² | 30% | 6 m² |
-| **Tổng** | | | **396 m²** |
+| **Tổng** |  |  | **396 m²** |
 
 **Nhân đơn giá** (đơn giá nhà phố, nhà ống 2 – 5 tầng đang đăng trên trang [Báo giá](/bao-gia)):
 
@@ -140,18 +140,3 @@ Chỉ là mức tham khảo để dự trù ngân sách. Đơn giá chưa gồm 
 Gửi diện tích đất, số tầng và khu vực, kỹ sư Gia Khánh sẽ khảo sát miễn phí và gửi bảng quy đổi diện tích kèm dự toán chi tiết từng hạng mục.
 
 **[Nhận báo giá miễn phí]** · Hotline / Zalo: **0964 531 577**
-
----
-
-## Nguồn tham khảo
-
-(Để biên tập, không đăng.)
-
-- https://voh.com.vn/nha/cach-tinh-m2-cac-hang-muc-can-thiet-khi-xay-dung-nha-395843.html (đăng 10/03/2021; hệ số móng, mái, ban công, sân thượng)
-- https://muaban.net/blog/cach-tinh-don-gia-xay-dung-theo-m2-590229/ (đăng 21/05/2025; móng, mái, hầm, sân)
-- https://wiki.batdongsan.com.vn/wiki/cach-tinh-don-gia-xay-dung-theo-m2-816030 (đăng 16/09/2024; hầm, ô thông tầng, ví dụ nhà 60 m² 3 tầng)
-- https://wiki.batdongsan.com.vn/wiki/cach-tinh-m2-xay-dung-105184 (chỉ xem kết quả tìm kiếm, chưa đọc toàn bài)
-- https://mytour.vn/vi/blog/bai-viet/bi-quyet-tinh-dien-tich-mat-san-xay-dung.html (chỉ xem kết quả tìm kiếm, chưa đọc)
-- https://baomoi.com/chi-phi-xay-nha-4-tang-mai-bang-60m2-bao-nhieu-c55738797.epi (chỉ xem kết quả tìm kiếm, chưa đọc)
-
-Ghi chú biên tập: chỉ 3 nguồn đầu đã đọc đầy đủ; một nguồn đăng 2021 (VOH). Chưa đạt 5–8 nguồn 2025–2026 đã đối chiếu. Hệ số đã làm tròn khoảng, không chép nguyên văn.
