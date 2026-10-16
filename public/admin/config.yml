@@ -1,7 +1,7 @@
 # Sveltia CMS — trang quản trị bài Cẩm nang tại /admin. Mỗi lần Lưu = 1 commit lên main → Cloudflare tự build.
 backend:
   name: github
-  repo: andyhung2712041-cmd/xaydunggiakhanh
+  repo: andyhung271204-creator/Ph-n-t-ch-web-code
   branch: main
   base_url: https://sveltia-cms-auth.xaydunggiakhanh.workers.dev # Worker đăng nhập GitHub (sveltia/sveltia-cms-auth)
 
