@@ -49,6 +49,7 @@ const { title } = Astro.props as { title?: string };
       const text = `Yêu cầu báo giá\nHọ tên: ${d.get('ho-ten')}\nSĐT: ${d.get('sdt')}\nKhu vực: ${d.get('khu-vuc')}${d.get('mau-nha') ? `\nMẫu nhà: ${d.get('mau-nha')}` : ''}\nNhu cầu: ${d.get('nhu-cau')}`;
       const win = window.open(form.action, '_blank');
       fetch('/api/lead', { method: 'POST', body: d }).catch(() => {}); // lưu lead; lỗi mạng không chặn việc mở Zalo
+      (window as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'generate_lead'); // GA4: khách gửi form báo giá
       const copied = await navigator.clipboard.writeText(text).then(
         () => true,
         () => false,

@@ -9,8 +9,10 @@ import { company } from '../data/company';
 interface Props {
   title: string;
   description: string;
+  /** Nhóm nội dung trong GA4 (vd. tên chuyên mục của bài cẩm nang) */
+  contentGroup?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, contentGroup } = Astro.props;
 const fullTitle = `${title} | ${company.brand}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(banner.src, Astro.site);
@@ -60,11 +62,16 @@ const schema = {
     {gaId && (
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-        <script is:inline define:vars={{ gaId }}>
+        <script is:inline define:vars={{ gaId, contentGroup }}>
           window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
+          window.gtag = function () { dataLayer.push(arguments); };
           gtag('js', new Date());
-          gtag('config', gaId);
+          gtag('config', gaId, contentGroup ? { content_group: contentGroup } : {});
+          // Tương tác: bấm Gọi / Zalo ở bất kỳ đâu (GA tự ghi kèm trang đang xem)
+          document.addEventListener('click', (e) => {
+            const a = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="zalo.me"]');
+            if (a) gtag('event', a.href.startsWith('tel:') ? 'click_call' : 'click_zalo');
+          });
         </script>
       </>
     )}
