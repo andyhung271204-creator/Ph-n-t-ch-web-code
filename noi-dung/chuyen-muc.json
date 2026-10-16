@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "slug": "chi-phi", "name": "Chi phí xây nhà" },
+    { "slug": "thiet-ke", "name": "Thiết kế nhà" },
+    { "slug": "sua-chua", "name": "Sửa chữa – cải tạo" },
+    { "slug": "noi-that", "name": "Hoàn thiện nội thất" }
+  ]
+}

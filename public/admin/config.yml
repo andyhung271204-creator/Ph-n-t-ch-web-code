@@ -31,12 +31,12 @@ collections:
         hint: 'VD: chi-phi-xay-nha-3-tang → xaydunggiakhanh.vn/cam-nang/chi-phi-xay-nha-3-tang. Không đổi được sau khi đăng.'
       - name: category
         label: Chuyên mục
-        widget: select
-        options: # khớp với categories trong src/data/posts.ts
-          - { label: Chi phí xây nhà, value: chi-phi }
-          - { label: Thiết kế nhà, value: thiet-ke }
-          - { label: Sửa chữa – cải tạo, value: sua-chua }
-          - { label: Hoàn thiện nội thất, value: noi-that }
+        widget: relation # danh sách lấy từ Cài đặt → Chuyên mục
+        collection: cai-dat
+        file: chuyen-muc
+        value_field: 'items.*.slug'
+        display_fields: ['items.*.name']
+        search_fields: ['items.*.name']
       - { name: date, label: Ngày đăng, widget: datetime, hint: 'Bài mới nhất hiện đầu tiên ở trang chủ' }
       - { name: draft, label: Bản nháp (ẩn khỏi web), widget: boolean, default: false, required: false }
       - { name: excerpt, label: Tóm tắt, widget: text, hint: '1–2 câu, hiện trên thẻ bài và đầu bài viết' }
@@ -57,3 +57,24 @@ collections:
           câu hỏi in đậm kết thúc bằng "?", Shift+Enter rồi viết trả lời = mục hỏi đáp thu gọn ·
           một dòng chứa [Nhận báo giá miễn phí] = cụm nút báo giá/gọi/Zalo ·
           mục "Nguồn tham khảo" cuối bài không hiện trên web.
+
+  - name: cai-dat
+    label: Cài đặt
+    files:
+      - name: chuyen-muc
+        label: Chuyên mục
+        file: noi-dung/chuyen-muc.json
+        fields:
+          - name: items
+            label: Chuyên mục
+            label_singular: chuyên mục
+            widget: list
+            hint: 'Kéo để đổi thứ tự hiển thị. Chuyên mục chưa có bài sẽ tự ẩn trên web.'
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Tên hiển thị, widget: string, hint: 'Đổi tên thoải mái, bài viết không bị ảnh hưởng' }
+              - name: slug
+                label: Mã chuyên mục
+                widget: string
+                pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Chỉ chữ thường không dấu, số và gạch ngang']
+                hint: 'VD: phong-thuy. KHÔNG đổi/xoá mã khi đã có bài dùng nó — web sẽ không build được.'

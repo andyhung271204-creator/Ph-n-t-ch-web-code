@@ -1,15 +1,11 @@
 import { imageAt } from './images';
 import { company } from './company';
+import chuyenMuc from '../../noi-dung/chuyen-muc.json';
 
 // Bài cẩm nang (blog): mỗi bài là một file noi-dung/cam-nang/<slug>.md, soạn qua /admin (Sveltia CMS).
 // Tên file = URL bài. Ảnh bìa: frontmatter `cover` (đường dẫn trong src/assets/).
-// Sửa danh mục ở đây thì sửa luôn options của `category` trong public/admin/config.yml.
-export const categories = [
-  { slug: 'chi-phi', name: 'Chi phí xây nhà' },
-  { slug: 'thiet-ke', name: 'Thiết kế nhà' },
-  { slug: 'sua-chua', name: 'Sửa chữa – cải tạo' },
-  { slug: 'noi-that', name: 'Hoàn thiện nội thất' },
-];
+// Chuyên mục: noi-dung/chuyen-muc.json (sửa trong CMS: Cài đặt → Chuyên mục), giữ nguyên thứ tự trong file.
+const allCategories: { slug: string; name: string }[] = chuyenMuc.items;
 
 // Nội dung bài: noi-dung/cam-nang/<slug>.md. Quy ước đánh dấu cho biên tập (hiện trên web cho tới khi xóa):
 //   [ẢNH: mô tả]      → khung chờ ảnh
@@ -64,6 +60,8 @@ export const posts = (
         const slug = path.split('/').pop()!.replace(/\.md$/, '');
         const cover = imageAt(fm.cover);
         if (!cover) throw new Error(`Bài "${slug}": không tìm thấy ảnh bìa ${fm.cover}`);
+        if (!allCategories.some((c) => c.slug === fm.category))
+          throw new Error(`Bài "${slug}": chuyên mục "${fm.category}" không có trong noi-dung/chuyen-muc.json`);
         return {
           slug,
           category: fm.category,
@@ -79,4 +77,7 @@ export const posts = (
       }),
   )
 ).sort((a, b) => +b.date - +a.date);
+
+// Chỉ chuyên mục đã có bài (trang chủ và /cam-nang không hiện mục rỗng).
+export const categories = allCategories.filter((c) => posts.some((p) => p.category === c.slug));
 export type Post = (typeof posts)[number];
