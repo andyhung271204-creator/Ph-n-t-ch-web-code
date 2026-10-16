@@ -15,7 +15,7 @@ Quy tắc chi tiết nằm trong `.claude/rules/`:
 
 | File | Chủ đề | Nạp khi |
 |---|---|---|
-| `workflow.md` | Screenshot so sánh design, mobile-friendly (bắt buộc) | Luôn luôn |
+| `workflow.md` | Thiết kế UI qua Stitch, screenshot so sánh design, mobile-friendly (bắt buộc) | Luôn luôn |
 | `company.md` | Thông tin công ty, dịch vụ, quy trình, CTA, logo | Luôn luôn |
 | `content.md` | Sự thật & pháp lý, ngôn ngữ, giọng văn | Luôn luôn |
 | `architecture.md` | Tech stack, cấu trúc thư mục, sitemap | Luôn luôn |

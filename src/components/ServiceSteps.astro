@@ -1,4 +1,6 @@
 ---
+import SectionHeading from './SectionHeading.astro';
+
 interface Props {
   title?: string;
   steps: { name: string; text: string }[];
@@ -6,43 +8,28 @@ interface Props {
   light?: boolean;
 }
 const { title = 'Quy trình 6 bước', steps, light = true } = Astro.props;
-const bg = light ? 'bg-primary-light' : 'bg-white';
 ---
 
-<section class:list={['section', bg]} data-reveal>
+<section class:list={['section', light ? 'bg-primary-light' : 'bg-white']} data-reveal>
   <div class="container-page">
-    <div class="relative">
-      <!-- Khung ngoặc nối tiêu đề xuống bước đầu và bước cuối (chỉ desktop) -->
-      <div
-        class="pointer-events-none absolute inset-x-0 top-[17px] hidden h-[88px] border-x-2 border-t-2 border-muted/30 lg:block"
-        aria-hidden="true"
-      >
-        <span class="absolute bottom-0 left-0 w-10 border-b-2 border-muted/30"></span>
-        <span class="absolute right-0 bottom-0 w-10 border-b-2 border-muted/30"></span>
-      </div>
-      <h2 class:list={[bg, 'relative mx-auto w-fit px-6 text-center text-2xl font-bold uppercase md:text-3xl']}>
-        {title}
-      </h2>
-      <ol class="mt-12 grid gap-6 md:grid-cols-2 md:gap-8 lg:mt-14 lg:grid-cols-6 lg:gap-0 lg:px-12">
-        {
-          steps.map((s, i) => (
-            <li class="relative flex gap-4 lg:block lg:px-3 lg:text-center" data-reveal style={`--d:${i * 80}ms`}>
-              <span class="shrink-0 font-bold text-primary">{String(i + 1).padStart(2, '0')}</span>
-              <span class="mx-auto my-3 hidden h-6 w-0.5 bg-muted/30 lg:block" aria-hidden="true" />
-              <div>
-                <h3 class="font-semibold lg:text-sm">{s.name}</h3>
-                <p class="mt-1 leading-relaxed text-muted lg:mt-2 lg:text-sm">{s.text}</p>
-              </div>
-              {i < steps.length - 1 && (
-                <span class="absolute top-[70px] right-0 hidden translate-x-1/2 text-muted/60 lg:block" aria-hidden="true">
-                  →
-                </span>
-              )}
-            </li>
-          ))
-        }
-      </ol>
-    </div>
+    <SectionHeading title={title} />
+    <ol class="relative grid gap-8 md:grid-cols-2 lg:grid-cols-6 lg:gap-4">
+      <!-- Đường nối các bước (desktop) -->
+      <span class="absolute top-6 right-[8%] left-[8%] hidden h-0.5 bg-primary-bright/50 lg:block" aria-hidden="true"></span>
+      {
+        steps.map((s, i) => (
+          <li class="relative flex gap-4 lg:block lg:text-center" data-reveal style={`--d:${i * 80}ms`}>
+            <span class={`relative flex size-12 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white ring-8 lg:mx-auto ${light ? "ring-primary-light" : "ring-white"}`}>
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div class="lg:mt-5">
+              <h3 class="font-semibold">{s.name}</h3>
+              <p class="mt-1 leading-relaxed text-muted lg:mt-2 lg:text-sm">{s.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
     <slot />
   </div>
 </section>

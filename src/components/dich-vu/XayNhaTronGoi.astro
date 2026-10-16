@@ -88,7 +88,7 @@ const faqs = [
         ]}
       />
       <p class="mt-6 leading-relaxed">
-        Nếu bạn chỉ cần cải tạo, nâng tầng hoặc sửa nhà cũ, xem thêm
+        Nếu bạn chỉ cần cải tạo, nâng tầng hoặc sửa nhà cũ, xem thêm{" "}
         <a href="/dich-vu/sua-chua-cai-tao-nha" class="font-semibold text-primary underline hover:text-primary-dark"
           >Sửa chữa – cải tạo nhà</a
         >.
@@ -129,6 +129,7 @@ const faqs = [
         packages.map((p, i) => (
           <li class="card p-6" data-reveal style={`--d:${i * 90}ms`}>
             <h3 class="text-lg font-semibold text-primary">{p.name}</h3>
+            <p class="mt-2 text-xl font-bold">{p.perM2} <span class="text-sm font-semibold text-muted">đ/m²</span></p>
             <p class="mt-4 text-sm font-semibold">Gồm</p>
             <p class="mt-1 text-sm leading-relaxed text-muted">{p.includes}</p>
             <p class="mt-4 text-sm font-semibold">Chủ nhà tự lo</p>
@@ -168,7 +169,7 @@ const faqs = [
     <p class="mt-6 rounded-lg bg-primary-light p-4 font-medium">{company.priceNote}</p>
     <p class="mt-4 leading-relaxed text-muted">
       Đơn giá thực tế còn phụ thuộc độ phức tạp kết cấu, phào chỉ mặt tiền và mức vật tư hoàn thiện bạn chọn. Xem bảng
-      đầy đủ và cách tính diện tích tại
+      đầy đủ và cách tính diện tích tại{" "}
       <a href="/bao-gia" class="font-semibold text-primary underline hover:text-primary-dark">Bảng báo giá</a>.
     </p>
 

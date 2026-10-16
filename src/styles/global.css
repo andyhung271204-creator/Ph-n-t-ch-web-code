@@ -44,8 +44,20 @@
     @apply rounded-lg border border-line bg-white shadow-sm transition-shadow hover:shadow-md;
   }
   .field {
-    @apply min-h-11 w-full rounded-md border border-line bg-white px-3 py-2 text-ink;
+    @apply min-h-11 w-full rounded-md border border-line bg-white px-3 py-2 text-ink transition-colors focus:border-primary;
   }
+  /* Nhãn nhỏ phía trên tiêu đề: "— VỀ CHÚNG TÔI" */
+  .eyebrow {
+    @apply flex items-center gap-3 text-sm font-semibold tracking-wide text-primary uppercase before:h-px before:w-6 before:bg-primary;
+  }
+  .icon-tile {
+    @apply flex size-11 shrink-0 items-center justify-center rounded-md bg-primary-light text-primary;
+  }
+}
+
+/* Motif đường chéo xanh theo banner logo — chỉ trang trí */
+.stripes {
+  background-image: repeating-linear-gradient(-45deg, transparent 0 10px, color-mix(in srgb, var(--color-primary-bright) 22%, transparent) 10px 12px);
 }
 
 /* Thân bài cẩm nang (HTML sinh từ noi-dung/cam-nang/*.md) */

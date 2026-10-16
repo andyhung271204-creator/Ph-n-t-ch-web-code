@@ -92,10 +92,10 @@ export const reasons = [
 // Thời hạn theo mức phổ biến trên thị trường (trùng số trong hồ sơ), chủ site yêu cầu hiển thị.
 // TODO: công ty xác nhận lại trước khi đưa vào hợp đồng
 export const warranty = [
-  { item: 'Kết cấu (móng, cột, dầm, sàn)', period: '5 năm' },
-  { item: 'Chống thấm', period: '3 năm' },
-  { item: 'Hoàn thiện (sơn, ốp lát, trần)', period: '1 năm' },
-  { item: 'Điện nước', period: '1 năm' },
+  { item: 'Kết cấu (móng, cột, dầm, sàn)', period: '5 năm', note: 'Phần bê tông cốt thép chịu lực của ngôi nhà, cam kết bằng văn bản trong hợp đồng.' },
+  { item: 'Chống thấm', period: '3 năm', note: 'Sân thượng, mái, nhà vệ sinh và những vị trí dễ thấm do Gia Khánh thi công.' },
+  { item: 'Hoàn thiện (sơn, ốp lát, trần)', period: '1 năm', note: 'Sơn bả, ốp lát, trần thạch cao do Gia Khánh thi công.' },
+  { item: 'Điện nước', period: '1 năm', note: 'Đường ống, dây dẫn âm tường, âm sàn do Gia Khánh lắp đặt.' },
   { item: 'Sửa chữa nhỏ, bảo trì', period: '6 tháng' },
 ];
 
@@ -107,21 +107,25 @@ export const prices = [
   { type: 'Biệt thự, nhà vườn', rough: xn('3.900.000 đ/m²'), full: xn('6.500.000 đ/m²') },
 ];
 
+// perM2: đơn giá nhà phố, nhà ống 2 – 5 tầng (đ/m² sàn quy đổi), theo file báo giá
 export const packages = [
   {
     name: 'Phần thô + nhân công hoàn thiện',
+    perM2: '3.300.000',
     includes:
       'Vật tư và nhân công móng, khung bê tông cốt thép, xây tô, đường ống điện nước âm, chống thấm; nhân công ốp lát, sơn bả, lắp đặt thiết bị.',
     owner: 'Vật tư hoàn thiện: gạch, sơn, cửa, thiết bị vệ sinh, thiết bị điện.',
   },
   {
     name: 'Trọn gói (chìa khóa trao tay)',
+    perM2: '5.000.000',
     includes: 'Toàn bộ phần thô và hoàn thiện, gồm vật tư theo đúng thương hiệu trong bảng vật tư.',
     owner: 'Nội thất rời, điều hòa, bình nóng lạnh.',
   },
   {
     name: 'Nhân công xây dựng',
-    includes: 'Nhân công thi công toàn bộ công trình, từ 1.400.000 đ/m².',
+    perM2: 'từ 1.400.000',
+    includes: 'Nhân công thi công toàn bộ công trình.',
     owner: 'Toàn bộ vật tư.',
   },
 ];

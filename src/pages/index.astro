@@ -2,57 +2,40 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import ServiceGrid from '../components/ServiceGrid.astro';
-import { company, stats, reasons, steps } from '../data/company';
+import ServiceGrid from '../components/ServiceGridClassic.astro';
+import HeroSlider from '../components/HeroSlider.astro';
 import PostCard from '../components/PostCard.astro';
+import { company, stats, reasons, steps } from '../data/company';
 import { categories, posts } from '../data/posts';
-import hero from '../assets/hero.png';
+import { imagesIn } from '../data/images';
+
+const models = ['01', '03', '05', '06', '12', '16'].map((id) => ({ id, img: imagesIn(`mau-nha/${id}`)[0] }));
+// Ảnh minh hoạ do Stitch sinh — chỉ trang trí, không phải công trình của Gia Khánh
+const reasonImages = imagesIn('stitch').filter((img) => img.src.includes('vi-sao-chon'));
+const [featured, ...more] = posts.slice(0, 5);
 ---
 
 <BaseLayout
   title="Xây nhà trọn gói, sửa nhà tại Hà Nội"
   description="Gia Khánh nhận xây nhà trọn gói, sửa chữa – cải tạo, hoàn thiện nội thất và chống thấm tại Hà Nội, Đông Anh. Báo giá minh bạch, khảo sát miễn phí, bảo hành bằng văn bản."
 >
-  <!-- 1. Hero -->
-  <section class="relative isolate overflow-hidden bg-white" data-reveal>
-    <Image
-      src={hero}
-      alt=""
-      width={1920}
-      loading="eager"
-      class="absolute inset-0 -z-20 h-full w-full object-cover object-right"
-    />
-    <!-- Lớp trắng giữ chữ dễ đọc: phủ đều trên mobile, mờ dần sang phải trên desktop -->
-    <div
-      class="absolute inset-0 -z-10 bg-white/75 md:bg-transparent md:bg-linear-to-r md:from-white/90 md:via-white/50 md:to-transparent"
-      aria-hidden="true"
-    >
-    </div>
-    <div class="container-page py-20 md:py-32">
-      <p class="font-semibold uppercase tracking-wide text-primary">{company.slogan}</p>
-      <h1 class="mt-4 max-w-2xl text-4xl font-bold md:text-5xl">Xây nhà trọn gói, sửa nhà tại Hà Nội</h1>
-      <p class="mt-6 max-w-xl text-lg leading-relaxed">
-        Báo giá minh bạch, tiến độ rõ ràng và bảo hành bằng văn bản cho mọi gia đình.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/lien-he" class="btn btn-primary">Nhận báo giá miễn phí</a>
-        <a href={company.telUrl} class="btn btn-outline bg-white">Gọi ngay {company.phoneDisplay}</a>
-      </div>
-    </div>
-  </section>
+  <!-- 1. Hero: slider -->
+  <HeroSlider />
 
   <!-- 2. Con số -->
-  <section class="border-b border-line py-12" data-reveal>
-    <ul class="container-page grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
-      {
-        stats.map((s, i) => (
-          <li class="text-center" data-reveal style={`--d:${i * 90}ms`}>
-            <p class="text-3xl font-bold text-primary">{s.value}</p>
-            <p class="mt-2 text-sm text-muted">{s.label}</p>
-          </li>
-        ))
-      }
-    </ul>
+  <section class="pt-12 md:pt-16" data-reveal>
+    <div class="container-page">
+      <ul class="grid grid-cols-2 rounded-lg border border-line bg-white shadow-md md:grid-cols-4 md:divide-x md:divide-line">
+        {
+          stats.map((s, i) => (
+            <li class:list={['px-4 py-6 text-center md:py-8', i < 2 && 'max-md:border-b max-md:border-line', i % 2 === 0 && 'max-md:border-r max-md:border-line']} data-reveal style={`--d:${i * 90}ms`}>
+              <p class="text-3xl font-bold text-primary md:text-4xl">{s.value}</p>
+              <p class="mt-2 text-sm text-muted">{s.label}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 
   <!-- 3. Dịch vụ -->
@@ -63,24 +46,33 @@ import hero from '../assets/hero.png';
     <ServiceGrid />
   </section>
 
-  <!-- 4. Cẩm nang xây nhà -->
+  <!-- 4. Mẫu nhà đã thi công -->
   <section class="section bg-primary-light" data-reveal>
     <div class="container-page">
-      <SectionHeading title="Cẩm nang xây nhà" subtitle="Chi phí, thiết kế và những điều cần biết trước khi xây hoặc sửa nhà." />
-      <nav aria-label="Chủ đề cẩm nang" class="mb-10 flex flex-wrap justify-center gap-3">
+      <SectionHeading title="Mẫu nhà đã thi công" subtitle="Thi công theo mẫu hoặc điều chỉnh theo diện tích, nhu cầu của gia đình." />
+      <ul class="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3 lg:gap-8">
         {
-          categories.map((c) => (
-            <a href={`/cam-nang#${c.slug}`} class="inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-white transition hover:opacity-90">
-              {c.name}
-            </a>
+          models.map((m, i) => (
+            <li data-reveal style={`--d:${(i % 3) * 90}ms`}>
+              <a href="/du-an" class="card group block overflow-hidden">
+                <div class="aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={m.img}
+                    alt={`Mẫu nhà ${Number(m.id)} Gia Khánh đã thi công`}
+                    width={600}
+                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <p class="flex min-h-11 items-center justify-between p-3 text-sm font-semibold group-hover:text-primary md:p-5 md:text-base">
+                  Mẫu nhà {Number(m.id)}
+                </p>
+              </a>
+            </li>
           ))
         }
-      </nav>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-        {posts.slice(0, 5).map((p, i) => <PostCard post={p} index={i} large={i === 0} class={i === 0 ? 'sm:col-span-2 lg:row-span-2' : undefined} />)}
-      </div>
+      </ul>
       <div class="mt-12 text-center">
-        <a href="/cam-nang" class="btn btn-outline bg-white">Xem tất cả bài viết</a>
+        <a href="/du-an" class="btn btn-outline bg-white px-7">Xem tất cả công trình</a>
       </div>
     </div>
   </section>
@@ -89,32 +81,78 @@ import hero from '../assets/hero.png';
   <section class="section" data-reveal>
     <div class="container-page">
       <SectionHeading title="Vì sao chọn Gia Khánh" subtitle="Nói rõ, làm đúng, bàn giao đủ — theo quy trình 6 bước." />
-      <div class="grid gap-12 lg:grid-cols-2">
-        <ul class="grid gap-6 sm:grid-cols-2">
+      <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
+        <ul class="grid gap-5 sm:grid-cols-2">
           {
             reasons.map((r, i) => (
-              <li data-reveal style={`--d:${(i % 2) * 90}ms`}>
-                <h3 class="font-semibold text-primary">{r.name}</h3>
-                <p class="mt-1 text-sm leading-relaxed text-muted">{r.text}</p>
-              </li>
-            ))
-          }
-        </ul>
-        <ol class="space-y-4">
-          {
-            steps.map((s, i) => (
-              <li class="flex gap-4" data-reveal style={`--d:${i * 80}ms`}>
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 class="font-semibold">{s.name}</h3>
-                  <p class="mt-1 text-sm leading-relaxed text-muted">{s.text}</p>
+              <li class="group relative flex min-h-56 flex-col justify-end overflow-hidden rounded-lg p-6 shadow-sm transition-shadow hover:shadow-md" data-reveal style={`--d:${(i % 2) * 90}ms`}>
+                <Image src={reasonImages[i]} alt="" width={600} class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-ink/70 to-ink/40" />
+                <div class="relative">
+                  <h3 class="font-semibold text-white">{r.name}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-white/85">{r.text}</p>
                 </div>
               </li>
             ))
           }
-        </ol>
+        </ul>
+        <div class="rounded-lg border border-line bg-primary-light p-6 md:p-8" data-reveal style="--d:90ms">
+          <h3 class="text-lg font-bold">Quy trình làm việc 6 bước</h3>
+          <ol class="relative mt-6 space-y-6 before:absolute before:top-2 before:bottom-2 before:left-[15px] before:w-0.5 before:bg-primary-bright/50">
+            {
+              steps.map((s, i) => (
+                <li class="relative flex gap-4" data-reveal style={`--d:${i * 80}ms`}>
+                  <span class="relative flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white ring-4 ring-primary-light">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h4 class="font-semibold">{s.name}</h4>
+                    <p class="mt-1 text-sm leading-relaxed text-muted">{s.text}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Cẩm nang xây nhà: 1 bài nổi bật + danh sách -->
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Cẩm nang xây nhà" subtitle="Chi phí, thiết kế và những điều cần biết trước khi xây hoặc sửa nhà." />
+      <nav aria-label="Chủ đề cẩm nang" class="-mt-4 mb-10 flex flex-wrap justify-center gap-3">
+        {
+          categories.map((c) => (
+            <a href={`/cam-nang#${c.slug}`} class="inline-flex min-h-11 items-center rounded-full border border-primary/30 bg-white px-5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">
+              {c.name}
+            </a>
+          ))
+        }
+      </nav>
+      <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
+        <PostCard post={featured} large />
+        <ul class="grid gap-4">
+          {
+            more.map((p, i) => (
+              <li data-reveal style={`--d:${i * 90}ms`}>
+                <a href={`/cam-nang/${p.slug}`} class="card group flex items-center gap-4 p-3">
+                  <div class="aspect-[4/3] w-28 shrink-0 overflow-hidden rounded-md md:w-36">
+                    <Image src={p.cover} alt="" width={300} class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-primary uppercase">{categories.find((c) => c.slug === p.category)?.name}</p>
+                    <h3 class="mt-1 leading-snug font-semibold group-hover:text-primary">{p.title}</h3>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/cam-nang" class="btn btn-outline bg-white px-7">Xem tất cả bài viết</a>
       </div>
     </div>
   </section>

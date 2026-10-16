@@ -1,22 +1,29 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
 
 interface Props {
   items: { q: string; a: string }[];
   class?: string;
+  subtitle?: string;
 }
-const { items, class: cls } = Astro.props;
+const { items, class: cls, subtitle } = Astro.props;
 ---
 
 <section class:list={['section', cls]} data-reveal>
   <div class="container-page">
-    <SectionHeading title="Câu hỏi thường gặp" />
-    <div class="mx-auto max-w-3xl space-y-4">
+    <SectionHeading title="Câu hỏi thường gặp" subtitle={subtitle} />
+    <div class="mx-auto max-w-3xl space-y-3">
       {
-        items.map((f) => (
-          <details class="rounded-lg border border-line p-4">
-            <summary class="flex min-h-11 cursor-pointer items-center font-semibold">{f.q}</summary>
-            <p class="mt-2 leading-relaxed text-muted">{f.a}</p>
+        items.map((f, i) => (
+          <details open={i === 0} class="group card px-5 py-2 open:border-primary/40">
+            <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 font-semibold [&::-webkit-details-marker]:hidden">
+              {f.q}
+              <span class="icon-tile size-8 transition-transform group-open:rotate-180">
+                <Icon name="chevron" class="size-4" />
+              </span>
+            </summary>
+            <p class="pb-3 leading-relaxed text-muted">{f.a}</p>
           </details>
         ))
       }

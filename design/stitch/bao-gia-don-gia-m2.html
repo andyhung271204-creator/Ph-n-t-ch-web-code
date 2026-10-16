@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section Đơn Giá Theo M² Từng Gói - Gia Khánh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#178A3E',
+              dark: '#0D5A2C',
+              light: '#ECF7EE',
+              text: '#1A2433',
+              muted: '#5B6B7F',
+              border: '#E3E8EF',
+            }
+          },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '8px',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: #ffffff;
+      color: #1A2433;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+  <section class="max-w-6xl mx-auto">
+    <!-- Header của Section -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl sm:text-3xl font-extrabold uppercase tracking-wide text-[#1A2433]">
+        ĐƠN GIÁ THEO M² TỪNG GÓI
+      </h2>
+      <div class="w-16 h-1 bg-[#178A3E] mx-auto mt-3 rounded-full"></div>
+      <p class="mt-3 text-[#5B6B7F] text-base font-normal max-w-2xl mx-auto">
+        Đơn giá tham khảo cho nhà phố, nhà ống 2 – 5 tầng, tính trên m² sàn quy đổi.
+      </p>
+    </div>
+
+    <!-- Hàng 3 Card Báo Giá ngang hàng đồng đều -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch mb-8">
+      
+      <!-- Card 1: Phần thô + nhân công hoàn thiện -->
+      <div class="bg-white border border-[#E3E8EF] rounded-[8px] p-6 lg:p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative">
+        <div>
+          <h3 class="text-lg font-bold text-[#1A2433] leading-snug min-h-[52px] flex items-center">
+            Phần thô + nhân công hoàn thiện
+          </h3>
+          
+          <div class="mt-4 mb-6">
+            <span class="text-3xl lg:text-[32px] font-extrabold text-[#178A3E] tracking-tight">
+              3.300.000
+            </span>
+            <span class="text-lg font-semibold text-[#1A2433] ml-1">đ/m²</span>
+          </div>
+
+          <div class="space-y-4 text-sm">
+            <!-- Bao gồm -->
+            <div class="space-y-2">
+              <div class="text-xs uppercase tracking-wider font-bold text-[#178A3E]">Bao gồm:</div>
+              <div class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-[#178A3E] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-[#1A2433] leading-relaxed">
+                  Móng, khung bê tông cốt thép, xây tô, điện nước âm, chống thấm.
+                </span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-[#178A3E] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-[#1A2433] leading-relaxed">
+                  Nhân công ốp lát, sơn bả, lắp thiết bị.
+                </span>
+              </div>
+            </div>
+
+            <!-- Chủ nhà tự lo -->
+            <div class="pt-4 border-t border-[#E3E8EF]">
+              <span class="text-xs font-semibold text-[#5B6B7F] block uppercase tracking-wider mb-1">Chủ nhà tự lo:</span>
+              <p class="text-sm text-[#5B6B7F] leading-relaxed">
+                Vật tư hoàn thiện (gạch ốp lát, thiết bị vệ sinh, thiết bị điện, sơn, cửa...).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-2">
+          <button type="button" class="w-full py-3 px-4 rounded-[8px] border-2 border-[#178A3E] text-[#178A3E] font-semibold text-sm hover:bg-[#ECF7EE] transition-colors focus:outline-none focus:ring-2 focus:ring-[#178A3E] focus:ring-offset-2">
+            Nhận báo giá
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2: Trọn gói (chìa khóa trao tay) - HIGHLIGHTED -->
+      <div class="bg-[#ECF7EE] border-2 border-[#178A3E] rounded-[8px] p-6 lg:p-7 flex flex-col justify-between shadow-md relative md:-translate-y-1.5 transition-transform">
+        <!-- Badge Phổ biến -->
+        <div class="absolute -top-3.5 right-6 bg-[#178A3E] text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm tracking-wide">
+          Phổ biến
+        </div>
+
+        <div>
+          <div class="min-h-[52px] flex items-center">
+            <h3 class="text-lg font-bold text-[#0D5A2C] leading-snug">
+              Trọn gói (chìa khóa trao tay)
+            </h3>
+          </div>
+          
+          <div class="mt-4 mb-6">
+            <span class="text-3xl lg:text-[32px] font-extrabold text-[#0D5A2C] tracking-tight">
+              5.000.000
+            </span>
+            <span class="text-lg font-semibold text-[#0D5A2C] ml-1">đ/m²</span>
+          </div>
+
+          <div class="space-y-4 text-sm">
+            <!-- Bao gồm -->
+            <div class="space-y-2">
+              <div class="text-xs uppercase tracking-wider font-bold text-[#0D5A2C]">Bao gồm:</div>
+              <div class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-[#178A3E] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-[#1A2433] font-medium leading-relaxed">
+                  Toàn bộ phần thô và hoàn thiện kiến trúc công trình.
+                </span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-[#178A3E] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-[#1A2433] font-medium leading-relaxed">
+                  Vật tư theo bảng cam kết vật tư chính hãng rõ nguồn gốc.
+                </span>
+              </div>
+            </div>
+
+            <!-- Chủ nhà tự lo -->
+            <div class="pt-4 border-t border-[#178A3E]/20">
+              <span class="text-xs font-semibold text-[#5B6B7F] block uppercase tracking-wider mb-1">Chủ nhà tự lo:</span>
+              <p class="text-sm text-[#5B6B7F] leading-relaxed">
+                Nội thất rời, điều hòa, bình nóng lạnh.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-2">
+          <button type="button" class="w-full py-3.5 px-4 rounded-[8px] bg-[#178A3E] hover:bg-[#0D5A2C] text-white font-semibold text-sm shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#0D5A2C] focus:ring-offset-2">
+            Nhận báo giá
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 3: Nhân công xây dựng -->
+      <div class="bg-white border border-[#E3E8EF] rounded-[8px] p-6 lg:p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative">
+        <div>
+          <h3 class="text-lg font-bold text-[#1A2433] leading-snug min-h-[52px] flex items-center">
+            Nhân công xây dựng
+          </h3>
+          
+          <div class="mt-4 mb-6">
+            <span class="text-base font-semibold text-[#5B6B7F] mr-1">từ</span>
+            <span class="text-3xl lg:text-[32px] font-extrabold text-[#178A3E] tracking-tight">
+              1.400.000
+            </span>
+            <span class="text-lg font-semibold text-[#1A2433] ml-1">đ/m²</span>
+          </div>
+
+          <div class="space-y-4 text-sm">
+            <!-- Bao gồm -->
+            <div class="space-y-2">
+              <div class="text-xs uppercase tracking-wider font-bold text-[#178A3E]">Bao gồm:</div>
+              <div class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-[#178A3E] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-[#1A2433] leading-relaxed">
+                  Nhân công xây dựng và hoàn thiện toàn bộ công trình theo bản vẽ.
+                </span>
+              </div>
+            </div>
+
+            <!-- Chủ nhà tự lo -->
+            <div class="pt-4 border-t border-[#E3E8EF]">
+              <span class="text-xs font-semibold text-[#5B6B7F] block uppercase tracking-wider mb-1">Chủ nhà tự lo:</span>
+              <p class="text-sm text-[#5B6B7F] leading-relaxed">
+                Toàn bộ vật tư xây dựng thô và hoàn thiện.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-2">
+          <button type="button" class="w-full py-3 px-4 rounded-[8px] border-2 border-[#178A3E] text-[#178A3E] font-semibold text-sm hover:bg-[#ECF7EE] transition-colors focus:outline-none focus:ring-2 focus:ring-[#178A3E] focus:ring-offset-2">
+            Nhận báo giá
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Khung ghi chú màu xanh nhạt có icon thông tin -->
+    <div class="bg-[#ECF7EE] border border-[#178A3E]/30 rounded-[8px] p-4 sm:p-5 flex items-start gap-3.5">
+      <div class="p-1 rounded-full bg-white text-[#178A3E] shrink-0 shadow-xs">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <p class="text-sm sm:text-base text-[#0D5A2C] leading-relaxed font-medium">
+        <span class="font-bold">Lưu ý:</span> Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.
+      </p>
+    </div>
+  </section>
+</body>
+</html>

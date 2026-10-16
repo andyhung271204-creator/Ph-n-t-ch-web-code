@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   /** Chuỗi, hoặc [phần in đậm, phần còn lại] */
   items: (string | [string, string])[];
@@ -11,7 +13,7 @@ const { items, class: cls } = Astro.props;
   {
     items.map((it) => (
       <li class="flex gap-3 leading-relaxed">
-        <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+        <Icon name="check-circle" class="mt-0.5 size-5 shrink-0 text-primary" />
         <span>{typeof it === 'string' ? it : <><strong>{it[0]}</strong> {it[1]}</>}</span>
       </li>
     ))

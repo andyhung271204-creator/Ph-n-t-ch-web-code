@@ -1,7 +1,33 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import ServiceGrid from '../../components/ServiceGrid.astro';
+import ServiceGrid from '../../components/ServiceGridClassic.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Faq from '../../components/Faq.astro';
+import { company, packages, steps, warranty } from '../../data/company';
+
+// Bố cục theo Stitch "Dịch vụ Xây nhà trọn gói" (design/stitch/dich-vu-xay-nha-tron-goi.png)
+const ctaLabels = ['Tư vấn gói phần thô', 'Chọn gói xây trọn gói', 'Tư vấn gói nhân công'];
+
+const faqs = [
+  {
+    q: 'Xây nhà trọn gói có phát sinh thêm chi phí không?',
+    a: 'Chỉ khi bạn thay đổi yêu cầu. Khoản phát sinh được báo giá trước và chỉ thực hiện khi bạn đồng ý bằng văn bản hoặc tin nhắn.',
+  },
+  {
+    q: 'Nhà trong ngõ nhỏ, xe tải không vào được thì sao?',
+    a: 'Gửi địa chỉ để kỹ sư khảo sát đường vào, mặt bằng và tư vấn phương án thi công, vận chuyển vật tư phù hợp.',
+  },
+  {
+    q: 'Làm sao tôi kiểm soát được vật tư đưa vào công trình?',
+    a: 'Hợp đồng kèm bảng vật tư ghi rõ chủng loại. Mỗi giai đoạn được nghiệm thu cùng bạn, ảnh và video tiến độ gửi hằng ngày qua Zalo.',
+  },
+  {
+    q: 'Xây một căn nhà mất bao lâu?',
+    a: 'Tùy diện tích, số tầng và thời tiết. Tiến độ cụ thể được ghi theo mốc trong hợp đồng.',
+  },
+  { q: 'Đơn giá đã gồm VAT, phá dỡ và ép cọc chưa?', a: `Chưa. ${company.priceNote}` },
+];
 ---
 
 <BaseLayout
@@ -12,4 +38,90 @@ import ServiceGrid from '../../components/ServiceGrid.astro';
   <section class="section" data-reveal>
     <ServiceGrid />
   </section>
+
+  <!-- Lựa chọn giải pháp: 3 gói thi công, gói giữa nổi bật -->
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading
+        title="Các hình thức & gói thi công tại Gia Khánh"
+        subtitle="Linh hoạt theo ngân sách và mức độ tự quản lý của từng gia đình."
+      />
+      <ul class="grid gap-6 md:grid-cols-3 lg:gap-8">
+        {
+          packages.map((p, i) => {
+            const main = i === 1;
+            return (
+              <li
+                class:list={['card flex flex-col p-6 md:p-8', main && 'border-2 border-primary shadow-md']}
+                data-reveal
+                style={`--d:${i * 90}ms`}
+              >
+                <h3 class:list={['text-xl font-bold', main && 'text-primary']}>Gói {p.name}</h3>
+                <p class="mt-2 text-lg font-bold">
+                  {p.perM2} <span class="text-sm font-semibold text-muted">đ/m²</span>
+                </p>
+                <div class="mt-5 mb-8 border-t border-line pt-5">
+                  <p class="text-sm font-semibold text-primary">Bao gồm</p>
+                  <p class="mt-1 text-sm leading-relaxed text-muted">{p.includes}</p>
+                  <p class="mt-4 text-sm font-semibold">Chủ nhà tự lo</p>
+                  <p class="mt-1 text-sm leading-relaxed text-muted">{p.owner}</p>
+                </div>
+                <a href="/lien-he" class:list={['btn mt-auto', main ? 'btn-primary' : 'btn-outline bg-white']}>
+                  {ctaLabels[i]}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <p class="mt-8 text-center text-sm text-muted">Đơn giá nhà phố, nhà ống 2 – 5 tầng. {company.priceNote}</p>
+    </div>
+  </section>
+
+  <!-- Tiến độ kỷ luật: 6 bước dạng thẻ đánh số -->
+  <section class="section" data-reveal>
+    <div class="container-page">
+      <SectionHeading
+        title="Quy trình thi công 6 bước"
+        subtitle="Mỗi mốc tiến độ ghi trong hợp đồng và được nghiệm thu cùng chủ nhà."
+      />
+      <ol class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        {
+          steps.map((s, i) => (
+            <li class="card p-6" data-reveal style={`--d:${(i % 3) * 90}ms`}>
+              <span class="text-3xl font-bold text-primary">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="mt-3 text-lg font-semibold">{s.name}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{s.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Cam kết hậu mãi: bảo hành theo hạng mục -->
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading
+        title="Chính sách bảo hành"
+        subtitle="Bảo hành bằng văn bản, ghi rõ trong hợp đồng theo từng hạng mục."
+      />
+      <ul class="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4 lg:gap-8">
+        {
+          warranty.slice(0, 4).map((w, i) => (
+            <li class="card p-5 md:p-6" data-reveal style={`--d:${i * 90}ms`}>
+              <p class="text-2xl font-bold text-primary md:text-3xl">{w.period}</p>
+              <h3 class="mt-2 font-semibold">{w.item}</h3>
+              {w.note && <p class="mt-2 text-sm leading-relaxed text-muted">{w.note}</p>}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Faq
+    items={faqs}
+    subtitle="Về chi phí, vật tư, ngõ hẻm và tiến độ xây nhà tại Hà Nội."
+  />
 </BaseLayout>

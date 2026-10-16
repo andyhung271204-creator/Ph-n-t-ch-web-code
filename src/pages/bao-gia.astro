@@ -4,7 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import QuoteForm from '../components/QuoteForm.astro';
-import { company, houseModels } from '../data/company';
+import Icon from '../components/Icon.astro';
+import { company, houseModels, packages } from '../data/company';
 import { imagesIn } from '../data/images';
 
 const tien = (v: number) =>
@@ -13,7 +14,7 @@ const tien = (v: number) =>
     : `${Math.round(v / 1e7) * 10} triệu`;
 
 // Mobile: mỗi dòng thành thẻ 3 cột, nhãn lấy từ data-label; từ md trở lên là bảng thường.
-const th = 'bg-primary-light p-4 text-left font-semibold';
+const th = 'bg-primary-light p-4 text-left text-sm font-semibold tracking-wide text-primary uppercase';
 const td =
   'whitespace-nowrap md:border-t md:border-line md:p-4 md:align-middle before:block before:text-sm before:font-normal before:text-muted before:content-[attr(data-label)] md:before:hidden';
 ---
@@ -27,13 +28,69 @@ const td =
     subtitle="Giá ước tính theo từng mẫu nhà. Để lại thông tin, kỹ sư Gia Khánh sẽ khảo sát và gửi báo giá chính xác miễn phí."
   />
 
+  <!-- Đơn giá theo m² từng gói — thiết kế: design/stitch/bao-gia-don-gia-m2.html -->
   <section class="section" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Đơn giá theo m² từng gói" />
+      <ul class="mx-auto grid max-w-xl items-stretch gap-6 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+        {
+          packages.map((p, i) => {
+            const hot = i === 1;
+            return (
+              <li
+                class:list={[
+                  'relative flex flex-col rounded-lg p-6 md:p-8',
+                  hot ? 'border-2 border-primary bg-primary-light shadow-md lg:-my-2' : 'card',
+                ]}
+                data-reveal
+                style={`--d:${i * 90}ms`}
+              >
+                {hot && (
+                  <span class="absolute -top-3 right-6 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">Đề xuất</span>
+                )}
+                <h3 class:list={['text-lg font-semibold', hot && 'text-primary-dark']}>{p.name}</h3>
+                <p class="mt-4 flex flex-wrap items-baseline gap-x-2">
+                  {p.perM2.startsWith('từ ') && <span class="font-semibold text-muted">từ</span>}
+                  <span class="text-3xl font-bold whitespace-nowrap text-primary md:text-4xl">{p.perM2.replace('từ ', '')}</span>
+                  <span class="font-semibold text-muted">đ/m²</span>
+                </p>
+                <p class="mt-6 text-sm font-semibold tracking-wide text-primary uppercase">Bao gồm</p>
+                <ul class="mt-3 space-y-2">
+                  {p.includes.replace(/\.$/, '').split('; ').map((t) => (
+                    <li class="flex gap-2 text-sm leading-relaxed">
+                      <Icon name="check" class="mt-0.5 size-4 shrink-0 text-primary" />
+                      <span>{t[0].toUpperCase() + t.slice(1)}.</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class:list={['mt-5 border-t pt-5', hot ? 'border-primary/20' : 'border-line']}>
+                  <p class="text-sm font-semibold tracking-wide text-muted uppercase">Chủ nhà tự lo</p>
+                  <p class="mt-2 text-sm leading-relaxed text-muted">{p.owner}</p>
+                </div>
+                <div class="mt-auto pt-6">
+                  <a href="#nhan-bao-gia" class:list={['btn w-full', hot ? 'btn-primary' : 'btn-outline bg-white']}>
+                    Nhận báo giá
+                  </a>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+      <p class="mt-10 flex gap-3 rounded-lg border border-primary/20 bg-primary-light p-4 font-medium">
+        <Icon name="file" class="mt-0.5 size-5 shrink-0 text-primary" />
+        <span>{company.priceNote}</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section bg-primary-light" data-reveal>
     <div class="container-page">
       <SectionHeading
         title="Bảng giá theo mẫu nhà"
         subtitle="Giá ước tính theo diện tích sàn quy đổi phổ biến của từng mẫu. Ảnh là mẫu phối cảnh tham khảo."
       />
-      <div class="overflow-x-auto rounded-lg border border-line">
+      <div class="overflow-x-auto rounded-lg border border-line bg-white shadow-sm">
         <table class="block w-full border-collapse md:table">
           <thead class="hidden md:table-header-group">
             <tr>
@@ -46,7 +103,7 @@ const td =
           <tbody class="block md:table-row-group">
             {
               houseModels.map((m) => (
-                <tr class="grid grid-cols-3 gap-x-3 gap-y-3 border-t border-line p-4 first:border-t-0 md:table-row md:p-0">
+                <tr class="grid grid-cols-3 gap-x-3 gap-y-3 border-t border-line p-4 transition-colors first:border-t-0 hover:bg-primary-light/40 md:table-row md:p-0">
                   <th class="col-span-3 text-left font-medium md:border-t md:border-line md:p-4 md:align-middle" scope="row">
                     <span class="flex items-center gap-4">
                       <Image
@@ -56,7 +113,7 @@ const td =
                         class="aspect-[4/3] w-24 shrink-0 rounded-md object-cover"
                       />
                       <span>
-                        <span class="block text-sm text-muted">Mẫu {m.id}</span>
+                        <span class="block text-sm font-semibold text-muted uppercase">Mẫu {m.id}</span>
                         {m.name}
                       </span>
                     </span>
@@ -70,19 +127,20 @@ const td =
           </tbody>
         </table>
       </div>
-      <p class="mt-6 rounded-lg bg-primary-light p-4 font-medium">
-        Giá trên chỉ để tham khảo, tính theo diện tích ước tính của mẫu. {company.priceNote}
+      <p class="mt-6 flex gap-3 rounded-lg border border-primary/20 bg-primary-light p-4 font-medium">
+        <Icon name="file" class="mt-0.5 size-5 shrink-0 text-primary" />
+        <span>Giá trên chỉ để tham khảo, tính theo diện tích ước tính của mẫu. {company.priceNote}</span>
       </p>
     </div>
   </section>
 
-  <section id="nhan-bao-gia" class="section scroll-mt-20 bg-primary-light" data-reveal>
+  <section id="nhan-bao-gia" class="section scroll-mt-20" data-reveal>
     <div class="container-page">
       <SectionHeading
         title="Nhận báo giá chi tiết"
         subtitle="Để lại thông tin và mẫu nhà bạn quan tâm, Gia Khánh sẽ gọi lại tư vấn miễn phí."
       />
-      <div class="mx-auto max-w-2xl rounded-lg border border-line">
+      <div class="mx-auto max-w-2xl">
         <QuoteForm>
           <label class="block text-sm font-medium">
             Mẫu nhà quan tâm

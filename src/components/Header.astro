@@ -1,16 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-ngang.png';
-import { nav } from '../data/company';
+import Icon from './Icon.astro';
+import { company, nav } from '../data/company';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 
-<header id="site-header" class="sticky top-0 z-40 bg-white transition-shadow">
-  <div class="container-page relative flex h-12 items-center justify-between gap-4">
-    <a href="/" class="flex shrink-0 items-center" aria-label="Gia Khánh – Trang chủ">
-      <Image src={logo} alt="Logo Gia Khánh" height={88} class="h-9 w-auto" loading="eager" />
+<header id="site-header" class="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur transition-shadow">
+  <div class="container-page relative flex h-16 items-center justify-between gap-4 lg:h-20">
+    <a href="/" class="flex min-h-11 shrink-0 items-center" aria-label="Gia Khánh – Trang chủ">
+      <Image src={logo} alt="Logo Gia Khánh" height={88} class="h-9 w-auto lg:h-11" loading="eager" />
     </a>
 
     <button
@@ -29,25 +30,35 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <nav
       id="main-nav"
       aria-label="Điều hướng chính"
-      class="flex items-center gap-1 lg:flex-1 max-lg:absolute max-lg:inset-x-0 max-lg:top-full max-lg:hidden max-lg:flex-col max-lg:items-stretch max-lg:border-t max-lg:border-line max-lg:bg-white max-lg:p-4 max-lg:shadow-md max-lg:data-[open]:flex"
+      class="flex items-center gap-1 lg:flex-1 lg:justify-end max-lg:absolute max-lg:inset-x-0 max-lg:top-full max-lg:hidden max-lg:flex-col max-lg:items-stretch max-lg:border-t max-lg:border-line max-lg:bg-white max-lg:p-4 max-lg:shadow-md max-lg:data-[open]:flex"
     >
-      <div class="max-lg:contents lg:flex lg:flex-1 lg:items-center lg:justify-between">
-      {
-        nav.map((item) => (
-          <a
-            href={item.href}
-            aria-current={isActive(item.href) ? 'page' : undefined}
-            class:list={[
-              'flex min-h-11 items-center rounded-md px-3 font-medium hover:text-primary',
-              isActive(item.href) ? 'text-primary' : 'text-ink',
-            ]}
-          >
-            {item.label}
-          </a>
-        ))
-      }
+      <div class="max-lg:contents lg:mx-auto lg:flex lg:items-center">
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              class:list={[
+                'relative flex min-h-11 items-center whitespace-nowrap rounded-md px-3 font-medium transition-colors hover:text-primary',
+                'lg:after:absolute lg:after:inset-x-3 lg:after:bottom-1.5 lg:after:h-0.5 lg:after:origin-left lg:after:rounded lg:after:bg-primary lg:after:transition-transform',
+                isActive(item.href) ? 'text-primary max-lg:bg-primary-light lg:after:scale-x-100' : 'text-ink lg:after:scale-x-0',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
       </div>
-      <a href="/lien-he" class="btn btn-primary max-lg:mt-2 lg:ml-6">Nhận báo giá</a>
+      <a href={company.telUrl} class="flex min-h-11 items-center gap-3 max-lg:mt-2 max-lg:px-3 lg:mx-3 lg:max-xl:hidden">
+        <span class="flex size-10 items-center justify-center rounded-full bg-primary-light text-primary">
+          <Icon name="phone" class="size-4" />
+        </span>
+        <span class="whitespace-nowrap leading-tight">
+          <span class="block text-xs text-muted">Hotline / Zalo</span>
+          <span class="block font-bold text-ink">{company.phoneDisplay}</span>
+        </span>
+      </a>
+      <a href="/lien-he" class="btn btn-primary whitespace-nowrap max-lg:mt-2">Nhận báo giá</a>
     </nav>
   </div>
 </header>
