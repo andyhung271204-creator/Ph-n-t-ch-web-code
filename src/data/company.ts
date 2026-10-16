@@ -50,6 +50,7 @@ export const nav = [
   { href: '/dich-vu', label: 'Dịch vụ' },
   { href: '/du-an', label: 'Công trình' },
   { href: '/bao-gia', label: 'Báo giá' },
+  { href: '/cam-nang', label: 'Cẩm nang' },
   { href: '/lien-he', label: 'Liên hệ' },
 ];
 

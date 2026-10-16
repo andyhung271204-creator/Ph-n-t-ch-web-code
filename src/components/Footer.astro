@@ -59,7 +59,7 @@ const link = 'inline-flex min-h-11 items-center gap-2 text-white/80 transition-c
       <h2 class="text-lg font-semibold">Liên kết nhanh</h2>
       <ul class="mt-4 text-sm">
         {
-          [...nav.slice(1), { href: '/cam-nang', label: 'Cẩm nang' }].map((n) => (
+          nav.slice(1).map((n) => (
             <li>
               <a href={n.href} class={link}>
                 <Icon name="chevron" class="size-3.5 -rotate-90 text-primary-bright" />
