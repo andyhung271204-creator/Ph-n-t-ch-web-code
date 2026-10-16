@@ -12,3 +12,6 @@ export const imagesIn = (dir: string): ImageMetadata[] =>
     .filter((p) => p.toLowerCase().includes(`/${dir.toLowerCase()}/`))
     .sort()
     .map((p) => all[p].default);
+
+/** Ảnh theo đường dẫn đầy đủ, vd. `/src/assets/cam-nang/anh.webp` (giá trị CMS ghi vào frontmatter). */
+export const imageAt = (path: string): ImageMetadata | undefined => all[path]?.default;

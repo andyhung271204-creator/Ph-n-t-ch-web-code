@@ -1,5 +1,10 @@
 ---
 slug: cach-tinh-dien-tich-xay-dung
+title: "Cách tính diện tích xây dựng để dự trù ngân sách"
+excerpt: "Hiểu cách quy đổi móng, sàn, mái ra diện tích để ước tính chi phí trước khi khảo sát."
+date: 2026-10-15T01:00:00.000Z
+draft: false
+cover: /src/assets/cam-nang/cach-tinh-dien-tich-xay-dung/anh-bia.jpg
 url: /cam-nang/cach-tinh-dien-tich-xay-dung
 category: chi-phi
 meta_title: "Cách tính diện tích xây dựng dự trù ngân sách | Gia Khánh"

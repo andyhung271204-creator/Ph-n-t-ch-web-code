@@ -1,5 +1,9 @@
 ---
 slug: chon-vat-lieu-hoan-thien-noi-that
+category: noi-that
+date: 2026-10-12T01:00:00.000Z
+draft: false
+cover: /src/assets/cam-nang/chon-vat-lieu-hoan-thien-noi-that/anh-bia.jpg
 url: /cam-nang/chon-vat-lieu-hoan-thien-noi-that
 title: "Hoàn thiện nội thất: chọn vật liệu phù hợp ngân sách"
 excerpt: "Gỗ, sơn, gạch, trần — cách cân đối vật liệu hoàn thiện theo ngân sách gia đình."

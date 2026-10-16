@@ -1,5 +1,9 @@
 ---
 slug: chi-phi-xay-nha-pho-tron-goi
+category: chi-phi
+date: 2026-10-16T01:00:00.000Z
+draft: false
+cover: /src/assets/cam-nang/chi-phi-xay-nha-pho-tron-goi/anh-bia.jpg
 url: /cam-nang/chi-phi-xay-nha-pho-tron-goi
 title: "Chi phí xây nhà phố trọn gói: những yếu tố quyết định tổng chi phí"
 meta_title: "Chi phí xây nhà phố trọn gói: yếu tố quyết định | Gia Khánh"

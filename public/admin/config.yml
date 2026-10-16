@@ -1,0 +1,58 @@
+# Sveltia CMS — trang quản trị bài Cẩm nang tại /admin. Mỗi lần Lưu = 1 commit lên main → Cloudflare tự build.
+backend:
+  name: github
+  repo: andyhung2712041-cmd/xaydunggiakhanh
+  branch: main
+  base_url: https://sveltia-cms-auth.xaydunggiakhanh.workers.dev # Worker đăng nhập GitHub (sveltia/sveltia-cms-auth)
+
+# Ảnh chèn trong thân bài
+media_folder: /public/uploads/cam-nang
+public_folder: /uploads/cam-nang
+media_libraries:
+  all:
+    transformations:
+      raster_image: { format: webp, quality: 85, width: 2000, height: 2000 } # nén ảnh điện thoại khi tải lên
+
+collections:
+  - name: cam-nang
+    label: Cẩm nang
+    label_singular: Bài viết
+    folder: noi-dung/cam-nang
+    extension: md
+    format: frontmatter
+    create: true
+    slug: '{{fields.slug}}'
+    fields:
+      - { name: title, label: Tiêu đề, widget: string }
+      - name: slug
+        label: Đường dẫn URL
+        widget: string
+        pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Chỉ chữ thường không dấu, số và gạch ngang']
+        hint: 'VD: chi-phi-xay-nha-3-tang → xaydunggiakhanh.vn/cam-nang/chi-phi-xay-nha-3-tang. Không đổi được sau khi đăng.'
+      - name: category
+        label: Chuyên mục
+        widget: select
+        options: # khớp với categories trong src/data/posts.ts
+          - { label: Chi phí xây nhà, value: chi-phi }
+          - { label: Thiết kế nhà, value: thiet-ke }
+          - { label: Sửa chữa – cải tạo, value: sua-chua }
+          - { label: Hoàn thiện nội thất, value: noi-that }
+      - { name: date, label: Ngày đăng, widget: datetime, hint: 'Bài mới nhất hiện đầu tiên ở trang chủ' }
+      - { name: draft, label: Bản nháp (ẩn khỏi web), widget: boolean, default: false, required: false }
+      - { name: excerpt, label: Tóm tắt, widget: text, hint: '1–2 câu, hiện trên thẻ bài và đầu bài viết' }
+      - name: cover
+        label: Ảnh bìa
+        widget: image
+        media_folder: /src/assets/cam-nang
+        public_folder: /src/assets/cam-nang
+        hint: 'Chỉ dùng ảnh công trình thật của Gia Khánh, không dùng ảnh sưu tầm.'
+      - { name: meta_title, label: Tiêu đề SEO, widget: string, required: false, hint: 'Bỏ trống = dùng Tiêu đề' }
+      - { name: meta_description, label: Mô tả SEO, widget: text, required: false, hint: 'Tối đa ~160 ký tự. Bỏ trống = dùng Tóm tắt' }
+      - name: body
+        label: Nội dung
+        widget: richtext
+        hint: >-
+          Không cần viết lại tiêu đề. Quy ước: [ẢNH: mô tả] = khung chờ ảnh · [cần xác nhận: …] = đoạn tô vàng ·
+          câu hỏi in đậm kết thúc bằng "?", Shift+Enter rồi viết trả lời = mục hỏi đáp thu gọn ·
+          một dòng chứa [Nhận báo giá miễn phí] = cụm nút báo giá/gọi/Zalo ·
+          mục "Nguồn tham khảo" cuối bài không hiện trên web.

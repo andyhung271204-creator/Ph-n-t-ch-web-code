@@ -1,5 +1,9 @@
 ---
 slug: luu-y-khi-thiet-ke-nha-pho
+category: thiet-ke
+date: 2026-10-14T01:00:00.000Z
+draft: false
+cover: /src/assets/cam-nang/luu-y-khi-thiet-ke-nha-pho/anh-bia.jpg
 url: /cam-nang/luu-y-khi-thiet-ke-nha-pho
 title: "Những điều cần lưu ý khi thiết kế nhà phố"
 excerpt: "Ánh sáng, thông gió, cầu thang và công năng từng tầng — những điểm nên chốt sớm khi thiết kế."

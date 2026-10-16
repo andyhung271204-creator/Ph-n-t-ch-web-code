@@ -1,8 +1,9 @@
-import { imagesIn } from './images';
+import { imageAt } from './images';
 import { company } from './company';
 
-// Bài cẩm nang (blog). Ảnh bìa: src/assets/cam-nang/<slug>/ (chọn từ thư mục "tệp ảnh 1").
-// Thân bài lấy từ noi-dung/cam-nang/<slug>.md (xem toHtml bên dưới).
+// Bài cẩm nang (blog): mỗi bài là một file noi-dung/cam-nang/<slug>.md, soạn qua /admin (Sveltia CMS).
+// Tên file = URL bài. Ảnh bìa: frontmatter `cover` (đường dẫn trong src/assets/).
+// Sửa danh mục ở đây thì sửa luôn options của `category` trong public/admin/config.yml.
 export const categories = [
   { slug: 'chi-phi', name: 'Chi phí xây nhà' },
   { slug: 'thiet-ke', name: 'Thiết kế nhà' },
@@ -10,50 +11,21 @@ export const categories = [
   { slug: 'noi-that', name: 'Hoàn thiện nội thất' },
 ];
 
-const raw = [
-  {
-    slug: 'chi-phi-xay-nha-pho-tron-goi',
-    category: 'chi-phi',
-    title: 'Chi phí xây nhà phố trọn gói: những yếu tố quyết định tổng chi phí',
-    excerpt:
-      'Đơn giá theo m² chỉ là điểm bắt đầu. Diện tích sàn, phần móng – mái, vật tư hoàn thiện và điều kiện thi công thực tế mới quyết định con số cuối cùng.',
-    img: 'cam-nang/chi-phi-xay-nha-pho-tron-goi',
-  },
-  {
-    slug: 'cach-tinh-dien-tich-xay-dung',
-    category: 'chi-phi',
-    title: 'Cách tính diện tích xây dựng để dự trù ngân sách',
-    excerpt: 'Hiểu cách quy đổi móng, sàn, mái ra diện tích để ước tính chi phí trước khi khảo sát.',
-    img: 'cam-nang/cach-tinh-dien-tich-xay-dung',
-  },
-  {
-    slug: 'luu-y-khi-thiet-ke-nha-pho',
-    category: 'thiet-ke',
-    title: 'Những điều cần lưu ý khi thiết kế nhà phố',
-    excerpt: 'Ánh sáng, thông gió, cầu thang và công năng từng tầng — những điểm nên chốt sớm khi thiết kế.',
-    img: 'cam-nang/luu-y-khi-thiet-ke-nha-pho',
-  },
-  {
-    slug: 'kiem-tra-truoc-khi-cai-tao-nha-cu',
-    category: 'sua-chua',
-    title: 'Sửa nhà cũ: cần kiểm tra gì trước khi cải tạo?',
-    excerpt: 'Kết cấu, thấm dột, hệ thống điện nước — những hạng mục cần kiểm tra trước khi quyết định sửa.',
-    img: 'cam-nang/kiem-tra-truoc-khi-cai-tao-nha-cu',
-  },
-  {
-    slug: 'chon-vat-lieu-hoan-thien-noi-that',
-    category: 'noi-that',
-    title: 'Hoàn thiện nội thất: chọn vật liệu phù hợp ngân sách',
-    excerpt: 'Gỗ, sơn, gạch, trần — cách cân đối vật liệu hoàn thiện theo ngân sách gia đình.',
-    img: 'cam-nang/chon-vat-lieu-hoan-thien-noi-that',
-  },
-];
-
 // Nội dung bài: noi-dung/cam-nang/<slug>.md. Quy ước đánh dấu cho biên tập (hiện trên web cho tới khi xóa):
 //   [ẢNH: mô tả]      → khung chờ ảnh
 //   [cần xác nhận...]  → đoạn tô vàng
 //   mục "## Nguồn tham khảo" → chỉ để biên tập, không hiển thị
-type Md = { frontmatter: Record<string, string>; compiledContent: () => string | Promise<string> };
+type Fm = {
+  title: string;
+  category: string;
+  excerpt: string;
+  cover: string;
+  date: string | Date;
+  draft?: boolean;
+  meta_title?: string;
+  meta_description?: string;
+};
+type Md = { frontmatter: Fm; compiledContent: () => string | Promise<string> };
 const mds = import.meta.glob<Md>('/noi-dung/cam-nang/*.md', { eager: true });
 
 const ctaButtons = `<div class="post-cta">
@@ -68,9 +40,9 @@ const toHtml = (html: string) => {
     main
       .replace(/<h1[^>]*>[\s\S]*?<\/h1>/, '') // tiêu đề đã có ở PageHeader
       .replace('<strong>Sapo:</strong> ', '')
-      // FAQ "**Câu hỏi?**\nTrả lời" → <details>
+      // FAQ "**Câu hỏi?**\nTrả lời" → <details> (<br>: CMS ghi Shift+Enter thành xuống dòng cứng)
       .replace(
-        /<p><strong>([^<]*\?)<\/strong>\r?\n([\s\S]*?)<\/p>/g,
+        /<p><strong>([^<]*\?)<\/strong>(?:<br\s*\/?>)?\r?\n([\s\S]*?)<\/p>/g,
         '<details><summary>$1</summary><p>$2</p></details>',
       )
       .replace(/<p>[^\n]*\[Nhận báo giá miễn phí\][^\n]*<\/p>(\s*<p>[^\n]*\[Gọi ngay\][^\n]*<\/p>)?/, ctaButtons)
@@ -78,20 +50,33 @@ const toHtml = (html: string) => {
       .replace(/\[(cần xác nhận[^\]]*)\]/g, '<mark class="note-xn">⚠ $1</mark>')
       .replace(/<table>/g, '<div class="table-wrap"><table>')
       .replace(/<\/table>/g, '</table></div>')
+      .replace(/<img (?![^>]*loading=)/g, '<img loading="lazy" ') // ảnh chèn qua CMS (public/uploads/)
   );
 };
 
-const bodies = Object.fromEntries(
+// Bỏ bài nháp; mới nhất trước (bài đầu = bài nổi bật trang chủ).
+export const posts = (
   await Promise.all(
-    Object.values(mds).map(async (m) => [m.frontmatter.slug, { html: toHtml(await m.compiledContent()), fm: m.frontmatter }]),
-  ),
-);
-
-export const posts = raw.map((p) => ({
-  ...p,
-  cover: imagesIn(p.img)[0],
-  body: bodies[p.slug]?.html ?? '',
-  metaTitle: bodies[p.slug]?.fm.meta_title?.replace(/\s*\|\s*Gia Khánh$/, '') ?? p.title,
-  metaDescription: bodies[p.slug]?.fm.meta_description ?? p.excerpt,
-}));
+    Object.entries(mds)
+      .filter(([, m]) => !m.frontmatter.draft)
+      .map(async ([path, m]) => {
+        const fm = m.frontmatter;
+        const slug = path.split('/').pop()!.replace(/\.md$/, '');
+        const cover = imageAt(fm.cover);
+        if (!cover) throw new Error(`Bài "${slug}": không tìm thấy ảnh bìa ${fm.cover}`);
+        return {
+          slug,
+          category: fm.category,
+          title: fm.title,
+          excerpt: fm.excerpt,
+          date: new Date(fm.date),
+          cover,
+          body: toHtml(await m.compiledContent()),
+          // CMS ghi ô bỏ trống thành "" → dùng ||, không dùng ??
+          metaTitle: fm.meta_title?.replace(/\s*\|\s*Gia Khánh$/, '') || fm.title,
+          metaDescription: fm.meta_description || fm.excerpt,
+        };
+      }),
+  )
+).sort((a, b) => +b.date - +a.date);
 export type Post = (typeof posts)[number];

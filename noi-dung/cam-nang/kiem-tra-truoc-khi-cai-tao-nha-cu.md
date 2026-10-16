@@ -1,5 +1,9 @@
 ---
 slug: kiem-tra-truoc-khi-cai-tao-nha-cu
+category: sua-chua
+date: 2026-10-13T01:00:00.000Z
+draft: false
+cover: /src/assets/cam-nang/kiem-tra-truoc-khi-cai-tao-nha-cu/anh-bia.jpg
 url: /cam-nang/kiem-tra-truoc-khi-cai-tao-nha-cu
 title: "Sửa nhà cũ: cần kiểm tra gì trước khi cải tạo?"
 excerpt: "Kết cấu, thấm dột, hệ thống điện nước — những hạng mục cần kiểm tra trước khi quyết định sửa."

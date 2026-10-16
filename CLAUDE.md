@@ -9,6 +9,11 @@ npm run dev      # http://localhost:4321
 npm run build    # output: dist/
 ```
 
+## Deploy & bài viết
+
+- Deploy = push lên `main` (Cloudflare Workers Builds tự build). Không chạy `npm run deploy` từ máy khi chưa pull.
+- Bài Cẩm nang soạn qua `/admin` (Sveltia CMS, `public/admin/config.yml`) và được commit thẳng lên GitHub → luôn `git pull` trước khi sửa trên máy.
+
 ## Rules
 
 Quy tắc chi tiết nằm trong `.claude/rules/`:
