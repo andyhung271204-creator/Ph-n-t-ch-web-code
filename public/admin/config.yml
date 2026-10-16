@@ -51,6 +51,7 @@ collections:
       - name: body
         label: Nội dung
         widget: richtext
+        editor_components: [image, table, hr] # bảng, đường kẻ ngang cần Sveltia ≥ 0.237
         hint: >-
           Không cần viết lại tiêu đề. Quy ước: [ẢNH: mô tả] = khung chờ ảnh · [cần xác nhận: …] = đoạn tô vàng ·
           câu hỏi in đậm kết thúc bằng "?", Shift+Enter rồi viết trả lời = mục hỏi đáp thu gọn ·
