@@ -7,16 +7,10 @@ import { imagesIn } from '../data/images';
 
 // Slider kiểu betaviet.vn: fade 1s, tự chuyển sau DELAY, mũi tên.
 // Hover/focus tạm dừng tự chuyển; reduced-motion thì không tự chạy.
-// Slide 1 là hero chữ; slide 2 là banner dựng bằng scripts/banners.mjs (src/assets/slider/).
+// Slide 1 là hero chữ; slide sau là banner dựng bằng scripts/banners.mjs (src/assets/slider/), thêm vào items.
+// Chỉ 1 slide thì ẩn mũi tên, không tự chuyển.
 const DELAY = 7000;
-const items = [
-  {
-    name: 'thuong-hieu',
-    href: '/gioi-thieu',
-    label: 'giới thiệu Gia Khánh',
-    alt: `${company.brand} – hơn 10 năm kinh nghiệm của đội ngũ. Báo giá minh bạch, thi công tận tâm, bàn giao đúng hẹn. ${company.slogan}.`,
-  },
-];
+const items: { name: string; href: string; label: string; alt: string }[] = [];
 const pick = (name: string) => imagesIn('slider').find((m) => m.src.includes(name))!;
 const banners = await Promise.all(
   items.map(async (it) => {
@@ -80,14 +74,14 @@ const total = banners.length + 1;
   </div>
 
   <!-- Điều khiển: mobile 2 mũi tên ở giữa đáy, từ md ra 2 bên -->
-  <div class="slider-ui pointer-events-none absolute inset-0 flex items-end justify-center gap-4 pb-6 *:pointer-events-auto">
+  {total > 1 && <div class="slider-ui pointer-events-none absolute inset-0 flex items-end justify-center gap-4 pb-6 *:pointer-events-auto">
     <button type="button" class="slider-btn md:absolute md:top-1/2 md:left-4 md:-translate-y-1/2" aria-label="Slide trước" data-prev>
       <Icon name="arrow" class="size-5 rotate-180" />
     </button>
     <button type="button" class="slider-btn md:absolute md:top-1/2 md:right-4 md:-translate-y-1/2" aria-label="Slide tiếp theo" data-next>
       <Icon name="arrow" class="size-5" />
     </button>
-  </div>
+  </div>}
 </section>
 
 <style>
@@ -146,6 +140,7 @@ const total = banners.length + 1;
 <script>
   document.querySelectorAll<HTMLElement>('[data-slider]').forEach((root) => {
     const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    if (slides.length < 2) return;
     const delay = Number(root.dataset.delay);
     const auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
     let i = 0;

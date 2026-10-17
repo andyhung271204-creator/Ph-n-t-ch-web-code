@@ -35,9 +35,6 @@ const brand = {
   name: 'thuong-hieu',
   css: `
 .bg{--img:url('${asset('anh-dich-vu/noi-that-hang-muc/01.jpg')}');--pos:30% 40%}
-.shade{position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(9,63,31,0) 40%,rgba(9,63,31,.6) 68%,rgba(9,63,31,.7) 82%),
-  linear-gradient(90deg,rgba(9,63,31,0) 50%,rgba(9,63,31,.64) 74%,rgba(9,63,31,.7) 84%)}
 .glow{position:absolute;inset:0}
 .values{position:absolute;right:64px;top:70px;width:420px;height:300px}
 .values li{position:absolute;list-style:none;width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;
@@ -52,7 +49,6 @@ const brand = {
   text-shadow:0 0 18px rgba(61,190,58,.8),0 4px 14px rgba(0,0,0,.5);white-space:nowrap}
 @media (max-width:600px){
   .bg{--pos:35% 30%}
-  .shade{background:linear-gradient(180deg,rgba(9,63,31,0) 30%,rgba(9,63,31,.63) 52%,rgba(9,63,31,.7) 62%)}
   .logo{top:16px;right:auto;left:16px}.logo img{height:30px}
   .values{right:auto;left:16px;top:auto;bottom:250px;width:auto;height:auto;display:flex;gap:10px}
   .values li{position:static;width:106px;height:106px;font-size:12px}
@@ -61,7 +57,7 @@ const brand = {
   .hot,.glow{display:none}
 }`,
   html: `
-<div class="bg"></div><div class="shade"></div>
+<div class="bg"></div>
 <span class="bokeh" style="width:120px;height:120px;left:560px;top:250px"></span>
 <span class="bokeh" style="width:70px;height:70px;left:120px;top:280px"></span>
 <span class="bokeh" style="width:90px;height:90px;right:430px;top:20px"></span>
