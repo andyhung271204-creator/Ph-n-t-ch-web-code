@@ -5,7 +5,9 @@ import PageHeader from '../components/PageHeader.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import QuoteForm from '../components/QuoteForm.astro';
 import Icon from '../components/Icon.astro';
-import { company, houseModels, packages } from '../data/company';
+import Bullets from '../components/Bullets.astro';
+import Faq from '../components/Faq.astro';
+import { company, houseModels, packages, prices, xn } from '../data/company';
 import { imagesIn } from '../data/images';
 
 const tien = (v: number) =>
@@ -13,25 +15,76 @@ const tien = (v: number) =>
     ? `${(v / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 })} tỷ`
     : `${Math.round(v / 1e7) * 10} triệu`;
 
+// Chỉ nhóm nhà phố, nhà ống có giá đã xác nhận; nhóm khác hiện "Đang cập nhật" cho tới khi daXacNhan = true.
+const gia = (m: (typeof houseModels)[number], v: number) => (m.loai === 'pho' ? `≈ ${tien(v)}` : xn(`≈ ${tien(v)}`));
+
+const link = 'font-semibold text-primary underline hover:text-primary-dark';
+const pho = prices[1]; // nhà phố, nhà ống 2 – 5 tầng (đã xác nhận)
+const loaiKhac = [prices[0], prices[2], prices[3]]; // nhà cấp 4, tân cổ điển / từ 6 tầng, biệt thự: xn() trong prices
+
 // Mobile: mỗi dòng thành thẻ 3 cột, nhãn lấy từ data-label; từ md trở lên là bảng thường.
 const th = 'bg-primary-light p-4 text-left text-sm font-semibold tracking-wide text-primary uppercase';
 const td =
   'whitespace-nowrap md:border-t md:border-line md:p-4 md:align-middle before:block before:text-sm before:font-normal before:text-muted before:content-[attr(data-label)] md:before:hidden';
+
+const faqs = [
+  {
+    q: 'Xây nhà 1 m² hết bao nhiêu?',
+    a: `Với nhà phố, nhà ống 2 đến 5 tầng, phần thô cộng nhân công hoàn thiện là ${pho.rough}, trọn gói là ${pho.full} sàn quy đổi. ${company.priceNote}`,
+  },
+  {
+    q: 'Trọn gói và phần thô khác nhau thế nào?',
+    a: 'Hai gói khác nhau ở người mua vật tư hoàn thiện. Trọn gói do Gia Khánh lo cả vật tư hoàn thiện; phần thô cộng nhân công hoàn thiện thì chủ nhà tự mua gạch, sơn, cửa, thiết bị. Chi tiết nằm ở trang dịch vụ Xây nhà trọn gói.',
+  },
+  {
+    q: 'Diện tích tính giá là gì?',
+    a: 'Là diện tích sàn quy đổi: móng, các tầng, tum và sân thượng được nhân hệ số rồi cộng lại, không phải diện tích đất. Cách quy đổi có trong bài Cẩm nang Cách tính diện tích xây dựng.',
+  },
+  { q: 'Đơn giá đã gồm VAT, phá dỡ và ép cọc chưa?', a: `Chưa. ${company.priceNote}` },
+  {
+    q: 'Mẫu nhà trong bảng giá là công trình thật hay phối cảnh?',
+    a: 'Là các mẫu nhà Gia Khánh đã thi công. Diện tích mỗi mẫu là con số tham khảo để minh họa, không phải diện tích hay chi phí thực của công trình. Ảnh các công trình có ở trang Công trình.',
+  },
+  {
+    q: 'Thanh toán như thế nào?',
+    a: 'Theo từng giai đoạn thi công. Mỗi đợt đến sau khi hạng mục được nghiệm thu cùng bạn, và các đợt được ghi trong hợp đồng.',
+  },
+  {
+    q: 'Giá nhân công riêng bao nhiêu?',
+    a: `Từ ${packages[2].perM2.replace('từ ', '')} đ/m² sàn quy đổi. Gia Khánh lo nhân công thi công toàn bộ công trình, chủ nhà lo toàn bộ vật tư. ${company.priceNote}`,
+  },
+  {
+    q: 'Xây nhà 3 tầng 50 m² hết bao nhiêu?',
+    a: 'Tổng chi phí phụ thuộc diện tích sàn quy đổi (móng, mái, sân thượng) và gói bạn chọn, nên khó có một con số chung. Cách quy đổi và so sánh chi phí có trong hai bài Cẩm nang: Cách tính diện tích xây dựng và Chi phí xây nhà phố trọn gói.',
+  },
+];
 ---
 
 <BaseLayout
-  title="Báo giá xây nhà theo mẫu tại Hà Nội"
-  description="Bảng giá ước tính xây 48 mẫu nhà phố, nhà ống, biệt thự của Gia Khánh: gói phần thô và gói trọn gói. Để lại thông tin để nhận báo giá chi tiết miễn phí."
+  title="Báo giá xây nhà Hà Nội, đơn giá trọn gói theo m²"
+  description="Báo giá xây nhà Hà Nội: đơn giá theo m² phần thô và trọn gói, bảng giá 48 mẫu nhà, chưa gồm VAT. Gia Khánh khảo sát tận nơi. Nhận báo giá miễn phí."
 >
   <PageHeader
-    title="Báo giá xây nhà"
-    subtitle="Giá ước tính theo từng mẫu nhà. Để lại thông tin, kỹ sư Gia Khánh sẽ khảo sát và gửi báo giá chính xác miễn phí."
-  />
+    title="Báo giá xây nhà Hà Nội: đơn giá theo m² phần thô và trọn gói"
+    crumb="Báo giá xây nhà"
+    subtitle={`${company.name} ước tính giá theo m² sàn quy đổi, với ba gói: phần thô cộng nhân công hoàn thiện, trọn gói và nhân công xây dựng. Bên dưới có thêm bảng giá theo 48 mẫu nhà. Đơn giá chưa gồm VAT.`}
+  >
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#nhan-bao-gia" class="btn btn-primary">Nhận báo giá miễn phí</a>
+      <a href={company.telUrl} class="btn btn-outline bg-white">Gọi ngay {company.phoneDisplay}</a>
+      <a href={company.zaloUrl} class="btn btn-outline bg-white" target="_blank" rel="noopener">Chat Zalo</a>
+    </div>
+  </PageHeader>
 
-  <!-- Đơn giá theo m² từng gói — thiết kế: design/stitch/bao-gia-don-gia-m2.html -->
+  <!-- 2. Đơn giá theo m² từng gói — thiết kế: design/stitch/bao-gia-don-gia-m2.html -->
   <section class="section" data-reveal>
     <div class="container-page">
-      <SectionHeading title="Đơn giá theo m² từng gói" />
+      <SectionHeading title="Xây nhà 1 m² hết bao nhiêu?" />
+      <p class="mx-auto mb-10 max-w-prose leading-relaxed">
+        Với nhà phố, nhà ống 2 đến 5 tầng, Gia Khánh báo {pho.rough} cho gói phần thô cộng nhân công hoàn thiện, {pho.full} cho
+        gói trọn gói và {packages[2].perM2} đ/m² cho gói chỉ lấy nhân công xây dựng. Giá tính trên m² sàn quy đổi, áp dụng cho
+        nhà ở Hà Nội và các huyện lân cận.
+      </p>
       <ul class="mx-auto grid max-w-xl items-stretch gap-6 lg:max-w-none lg:grid-cols-3 lg:gap-8">
         {
           packages.map((p, i) => {
@@ -81,15 +134,70 @@ const td =
         <Icon name="file" class="mt-0.5 size-5 shrink-0 text-primary" />
         <span>{company.priceNote}</span>
       </p>
+
+      <h3 class="mx-auto mt-12 max-w-3xl text-xl font-semibold">Các loại nhà khác có đơn giá riêng</h3>
+      <div class="mx-auto mt-4 max-w-3xl overflow-x-auto rounded-lg border border-line bg-white">
+        <table class="w-full min-w-[520px] border-collapse">
+          <thead>
+            <tr>
+              <th class={th} scope="col">Loại nhà</th>
+              <th class={th} scope="col">Phần thô + nhân công hoàn thiện</th>
+              <th class={th} scope="col">Trọn gói</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              loaiKhac.map((p) => (
+                <tr>
+                  <th class="border-t border-line p-4 text-left align-top font-medium" scope="row">{p.type}</th>
+                  <td class="border-t border-line p-4 align-top text-muted">{p.rough}</td>
+                  <td class="border-t border-line p-4 align-top text-muted">{p.full}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mx-auto mt-6 max-w-3xl leading-relaxed">
+        Muốn hiểu hai gói đầu khác nhau ở đâu, xem <a href="/dich-vu/xay-nha-tron-goi/" class={link}>Xây nhà trọn gói tại Hà Nội</a>.
+        Nhà đã có và chỉ cần sửa, cải tạo thì xem <a href="/dich-vu/sua-chua-cai-tao-nha/" class={link}>Sửa chữa, cải tạo nhà</a>.
+      </p>
     </div>
   </section>
 
   <section class="section bg-primary-light" data-reveal>
     <div class="container-page">
-      <SectionHeading
-        title="Bảng giá theo mẫu nhà"
-        subtitle="Giá ước tính theo diện tích sàn quy đổi phổ biến của từng mẫu. Ảnh là mẫu phối cảnh tham khảo."
-      />
+      <SectionHeading title="Diện tích tính giá là diện tích nào?" />
+      <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+        <p>
+          Diện tích tính giá là diện tích sàn quy đổi: từng phần của ngôi nhà được nhân với một hệ số riêng rồi cộng lại thành
+          một con số. Đó không phải diện tích đất, cũng không phải diện tích một tầng. Con số này nhân với đơn giá trên m² ra
+          chi phí ước tính của công trình.
+        </p>
+        <p>Gia Khánh tính hệ số như sau:</p>
+        <Bullets
+          items={[
+            'Móng: 40% diện tích.',
+            'Các tầng và tum có mái: 100%.',
+            'Sân và sân thượng không có mái: 30%.',
+          ]}
+        />
+        <p>
+          Mỗi nhà thầu có thể dùng hệ số khác nhau, nên hãy hỏi hệ số ghi trong báo giá. Cách quy đổi đầy đủ và ví dụ tính từng
+          bước nằm trong bài <a href="/cam-nang/cach-tinh-dien-tich-xay-dung/" class={link}>Cách tính diện tích xây dựng</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Bảng giá theo mẫu nhà" />
+      <p class="mx-auto mb-10 max-w-prose leading-relaxed">
+        Bảng dưới liệt kê 48 mẫu nhà Gia Khánh đã thi công. Mẫu được xếp vào nhóm nhà phố, nhà ống có giá ước tính; các loại
+        còn lại đang cập nhật. Diện tích mỗi mẫu là con số tham khảo để minh họa, không phải diện tích hay chi phí thực của
+        công trình.
+      </p>
       <div class="overflow-x-auto rounded-lg border border-line bg-white shadow-sm">
         <table class="block w-full border-collapse md:table">
           <thead class="hidden md:table-header-group">
@@ -108,7 +216,7 @@ const td =
                     <span class="flex items-center gap-4">
                       <Image
                         src={imagesIn(`mau-nha/${m.id}`)[0]}
-                        alt={`Phối cảnh mẫu ${m.id}: ${m.name.toLowerCase()}`}
+                        alt={`Mẫu ${m.id}: ${m.name.toLowerCase()}, Gia Khánh đã thi công`}
                         width={192}
                         class="aspect-[4/3] w-24 shrink-0 rounded-md object-cover"
                       />
@@ -119,8 +227,8 @@ const td =
                     </span>
                   </th>
                   <td class={td} data-label="Diện tích">~{m.area} m²</td>
-                  <td class={td} data-label="Phần thô">≈ {tien(m.rough)}</td>
-                  <td class={`${td} font-semibold text-primary`} data-label="Trọn gói">≈ {tien(m.full)}</td>
+                  <td class={td} data-label="Phần thô">{gia(m, m.rough)}</td>
+                  <td class={`${td} font-semibold text-primary`} data-label="Trọn gói">{gia(m, m.full)}</td>
                 </tr>
               ))
             }
@@ -131,14 +239,69 @@ const td =
         <Icon name="file" class="mt-0.5 size-5 shrink-0 text-primary" />
         <span>Giá trên chỉ để tham khảo, tính theo diện tích ước tính của mẫu. {company.priceNote}</span>
       </p>
+      <p class="mt-6 text-center leading-relaxed">
+        Xem ảnh các mẫu và công trình tại trang <a href="/du-an/" class={link}>Công trình</a>.
+      </p>
     </div>
   </section>
 
-  <section id="nhan-bao-gia" class="section scroll-mt-20" data-reveal>
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Vì sao báo giá giữa các nhà thầu chênh nhau?" />
+      <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+        <p>
+          Hai báo giá cùng ghi "đơn giá trên m²" vẫn có thể cho tổng tiền rất khác nhau, vì con số đó chưa nói gói gồm những
+          gì, vật tư thuộc loại nào và diện tích được quy đổi ra sao. So hai báo giá chỉ có ý nghĩa khi chúng cùng phạm vi.
+        </p>
+        <p>Những điểm nên đặt cạnh nhau khi so:</p>
+        <Bullets
+          items={[
+            'Phạm vi gói: ai mua vật tư hoàn thiện, nội thất rời có nằm trong giá không.',
+            'Hệ số quy đổi diện tích: móng, mái, tum, sân thượng tính bao nhiêu phần trăm.',
+            'Chủng loại và thương hiệu vật tư ghi trong bảng vật tư.',
+            'Các khoản nằm ngoài đơn giá: VAT, phá dỡ, ép cọc.',
+          ]}
+        />
+        <p>
+          Từng yếu tố được phân tích kèm checklist hỏi nhà thầu trong bài{' '}
+          <a href="/cam-nang/chi-phi-xay-nha-pho-tron-goi/" class={link}>Chi phí xây nhà phố trọn gói</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Thanh toán và phát sinh chi phí thế nào?" />
+      <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+        <p>
+          Gia Khánh nhận thanh toán theo từng giai đoạn thi công, mỗi đợt đến sau khi hạng mục được nghiệm thu cùng chủ nhà.
+          Hạng mục phát sinh chỉ được làm khi bạn đồng ý bằng văn bản hoặc tin nhắn, sau khi Gia Khánh báo giá phần chênh lệch.
+        </p>
+        <Bullets
+          items={[
+            'Các đợt thanh toán, tiến độ theo mốc và bảo hành được ghi trong hợp đồng.',
+            'Vật tư ghi theo chủng loại trong bảng vật tư. Muốn đổi sang loại khác, bạn nhận báo giá chênh lệch trước khi quyết định.',
+            'Mỗi công trình có một kỹ sư phụ trách, là đầu mối để bạn hỏi về khối lượng và giá.',
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Mục "Bảng đơn giá của UBND" (noi-dung/bao-gia.md mục 7) chưa đưa lên web: chờ đối chiếu văn bản hiện hành. */}
+
+  <Faq
+    title="Câu hỏi thường gặp về báo giá xây nhà"
+    subtitle={`Các câu dưới đây nói về đơn giá theo m², khác nhau giữa các gói, khoản nào chưa nằm trong giá, thanh toán và cách ước tính cho nhà của bạn. Câu nào chưa rõ, gọi hotline ${company.phoneDisplay}.`}
+    items={faqs}
+  />
+
+  <section id="nhan-bao-gia" class="section scroll-mt-20 bg-primary-light" data-reveal>
     <div class="container-page">
       <SectionHeading
         title="Nhận báo giá chi tiết"
-        subtitle="Để lại thông tin và mẫu nhà bạn quan tâm, Gia Khánh sẽ gọi lại tư vấn miễn phí."
+        subtitle="Để lại số điện thoại và mẫu nhà bạn quan tâm, kỹ sư Gia Khánh sẽ gọi lại, khảo sát miễn phí và gửi báo giá chi tiết cho ngôi nhà của bạn. Phục vụ Hà Nội, nội thành và các huyện lân cận."
       />
       <div class="mx-auto max-w-2xl">
         <QuoteForm>
@@ -150,6 +313,9 @@ const td =
             </select>
           </label>
         </QuoteForm>
+        <p class="mt-6 text-center leading-relaxed">
+          Bạn cũng có thể vào trang <a href="/lien-he/" class={link}>Liên hệ</a>.
+        </p>
       </div>
     </div>
   </section>

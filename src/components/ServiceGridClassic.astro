@@ -16,7 +16,7 @@ const { cols = 4 } = Astro.props as { cols?: 2 | 4 };
       return (
         <li class:list={['w-full sm:w-[calc(50%-0.25rem)]', cols === 4 && 'lg:w-[calc(25%-0.375rem)]']} data-reveal style={`--d:${(i % cols) * 90}ms`}>
           <a
-            href={`/dich-vu/${s.slug}`}
+            href={`/dich-vu/${s.slug}/`}
             class:list={[
               i % cols === 0 && 'lg:origin-left',
               i % cols === cols - 1 && 'lg:origin-right',

@@ -2,41 +2,45 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Gallery from '../../components/Gallery.astro';
-import { projects, TODO } from '../../data/projects';
+import { projects } from '../../data/projects';
+import { company } from '../../data/company';
 import { imagesIn } from '../../data/images';
 
 export const getStaticPaths = () => projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
 
 const { project } = Astro.props;
+// Chỉ hiện trường đã có dữ liệu thật (projects.ts), không in chỗ trống ra web.
 const info = [
   ['Hạng mục', project.category],
   ['Địa điểm', project.location],
   ['Quy mô', project.scale],
   ['Năm', project.year],
-];
+].filter(([, v]) => v);
 ---
 
 <BaseLayout
-  title={`${project.name} – Công trình`}
-  description={`Hình ảnh thi công thực tế công trình ${project.name} của Gia Khánh tại Hà Nội.`}
+  title={`${project.name}: ảnh thi công thực tế`}
+  description={`Ảnh thi công thực tế ${project.name.toLowerCase()}${project.category ? ` (${project.category.toLowerCase()})` : ''} của ${company.name}, nhận thi công nhà ở tại Hà Nội.`}
 >
-  <PageHeader title={project.name} parent={{ href: "/du-an", label: "Công trình" }} />
+  <PageHeader title={project.name} parent={{ href: '/du-an/', label: 'Công trình' }} />
 
   <section class="section" data-reveal>
     <div class="container-page">
-      <dl class="mb-12 grid grid-cols-2 gap-6 md:grid-cols-4">
-        {
-          info.map(([k, v]) => (
-            <div>
-              <dt class="text-sm text-muted">{k}</dt>
-              <dd class="mt-1 font-medium">{v ?? TODO}</dd>
-            </div>
-          ))
-        }
-      </dl>
+      {
+        info.length > 0 && (
+          <dl class="mb-12 grid grid-cols-2 gap-6 md:grid-cols-4">
+            {info.map(([k, v]) => (
+              <div>
+                <dt class="text-sm text-muted">{k}</dt>
+                <dd class="mt-1 font-medium">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
       <Gallery images={imagesIn(project.slug)} alt={`Công trình ${project.name}`} />
       <div class="mt-12">
-        <a href="/du-an" class="btn btn-outline">← Tất cả công trình</a>
+        <a href="/du-an/" class="btn btn-outline">← Tất cả công trình</a>
       </div>
     </div>
   </section>

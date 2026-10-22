@@ -8,11 +8,11 @@ export const services = [
     icon: 'M3 12l9-9 9 9M5 10v10h14V10',
     description:
       'Thi công từ móng đến hoàn thiện cho nhà phố, nhà ống, biệt thự nhỏ. Dự toán chi tiết trước khi ký hợp đồng.',
-    heading: 'Xây nhà trọn gói tại Hà Nội: một đầu mối lo từ móng đến chìa khóa',
-    lead: 'Gia Khánh thi công nhà phố, nhà ống, nhà cấp 4 và biệt thự nhỏ. Bạn nhận dự toán chi tiết từng hạng mục trước khi ký hợp đồng, theo dõi tiến độ qua Zalo mỗi ngày và nhận bảo hành bằng văn bản.',
-    metaTitle: 'Xây nhà trọn gói tại Hà Nội',
+    heading: 'Xây nhà trọn gói tại Hà Nội, một hợp đồng từ móng đến hoàn thiện',
+    lead: 'Xây nhà trọn gói Hà Nội nghĩa là một nhà thầu nhận cả công trình, từ móng đến hoàn thiện, theo một hợp đồng, một dự toán. Gia Khánh nhận nhà phố, nhà ống, nhà cấp 4 và biệt thự nhỏ. Bạn có dự toán từng hạng mục trước khi ký, ảnh tiến độ qua Zalo khi thi công.',
+    metaTitle: 'Xây nhà trọn gói Hà Nội, dự toán rõ trước khi ký',
     metaDescription:
-      'Xây nhà trọn gói tại Hà Nội từ móng đến hoàn thiện: một đầu mối, dự toán chi tiết, thanh toán theo giai đoạn, bảo hành bằng văn bản. Nhận báo giá miễn phí.',
+      'Xây nhà trọn gói Hà Nội cùng Gia Khánh: dự toán chi tiết trước khi ký, thanh toán theo giai đoạn, bảo hành bằng văn bản. Nhận báo giá miễn phí.',
   },
   {
     slug: 'sua-chua-cai-tao-nha',
@@ -21,11 +21,11 @@ export const services = [
     icon: 'M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z',
     description:
       'Cải tạo, nâng tầng, sửa chữa nhà cũ; chống thấm, xử lý nứt tường; lắp đặt, sửa điện nước và bảo trì nhà.',
-    heading: 'Sửa chữa, cải tạo nhà tại Hà Nội: khảo sát miễn phí, báo giá từng hạng mục',
-    lead: 'Nhà thấm dột, nứt tường, điện nước cũ hay cần đổi công năng? Kỹ sư Gia Khánh đến tận nơi xem hiện trạng, nói rõ cần sửa gì và gửi bảng dự toán chi tiết trước khi bạn quyết định.',
-    metaTitle: 'Sửa chữa, cải tạo nhà Hà Nội: chống thấm, xử lý nứt, điện nước',
+    heading: 'Sửa chữa cải tạo nhà Hà Nội, khảo sát miễn phí và báo giá từng hạng mục',
+    lead: 'Sửa chữa cải tạo nhà Hà Nội cùng Gia Khánh bắt đầu bằng một buổi khảo sát miễn phí. Kỹ sư đến tận nhà, tìm nguyên nhân thấm, nứt hay hỏng điện nước, rồi gửi bảng dự toán từng hạng mục. Bạn xem giá và phạm vi công việc trước khi quyết định ký hợp đồng.',
+    metaTitle: 'Sửa chữa cải tạo nhà Hà Nội, khảo sát miễn phí',
     metaDescription:
-      'Sửa chữa, cải tạo nhà tại Hà Nội: chống thấm, xử lý nứt, điện nước, bảo trì. Khảo sát miễn phí, báo giá từng hạng mục, bảo hành bằng văn bản. Nhận báo giá miễn phí.',
+      'Sửa chữa cải tạo nhà Hà Nội: chống thấm, xử lý nứt, điện nước. Khảo sát miễn phí, báo giá từng hạng mục, bảo hành bằng văn bản. Nhận báo giá miễn phí.',
   },
   {
     slug: 'thiet-ke-kien-truc-noi-that',
@@ -33,11 +33,11 @@ export const services = [
     short: 'Mặt bằng công năng, phối cảnh 3D và hồ sơ kỹ thuật thi công.',
     icon: 'M4 20h4L20 8l-4-4L4 16v4zM14 6l4 4',
     description: 'Thiết kế mặt bằng công năng, phối cảnh 3D ngoại thất và nội thất, hồ sơ kỹ thuật thi công.',
-    heading: 'Thiết kế kiến trúc & nội thất: nhìn thấy ngôi nhà trước khi xây',
-    lead: 'Gia Khánh thiết kế mặt bằng công năng, phối cảnh 3D và hồ sơ kỹ thuật cho nhà phố, nhà ống, nhà cấp 4, biệt thự nhỏ tại Hà Nội. Kiến trúc sư của Gia Khánh khảo sát tận nơi, lắng nghe nhu cầu và ngân sách rồi mới vẽ.',
-    metaTitle: 'Thiết kế kiến trúc & nội thất nhà ở Hà Nội',
+    heading: 'Thiết kế kiến trúc nhà ở Hà Nội, xem phối cảnh 3D trước khi xây',
+    lead: 'Thiết kế kiến trúc nhà ở Hà Nội là việc kiến trúc sư vẽ mặt bằng công năng, phối cảnh 3D và hồ sơ kỹ thuật trước khi thi công. Gia Khánh nhận nhà phố, nhà ống, nhà cấp 4 và biệt thự nhỏ. Kiến trúc sư hoặc kỹ sư khảo sát tận nơi miễn phí rồi mới vẽ.',
+    metaTitle: 'Thiết kế kiến trúc nhà ở Hà Nội, phối cảnh 3D',
     metaDescription:
-      'Thiết kế kiến trúc và nội thất nhà ở tại Hà Nội: mặt bằng công năng, phối cảnh 3D, hồ sơ kỹ thuật thi công. Khảo sát miễn phí. Nhận báo giá miễn phí.',
+      'Thiết kế kiến trúc nhà ở Hà Nội: mặt bằng công năng, phối cảnh 3D, hồ sơ kỹ thuật thi công. Khảo sát miễn phí tại nhà. Nhận báo giá miễn phí cùng Gia Khánh.',
   },
   {
     slug: 'hoan-thien-thi-cong-noi-that',
@@ -46,10 +46,10 @@ export const services = [
     icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
     description:
       'Ốp lát, sơn bả, trần thạch cao, cửa nhôm kính, lan can, mái che – giếng trời, tủ bếp, tủ quần áo và đồ gỗ nội thất theo thiết kế.',
-    heading: 'Hoàn thiện và thi công nội thất: từ ngôi nhà thô đến căn nhà dọn vào ở được',
-    lead: 'Gia Khánh nhận ốp lát, sơn bả, trần thạch cao, cửa, lan can, tủ bếp và đồ gỗ nội thất theo thiết kế cho nhà ở tại Hà Nội. Vật tư ghi rõ chủng loại trong hợp đồng, thi công theo mốc tiến độ, nghiệm thu cùng chủ nhà.',
-    metaTitle: 'Hoàn thiện & thi công nội thất tại Hà Nội',
+    heading: 'Thi công hoàn thiện nhà ở Hà Nội, từ phần thô đến nội thất',
+    lead: 'Thi công hoàn thiện nhà ở Hà Nội là phần việc đưa ngôi nhà từ phần thô đến lúc dọn vào ở: ốp lát, sơn bả, trần thạch cao, cửa, rồi tủ bếp, tủ quần áo và đồ gỗ theo thiết kế. Gia Khánh ghi vật tư theo chủng loại trong hợp đồng và nghiệm thu cùng chủ nhà.',
+    metaTitle: 'Thi công hoàn thiện nhà ở Hà Nội, nội thất',
     metaDescription:
-      'Hoàn thiện nhà và thi công nội thất tại Hà Nội: ốp lát, sơn bả, trần thạch cao, cửa, tủ bếp, đồ gỗ theo thiết kế. Khảo sát miễn phí, báo giá rõ.',
+      'Thi công hoàn thiện nhà ở Hà Nội cùng Gia Khánh: ốp lát, sơn bả, trần thạch cao, cửa, tủ bếp, đồ gỗ theo thiết kế. Khảo sát miễn phí. Nhận báo giá miễn phí.',
   },
 ];

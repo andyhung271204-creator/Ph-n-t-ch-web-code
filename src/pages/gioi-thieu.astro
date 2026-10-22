@@ -1,42 +1,109 @@
 ---
+// Nội dung: noi-dung/gioi-thieu.md
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
+import Bullets from '../components/Bullets.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import ServiceCta from '../components/ServiceCta.astro';
 import logo from '../assets/logo-gia-khanh.png';
-import { company, values } from '../data/company';
-import ServiceGrid from '../components/ServiceGrid.astro';
+import { company } from '../data/company';
+
+const huyen = company.areaList.slice(1).join(', ');
+const link = 'font-semibold text-primary underline hover:text-primary-dark';
+const h2 = 'text-center text-2xl font-bold uppercase md:text-3xl';
+const th = 'bg-primary-light p-4 text-left font-semibold';
+const td = 'border-t border-line p-4 align-top';
+
+const menu = [
+  { href: '#ve-chung-toi', label: 'Về Gia Khánh' },
+  { href: '#tam-nhin', label: 'Tầm nhìn, giá trị' },
+  { href: '#dich-vu', label: 'Dịch vụ' },
+  { href: '#doi-ngu', label: 'Đội ngũ' },
+  { href: '#phap-ly', label: 'Thông tin công ty' },
+  { href: '#cong-trinh-bao-gia', label: 'Công trình, báo giá' },
+  { href: '/lien-he/', label: 'Liên hệ' },
+];
+
+const values = [
+  ['Minh bạch', 'Báo giá chi tiết từng hạng mục, vật tư ghi rõ chủng loại. Không phát sinh khi chủ nhà chưa đồng ý.'],
+  ['Tận tâm', 'Làm nhà cho khách như làm nhà cho gia đình mình. Kỹ sư phụ trách giám sát trực tiếp tại công trình.'],
+  ['Đúng hẹn', 'Tiến độ có mốc rõ ràng trong hợp đồng. Hình ảnh công trình gửi hằng ngày qua Zalo.'],
+  ['Chất lượng', 'Thi công đúng kỹ thuật, nghiệm thu từng giai đoạn cùng chủ nhà.'],
+  ['Trách nhiệm', 'Bảo hành bằng văn bản, có mặt xử lý khi khách cần.'],
+];
+
+const services = [
+  {
+    href: '/dich-vu/xay-nha-tron-goi/',
+    name: 'Xây nhà trọn gói',
+    text: 'nhà phố, nhà ống, nhà cấp 4 và biệt thự nhỏ, từ móng đến hoàn thiện, có dự toán chi tiết trước khi ký hợp đồng.',
+  },
+  {
+    href: '/dich-vu/sua-chua-cai-tao-nha/',
+    name: 'Sửa chữa, cải tạo nhà',
+    text: 'cải tạo nhà cũ, nâng tầng, chống thấm, xử lý nứt, điện nước và bảo trì. Khảo sát miễn phí.',
+  },
+  {
+    href: '/dich-vu/thiet-ke-kien-truc-noi-that/',
+    name: 'Thiết kế kiến trúc và nội thất',
+    text: 'mặt bằng công năng, phối cảnh 3D ngoại thất và nội thất, hồ sơ kỹ thuật thi công.',
+  },
+  {
+    href: '/dich-vu/hoan-thien-thi-cong-noi-that/',
+    name: 'Hoàn thiện và thi công nội thất',
+    text: 'ốp lát, sơn bả, trần thạch cao, cửa nhôm kính, tủ bếp, tủ quần áo và đồ gỗ theo thiết kế.',
+  },
+];
 
 const legal = [
   ['Tên đầy đủ', company.name],
+  ['Thương hiệu', company.brand],
   ['Tên tiếng Anh', company.nameEn],
   ['Mã số thuế', company.taxCode],
-  ['Người đại diện', company.representative],
+  ['Loại hình', 'Công ty trách nhiệm hữu hạn'],
+  ['Ngành nghề chính', 'Xây dựng nhà để ở'],
   ['Trụ sở', company.address],
+  ['Người đại diện', company.representative],
+  ['Hotline, Zalo', company.phoneDisplay],
 ];
 
-const menu = [
-  { href: '#ve-chung-toi', label: 'Về chúng tôi' },
-  { href: '#tam-nhin', label: 'Tầm nhìn – Sứ mệnh' },
-  { href: '#dich-vu', label: 'Dịch vụ' },
-  { href: '#doi-ngu', label: 'Đội ngũ' },
-  { href: '#phap-ly', label: 'Thông tin pháp lý' },
-  { href: '/lien-he', label: 'Liên hệ' },
-];
-
-// Bố cục theo mẫu betaviet.vn/ve-betaviet: 2 thẻ trái – hình tầng giữa – 2 thẻ phải
-const pillars = [
-  { title: 'Tầm nhìn', text: company.vision },
-  { title: 'Sứ mệnh', text: company.mission },
-  { title: 'Giá trị cốt lõi', text: values.map((v) => v.name).join(' · ') },
-  { title: 'Lĩnh vực hoạt động', text: `Nhà ở dân dụng tại ${company.area}.` },
+const faqs = [
+  {
+    q: 'Gia Khánh có trụ sở ở đâu?',
+    a: `Trụ sở ở ${company.address}. Gia Khánh nhận công trình ở nội thành Hà Nội và các huyện lân cận như ${huyen}.`,
+  },
+  {
+    q: 'Mã số thuế của Gia Khánh là gì, tra cứu thế nào?',
+    a: `Mã số thuế của ${company.name} là ${company.taxCode}. Bạn nhập mã này vào cổng tra cứu thông tin doanh nghiệp rồi đối chiếu tên, địa chỉ và người đại diện với trang này.`,
+  },
+  {
+    q: 'Đội ngũ Gia Khánh có kinh nghiệm bao lâu?',
+    a: 'Đội ngũ có trên 10 năm kinh nghiệm thi công nhà ở dân dụng tại Hà Nội. Đó là kinh nghiệm của các kỹ sư, kiến trúc sư và quản lý thi công, còn công ty mới thành lập.',
+  },
+  {
+    q: 'Tôi có xem được công trình Gia Khánh đã làm không?',
+    a: `Có. Trang Công trình có ảnh các công trình Gia Khánh đã thi công. Muốn hỏi thêm về một hạng mục cụ thể, bạn gọi ${company.phoneDisplay} để trao đổi với kỹ sư.`,
+  },
 ];
 ---
 
 <BaseLayout
-  title="Giới thiệu"
-  description="Công ty TNHH Xây dựng và Đầu tư Gia Khánh tại Đông Anh, Hà Nội: đội ngũ hơn 10 kỹ sư, kiến trúc sư với trên 10 năm kinh nghiệm thi công nhà ở dân dụng."
+  title={`${company.name}, Đông Anh`}
+  description={`${company.name}, MST ${company.taxCode}, trụ sở xã Đông Anh, Hà Nội. Đội ngũ hơn 10 người, nhận xây, sửa nhà. Gọi khảo sát miễn phí.`}
 >
-  <PageHeader title="Giới thiệu Gia Khánh" crumb="Giới thiệu" subtitle={company.slogan} />
+  <PageHeader
+    title="Giới thiệu Công ty TNHH Xây dựng và Đầu tư Gia Khánh"
+    crumb="Giới thiệu"
+    subtitle={`${company.name}, mã số thuế ${company.taxCode}, là đơn vị xây dựng và sửa chữa nhà ở có trụ sở tại xã Đông Anh, TP Hà Nội. Gia Khánh nhận xây nhà trọn gói, sửa chữa cải tạo, thiết kế và hoàn thiện nội thất cho gia đình ở Hà Nội.`}
+  >
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#bao-gia" class="btn btn-primary">Nhận báo giá miễn phí</a>
+      <a href={company.telUrl} class="btn btn-outline bg-white">Gọi ngay {company.phoneDisplay}</a>
+      <a href={company.zaloUrl} class="btn btn-outline bg-white" target="_blank" rel="noopener">Chat Zalo</a>
+    </div>
+  </PageHeader>
 
   <section class="bg-primary-light py-10 md:py-16" data-reveal>
     <div class="container-page grid gap-8 lg:grid-cols-[16rem_1fr] lg:items-start">
@@ -68,88 +135,159 @@ const pillars = [
       <!-- Nội dung -->
       <div class="min-w-0 rounded-lg bg-white px-4 py-10 shadow-sm md:px-10">
         <section id="ve-chung-toi" class="scroll-mt-24" data-reveal>
-          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Về chúng tôi</h2>
+          <h2 class={h2}>Gia Khánh là công ty gì?</h2>
           <span class="divider" aria-hidden="true"></span>
-          <div class="mx-auto max-w-prose space-y-4 leading-relaxed text-muted">
-            {company.about.map((p) => <p>{p}</p>)}
+          <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+            <p>
+              Gia Khánh là thương hiệu của {company.name}, công ty xây dựng nhà ở đặt trụ sở tại Đông Anh, Hà Nội. Công ty
+              mới thành lập, còn đội ngũ thi công có trên 10 năm kinh nghiệm làm nhà ở dân dụng tại Hà Nội.
+            </p>
+            <p class="text-muted">
+              Với đa số gia đình, xây hay sửa một ngôi nhà là khoản đầu tư lớn. Vì vậy Gia Khánh báo giá chi tiết từng hạng
+              mục, ký hợp đồng rõ ràng và cập nhật tiến độ cho chủ nhà thường xuyên. Mỗi công trình có một kỹ sư phụ trách
+              giám sát tại chỗ và gửi ảnh tiến độ hằng ngày qua Zalo.
+            </p>
+            <p class="text-muted">Gia Khánh nhận công trình ở nội thành Hà Nội và các huyện lân cận như {huyen}.</p>
           </div>
         </section>
 
         <section id="tam-nhin" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
-          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Tầm nhìn – Sứ mệnh</h2>
+          <h2 class={h2}>Tầm nhìn, sứ mệnh và giá trị cốt lõi của Gia Khánh là gì?</h2>
           <span class="divider" aria-hidden="true"></span>
-          <!-- auto-rows-fr: 4 thẻ cao bằng nhau -->
-          <div class="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-[1fr_11rem_1fr] lg:gap-x-4">
-            {
-              pillars.map((p, i) => (
-                <div
-                  class:list={['pillar card', i < 2 ? 'lg:col-start-1' : 'lg:col-start-3', i % 2 ? 'lg:row-start-2' : 'lg:row-start-1']}
-                  data-reveal
-                  style={`--d:${i * 90}ms`}
-                >
-                  <h3>{p.title}</h3>
-                  <p>{p.text}</p>
-                </div>
-              ))
-            }
-            <!-- Hình tầng: 4 lớp xếp chồng = 4 trụ cột -->
-            <svg viewBox="0 0 200 220" class="mx-auto hidden w-44 self-center lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:block" aria-hidden="true" data-reveal style="--d:120ms">
-              <path d="M100 120 190 160 100 200 10 160Z" class="fill-primary-light" />
-              <path d="M100 90 190 130 100 170 10 130Z" class="fill-primary-bright/40" />
-              <path d="M100 60 190 100 100 140 10 100Z" class="fill-primary-bright" />
-              <path d="M100 20 190 60 100 100 10 60Z" class="fill-primary" />
-            </svg>
+          <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+            <p>
+              Gia Khánh đặt mục tiêu đến năm 2031 trở thành đơn vị xây dựng và sửa chữa nhà ở được các gia đình Hà Nội tin
+              chọn và giới thiệu cho người thân. Sứ mệnh là giúp mỗi gia đình xây, sửa nhà an tâm: đúng dự toán, đúng tiến
+              độ, đúng chất lượng đã cam kết.
+            </p>
+            <p class="text-muted">Năm giá trị cốt lõi dưới đây là cách công ty làm việc với chủ nhà.</p>
           </div>
-          <ul class="mt-10 grid gap-4 sm:grid-cols-2">
-            {
-              values.map((v, i) => (
-                <li class="border-l-4 border-primary-bright pl-4" data-reveal style={`--d:${(i % 2) * 90}ms`}>
-                  <h3 class="font-semibold text-primary">{v.name}</h3>
-                  <p class="mt-1 text-sm leading-relaxed text-muted">{v.text}</p>
-                </li>
-              ))
-            }
-          </ul>
+          <div class="mx-auto mt-8 max-w-3xl overflow-x-auto rounded-lg border border-line bg-white" data-reveal>
+            <table class="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th class={th} scope="col">Giá trị</th>
+                  <th class={th} scope="col">Chủ nhà nhận được</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  values.map(([k, v]) => (
+                    <tr>
+                      <th class={`${td} text-left font-semibold whitespace-nowrap text-primary`} scope="row">{k}</th>
+                      <td class={`${td} leading-relaxed text-muted`}>{v}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section id="dich-vu" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
-          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Dịch vụ của Gia Khánh</h2>
+          <h2 class={h2}>Gia Khánh làm những dịch vụ nào?</h2>
           <span class="divider" aria-hidden="true"></span>
-          <p class="mx-auto max-w-prose leading-relaxed text-muted">{company.intro}</p>
-          <div class="mt-8">
-            <ServiceGrid cols={2} />
+          <div class="mx-auto max-w-prose space-y-6 leading-relaxed">
+            <p>
+              Gia Khánh làm bốn nhóm dịch vụ cho nhà ở tại Hà Nội: xây nhà trọn gói, sửa chữa cải tạo nhà, thiết kế kiến trúc
+              và nội thất, hoàn thiện và thi công nội thất. Mỗi nhóm có một trang riêng ghi phạm vi công việc, quy trình và
+              cách tính chi phí.
+            </p>
+            <ul class="space-y-4">
+              {
+                services.map((s, i) => (
+                  <li class="flex gap-3" data-reveal style={`--d:${i * 90}ms`}>
+                    <Icon name="check-circle" class="mt-0.5 size-5 shrink-0 text-primary" />
+                    <span>
+                      <a href={s.href} class={link}>{s.name}</a>: {s.text}
+                    </span>
+                  </li>
+                ))
+              }
+            </ul>
+            <p>Xem tổng quan tại trang <a href="/dich-vu/" class={link}>Dịch vụ</a>.</p>
           </div>
         </section>
 
         <section id="doi-ngu" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
-          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Đội ngũ</h2>
+          <h2 class={h2}>Đội ngũ Gia Khánh gồm những ai?</h2>
           <span class="divider" aria-hidden="true"></span>
-          <p class="mx-auto max-w-prose text-center leading-relaxed text-muted">
-            Hơn 10 người gồm kỹ sư xây dựng, kiến trúc sư và quản lý thi công, do ông Đỗ Như Duy đứng đầu. Đội ngũ có trên 10 năm
-            kinh nghiệm thi công nhà ở dân dụng tại Hà Nội.
-          </p>
+          <div class="mx-auto max-w-prose space-y-6 leading-relaxed">
+            <p>
+              Đội ngũ Gia Khánh có hơn 10 người, gồm kỹ sư xây dựng, kiến trúc sư và quản lý thi công, do ông Đỗ Như Duy đứng
+              đầu. Đội ngũ có trên 10 năm kinh nghiệm thi công nhà ở dân dụng tại Hà Nội. Số năm này tính cho đội ngũ, còn
+              công ty mới thành lập.
+            </p>
+            <Bullets
+              items={[
+                ['Người đứng đầu:', `${company.representative}.`],
+                [
+                  'Kỹ sư xây dựng:',
+                  'mỗi công trình có một kỹ sư phụ trách. Kỹ sư đo đạc khi khảo sát, giám sát tại công trình và nghiệm thu từng giai đoạn cùng chủ nhà.',
+                ],
+                ['Kiến trúc sư:', 'lập phương án thiết kế khi gia đình cần, từ mặt bằng công năng đến phối cảnh 3D.'],
+                ['Quản lý thi công:', 'theo dõi tiến độ theo các mốc ghi trong hợp đồng.'],
+              ]}
+            />
+            <p class="text-muted">Đội ngũ quen với nhà ống, nhà trong ngõ và quy định cấp phép tại địa phương.</p>
+          </div>
         </section>
 
         <section id="phap-ly" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
-          <h2 class="text-center text-2xl font-bold uppercase md:text-3xl">Thông tin pháp lý</h2>
+          <h2 class={h2}>Thông tin công ty Gia Khánh để bạn đối chiếu</h2>
           <span class="divider" aria-hidden="true"></span>
-          <dl class="mx-auto max-w-2xl divide-y divide-line rounded-lg border border-line">
-            {
-              legal.map(([k, v]) => (
-                <div class="grid gap-1 p-4 sm:grid-cols-3">
-                  <dt class="text-sm text-muted">{k}</dt>
-                  <dd class="font-medium sm:col-span-2">{v}</dd>
-                </div>
-              ))
-            }
-          </dl>
-          <div class="mt-10 text-center">
-            <a href="/lien-he" class="btn btn-primary">Nhận báo giá miễn phí</a>
+          <p class="mx-auto max-w-prose leading-relaxed">
+            {company.name} có mã số thuế {company.taxCode}, trụ sở tại {company.address}, do ông Đỗ Như Duy đại diện. Nhiều
+            doanh nghiệp mang tên Gia Khánh, nên hãy đối chiếu cả mã số thuế và địa chỉ khi tra cứu.
+          </p>
+          <div class="mx-auto mt-8 max-w-3xl overflow-x-auto rounded-lg border border-line bg-white" data-reveal>
+            <table class="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th class={th} scope="col">Mục</th>
+                  <th class={th} scope="col">Thông tin</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  legal.map(([k, v]) => (
+                    <tr>
+                      <th class={`${td} text-left font-normal whitespace-nowrap text-muted`} scope="row">{k}</th>
+                      <td class={`${td} font-medium`}>{v}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="cong-trinh-bao-gia" class="mt-16 scroll-mt-24 md:mt-20" data-reveal>
+          <h2 class={h2}>Xem công trình và báo giá ở đâu?</h2>
+          <span class="divider" aria-hidden="true"></span>
+          <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+            <p>
+              Ảnh các công trình Gia Khánh đã thi công có ở trang <a href="/du-an/" class={link}>Công trình</a>, đơn giá xây
+              nhà theo m² có ở trang <a href="/bao-gia/" class={link}>Báo giá</a>. Muốn kỹ sư khảo sát miễn phí tại khu đất
+              hoặc ngôi nhà của bạn ở Hà Nội, hãy gọi <a href={company.telUrl} class={link}>{company.phoneDisplay}</a> hoặc gửi
+              số điện thoại qua trang <a href="/lien-he/" class={link}>Liên hệ</a>.
+            </p>
+            <p class="text-muted">
+              Với nhà đã có và cần sửa, kỹ sư đến xem hiện trạng trước rồi mới lập báo giá từng hạng mục. Với đất trống, bạn
+              có dự toán chi tiết trước khi ký hợp đồng.
+            </p>
           </div>
         </section>
       </div>
     </div>
   </section>
+
+  <Faq title="Câu hỏi thường gặp về Gia Khánh" items={faqs} />
+
+  <ServiceCta
+    title="Nhận báo giá miễn phí cho ngôi nhà của bạn"
+    subtitle="Bạn đang có kế hoạch xây hoặc sửa nhà ở Hà Nội? Để lại số điện thoại, Gia Khánh sẽ gọi lại tư vấn miễn phí."
+  />
 </BaseLayout>
 
 <style>
@@ -160,6 +298,7 @@ const pillars = [
     justify-content: center;
     gap: 0.75rem;
     margin: 1rem auto 2.5rem;
+    background: radial-gradient(circle, var(--color-primary-bright) 3px, transparent 3.5px) center / 8px 8px no-repeat;
   }
   .divider::before,
   .divider::after {
@@ -168,21 +307,5 @@ const pillars = [
     height: 1px;
     background: var(--color-muted);
     opacity: 0.5;
-  }
-  .divider {
-    background: radial-gradient(circle, var(--color-primary-bright) 3px, transparent 3.5px) center / 8px 8px no-repeat;
-  }
-  .pillar {
-    padding: 1.25rem 1.5rem;
-  }
-  .pillar h3 {
-    font-weight: 600;
-    color: var(--color-primary);
-  }
-  .pillar p {
-    margin-top: 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--color-muted);
   }
 </style>

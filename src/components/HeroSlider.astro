@@ -20,6 +20,8 @@ const banners = await Promise.all(
   }),
 );
 const total = banners.length + 1;
+const xa = company.address.match(/xã [^,]+/)?.[0] ?? 'Hà Nội';
+const lead = `${company.name}, mã số thuế ${company.taxCode}, là công ty xây dựng nhà ở Hà Nội, trụ sở tại ${xa}. Gia Khánh nhận xây nhà, sửa chữa, cải tạo, thiết kế và hoàn thiện nội thất. Kỹ sư khảo sát miễn phí, có dự toán trước khi ký.`;
 ---
 
 <section
@@ -42,12 +44,13 @@ const total = banners.length + 1;
       </div>
       <span class="slide-num pointer-events-none absolute right-6 bottom-0 -z-10 hidden text-[10rem] leading-none font-bold lg:block" aria-hidden="true">01</span>
       <div class="slide-body container-page flex min-h-[34rem] flex-col justify-center pt-16 pb-28 md:py-24 lg:h-full lg:min-h-0 lg:px-20 lg:pt-6 lg:pb-16 xl:px-6">
-        <p class="font-semibold tracking-wide text-primary uppercase">{company.slogan}</p>
-        <h1 class="mt-4 max-w-2xl text-4xl font-bold md:text-5xl">Xây nhà trọn gói, sửa nhà tại Hà Nội</h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed">Báo giá minh bạch, tiến độ rõ ràng và bảo hành bằng văn bản cho mọi gia đình.</p>
+        {/* Khẩu hiệu (company.slogan) tạm ẩn cho tới khi chọn khẩu hiệu chính thức */}
+        <h1 class="max-w-2xl text-4xl font-bold md:text-5xl">Gia Khánh, công ty xây dựng nhà ở Hà Nội</h1>
+        <p class="mt-6 max-w-2xl leading-relaxed md:text-lg">{lead}</p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/lien-he" class="btn btn-primary">Nhận báo giá miễn phí</a>
+          <a href="/lien-he/" class="btn btn-primary">Nhận báo giá miễn phí</a>
           <a href={company.telUrl} class="btn btn-outline bg-white">Gọi ngay {company.phoneDisplay}</a>
+          <a href={company.zaloUrl} class="btn btn-outline bg-white" target="_blank" rel="noopener">Chat Zalo</a>
         </div>
       </div>
     </div>

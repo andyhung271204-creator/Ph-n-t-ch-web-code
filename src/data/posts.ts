@@ -25,7 +25,7 @@ type Md = { frontmatter: Fm; compiledContent: () => string | Promise<string> };
 const mds = import.meta.glob<Md>('/noi-dung/cam-nang/*.md', { eager: true });
 
 const ctaButtons = `<div class="post-cta">
-<a href="/lien-he" class="btn btn-primary">Nhận báo giá miễn phí</a>
+<a href="/lien-he/" class="btn btn-primary">Nhận báo giá miễn phí</a>
 <a href="${company.telUrl}" class="btn btn-outline">Gọi ngay ${company.phoneDisplay}</a>
 <a href="${company.zaloUrl}" class="btn btn-outline" target="_blank" rel="noopener">Chat Zalo</a>
 </div>`;
@@ -50,6 +50,15 @@ const toHtml = (html: string) => {
   );
 };
 
+const stripTags = (s: string) =>
+  s
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+
 // Bỏ bài nháp; mới nhất trước (bài đầu = bài nổi bật trang chủ).
 export const posts = (
   await Promise.all(
@@ -62,6 +71,7 @@ export const posts = (
         if (!cover) throw new Error(`Bài "${slug}": không tìm thấy ảnh bìa ${fm.cover}`);
         if (!allCategories.some((c) => c.slug === fm.category))
           throw new Error(`Bài "${slug}": chuyên mục "${fm.category}" không có trong noi-dung/chuyen-muc.json`);
+        const body = toHtml(await m.compiledContent());
         return {
           slug,
           category: fm.category,
@@ -69,7 +79,11 @@ export const posts = (
           excerpt: fm.excerpt,
           date: new Date(fm.date),
           cover,
-          body: toHtml(await m.compiledContent()),
+          body,
+          // FAQ của bài (các <details> do toHtml tạo) → schema FAQPage; bỏ câu còn ô "cần xác nhận"
+          faqs: [...body.matchAll(/<details><summary>([\s\S]*?)<\/summary><p>([\s\S]*?)<\/p><\/details>/g)]
+            .map(([, q, a]) => ({ q: stripTags(q), a: stripTags(a) }))
+            .filter((f) => !/cần xác nhận/.test(f.a)),
           // CMS ghi ô bỏ trống thành "" → dùng ||, không dùng ??
           metaTitle: fm.meta_title?.replace(/\s*\|\s*Gia Khánh$/, '') || fm.title,
           metaDescription: fm.meta_description || fm.excerpt,

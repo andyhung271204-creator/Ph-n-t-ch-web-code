@@ -6,13 +6,20 @@ interface Props {
   items: { q: string; a: string }[];
   class?: string;
   subtitle?: string;
+  title?: string;
 }
-const { items, class: cls, subtitle } = Astro.props;
+const { items, class: cls, subtitle, title = 'Câu hỏi thường gặp' } = Astro.props;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
 
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
 <section class:list={['section', cls]} data-reveal>
   <div class="container-page">
-    <SectionHeading title="Câu hỏi thường gặp" subtitle={subtitle} />
+    <SectionHeading title={title} subtitle={subtitle} />
     <div class="mx-auto max-w-3xl space-y-3">
       {
         items.map((f, i) => (

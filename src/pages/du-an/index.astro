@@ -3,44 +3,141 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import QuoteForm from '../../components/QuoteForm.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import Icon from '../../components/Icon.astro';
+import Faq from '../../components/Faq.astro';
 import { Image, getImage } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
+import { company, houseModels } from '../../data/company';
+import { projects } from '../../data/projects';
+import { imagesIn } from '../../data/images';
 
-// Mỗi thư mục src/assets/mau-nha/<NN>/ là một mẫu nhà Gia Khánh đã thi công (chủ đầu tư xác nhận 10/2026), 3 ảnh.
-const files = import.meta.glob<{ default: ImageMetadata }>('/src/assets/mau-nha/*/*.jpg', { eager: true });
-const models = [...Map.groupBy(Object.keys(files).sort(), (p) => p.split('/').at(-2)).values()].map((ps) =>
-  ps.slice(0, 3).map((p) => files[p].default),
+// Mỗi thư mục src/assets/mau-nha/<id>/ là một mẫu nhà Gia Khánh đã thi công (chủ đầu tư xác nhận 10/2026), 3 ảnh.
+// Tên mẫu lấy từ houseModels (company.ts), chữ đầu viết thường: "Mẫu 21: nhà ống 4 tầng hiện đại".
+const models = await Promise.all(
+  houseModels.map(async (m) => {
+    const imgs = imagesIn(`mau-nha/${m.id}`).slice(0, 3);
+    return {
+      id: m.id,
+      label: `Mẫu ${m.id}: ${m.name[0].toLowerCase()}${m.name.slice(1)}`,
+      imgs,
+      // Bản lớn cho khung phóng to khi click ảnh.
+      zoom: await Promise.all(imgs.map(async (img) => (await getImage({ src: img, width: Math.min(img.width, 1600) })).src)),
+    };
+  }),
 );
-// Bản lớn cho khung phóng to khi click ảnh.
-const zoomSrc = await Promise.all(
-  models.map((imgs) => Promise.all(imgs.map(async (img) => (await getImage({ src: img, width: Math.min(img.width, 1600) })).src))),
-);
+
+// Nhóm loại hình theo noi-dung/du-an.md mục 2 (đếm từ tên 48 mẫu trong houseModels).
+const groups = [
+  { name: 'Nhà ống 4 và 5 tầng', ids: ['16', '17', '21', '22', '26', '27', '32', '48'] },
+  { name: 'Nhà phố 3 và 4 tầng', ids: ['28', '29', '31', '33', '34', '40', '42', '43', '44'] },
+  { name: 'Nhà phố 3 và 4 tầng tân cổ điển', ids: ['23', '35', '45'] },
+  { name: 'Nhà 2 tầng hiện đại, mái Thái, mái Nhật', ids: ['02', '03', '06', '11', '12', '13', '15', '38'] },
+  { name: 'Biệt thự 2 tầng mái Thái và mái Nhật', ids: ['01', '04', '07', '10', '47'] },
+  { name: 'Biệt thự 2 và 3 tầng tân cổ điển', ids: ['05', '08', '09', '14', '19', '24', '25', '37', '41', '46'] },
+  { name: 'Biệt thự 2 và 3 tầng hiện đại', ids: ['18', '30', '39'] },
+  { name: 'Biệt thự nhà vườn 1 tầng và lâu đài cổ điển', ids: ['20', '36'] },
+];
+
+const link = 'font-semibold text-primary underline hover:text-primary-dark';
+const th = 'bg-primary-light p-4 text-left text-sm font-semibold tracking-wide text-primary uppercase';
+
+const faqs = [
+  {
+    q: 'Tôi có thể xây nhà theo một mẫu trong trang này không?',
+    a: 'Được. Bạn chọn mẫu, Gia Khánh thi công theo mẫu hoặc điều chỉnh theo diện tích đất và nhu cầu của gia đình. Gửi số mẫu qua form hoặc Zalo, kỹ sư sẽ tư vấn phương án phù hợp với khu đất của bạn.',
+  },
+  {
+    q: 'Mẫu này giá khoảng bao nhiêu?',
+    a: `Giá ước tính từng mẫu xem trong bảng báo giá xây nhà. Mẫu nào chưa có giá trong bảng sẽ được báo sau khi kỹ sư khảo sát. ${company.priceNote}`,
+  },
+  {
+    q: 'Có ảnh trước, trong và sau thi công không?',
+    a: 'Hiện mỗi mẫu có 3 ảnh công trình đã thi công, và một số công trình có thêm ảnh thi công thực tế như đổ bê tông, nội thất. Hiện chưa có ảnh đủ ba giai đoạn cho từng công trình.',
+  },
+  {
+    q: 'Các công trình này ở đâu?',
+    a: 'Gia Khánh nhận công trình tại Hà Nội và các huyện lân cận như Đông Anh, Gia Lâm, Hoài Đức, Thanh Trì, Hà Đông. Bạn gửi địa chỉ khu đất qua form hoặc Zalo để kỹ sư xác nhận lịch khảo sát miễn phí.',
+  },
+];
 ---
 
 <BaseLayout
-  title="Mẫu nhà Gia Khánh đã thi công"
-  description="Các mẫu nhà Gia Khánh đã thi công tại Hà Nội. Nhận thi công theo mẫu hoặc điều chỉnh theo diện tích, nhu cầu của gia đình."
+  title="Mẫu nhà đã thi công, nhận xây tại Hà Nội"
+  description="Xem 48 mẫu nhà Gia Khánh đã thi công: nhà ống, nhà phố, biệt thự mái Thái, tân cổ điển. Xây theo mẫu tại Hà Nội hoặc chỉnh theo đất. Nhận báo giá miễn phí."
 >
-  <PageHeader title="Công trình" subtitle="Các mẫu nhà Gia Khánh đã thi công." />
+  <PageHeader
+    title="Mẫu nhà Gia Khánh đã thi công, nhận xây tại Hà Nội"
+    crumb="Công trình"
+    subtitle={`${company.name} giới thiệu 48 mẫu nhà đã thi công, gồm nhà ống, nhà phố và biệt thự. Bạn xem mẫu nào hợp với gia đình, rồi nhờ kỹ sư thi công đúng theo mẫu hoặc điều chỉnh theo diện tích đất và nhu cầu của bạn.`}
+  >
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#nhan-bao-gia" class="btn btn-primary">Nhận báo giá miễn phí</a>
+      <a href={company.telUrl} class="btn btn-outline bg-white">Gọi ngay {company.phoneDisplay}</a>
+      <a href={company.zaloUrl} class="btn btn-outline bg-white" target="_blank" rel="noopener">Chat Zalo</a>
+    </div>
+  </PageHeader>
+
   <section class="section" data-reveal>
     <div class="container-page">
+      <SectionHeading title="Gia Khánh đã thi công những kiểu nhà nào?" />
+      <p class="mx-auto mb-10 max-w-prose leading-relaxed">
+        Trong 48 mẫu có 28 mẫu nhà phố và nhà ống từ 2 đến 5 tầng, cùng 20 mẫu biệt thự gồm nhà vườn 1 tầng, biệt thự 2 và 3
+        tầng. Phong cách gồm hiện đại, mái Thái, mái Nhật và tân cổ điển. Ba mẫu có kết hợp kinh doanh.
+      </p>
+      <div class="mx-auto max-w-3xl overflow-x-auto rounded-lg border border-line bg-white">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr>
+              <th class={th} scope="col">Nhóm loại hình</th>
+              <th class={th} scope="col">Số mẫu</th>
+              <th class={th} scope="col">Mẫu số</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              groups.map((g) => (
+                <tr>
+                  <th class="border-t border-line p-4 text-left align-top font-medium" scope="row">{g.name}</th>
+                  <td class="border-t border-line p-4 align-top text-muted">{g.ids.length}</td>
+                  <td class="border-t border-line p-4 align-top">
+                    {g.ids.map((id, i) => (
+                      <>
+                        {i > 0 && ', '}
+                        <a href={`#mau-${id}`} class={link}>{id}</a>
+                      </>
+                    ))}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mx-auto mt-6 max-w-3xl leading-relaxed">
+        Các mẫu kết hợp kinh doanh là mẫu 15, 42 và 48. Muốn tìm mẫu nhà ống 4 tầng, nhà phố 2 tầng hiện đại, biệt thự 2 tầng
+        mái Thái hay biệt thự tân cổ điển, bạn tra theo số mẫu ở cột cuối.
+      </p>
+    </div>
+  </section>
+
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
       <SectionHeading
-        title="Mẫu nhà Gia Khánh đã thi công"
-        subtitle="Gia Khánh nhận thi công theo mẫu hoặc điều chỉnh theo diện tích, nhu cầu của gia đình."
+        title="Xem ảnh 48 mẫu nhà Gia Khánh đã thi công"
+        subtitle="Mỗi mẫu có 3 ảnh công trình Gia Khánh đã thi công, xếp theo số thứ tự từ 01 đến 48. Tên mẫu cho biết loại hình và thường kèm số tầng. Bấm vào ảnh để xem lớn hơn, rồi để lại số điện thoại nếu bạn muốn Gia Khánh gọi lại tư vấn về mẫu đó."
       />
       <ol class="space-y-6 md:space-y-10">
         {
-          models.map((imgs, i) => {
-            const name = `Mẫu nhà ${i + 1}`;
+          models.map(({ id, label, imgs, zoom }) => {
             // Hàng nhà ống (đa số ảnh dọc) dùng khung dọc để không cắt mất tầng.
             const tall = imgs.filter((img) => img.height > img.width).length >= 2;
             return (
-              <li class="card p-3 md:p-6" data-reveal>
+              <li id={`mau-${id}`} class="card scroll-mt-24 p-3 md:p-6" data-reveal>
                 <h3 class="mb-3 flex items-center gap-3 font-semibold md:mb-5 md:text-lg">
-                  <span class="flex size-8 items-center justify-center rounded-md bg-primary-light text-sm font-bold text-primary md:size-10">
-                    {String(i + 1).padStart(2, '0')}
+                  <span class="flex size-8 shrink-0 items-center justify-center rounded-md bg-primary-light text-sm font-bold text-primary md:size-10">
+                    {id}
                   </span>
-                  {name}
+                  {label}
                 </h3>
                 <ul class="grid grid-cols-3 gap-2 md:gap-4">
                   {imgs.map((img, k) => (
@@ -49,10 +146,10 @@ const zoomSrc = await Promise.all(
                       data-reveal
                       style={`--d:${k * 90}ms`}
                     >
-                      <button type="button" class="h-full w-full cursor-zoom-in" data-zoom={zoomSrc[i][k]} data-model={name}>
+                      <button type="button" class="h-full w-full cursor-zoom-in" data-zoom={zoom[k]} data-model={label}>
                         <Image
                           src={img}
-                          alt={`${name} Gia Khánh đã thi công – góc nhìn ${k + 1}`}
+                          alt={`${label}, Gia Khánh đã thi công (ảnh ${k + 1}/3)`}
                           width={Math.min(img.width, 640)}
                           sizes="(min-width: 1280px) 400px, 33vw"
                           class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
@@ -66,6 +163,85 @@ const zoomSrc = await Promise.all(
           })
         }
       </ol>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="container-page">
+      <SectionHeading title="Có thể xây theo mẫu có sẵn không?" />
+      <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+        <p>
+          Có. Bạn chọn một trong 48 mẫu, Gia Khánh thi công theo mẫu đó hoặc điều chỉnh theo diện tích đất và nhu cầu của gia
+          đình, như số tầng hay số phòng. Giá ước tính xem trong bảng giá theo mẫu; mẫu nào chưa có giá sẽ được báo sau khi kỹ
+          sư khảo sát. Giá chính xác chỉ có sau khi kỹ sư khảo sát thực tế.
+        </p>
+        <p class="flex gap-3 rounded-lg border border-primary/20 bg-primary-light p-4 font-medium">
+          <Icon name="file" class="mt-0.5 size-5 shrink-0 text-primary" />
+          <span>{company.priceNote}</span>
+        </p>
+        <ul class="list-disc space-y-2 pl-5">
+          <li>
+            Muốn biết mẫu đó giá khoảng bao nhiêu, xem <a href="/bao-gia/" class={link}>bảng báo giá xây nhà</a>, có bảng theo
+            từng mẫu (mẫu chưa có giá sẽ báo sau khảo sát). Diện tích trong bảng là con số tham khảo.
+          </li>
+          <li>
+            Chưa có bản vẽ hoặc cần chỉnh mẫu cho vừa lô đất, bắt đầu từ
+            <a href="/dich-vu/thiet-ke-kien-truc-noi-that/" class={link}>Thiết kế kiến trúc & nội thất</a>.
+          </li>
+          <li>
+            Đã có đất và bản vẽ, xem <a href="/dich-vu/xay-nha-tron-goi/" class={link}>Xây nhà trọn gói</a>: một hợp đồng từ
+            móng đến hoàn thiện.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading
+        title="Ảnh thi công thực tế theo từng công trình"
+        subtitle="Ngoài các mẫu nhà, Gia Khánh có trang ảnh thi công thực tế cho từng công trình nhà ở đã thi công: đổ bê tông, thi công nội thất, quán cà phê và nhà đã hoàn thiện, cùng 11 công trình đánh số từ 01 đến 11. Mỗi trang là một bộ ảnh của đúng công trình đó."
+      />
+      <ul class="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
+        {
+          projects.map((p, i) => (
+            <li>
+              <ProjectCard project={p} index={i} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Faq
+    title="Câu hỏi thường gặp về mẫu nhà đã thi công"
+    subtitle={`Các câu dưới đây nói về xây theo mẫu, giá từng mẫu, ảnh thi công và khu vực Gia Khánh nhận công trình. Câu nào chưa rõ, gọi hotline ${company.phoneDisplay}.`}
+    items={faqs}
+  />
+
+  <section id="nhan-bao-gia" class="section scroll-mt-20 bg-primary-light" data-reveal>
+    <div class="container-page">
+      <SectionHeading
+        title="Chọn mẫu nhà bạn thích, nhận báo giá miễn phí"
+        subtitle="Bạn đã có mẫu nhà ưng ý? Để lại số điện thoại và ghi số mẫu vào ô Nhu cầu, Gia Khánh sẽ gọi lại tư vấn miễn phí. Phục vụ Hà Nội, nội thành và các huyện lân cận."
+      />
+      <div class="mx-auto max-w-2xl">
+        <QuoteForm>
+          <label class="block text-sm font-medium">
+            Mẫu nhà quan tâm
+            <select class="field mt-1" name="mau-nha">
+              <option value="">Chưa chọn / thiết kế riêng</option>
+              {models.map((m) => <option value={m.label}>{m.label}</option>)}
+            </select>
+          </label>
+        </QuoteForm>
+        <p class="mt-6 text-center leading-relaxed">
+          Bạn cũng có thể vào trang <a href="/lien-he/" class={link}>Liên hệ</a> hoặc
+          <a href={company.zaloUrl} class={link} target="_blank" rel="noopener">Chat Zalo</a>.
+        </p>
+      </div>
     </div>
   </section>
 

@@ -1,5 +1,5 @@
 ---
-// Nội dung: noi-dung/dich-vu-xay-nha-tron-goi.md
+// Nội dung: noi-dung/dich-vu-xay-nha-tron-goi.md (brief SEO: noi-dung/seo/brief/xay-nha-tron-goi.md)
 import SectionHeading from '../SectionHeading.astro';
 import Bullets from '../Bullets.astro';
 import InfoList from '../InfoList.astro';
@@ -11,6 +11,21 @@ import { company, daXacNhan, prices, packages, warranty } from '../../data/compa
 
 const th = 'bg-primary-light p-4 text-left font-semibold';
 const td = 'border-t border-line p-4 align-top';
+const link = 'font-semibold text-primary underline hover:text-primary-dark';
+
+const [rough, full, labor] = packages;
+const pho = prices[1]; // nhà phố, nhà ống 2 – 5 tầng (đã xác nhận)
+
+const compare = [
+  { row: 'Gồm', rough: rough.includes, full: full.includes },
+  { row: 'Chủ nhà tự lo', rough: rough.owner, full: full.owner },
+  {
+    row: 'Hợp với ai',
+    rough: 'Gia đình muốn tự chọn mẫu mã vật tư hoàn thiện và có thời gian đi mua.',
+    full: 'Gia đình muốn một hợp đồng lo hết, nhận nhà là vào ở.',
+  },
+  { row: 'Ai mua vật tư hoàn thiện', rough: 'Chủ nhà.', full: 'Gia Khánh, theo bảng vật tư trong hợp đồng.' },
+];
 
 const steps = [
   {
@@ -20,9 +35,9 @@ const steps = [
   { name: 'Khảo sát hiện trạng (miễn phí)', text: 'Kỹ sư đo đạc tại nhà, ghi nhận nhu cầu và ngân sách.' },
   {
     name: 'Thiết kế & báo giá chi tiết',
-    text: 'Bạn nhận phương án thiết kế (nếu có) và bảng dự toán từng hạng mục, vật tư ghi rõ chủng loại.',
+    text: 'Gia Khánh lập phương án thiết kế (nếu có) và dự toán từng hạng mục, vật tư ghi rõ chủng loại.',
   },
-  { name: 'Ký hợp đồng', text: 'Hợp đồng ghi rõ giá trị, tiến độ theo mốc, thanh toán theo giai đoạn và bảo hành.' },
+  { name: 'Ký hợp đồng', text: 'Hai bên chốt giá trị, tiến độ theo mốc, thanh toán theo giai đoạn và bảo hành.' },
   {
     name: 'Thi công & giám sát',
     text: 'Kỹ sư phụ trách giám sát tại công trình, gửi ảnh tiến độ hằng ngày qua Zalo, nghiệm thu từng giai đoạn cùng bạn.',
@@ -30,68 +45,63 @@ const steps = [
   { name: 'Bàn giao & bảo hành', text: 'Nghiệm thu tổng thể, bàn giao hồ sơ, kích hoạt bảo hành và chăm sóc sau bàn giao.' },
 ];
 
-const reasons = [
-  { name: 'Báo giá minh bạch', text: 'Dự toán chi tiết từng hạng mục, vật tư ghi rõ chủng loại.' },
-  {
-    name: 'Không phát sinh khi chưa có đồng ý',
-    text: 'Mọi thay đổi được báo giá trước và chỉ làm khi bạn xác nhận bằng văn bản hoặc tin nhắn.',
-  },
-  { name: 'Kỹ sư giám sát trực tiếp', text: 'Mỗi công trình có một kỹ sư phụ trách, bạn liên hệ trực tiếp.' },
-  { name: 'Cập nhật tiến độ hằng ngày', text: 'Ảnh công trình gửi qua Zalo, chủ nhà ở xa vẫn nắm được tình hình.' },
-  { name: 'Thanh toán theo giai đoạn', text: 'Chỉ thanh toán khi hạng mục đã nghiệm thu.' },
-  { name: 'Quen nhà ở Hà Nội', text: 'Nhà ống, nhà trong ngõ, quy định cấp phép tại địa phương.' },
-];
-
 const faqs = [
   {
-    q: 'Gia Khánh có khảo sát và báo giá miễn phí không?',
-    a: 'Có. Kỹ sư đến tận nơi khảo sát và gửi báo giá chi tiết miễn phí trong khu vực Hà Nội.',
+    q: 'Khảo sát và báo giá có mất phí không?',
+    a: 'Không. Kỹ sư Gia Khánh đến tận nơi khảo sát và gửi báo giá chi tiết miễn phí.',
   },
   {
-    q: 'Xây một căn nhà mất bao lâu?',
-    a: `${daXacNhan ? 'Nhà phố 3 – 4 tầng thường mất khoảng 4 – 6 tháng tùy diện tích và thời tiết. ' : 'Thời gian tùy diện tích, số tầng và thời tiết. '}Tiến độ cụ thể được ghi theo mốc trong hợp đồng.`,
+    q: 'Xây nhà trọn gói mất bao lâu?',
+    a: `${daXacNhan ? 'Nhà phố 3 – 4 tầng thường mất khoảng 4 – 6 tháng, tùy diện tích và thời tiết. ' : 'Thời gian tùy diện tích, số tầng và thời tiết. '}Tiến độ cụ thể theo từng mốc được ghi trong hợp đồng.`,
   },
-  { q: 'Thanh toán như thế nào?', a: 'Thanh toán theo từng giai đoạn, chỉ sau khi hạng mục đã được nghiệm thu cùng bạn.' },
   {
-    q: 'Có phát sinh chi phí trong quá trình thi công không?',
-    a: 'Chỉ khi bạn thay đổi yêu cầu. Khoản phát sinh được báo giá và chỉ thực hiện khi bạn đồng ý bằng văn bản hoặc tin nhắn.',
+    q: 'Trọn gói có đắt hơn tự thuê thợ không?',
+    a: 'Tự mua vật tư và thuê từng tổ thợ có thể rẻ hơn nếu bạn mua khéo và có thời gian theo sát. Trọn gói đổi phần chênh đó lấy một đầu mối, giá chốt trước và bảo hành bằng văn bản.',
+  },
+  {
+    q: 'Có cần thuê người giám sát riêng không?',
+    a: 'Mỗi công trình của Gia Khánh có một kỹ sư phụ trách giám sát và nghiệm thu từng giai đoạn cùng bạn. Việc thuê thêm giám sát độc lập do bạn quyết định.',
+  },
+  {
+    q: 'Thanh toán như thế nào?',
+    a: 'Gia Khánh nhận thanh toán theo từng giai đoạn thi công. Mỗi đợt đến sau khi hạng mục được nghiệm thu cùng bạn, và các đợt được ghi trong hợp đồng.',
   },
   { q: 'Đơn giá đã gồm VAT, phá dỡ và ép cọc chưa?', a: `Chưa. ${company.priceNote}` },
   {
     q: 'Tôi ở xa, làm sao theo dõi công trình?',
-    a: 'Kỹ sư gửi ảnh và video tiến độ hằng ngày qua Zalo. Bạn cũng có thể đến công trình bất cứ lúc nào.',
+    a: 'Kỹ sư Gia Khánh gửi ảnh tiến độ hằng ngày qua Zalo, và nghiệm thu từng giai đoạn cùng bạn tại công trình.',
   },
   // TODO: hồ sơ chưa có điều kiện đường vào cho nhà xây mới
   {
     q: 'Nhà trong ngõ nhỏ có xây được không?',
-    a: 'Gửi địa chỉ để kỹ sư khảo sát đường vào, mặt bằng và tư vấn phương án thi công phù hợp.',
-  },
-  {
-    q: 'Gia Khánh phục vụ khu vực nào?',
-    a: 'Hà Nội, gồm nội thành và các huyện lân cận như Đông Anh, Gia Lâm, Hoài Đức, Thanh Trì, Hà Đông.',
+    a: 'Điều này phụ thuộc điều kiện đường vào khu đất. Bạn gửi địa chỉ để kỹ sư Gia Khánh khảo sát và tư vấn.',
   },
 ];
 ---
 
 <section class="section" data-reveal>
   <div class="container-page grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-    <div>
-      <h2 class="text-2xl font-bold md:text-3xl">Dịch vụ này dành cho ai</h2>
-      <p class="mt-4 leading-relaxed text-muted">Xây nhà trọn gói phù hợp nếu bạn:</p>
-      <Bullets
-        class="mt-6"
-        items={[
-          'Có đất và muốn xây nhà ở mới: nhà phố, nhà ống 2 – 5 tầng, nhà cấp 4, biệt thự nhỏ.',
-          'Không có thời gian tự mua vật tư, thuê từng tổ thợ và theo dõi từng ngày.',
-          'Ở xa công trình, cần một người chịu trách nhiệm tại hiện trường và báo cáo đều đặn.',
-          'Muốn biết trước tổng chi phí và những gì mình nhận được, thay vì cộng dồn từng đợt.',
-        ]}
-      />
-      <p class="mt-6 leading-relaxed">
-        Nếu bạn chỉ cần cải tạo, nâng tầng hoặc sửa nhà cũ, xem thêm{" "}
-        <a href="/dich-vu/sua-chua-cai-tao-nha" class="font-semibold text-primary underline hover:text-primary-dark"
-          >Sửa chữa – cải tạo nhà</a
-        >.
+    <div class="max-w-prose">
+      <h2 class="text-2xl font-bold md:text-3xl">Xây nhà trọn gói là gì?</h2>
+      <p class="mt-4 leading-relaxed">
+        Trong xây nhà trọn gói, nhà thầu lo vật tư, nhân công và giám sát từ móng đến hoàn thiện, còn gia đình làm việc
+        với một đầu mối. Giá trị công trình nằm trong một hợp đồng, kèm bảng vật tư theo chủng loại.
+      </p>
+      <p class="mt-4 leading-relaxed text-muted">
+        Nhà thầu mua vật tư, điều thợ xây, thợ điện nước, thợ sơn theo từng giai đoạn và nghiệm thu cùng bạn. Khi cần hỏi
+        hay xử lý việc gì ở công trình, bạn gọi kỹ sư phụ trách.
+      </p>
+
+      <h2 class="mt-12 text-2xl font-bold md:text-3xl">Ai nên chọn xây nhà trọn gói?</h2>
+      <p class="mt-4 leading-relaxed">
+        Xây nhà trọn gói hợp với gia đình có đất, muốn xây nhà ở mới nhưng thiếu thời gian tự mua vật tư và theo dõi từng
+        tổ thợ. Hình thức này cũng hợp với chủ nhà ở xa công trình cần một người chịu trách nhiệm tại hiện trường, và với
+        người muốn biết tổng chi phí từ đầu.
+      </p>
+      <p class="mt-4 leading-relaxed text-muted">
+        Nếu bạn đã có thợ quen và thích tự chọn từng món vật tư, gói phần thô + nhân công hoàn thiện hoặc gói nhân công
+        (xem phần so sánh bên dưới) gần với cách làm đó hơn. Nếu nhà đã có và cần nâng tầng, mở rộng hay sửa, xem{' '}
+        <a href="/dich-vu/sua-chua-cai-tao-nha/" class={link}>Sửa chữa – cải tạo nhà</a>.
       </p>
     </div>
     <ImageSlot dir="xay-nha-cho-ai" alt="Phối cảnh nhà phố 2 tầng mái bằng, mặt tiền ốp gỗ" />
@@ -101,8 +111,8 @@ const faqs = [
 <section class="section bg-primary-light" data-reveal>
   <div class="container-page">
     <SectionHeading
-      title="Trọn gói gồm những hạng mục nào"
-      subtitle="Gia Khánh nhận thi công từ phần móng đến hoàn thiện."
+      title="Trọn gói gồm những hạng mục nào?"
+      subtitle="Xây nhà trọn gói tại Gia Khánh đi từ phần móng đến hoàn thiện, chia thành sáu nhóm hạng mục. Phạm vi cụ thể của từng gói được ghi trong hợp đồng và bảng vật tư."
     />
     <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
       <ImageSlot dir="xay-nha-hang-muc" alt="Phối cảnh nhà phố 3 tầng hiện đại lên đèn buổi tối" />
@@ -112,123 +122,141 @@ const faqs = [
             ['Móng và kết cấu:', 'móng, cột, dầm, sàn bê tông cốt thép.'],
             ['Xây và tô trát:', 'tường bao, tường ngăn, tô trát hoàn chỉnh.'],
             ['Điện nước âm:', 'đi đường ống, dây dẫn âm tường, âm sàn.'],
-            ['Chống thấm:', 'sân thượng, mái, nhà vệ sinh, những vị trí dễ thấm.'],
+            ['Chống thấm:', 'sân thượng, mái, nhà vệ sinh và những vị trí dễ thấm.'],
             ['Mái:', 'mái bê tông, mái tôn hoặc mái ngói theo thiết kế.'],
             ['Hoàn thiện:', 'ốp lát, sơn bả, trần thạch cao, lắp thiết bị, cửa.'],
           ]}
         />
-        {daXacNhan && <p class="mt-6 leading-relaxed">Gia Khánh cũng hỗ trợ xin giấy phép xây dựng.</p>}
+        <p class="mt-6 leading-relaxed">
+          {daXacNhan && 'Gia Khánh hỗ trợ xin giấy phép xây dựng. '}Chưa có bản vẽ thì bắt đầu từ{' '}
+          <a href="/dich-vu/thiet-ke-kien-truc-noi-that/" class={link}>Thiết kế kiến trúc & nội thất</a>.
+        </p>
       </div>
     </div>
-
-    <p class="mt-16 mb-8 text-center leading-relaxed">
-      Các gói ghi rõ trong hợp đồng, kèm bảng vật tư theo chủng loại.
-    </p>
-    <ul class="grid gap-6 md:grid-cols-3 md:gap-8">
-      {
-        packages.map((p, i) => (
-          <li class="card p-6" data-reveal style={`--d:${i * 90}ms`}>
-            <h3 class="text-lg font-semibold text-primary">{p.name}</h3>
-            <p class="mt-2 text-xl font-bold">{p.perM2} <span class="text-sm font-semibold text-muted">đ/m²</span></p>
-            <p class="mt-4 text-sm font-semibold">Gồm</p>
-            <p class="mt-1 text-sm leading-relaxed text-muted">{p.includes}</p>
-            <p class="mt-4 text-sm font-semibold">Chủ nhà tự lo</p>
-            <p class="mt-1 text-sm leading-relaxed text-muted">{p.owner}</p>
-          </li>
-        ))
-      }
-    </ul>
   </div>
 </section>
 
 <section class="section" data-reveal>
   <div class="container-page">
-    <SectionHeading title="Đơn giá tham khảo theo m²" subtitle="Đơn giá tính trên m² sàn quy đổi, chia theo loại nhà." />
-    <div class="overflow-x-auto rounded-lg border border-line bg-white">
+    <SectionHeading title="Nên chọn trọn gói hay phần thô + nhân công hoàn thiện?" />
+    <p class="mx-auto max-w-prose leading-relaxed">
+      Chọn trọn gói nếu bạn muốn Gia Khánh lo cả vật tư hoàn thiện và nhận nhà để vào ở. Chọn phần thô + nhân công hoàn
+      thiện nếu bạn có thời gian đi chọn gạch, sơn, cửa, thiết bị và muốn tự quyết mẫu mã, giá từng món. Hai gói khác
+      nhau ở người mua vật tư hoàn thiện.
+    </p>
+    <div class="mt-10 overflow-x-auto rounded-lg border border-line bg-white">
       <table class="w-full min-w-[640px] border-collapse">
         <thead>
           <tr>
-            <th class={th} scope="col">Loại nhà</th>
-            <th class={th} scope="col">Phần thô + nhân công hoàn thiện</th>
-            <th class={th} scope="col">Trọn gói</th>
+            <th class={th} scope="col"><span class="sr-only">Tiêu chí</span></th>
+            <th class={th} scope="col">{rough.name}</th>
+            <th class={th} scope="col">{full.name}</th>
           </tr>
         </thead>
         <tbody>
           {
-            prices.map((p) => (
+            compare.map((c) => (
               <tr>
-                <th class={`${td} text-left font-medium`} scope="row">{p.type}</th>
-                <td class={td}>{p.rough}</td>
-                <td class={`${td} font-semibold text-primary`}>{p.full}</td>
+                <th class={`${td} text-left font-semibold`} scope="row">{c.row}</th>
+                <td class={`${td} text-muted`}>{c.rough}</td>
+                <td class={`${td} text-muted`}>{c.full}</td>
               </tr>
             ))
           }
         </tbody>
       </table>
     </div>
-    <p class="mt-6 rounded-lg bg-primary-light p-4 font-medium">{company.priceNote}</p>
-    <p class="mt-4 leading-relaxed text-muted">
-      Đơn giá thực tế còn phụ thuộc độ phức tạp kết cấu, phào chỉ mặt tiền và mức vật tư hoàn thiện bạn chọn. Xem bảng
-      đầy đủ và cách tính diện tích tại{" "}
-      <a href="/bao-gia" class="font-semibold text-primary underline hover:text-primary-dark">Bảng báo giá</a>.
-    </p>
-
-    <h3 class="mt-16 text-xl font-bold">Lưu ý trước khi xây</h3>
-    <Bullets
-      class="mt-6 max-w-prose"
-      items={[
-        [
-          'Phá dỡ nhà cũ và ép cọc báo giá riêng,',
-          'vì phụ thuộc hiện trạng và địa chất khu đất. Gia Khánh cũng nhận thi công hai hạng mục này và báo sau khi khảo sát.',
-        ],
-        ['VAT tính riêng', 'so với đơn giá.'],
-        [
-          'Diện tích tính giá không phải diện tích đất.',
-          'Móng, các tầng, tum và sân thượng được quy đổi theo tỷ lệ khác nhau (xem cách tính và ví dụ tại trang Báo giá).',
-        ],
-        ['Phát sinh', 'chỉ thực hiện khi bạn đồng ý.'],
-      ]}
-    />
-  </div>
-</section>
-
-<ServiceSteps steps={steps}>
-  <p class="mt-12 rounded-lg bg-white p-4 font-medium">
-    Khảo sát hiện trạng là miễn phí. Kỹ sư đến tận nơi đo đạc, ghi nhận nhu cầu và ngân sách của gia đình, không phải
-    trả phí.
-  </p>
-</ServiceSteps>
-
-<section class="section" data-reveal>
-  <div class="container-page">
-    <SectionHeading title="Vì sao chọn Gia Khánh" />
-    <ul class="grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
-      {
-        reasons.map((r, i) => (
-          <li class="card p-6" data-reveal style={`--d:${(i % 3) * 90}ms`}>
-            <h3 class="font-semibold text-primary">{r.name}</h3>
-            <p class="mt-2 leading-relaxed text-muted">{r.text}</p>
-          </li>
-        ))
-      }
-    </ul>
-    <div class="mt-12 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-      <p class="max-w-prose leading-relaxed">
-        Đội ngũ Gia Khánh có hơn 10 người, gồm kỹ sư xây dựng, kiến trúc sư và quản lý thi công, đã thi công nhà ở dân
-        dụng tại Hà Nội.
+    <div class="mx-auto mt-10 max-w-prose space-y-4 leading-relaxed">
+      <p>
+        Với phần thô + nhân công hoàn thiện, bạn nắm quyền chọn từng món vật tư hoàn thiện và cũng nhận luôn việc mua,
+        vận chuyển, đối chiếu số lượng. Vật tư về chậm thì thợ ốp lát hoặc thợ sơn phải chờ, nên lịch mua cần khớp với
+        tiến độ. Với trọn gói, mẫu mã vật tư đã chốt trong bảng vật tư từ khi ký hợp đồng; muốn đổi sang loại khác, Gia
+        Khánh báo giá chênh lệch để bạn đồng ý trước khi làm.
       </p>
-      <ImageSlot dir="xay-nha-giam-sat" alt="Phối cảnh nhà 2 tầng mái Thái, cửa chính gỗ" />
+      <p>
+        Ngoài hai gói trên còn gói <strong>{labor.name.toLowerCase()}</strong>: Gia Khánh lo nhân công thi công toàn bộ
+        công trình, {labor.perM2} đ/m²; chủ nhà lo toàn bộ vật tư. Gói này hợp với chủ nhà đã quen mua vật tư và tự điều
+        phối được tiến độ giao hàng.
+      </p>
+      <p class="rounded-lg bg-primary-light p-4 font-medium">{company.priceNote}</p>
+      <p>
+        Muốn tính chi phí theo từng cách làm, đọc bài{' '}
+        <a href="/cam-nang/chi-phi-xay-nha-pho-tron-goi/" class={link}>Chi phí xây nhà phố trọn gói</a>.
+      </p>
     </div>
   </div>
 </section>
 
 <section class="section bg-primary-light" data-reveal>
   <div class="container-page">
-    <SectionHeading title="Bảo hành bằng văn bản" subtitle="Bảo hành ghi trong hợp đồng, theo từng hạng mục." />
+    <SectionHeading title="Xây nhà trọn gói tại Hà Nội giá bao nhiêu?" />
+    <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+      <p>
+        Với {pho.type.toLowerCase()}, đơn giá phần thô + nhân công hoàn thiện là {pho.rough} và trọn gói là {pho.full} sàn
+        quy đổi. Các loại nhà khác, như nhà cấp 4, nhà tân cổ điển và biệt thự, được báo giá sau khi kỹ sư khảo sát.
+      </p>
+      <p class="rounded-lg bg-white p-4 font-medium">{company.priceNote}</p>
+      <p>
+        Giá tính theo diện tích sàn quy đổi, không theo diện tích đất. Xem{' '}
+        <a href="/bao-gia/" class={link}>bảng báo giá xây nhà</a> đầy đủ, và ví dụ quy đổi móng, tầng, tum, sân thượng
+        trong bài <a href="/cam-nang/cach-tinh-dien-tich-xay-dung/" class={link}>Cách tính diện tích xây dựng</a>. Chi
+        phí phá dỡ nhà cũ và ép cọc tính riêng, phụ thuộc hiện trạng và địa chất khu đất.
+      </p>
+    </div>
+  </div>
+</section>
+
+<ServiceSteps title="Quy trình xây nhà trọn gói tại Gia Khánh" steps={steps} light={false}>
+  <p class="mx-auto mt-12 max-w-prose rounded-lg bg-primary-light p-4 font-medium">
+    Kỹ sư khảo sát miễn phí tại khu đất hoặc ngôi nhà của bạn ở Hà Nội, đo đạc, ghi nhận nhu cầu và ngân sách, rồi mới
+    lập dự toán. Hợp đồng được ký sau khi bạn đã xem dự toán.
+  </p>
+</ServiceSteps>
+
+<section class="section bg-primary-light" data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Làm sao hạn chế phát sinh chi phí?" />
+    <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <div class="max-w-prose">
+        <p class="leading-relaxed">
+          Muốn hạn chế phát sinh, hãy chốt giá trị công trình trước khi thi công. Gia Khánh lập dự toán từng hạng mục, ghi
+          vật tư theo chủng loại và chỉ làm thêm khi bạn xác nhận bằng văn bản hoặc tin nhắn. Bạn thanh toán theo từng
+          giai đoạn, sau khi hạng mục được nghiệm thu.
+        </p>
+        <Bullets
+          class="mt-6"
+          items={[
+            'Mỗi công trình có một kỹ sư phụ trách, có mặt tại công trình và là đầu mối để bạn hỏi.',
+            'Ảnh tiến độ gửi qua Zalo hằng ngày, nên chủ nhà ở xa vẫn thấy công trình đang làm đến đâu.',
+            'Mọi thay đổi so với hợp đồng được báo giá trước, bạn quyết định làm hay không.',
+          ]}
+        />
+        <p class="mt-6 leading-relaxed text-muted">
+          Hợp đồng xây nhà trọn gói của Gia Khánh ghi phạm vi công việc, bảng vật tư theo chủng loại, tiến độ theo mốc,
+          các đợt thanh toán và thời gian bảo hành. Đội ngũ thi công hơn 10 người, gồm kỹ sư xây dựng, kiến trúc sư và
+          quản lý thi công. Đội ngũ có trên 10 năm kinh nghiệm làm nhà ở dân dụng. Ảnh các công trình Gia Khánh đã thi
+          công xem tại trang <a href="/du-an/" class={link}>Công trình</a>.
+        </p>
+      </div>
+      <ImageSlot dir="xay-nha-giam-sat" alt="Phối cảnh nhà 2 tầng mái Thái, cửa chính gỗ" />
+    </div>
+  </div>
+</section>
+
+<section class="section" data-reveal>
+  <div class="container-page">
+    <SectionHeading
+      title="Bảo hành công trình bao lâu?"
+      subtitle="Gia Khánh bảo hành bằng văn bản. Thời hạn ghi trong hợp đồng và tính riêng cho bốn nhóm hạng mục: kết cấu, chống thấm, hoàn thiện, điện nước."
+    />
     <div class="grid gap-8 lg:grid-cols-2">
       <InfoList rows={warranty.slice(0, 4).map((w) => ({ item: w.item, value: w.period }))} />
       <div>
-        <h3 class="font-semibold">Cam kết khác</h3>
+        <p class="leading-relaxed text-muted">
+          Khi có sự cố trong thời hạn bảo hành, bạn liên hệ kỹ sư phụ trách hoặc hotline để Gia Khánh sắp xếp người đến xử
+          lý.
+        </p>
+        <h3 class="mt-6 font-semibold">Cam kết khác trong hợp đồng</h3>
         <Bullets
           class="mt-4"
           items={[
@@ -242,7 +270,23 @@ const faqs = [
   </div>
 </section>
 
-<Faq items={faqs} />
+<section class="section bg-primary-light" data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Gia Khánh nhận xây nhà ở khu vực nào?" />
+    <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+      <p>
+        Gia Khánh nhận xây nhà tại nội thành Hà Nội và các huyện lân cận: {company.areaList.slice(1).join(', ')}. Trụ sở
+        ở {company.address.replace(', TP Hà Nội', '')}, nên kỹ sư đến khảo sát khu đất ở Đông Anh thuận tiện.
+      </p>
+      <p class="text-muted">
+        Đội ngũ quen với nhà ống, nhà trong ngõ và quy định cấp phép tại địa phương. Gửi địa chỉ khu đất qua form hoặc
+        Zalo, Gia Khánh sẽ xác nhận lịch khảo sát.
+      </p>
+    </div>
+  </div>
+</section>
+
+<Faq title="Câu hỏi thường gặp về xây nhà trọn gói" items={faqs} />
 
 <ServiceCta
   title="Nhận báo giá miễn phí cho ngôi nhà của bạn"

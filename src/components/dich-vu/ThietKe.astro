@@ -1,108 +1,143 @@
 ---
-// Nội dung: noi-dung/dich-vu-thiet-ke-kien-truc-noi-that.md
+// Nội dung: noi-dung/dich-vu-thiet-ke-kien-truc-noi-that.md (brief SEO: noi-dung/seo/brief/thiet-ke-kien-truc-noi-that.md)
 import SectionHeading from '../SectionHeading.astro';
 import Bullets from '../Bullets.astro';
 import ImageSlot from '../ImageSlot.astro';
-import Gallery from '../Gallery.astro';
-import ServiceSteps from '../ServiceSteps.astro';
 import Faq from '../Faq.astro';
 import ServiceCta from '../ServiceCta.astro';
-import { company, daXacNhan } from '../../data/company';
-import { imagesIn } from '../../data/images';
+import { company } from '../../data/company';
 
-// Phối cảnh do Gia Khánh thiết kế
-const renders = [...imagesIn('nha-pho'), ...imagesIn('biet-thu-nha-vuon')];
+const th = 'bg-primary-light p-4 text-left font-semibold';
+const td = 'border-t border-line p-4 align-top';
+const link = 'font-semibold text-primary underline hover:text-primary-dark';
 
 const deliverables = [
   {
-    name: 'Mặt bằng công năng',
+    item: 'Mặt bằng công năng',
+    inc: 'Gồm',
     text: 'Bố trí phòng, cầu thang, lối đi, giếng trời theo số người ở và thói quen sinh hoạt của gia đình.',
   },
-  { name: 'Phối cảnh 3D', text: 'Hình ảnh ngoại thất và nội thất để xem trước ngôi nhà, góp ý trước khi thi công.' },
-  { name: 'Hồ sơ kỹ thuật thi công', text: 'Bản vẽ để thợ làm đúng và để dự toán chi tiết từng hạng mục.' },
-  { name: 'Dự toán', text: 'Bảng khối lượng và chi phí theo bản vẽ, vật tư ghi rõ chủng loại.' },
+  {
+    item: 'Phối cảnh 3D',
+    inc: 'Gồm',
+    text: 'Hình ảnh ngoại thất và nội thất để xem trước ngôi nhà và góp ý trước khi thi công.',
+  },
+  { item: 'Hồ sơ kỹ thuật thi công', inc: 'Gồm', text: 'Bản vẽ để thợ làm đúng và để dự toán từng hạng mục.' },
+  { item: 'Dự toán', inc: 'Gồm', text: 'Bảng khối lượng và chi phí theo bản vẽ, vật tư ghi rõ chủng loại.' },
+  {
+    item: 'Thi công công trình',
+    inc: 'Không gồm',
+    text: 'Tính riêng nếu bạn chọn Gia Khánh thi công, xem Xây nhà trọn gói.',
+  },
+];
+
+const compare = [
+  {
+    row: 'Đầu mối',
+    sep: 'Bạn làm việc với hai bên, mỗi bên một hợp đồng.',
+    one: 'Một đầu mối từ lúc lên ý tưởng đến lúc bàn giao.',
+  },
+  {
+    row: 'Dự toán',
+    sep: 'Nhà thầu tự bóc khối lượng từ bản vẽ của đơn vị khác.',
+    one: 'Dự toán lấy trực tiếp từ bản vẽ do cùng đội lập.',
+  },
+  {
+    row: 'Chọn nhà thầu',
+    sep: 'Gửi một bộ bản vẽ cho nhiều nhà thầu để so giá.',
+    one: 'Gắn với một đơn vị, bù lại bản vẽ được người xây hiểu từ đầu.',
+  },
+  {
+    row: 'Khi bản vẽ vướng thực tế',
+    sep: 'Hai bên trao đổi với nhau, bạn đứng giữa.',
+    one: 'Người vẽ và người thi công cùng một đội, trao đổi trực tiếp với nhau.',
+  },
+  {
+    row: 'Hợp với ai',
+    sep: 'Gia đình muốn tự chọn nhà thầu và có thời gian so sánh.',
+    one: 'Gia đình muốn một nơi lo từ bản vẽ đến chìa khóa.',
+  },
 ];
 
 const steps = [
   {
-    name: 'Tiếp nhận và tư vấn',
+    name: '1. Tiếp nhận & tư vấn',
     text: 'Bạn gọi, chat Zalo hoặc để lại số điện thoại. Gia Khánh gọi lại tư vấn sơ bộ.',
+    get: 'Tư vấn sơ bộ',
   },
   {
-    name: 'Khảo sát (miễn phí)',
+    name: '2. Khảo sát hiện trạng (miễn phí)',
     text: 'Kiến trúc sư hoặc kỹ sư đến tận nơi đo đạc, ghi nhận nhu cầu và ngân sách.',
+    get: 'Hiểu rõ hiện trạng và mong muốn của gia đình',
   },
   {
-    name: 'Đề xuất phương án và báo giá',
-    text: 'Gửi phương án mặt bằng, phối cảnh kèm báo giá thiết kế và dự toán.',
+    name: '3. Thiết kế & báo giá chi tiết',
+    text: 'Gia Khánh gửi phương án thiết kế (nếu có) và dự toán từng hạng mục.',
+    get: 'Phương án và báo giá',
   },
   {
-    name: 'Chỉnh sửa theo góp ý',
-    text: 'Bạn xem, góp ý, Gia Khánh điều chỉnh cho đến khi gia đình hài lòng.',
+    name: '4. Chỉnh sửa theo góp ý',
+    text: 'Bạn xem phương án và góp ý để Gia Khánh chỉnh sửa.',
+    get: 'Phương án đã chỉnh sửa',
   },
   {
-    name: 'Ký hợp đồng và chốt hồ sơ',
-    text: 'Hợp đồng ghi rõ giá trị, tiến độ và những gì bạn nhận được. Bàn giao hồ sơ thiết kế hoàn chỉnh.',
+    name: '5. Ký hợp đồng & chốt hồ sơ',
+    text: 'Hợp đồng ghi rõ giá trị, tiến độ và những gì bạn nhận được. Hai bên chốt hồ sơ thiết kế.',
+    get: 'Hồ sơ thiết kế hoàn chỉnh',
   },
   {
-    name: 'Thi công và bảo hành (nếu chọn)',
-    text: 'Kỹ sư giám sát tại công trình, gửi ảnh tiến độ hằng ngày qua Zalo, nghiệm thu từng giai đoạn, bảo hành bằng văn bản.',
+    name: '6. Thi công & bảo hành (nếu chọn)',
+    text: 'Kỹ sư phụ trách giám sát tại công trình, gửi ảnh tiến độ hằng ngày qua Zalo, nghiệm thu từng giai đoạn cùng chủ nhà.',
+    get: 'Bảo hành bằng văn bản',
   },
 ];
 
+// Bỏ các câu còn [cần xác nhận] (số lần sửa, thi công theo bản vẽ nơi khác) để FAQPage JSON-LD không có chỗ trống.
 const faqs = [
   {
-    q: 'Gia Khánh có khảo sát miễn phí không?',
-    a: 'Có. Kỹ sư đến tận nơi khảo sát và gửi báo giá chi tiết miễn phí trong khu vực Hà Nội.',
+    q: 'Hồ sơ thiết kế gồm những bản vẽ gì?',
+    a: 'Hồ sơ gồm mặt bằng công năng, phối cảnh 3D ngoại thất và nội thất, hồ sơ kỹ thuật thi công và dự toán. Danh sách bản vẽ cụ thể được ghi rõ trong báo giá sau khi khảo sát.',
   },
-  // TODO: chưa có đơn giá thiết kế
-  { q: 'Phí thiết kế tính như thế nào?', a: `Báo giá cụ thể gửi sau khi khảo sát. ${company.priceNote}` },
   {
     q: 'Tôi chỉ cần thiết kế, không thi công có được không?',
-    a: 'Được. Bạn nhận hồ sơ thiết kế và có thể dùng để xin phép hoặc để nhà thầu khác báo giá. Nếu muốn, Gia Khánh có thể thi công theo đúng bản vẽ đó.',
+    a: 'Được. Bạn nhận hồ sơ thiết kế và dùng để xin phép hoặc nhờ nhà thầu khác báo giá. Nếu muốn, Gia Khánh có thể thi công theo đúng bản vẽ do mình thiết kế.',
   },
-  // TODO: chính sách miễn/giảm phí thiết kế, hỗ trợ xin phép — hiện khi daXacNhan
-  ...(daXacNhan
-    ? [
-        {
-          q: 'Ký thi công trọn gói có được miễn hoặc giảm phí thiết kế không?',
-          a: 'TODO: chính sách miễn/giảm phí thiết kế khi ký thi công.',
-        },
-      ]
-    : []),
   {
-    q: 'Tôi có được sửa bản vẽ không?',
-    a: 'Có. Bạn xem phương án và góp ý để Gia Khánh chỉnh sửa. Số lần chỉnh sửa ghi trong hợp đồng.',
+    q: 'Thiết kế mất bao lâu?',
+    a: 'Thời gian phụ thuộc diện tích, số tầng và độ phức tạp. Kỹ sư báo thời gian dự kiến sau buổi khảo sát.',
   },
-  { q: 'Thiết kế mất bao lâu?', a: 'Thời gian cụ thể tùy quy mô công trình và được ghi trong hợp đồng.' },
-  ...(daXacNhan
-    ? [{ q: 'Gia Khánh có hỗ trợ xin giấy phép xây dựng không?', a: 'TODO: phạm vi hỗ trợ xin giấy phép xây dựng.' }]
-    : []),
   {
-    q: 'Tôi ở xa, làm sao theo dõi công trình?',
-    a: 'Kỹ sư gửi ảnh và video tiến độ hằng ngày qua Zalo. Chủ nhà có thể đến công trình bất cứ lúc nào.',
+    q: 'Gia Khánh có hỗ trợ xin giấy phép xây dựng không?',
+    a: 'Cấp phép tùy quy mô và vị trí lô đất. Kỹ sư tư vấn các bước cần chuẩn bị sau khảo sát.',
+  },
+  {
+    q: 'Thiết kế nội thất và thiết kế kiến trúc khác nhau thế nào?',
+    a: 'Thiết kế kiến trúc quyết định hình khối, mặt bằng và mặt tiền của ngôi nhà. Thiết kế nội thất quyết định cách bố trí đồ đạc, vật liệu bề mặt và ánh sáng bên trong. Phần làm đồ nội thất theo bản vẽ xem tại trang Hoàn thiện & thi công nội thất.',
+  },
+  {
+    q: 'Gia Khánh có khảo sát miễn phí không?',
+    a: 'Có. Kiến trúc sư hoặc kỹ sư đến tận nơi khảo sát và gửi báo giá chi tiết miễn phí trong khu vực Hà Nội.',
   },
 ];
 ---
 
 <section class="section" data-reveal>
   <div class="container-page grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-    <div>
-      <h2 class="text-2xl font-bold md:text-3xl">Dịch vụ này dành cho ai</h2>
-      <Bullets
-        class="mt-6"
-        items={[
-          [
-            'Gia đình chuẩn bị xây nhà mới',
-            'trên đất đã có, cần bản vẽ để xin phép xây dựng và để nhà thầu báo giá.',
-          ],
-          ['Chủ nhà cũ muốn cải tạo:', 'đổi công năng, thêm tầng, mở rộng, làm mới mặt tiền.'],
-          ['Người mới mua nhà hoặc căn hộ', 'cần phương án bố trí và nội thất trước khi mua đồ.'],
-          ['Cửa hàng, văn phòng nhỏ', 'cần thiết kế lại không gian cho gọn và dễ dùng.'],
-        ]}
-      />
-      <p class="mt-6 leading-relaxed">
-        Bạn có thể thuê Gia Khánh chỉ thiết kế, hoặc thiết kế rồi thi công cùng một đơn vị.
+    <div class="max-w-prose">
+      <h2 class="text-2xl font-bold md:text-3xl">Thiết kế kiến trúc nhà ở gồm những gì?</h2>
+      <p class="mt-4 leading-relaxed">
+        Thiết kế kiến trúc nhà ở gồm bốn phần: mặt bằng công năng cho biết phòng nào nằm ở đâu, phối cảnh 3D cho bạn xem
+        nhà trước khi xây, hồ sơ kỹ thuật thi công giúp thợ làm đúng bản vẽ, và dự toán tính chi phí theo bản vẽ đó. Nội
+        thất làm tiếp bên trong.
+      </p>
+      <p class="mt-4 leading-relaxed text-muted">
+        Nhà ống và nhà trong ngõ ở Hà Nội thường hẹp và sâu, ít mặt thoáng. Với thiết kế nhà phố Hà Nội và thiết kế nhà
+        ống, kiến trúc sư ưu tiên lấy sáng, thông gió và tận dụng từng mét vuông. Thiết kế nội thất nhà ở trong hồ sơ gồm
+        phối cảnh nội thất. Phần thi công nội thất tính riêng.
+      </p>
+      <p class="mt-4 leading-relaxed">
+        Muốn biết trước những điều cần cân nhắc khi vẽ nhà phố, đọc cẩm nang{' '}
+        <a href="/cam-nang/luu-y-khi-thiet-ke-nha-pho/" class={link}>Lưu ý khi thiết kế nhà phố</a>.
       </p>
     </div>
     <ImageSlot dir="thiet-ke-cho-ai" alt="Phối cảnh 3D biệt thự 2 tầng hiện đại có gara" />
@@ -111,109 +146,209 @@ const faqs = [
 
 <section class="section bg-primary-light" data-reveal>
   <div class="container-page">
-    <SectionHeading title="Hồ sơ thiết kế bạn nhận được" />
-    <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-      <ul class="grid gap-6 sm:grid-cols-2">
-        {
-          deliverables.map((d, i) => (
-            <li class="card p-6" data-reveal style={`--d:${(i % 2) * 90}ms`}>
-              <h3 class="font-semibold text-primary">{d.name}</h3>
-              <p class="mt-2 leading-relaxed text-muted">{d.text}</p>
-            </li>
-          ))
-        }
-      </ul>
+    <SectionHeading
+      title="Hồ sơ thiết kế bạn nhận được gồm và không gồm những gì?"
+      subtitle="Hồ sơ thiết kế gồm mặt bằng công năng, phối cảnh 3D ngoại thất và nội thất, hồ sơ kỹ thuật thi công và dự toán."
+    />
+    <div class="overflow-x-auto rounded-lg border border-line bg-white">
+      <table class="w-full min-w-[640px] border-collapse">
+        <thead>
+          <tr>
+            <th class={th} scope="col">Hạng mục</th>
+            <th class={th} scope="col">Trong hồ sơ thiết kế</th>
+            <th class={th} scope="col">Nội dung</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            deliverables.map((d) => (
+              <tr>
+                <th class={`${td} text-left font-semibold`} scope="row">{d.item}</th>
+                <td class={`${td} font-semibold text-primary`}>{d.inc}</td>
+                <td class={`${td} text-muted`}>
+                  {d.item === 'Thi công công trình' ? (
+                    <>
+                      Tính riêng nếu bạn chọn Gia Khánh thi công, xem{' '}
+                      <a href="/dich-vu/xay-nha-tron-goi/" class={link}>Xây nhà trọn gói</a>.
+                    </>
+                  ) : (
+                    d.text
+                  )}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="mx-auto mt-10 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <p class="max-w-prose leading-relaxed text-muted">
+        Hồ sơ xin phép, bản vẽ kết cấu và bản vẽ điện nước được trao đổi và ghi rõ trong báo giá sau khi khảo sát. Danh
+        sách bản vẽ cụ thể nằm trong báo giá và hợp đồng.
+      </p>
       <ImageSlot dir="thiet-ke-ho-so" alt="Phối cảnh 3D nhìn từ trên cao của biệt thự 3 tầng mái ngói xám" />
     </div>
-    <p class="mt-8 text-center leading-relaxed text-muted">
-      Số lượng bản vẽ và số lần chỉnh sửa cụ thể được ghi trong hợp đồng thiết kế.
-    </p>
   </div>
 </section>
 
 <section class="section" data-reveal>
   <div class="container-page">
-    <SectionHeading title="Phong cách và loại hình" />
-    <div class="mx-auto mb-12 grid max-w-4xl gap-6 md:grid-cols-2 md:gap-8">
-      <p class="leading-relaxed">
-        <strong>Loại hình nhà:</strong> nhà phố, nhà ống, nhà cấp 4, biệt thự nhỏ, nhà cải tạo; nội thất cho nhà ở, căn
-        hộ, cửa hàng và văn phòng nhỏ.
-      </p>
-      <p class="leading-relaxed">
-        <strong>Phong cách:</strong> hiện đại, tân cổ điển. Nhà ống và nhà trong ngõ ở Hà Nội thường hẹp và sâu, ít mặt
-        thoáng, nên phương án thiết kế ưu tiên lấy sáng, thông gió và tận dụng từng mét vuông.
-      </p>
+    <SectionHeading title="Nên thuê thiết kế riêng hay thiết kế và thi công một đầu mối?" />
+    <p class="mx-auto max-w-prose leading-relaxed">
+      Thuê thiết kế riêng và thiết kế thi công một đầu mối đều làm được, khác nhau ở số đầu mối bạn phải làm việc cùng.
+      Thuê riêng cho bạn nhiều lựa chọn nhà thầu để so báo giá. Một đầu mối giữ bản vẽ, dự toán và thợ trong một đội. Gia
+      Khánh nhận cả hai cách.
+    </p>
+    <div class="mt-10 overflow-x-auto rounded-lg border border-line bg-white">
+      <table class="w-full min-w-[640px] border-collapse">
+        <thead>
+          <tr>
+            <th class={th} scope="col"><span class="sr-only">Tiêu chí</span></th>
+            <th class={th} scope="col">Thuê thiết kế riêng, nhà thầu khác thi công</th>
+            <th class={th} scope="col">Thiết kế và thi công cùng một đơn vị</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            compare.map((c) => (
+              <tr>
+                <th class={`${td} text-left font-semibold`} scope="row">{c.row}</th>
+                <td class={`${td} text-muted`}>{c.sep}</td>
+                <td class={`${td} text-muted`}>{c.one}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
     </div>
-    <Gallery images={renders} alt="Phối cảnh thiết kế của Gia Khánh" />
-  </div>
-</section>
-
-<ServiceSteps title="Quy trình thiết kế" steps={steps} />
-
-<section class="section" data-reveal>
-  <div class="container-page grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-    <ImageSlot
-      dir="thiet-ke-thi-cong"
-      alt="Phối cảnh 3D nhà 2 tầng có tầng trệt kinh doanh"
-    />
-    <div>
-      <h2 class="text-2xl font-bold md:text-3xl">Thiết kế và thi công: một đầu mối</h2>
-      <p class="mt-4 leading-relaxed text-muted">
-        Nhiều gia đình thuê một nơi vẽ, một nơi xây, rồi mất thời gian giải thích lại bản vẽ khi thi công không khớp.
-        Nếu chọn cả hai ở Gia Khánh:
+    <div class="mt-10 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <ImageSlot dir="thiet-ke-thi-cong" alt="Phối cảnh 3D nhà 2 tầng có tầng trệt kinh doanh" />
+      <p class="max-w-prose leading-relaxed">
+        Bạn có thể chỉ lấy hồ sơ thiết kế rồi tự chọn đơn vị thi công. Muốn thiết kế và thi công trọn gói ở cùng một nơi,
+        xem <a href="/dich-vu/xay-nha-tron-goi/" class={link}>Xây nhà trọn gói</a>. Phần thi công nội thất theo bản vẽ
+        nằm ở trang
+        <a href="/dich-vu/hoan-thien-thi-cong-noi-that/" class={link}>Hoàn thiện & thi công nội thất</a>.
       </p>
-      <Bullets
-        class="mt-6"
-        items={[
-          'Người vẽ và người thi công làm việc trong cùng một đội, bản vẽ được hiểu đúng ngay từ đầu.',
-          'Dự toán lấy trực tiếp từ bản vẽ, vật tư ghi rõ chủng loại, không phát sinh khi chưa được chủ nhà đồng ý.',
-          'Một đầu mối liên hệ từ khi lên ý tưởng đến khi bàn giao.',
-        ]}
-      />
-      <p class="mt-6 leading-relaxed">Bạn cũng có thể chỉ lấy hồ sơ thiết kế rồi tự chọn đơn vị thi công.</p>
     </div>
   </div>
 </section>
 
 <section class="section bg-primary-light" data-reveal>
   <div class="container-page">
-    <SectionHeading title="Cách chọn phong cách" subtitle="Theo ngân sách, hướng nhà và nhu cầu của gia đình." />
-    <ul class="grid gap-6 md:grid-cols-2 md:gap-8">
-      {
-        [
+    <SectionHeading title="Phí thiết kế tính thế nào?" />
+    <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+      <p>
+        Phí thiết kế được báo sau khi kiến trúc sư hoặc kỹ sư khảo sát, vì còn phụ thuộc diện tích sàn, số tầng, độ phức
+        tạp của công trình và việc bạn cần thiết kế kiến trúc hay cả nội thất.
+      </p>
+      <p>
+        Khi báo phí, Gia Khánh ghi rõ trong báo giá những gì hồ sơ thiết kế bao gồm, để bạn đối chiếu với bảng ở phần
+        trên. Chi phí xây dựng tính riêng theo <a href="/bao-gia/" class={link}>bảng báo giá xây nhà</a>, kèm ghi chú sau
+        về đơn giá xây dựng:
+      </p>
+      <p class="rounded-lg bg-white p-4 font-medium">{company.priceNote}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Quy trình thiết kế tại Gia Khánh gồm những bước nào?" />
+    <p class="mx-auto max-w-prose leading-relaxed">
+      Quy trình thiết kế tại Gia Khánh đi từ tư vấn, khảo sát miễn phí, thiết kế và báo giá, chỉnh sửa theo góp ý, ký hợp
+      đồng rồi chốt hồ sơ. Kiến trúc sư hoặc kỹ sư đến tận nơi đo đạc trước khi vẽ, và bạn góp ý trực tiếp trên mặt bằng
+      và phối cảnh.
+    </p>
+    <div class="mt-10 overflow-x-auto rounded-lg border border-line bg-white">
+      <table class="w-full min-w-[640px] border-collapse">
+        <thead>
+          <tr>
+            <th class={th} scope="col">Bước</th>
+            <th class={th} scope="col">Việc làm</th>
+            <th class={th} scope="col">Bạn nhận được</th>
+          </tr>
+        </thead>
+        <tbody>
           {
-            name: 'Ngân sách',
-            text: 'Đường nét đơn giản thường dễ kiểm soát chi phí hơn. Phong cách nhiều chi tiết (phào chỉ, cột, ban công cầu kỳ) tốn thêm vật tư và công thợ. Nói rõ ngân sách để kiến trúc sư đề xuất phương án phù hợp.',
-          },
-          {
-            name: 'Hướng nhà',
-            text: 'Hướng nắng và hướng gió ảnh hưởng đến vị trí phòng ngủ, bếp, giếng trời và cửa sổ. Nhà hướng Tây cần chú ý chống nóng.',
-          },
-          {
-            name: 'Nhu cầu gia đình',
-            text: 'Số người ở, có người cao tuổi hay trẻ nhỏ, có cần chỗ kinh doanh tầng trệt hay không. Những điều này quyết định cầu thang, số phòng và cách chia tầng.',
-          },
-          {
-            name: 'Nội thất',
-            text: 'Chọn theo thói quen dùng nhà. Chỗ nào ít dùng thì không cần làm cầu kỳ.',
-          },
-        ].map((c, i) => (
-          <li class="card p-6" data-reveal style={`--d:${(i % 2) * 90}ms`}>
-            <h3 class="font-semibold text-primary">{c.name}</h3>
-            <p class="mt-2 leading-relaxed text-muted">{c.text}</p>
-          </li>
-        ))
-      }
-    </ul>
-    <p class="mt-8 text-center leading-relaxed">
-      Chưa biết hợp phong cách nào? Cứ mô tả cách gia đình sinh hoạt, Gia Khánh sẽ đề xuất trong buổi tư vấn.
+            steps.map((s) => (
+              <tr>
+                <th class={`${td} text-left font-semibold`} scope="row">{s.name}</th>
+                <td class={`${td} text-muted`}>{s.text}</td>
+                <td class={`${td} text-muted`}>{s.get}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="mx-auto mt-10 max-w-prose leading-relaxed">
+      Nếu bạn cần thiết kế nhà Đông Anh, trụ sở Gia Khánh nằm ngay tại xã Đông Anh, nên kiến trúc sư hoặc kỹ sư đến khảo
+      sát tận nơi khá thuận tiện. Gửi địa chỉ qua <a href="#bao-gia" class={link}>form báo giá</a> hoặc Zalo, Gia Khánh
+      sẽ xác nhận lịch.
     </p>
   </div>
 </section>
 
-<Faq items={faqs} />
+<section class="section bg-primary-light" data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Chọn phong cách theo ngân sách, hướng nhà và nhu cầu gia đình thế nào?" />
+    <div class="mx-auto max-w-prose">
+      <p class="leading-relaxed">
+        Chọn phong cách nhà theo thứ tự ngân sách, hướng nhà, nhu cầu gia đình, rồi mới đến kiểu dáng. Gia Khánh đã thi
+        công nhiều kiểu nhà như hiện đại, tân cổ điển, mái Thái, mái Nhật. Bạn không cần biết trước tên phong cách, chỉ
+        cần mô tả cách gia đình sinh hoạt.
+      </p>
+      <Bullets
+        class="mt-6"
+        items={[
+          [
+            'Ngân sách:',
+            'đường nét đơn giản thường dễ kiểm soát chi phí hơn. Phong cách nhiều chi tiết (phào chỉ, cột, ban công cầu kỳ) tốn thêm vật tư và công thợ. Nói rõ ngân sách để kiến trúc sư đề xuất phương án phù hợp.',
+          ],
+          [
+            'Hướng nhà:',
+            'hướng nắng và hướng gió ảnh hưởng đến vị trí phòng ngủ, bếp, giếng trời và cửa sổ. Nhà hướng Tây cần chú ý chống nóng.',
+          ],
+          [
+            'Nhu cầu gia đình:',
+            'số người ở, có người cao tuổi hay trẻ nhỏ, có cần chỗ kinh doanh tầng trệt hay không quyết định cầu thang, số phòng và cách chia tầng.',
+          ],
+          [
+            'Nội thất:',
+            'tủ bếp và tủ quần áo nên đo theo chiều cao và thói quen của người dùng chính trong nhà.',
+          ],
+        ]}
+      />
+      <p class="mt-6 leading-relaxed text-muted">
+        Ảnh các công trình đã thi công xem tại trang <a href="/du-an/" class={link}>Công trình</a>. Các điểm cần cân nhắc
+        thêm có trong cẩm nang
+        <a href="/cam-nang/luu-y-khi-thiet-ke-nha-pho/" class={link}>Lưu ý khi thiết kế nhà phố</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-reveal>
+  <div class="container-page">
+    <SectionHeading title="Có cần thuê thiết kế khi xây nhà dưới 3 tầng không?" />
+    <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+      <p>
+        Việc có cần thuê thiết kế khi xây nhà dưới 3 tầng tùy quy mô công trình và quy định hiện hành tại thời điểm xây,
+        nên chưa có câu trả lời chung cho mọi nhà. Sau khi khảo sát khu đất, kỹ sư Gia Khánh tư vấn cho trường hợp của
+        bạn.
+      </p>
+      <p class="text-muted">
+        Quy định về thiết kế và cấp phép thay đổi theo từng thời kỳ. Bạn xem mục quy định cấp phép trong cẩm nang
+        <a href="/cam-nang/luu-y-khi-thiet-ke-nha-pho/" class={link}>Lưu ý khi thiết kế nhà phố</a> và đối chiếu với cơ
+        quan cấp phép tại địa phương trước khi quyết định. Có bản vẽ thì các nhà thầu báo giá trên cùng một cơ sở.
+      </p>
+    </div>
+  </div>
+</section>
+
+<Faq title="Câu hỏi thường gặp về thiết kế kiến trúc nhà ở" items={faqs} />
 
 <ServiceCta
   title="Bạn đang có ý tưởng cho ngôi nhà?"
-  subtitle="Để lại số điện thoại. Gia Khánh gọi lại tư vấn và hẹn khảo sát miễn phí tại nhà bạn."
+  subtitle="Để lại số điện thoại, Gia Khánh gọi lại tư vấn và hẹn khảo sát miễn phí tại nhà bạn. Bạn mô tả cách gia đình sinh hoạt, sau đó Gia Khánh gửi phương án và báo giá."
 />

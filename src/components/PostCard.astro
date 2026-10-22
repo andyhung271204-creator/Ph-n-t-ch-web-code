@@ -13,7 +13,7 @@ interface Props {
 const { post, index = 0, large = false, class: cls } = Astro.props;
 ---
 
-<a href={`/cam-nang/${post.slug}`} class:list={['card group flex flex-col overflow-hidden', cls]} data-reveal style={`--d:${index * 90}ms`}>
+<a href={`/cam-nang/${post.slug}/`} class:list={['card group flex flex-col overflow-hidden', cls]} data-reveal style={`--d:${index * 90}ms`}>
   <div class:list={['overflow-hidden bg-primary-light', large ? 'aspect-[3/2]' : 'aspect-[4/3]']}>
     <Image
       src={post.cover}

@@ -45,7 +45,7 @@ Công ty TNHH Xây dựng và Đầu tư Gia Khánh đặt trụ sở tại Đô
 
 Đội ngũ Gia Khánh có hơn 10 người, gồm kỹ sư xây dựng, kiến trúc sư và quản lý thi công, do ông Đỗ Như Duy đứng đầu. Đội ngũ đã có trên 10 năm kinh nghiệm thi công các công trình nhà ở dân dụng tại Hà Nội. Với đa số gia đình, xây hay sửa một ngôi nhà là khoản đầu tư lớn — vì vậy mọi hạng mục đều được báo giá chi tiết, ký hợp đồng rõ ràng và cập nhật tiến độ thường xuyên cho chủ nhà.
 
-> ⚠ Số năm kinh nghiệm: file `.docx` ghi **7 năm**, còn `company.md` và website đang ghi **trên 10 năm**. Cần công ty chốt một con số. Đây là kinh nghiệm của **đội ngũ**, không phải của công ty (công ty thành lập 2026).
+> Số năm kinh nghiệm: **trên 10 năm** (người dùng chốt 2026-10-21; file `.docx` cũ ghi 7 năm là bản lỗi thời). Đây là kinh nghiệm của **đội ngũ**, không phải của công ty (công ty thành lập 2026).
 
 ### 1.4. Định hướng
 
@@ -144,7 +144,7 @@ Cam kết:
 | Quy mô | Hơn 10 người | Số lượng theo từng vị trí `[cần bổ sung]` |
 | Cơ cấu | Kỹ sư xây dựng, kiến trúc sư, quản lý thi công | Đội thợ trực tiếp / thầu phụ `[cần bổ sung]` |
 | Lãnh đạo | Ông Đỗ Như Duy | Chức danh, tiểu sử, ảnh `[cần bổ sung]` |
-| Kinh nghiệm | Đội ngũ thi công nhà ở dân dụng tại Hà Nội (7 hay 10+ năm — xem ⚠ mục 1.3) | — |
+| Kinh nghiệm | Đội ngũ thi công nhà ở dân dụng tại Hà Nội (trên 10 năm — đã chốt, xem mục 1.3) | — |
 | Chứng chỉ hành nghề | — | `[cần bổ sung]` (không tự ghi) |
 
 Mô hình vận hành: mỗi công trình có **một kỹ sư phụ trách**, giám sát tại chỗ, báo cáo ảnh/video hằng ngày qua Zalo.
@@ -217,7 +217,7 @@ Hiện **chưa có** thông tin hạng mục, địa điểm, quy mô, năm cho 
 ## 5. Danh sách việc cần công ty xác nhận / bổ sung
 
 1. Chức danh người đại diện (Giám đốc?).
-2. Số năm kinh nghiệm đội ngũ: 7 hay trên 10 năm.
+2. ~~Số năm kinh nghiệm đội ngũ~~ — đã chốt trên 10 năm.
 3. Khẩu hiệu dùng chính thức (1 trong 3).
 4. Giờ làm việc; thời gian phản hồi (2 giờ?).
 5. 3 mức giá xây nhà còn lại và đơn giá thiết kế.

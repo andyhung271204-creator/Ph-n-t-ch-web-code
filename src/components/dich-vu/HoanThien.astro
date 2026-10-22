@@ -1,5 +1,5 @@
 ---
-// Nội dung: noi-dung/dich-vu-hoan-thien-thi-cong-noi-that.md
+// Nội dung: noi-dung/dich-vu-hoan-thien-thi-cong-noi-that.md (brief SEO: noi-dung/seo/brief/hoan-thien-thi-cong-noi-that.md)
 import SectionHeading from '../SectionHeading.astro';
 import Bullets from '../Bullets.astro';
 import InfoList from '../InfoList.astro';
@@ -9,108 +9,92 @@ import Faq from '../Faq.astro';
 import ServiceCta from '../ServiceCta.astro';
 import { company, daXacNhan, warranty } from '../../data/company';
 
+const th = 'bg-primary-light p-4 text-left font-semibold';
+const td = 'border-t border-line p-4 align-top';
+const link = 'font-semibold text-primary underline hover:text-primary-dark';
+
+// TODO: ai mua vật tư khi nhận hoàn thiện riêng lẻ / thi công nội thất chưa xác nhận, dùng cách nói trung tính
 const compare = [
   {
-    name: 'Hoàn thiện',
-    dir: 'hoan-thien-so-sanh',
-    alt: 'Phối cảnh biệt thự 2 tầng mái ngói, cửa gỗ và ban công',
-    what: 'Những hạng mục gắn liền với ngôi nhà, làm sau phần thô để nhà có thể sử dụng.',
-    examples: 'Ốp lát, sơn bả, trần thạch cao, cửa nhôm kính, lan can, mái che, giếng trời, lắp thiết bị.',
-    when: 'Nhà vừa xong phần thô, hoặc nhà cũ cần làm mới lớp hoàn thiện.',
+    row: 'Gồm',
+    finishing: 'Ốp lát, sơn bả, trần thạch cao, cửa nhôm kính, lan can, mái che, giếng trời, lắp thiết bị.',
+    furniture: 'Tủ bếp, tủ quần áo, đồ gỗ theo thiết kế.',
   },
   {
-    name: 'Thi công nội thất',
-    dir: 'noi-that-so-sanh',
-    alt: 'Phối cảnh hiên nghỉ và quầy bar ngoài trời của biệt thự hiện đại',
-    what: 'Đồ đạc làm theo kích thước căn nhà của bạn, đặt vào sau khi hoàn thiện xong.',
-    examples: 'Tủ bếp, tủ quần áo, đồ gỗ theo thiết kế.',
-    when: 'Khi đã chốt công năng từng phòng, hoặc muốn đồ đạc khớp từng góc nhà.',
-  },
-];
-
-const finishing: [string, string][] = [
-  ['Ốp lát:', 'lát nền, ốp tường, ốp nhà vệ sinh, bếp.'],
-  ['Sơn bả:', 'xử lý bề mặt, bả, sơn nội ngoại thất.'],
-  ['Trần thạch cao:', 'trần phẳng, trần giật cấp, thay trần cũ.'],
-  ['Cửa nhôm kính, lan can:', 'đo đạc, chế tạo, lắp đặt.'],
-  ['Mái che, giếng trời.', ''],
-  ['Lắp đặt thiết bị:', 'thiết bị vệ sinh, thiết bị điện, đèn chiếu sáng.'],
-];
-
-const packs = [
-  {
-    name: 'Phần thô + nhân công hoàn thiện',
-    gk: 'Nhân công ốp lát, sơn bả, lắp đặt thiết bị.',
-    owner: 'Vật tư hoàn thiện: gạch, sơn, cửa, thiết bị vệ sinh, thiết bị điện.',
+    row: 'Khi nào cần',
+    finishing: 'Nhà vừa xong phần thô, hoặc nhà cũ cần làm mới lớp hoàn thiện.',
+    furniture: 'Khi đã chốt công năng từng phòng, hoặc muốn đồ đạc khớp từng góc nhà.',
   },
   {
-    name: 'Trọn gói (chìa khóa trao tay)',
-    gk: 'Toàn bộ vật tư và nhân công hoàn thiện, theo đúng thương hiệu trong bảng vật tư.',
-    owner: 'Nội thất rời, điều hòa, bình nóng lạnh.',
+    row: 'Ai lo vật tư',
+    finishing:
+      'Đi kèm gói xây nhà thì theo gói đã chọn, xem phần chọn mức vật tư bên dưới. Vật tư luôn được ghi rõ chủng loại trong dự toán và hợp đồng.',
+    furniture: 'Ghi rõ trong dự toán và hợp đồng.',
   },
 ];
 
 const steps = [
   {
-    name: 'Tiếp nhận và tư vấn',
+    name: 'Tiếp nhận & tư vấn',
     text: `Bạn gọi hotline, nhắn Zalo hoặc để lại số điện thoại. Gia Khánh gọi lại tư vấn sơ bộ${daXacNhan ? ' trong 2 giờ làm việc' : ''}.`,
   },
   {
-    name: 'Khảo sát (miễn phí)',
-    text: 'Kỹ sư đến tận nơi, đo đạc, xem hiện trạng phần thô, ghi nhận nhu cầu và ngân sách.',
+    name: 'Khảo sát hiện trạng (miễn phí)',
+    text: 'Kỹ sư đến tận nơi, đo đạc, xem hiện trạng, ghi nhận nhu cầu và ngân sách.',
   },
   {
-    name: 'Thiết kế và báo giá',
-    text: 'Bạn nhận phương án (nếu có) và bảng dự toán từng hạng mục, vật tư ghi rõ chủng loại. Đây là lúc chốt vật liệu.',
+    name: 'Thiết kế & báo giá chi tiết',
+    text: 'Gia Khánh gửi phương án thiết kế (nếu có) và dự toán từng hạng mục. Đây là lúc chốt vật liệu.',
   },
-  { name: 'Ký hợp đồng', text: 'Hợp đồng ghi giá trị, tiến độ theo mốc, thanh toán theo giai đoạn và chế độ bảo hành.' },
+  { name: 'Ký hợp đồng', text: 'Hai bên chốt giá trị, tiến độ theo mốc, thanh toán theo giai đoạn, bảo hành.' },
   {
-    name: 'Thi công và giám sát',
+    name: 'Thi công & giám sát',
     text: 'Kỹ sư phụ trách có mặt tại công trình, gửi ảnh tiến độ hằng ngày qua Zalo, nghiệm thu từng giai đoạn cùng bạn.',
   },
-  { name: 'Bàn giao và bảo hành', text: 'Nghiệm thu tổng thể, vệ sinh công trình, bàn giao hồ sơ, kích hoạt bảo hành.' },
+  { name: 'Bàn giao & bảo hành', text: 'Nghiệm thu tổng thể, vệ sinh công trình, bàn giao hồ sơ, kích hoạt bảo hành.' },
 ];
 
+// Câu có placeholder trong bản nháp (thiết kế ngoài, nhà đang ở, mất bao lâu) đã đổi sang bản trung tính, không còn chỗ trống
 const faqs = [
   {
-    q: 'Gia Khánh có khảo sát và báo giá miễn phí không?',
-    a: 'Có. Kỹ sư đến tận nơi khảo sát và gửi báo giá chi tiết miễn phí trong khu vực Hà Nội.',
+    q: 'Hoàn thiện nhà khác thi công nội thất rời ở đâu?',
+    a: 'Hoàn thiện là ốp lát, sơn bả, trần, cửa, thiết bị, gắn liền với ngôi nhà và làm trước. Nội thất rời là tủ bếp, tủ quần áo, đồ gỗ làm theo kích thước nhà, đặt vào sau.',
   },
   {
-    q: 'Tôi nên chọn gói "Phần thô + nhân công hoàn thiện" hay "Trọn gói"?',
-    a: 'Nếu bạn muốn tự chọn gạch, sơn, cửa, thiết bị vệ sinh theo sở thích, chọn gói phần thô + nhân công hoàn thiện. Nếu muốn một đầu mối lo cả vật tư, chọn trọn gói. Kỹ sư sẽ so sánh hai cách theo ngân sách của bạn khi khảo sát.',
-  },
-  // TODO: xác nhận chính sách nhận thi công theo thiết kế bên ngoài
-  {
-    q: 'Tôi đã có thiết kế nội thất ở nơi khác, Gia Khánh có thi công theo được không?',
-    a: 'Có thể. Bạn gửi bản vẽ, kỹ sư đối chiếu với hiện trạng và báo giá theo bản vẽ đó.',
+    q: 'Xong phần thô, nên hoàn thiện cùng nhà thầu cũ hay thuê đơn vị khác?',
+    a: 'Cùng một nhà thầu thì chỉ có một đầu mối. Nếu phần thô do đơn vị khác làm, kỹ sư xem hiện trạng khi khảo sát miễn phí rồi báo bạn hạng mục nào cần xử lý trước.',
   },
   {
-    q: 'Chưa có thiết kế thì sao?',
-    a: 'Gia Khánh có dịch vụ thiết kế kiến trúc và nội thất, xem trang Thiết kế kiến trúc & nội thất.',
-  },
-  // TODO: thời gian thi công hoàn thiện tham khảo
-  {
-    q: 'Hoàn thiện mất bao lâu?',
-    a: 'Phụ thuộc diện tích, số tầng và mức độ hoàn thiện. Tiến độ cụ thể theo mốc được ghi trong hợp đồng.',
+    q: 'Nên chọn gói phần thô + nhân công hoàn thiện hay trọn gói?',
+    a: 'Muốn tự chọn gạch, sơn, cửa, thiết bị thì chọn phần thô + nhân công hoàn thiện. Muốn một đầu mối lo cả vật tư thì chọn trọn gói. So sánh hai gói có ở trang Xây nhà trọn gói.',
   },
   {
-    q: 'Có phát sinh chi phí trong lúc thi công không?',
-    a: 'Chỉ phát sinh khi bạn thay đổi yêu cầu. Mọi thay đổi đều được báo giá và chỉ làm khi bạn đồng ý bằng văn bản hoặc tin nhắn.',
+    q: 'Tôi đã có thiết kế ở nơi khác, Gia Khánh thi công theo được không?',
+    a: 'Bạn gửi bản vẽ để kỹ sư xem và tư vấn cách làm phù hợp. Chưa có thiết kế thì xem trang Thiết kế kiến trúc & nội thất.',
   },
   {
     q: 'Nhà tôi đang ở, có làm được không?',
-    a: 'Với nhà cũ cần sửa lớp hoàn thiện, kỹ sư sẽ sắp xếp trình tự thi công theo từng khu vực để hạn chế ảnh hưởng sinh hoạt gia đình.',
+    a: 'Tùy phạm vi sửa và hiện trạng. Kỹ sư xem hiện trạng khi khảo sát miễn phí rồi cho bạn biết hạng mục nào làm được khi nhà vẫn có người ở.',
+  },
+  {
+    q: 'Hoàn thiện mất bao lâu?',
+    a: 'Thời gian phụ thuộc diện tích, số tầng và mức độ hoàn thiện. Tiến độ theo từng mốc được ghi trong hợp đồng.',
   },
   {
     q: 'Tôi ở xa, làm sao theo dõi công trình?',
-    a: 'Kỹ sư gửi ảnh và video tiến độ hằng ngày qua Zalo. Bạn có thể đến công trình bất cứ lúc nào.',
+    a: 'Kỹ sư gửi ảnh tiến độ hằng ngày qua Zalo và nghiệm thu từng giai đoạn cùng bạn.',
+  },
+  {
+    q: 'Giá hoàn thiện một m² là bao nhiêu?',
+    a: 'Gia Khánh báo giá từng hạng mục sau khi khảo sát, chưa công bố đơn giá hoàn thiện theo m². Bạn để lại số điện thoại, kỹ sư hẹn khảo sát miễn phí rồi gửi dự toán chi tiết.',
   },
 ];
 
 // Hoàn thiện, điện nước lấy từ bảng bảo hành chung; nội thất chưa có mốc
 const warrantyRows = [
-  ...warranty.filter((w) => w.item.startsWith('Hoàn thiện') || w.item === 'Điện nước').map((w) => ({ item: w.item, value: w.period })),
+  ...warranty
+    .filter((w) => w.item.startsWith('Hoàn thiện') || w.item === 'Điện nước')
+    .map((w) => ({ item: w.item, value: w.period })),
   { item: 'Đồ gỗ nội thất', value: 'Đang cập nhật' }, // TODO: thời hạn bảo hành nội thất
 ];
 ---
@@ -118,67 +102,59 @@ const warrantyRows = [
 <section class="section" data-reveal>
   <div class="container-page">
     <SectionHeading
-      title="Hoàn thiện và nội thất khác nhau thế nào"
-      subtitle="Hai phần việc này hay bị nhầm, nên nói rõ ngay từ đầu."
+      title="Hoàn thiện nhà và thi công nội thất khác nhau thế nào?"
+      subtitle="Hoàn thiện nhà là những hạng mục gắn liền với ngôi nhà, làm sau phần thô để nhà dùng được, như ốp lát, sơn bả, trần và cửa. Thi công nội thất là đồ gỗ làm theo kích thước căn nhà của bạn, như tủ bếp và tủ quần áo, đặt vào sau khi hoàn thiện xong."
     />
-    <ul class="grid gap-6 md:grid-cols-2 md:gap-8">
-      {
-        compare.map((c, i) => (
-          <li class="card overflow-hidden" data-reveal style={`--d:${i * 90}ms`}>
-            <ImageSlot dir={c.dir} alt={c.alt} class="aspect-[16/9]" />
-            <div class="p-6">
-              <h3 class="text-lg font-semibold text-primary">{c.name}</h3>
-              <dl class="mt-4 space-y-4 leading-relaxed">
-                <div>
-                  <dt class="text-sm font-semibold">Là gì</dt>
-                  <dd class="mt-1 text-muted">{c.what}</dd>
-                </div>
-                <div>
-                  <dt class="text-sm font-semibold">Ví dụ</dt>
-                  <dd class="mt-1 text-muted">{c.examples}</dd>
-                </div>
-                <div>
-                  <dt class="text-sm font-semibold">Khi nào cần</dt>
-                  <dd class="mt-1 text-muted">{c.when}</dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
-    <p class="mt-8 text-center leading-relaxed">
-      Bạn có thể chọn một trong hai, hoặc nhờ Gia Khánh làm liền mạch để chỉ làm việc với một đầu mối.
+    <div class="overflow-x-auto rounded-lg border border-line bg-white">
+      <table class="w-full min-w-[640px] border-collapse">
+        <thead>
+          <tr>
+            <th class={th} scope="col"><span class="sr-only">Tiêu chí</span></th>
+            <th class={th} scope="col">Hoàn thiện nhà</th>
+            <th class={th} scope="col">Thi công nội thất rời</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            compare.map((c) => (
+              <tr>
+                <th class={`${td} text-left font-semibold`} scope="row">{c.row}</th>
+                <td class={`${td} text-muted`}>{c.finishing}</td>
+                <td class={`${td} text-muted`}>{c.furniture}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="mx-auto mt-8 max-w-prose text-center leading-relaxed">
+      Bạn có thể chọn một trong hai, hoặc nhờ Gia Khánh làm liền mạch từ hoàn thiện đến đồ gỗ để chỉ làm việc với một đầu
+      mối.
     </p>
   </div>
 </section>
 
 <section class="section bg-primary-light" data-reveal>
-  <div class="container-page grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-    <ImageSlot dir="hoan-thien-cho-ai" alt="Phối cảnh nhà 3 tầng hiện đại, mặt tiền ốp đá vân trắng" />
-    <div>
-      <h2 class="text-2xl font-bold md:text-3xl">Dịch vụ dành cho ai</h2>
-      <Bullets
-        class="mt-6"
-        items={[
-          ['Gia đình vừa xây xong phần thô', 'và cần một đơn vị hoàn thiện nhà.'],
-          ['Người mua căn hộ hoặc nhà', 'cần hoàn thiện, bố trí nội thất theo ý mình.'],
-          ['Chủ nhà cũ', 'muốn làm mới sàn, trần, tường, cửa, tủ bếp mà không phải xây lại.'],
-          ['Chủ cửa hàng, văn phòng nhỏ', 'cần hoàn thiện mặt bằng kinh doanh.'],
-        ]}
-      />
-    </div>
-  </div>
-</section>
-
-<section class="section" data-reveal>
   <div class="container-page">
-    <SectionHeading title="Hạng mục Gia Khánh nhận thi công" />
+    <SectionHeading
+      title="Gia Khánh nhận thi công những hạng mục hoàn thiện, nội thất nào?"
+      subtitle="Gia Khánh nhận chín nhóm hạng mục: sáu nhóm hoàn thiện (ốp lát, sơn bả, trần thạch cao, cửa và lan can, mái che và giếng trời, lắp đặt thiết bị) và ba nhóm nội thất (tủ bếp, tủ quần áo, đồ gỗ theo thiết kế). Bạn chọn một vài hạng mục hoặc toàn bộ."
+    />
     <div class="grid gap-8 md:grid-cols-2 lg:gap-12">
       <div data-reveal>
         <ImageSlot dir="hoan-thien-hang-muc" alt="Phối cảnh biệt thự tân cổ điển 2 tầng lên đèn" />
         <h3 class="mt-6 text-xl font-bold">Hoàn thiện</h3>
-        <Bullets class="mt-4" items={finishing.map(([b, t]) => (t ? [b, t] : b))} />
+        <Bullets
+          class="mt-4"
+          items={[
+            ['Ốp lát:', 'lát nền, ốp tường, ốp nhà vệ sinh, bếp.'],
+            ['Sơn bả:', 'xử lý bề mặt, bả, sơn.'],
+            ['Trần thạch cao:', 'làm mới, thay trần cũ.'],
+            ['Cửa nhôm kính, lan can:', 'đo đạc, lắp đặt.'],
+            'Mái che, giếng trời.',
+            ['Lắp đặt thiết bị:', 'thiết bị vệ sinh, thiết bị điện.'],
+          ]}
+        />
       </div>
       <div data-reveal style="--d:90ms">
         <ImageSlot dir="noi-that-hang-muc" alt="Phối cảnh nhà 2 tầng mái bằng, mặt tiền nan gỗ" />
@@ -189,95 +165,131 @@ const warrantyRows = [
         />
       </div>
     </div>
-    <p class="mx-auto mt-12 max-w-3xl text-center leading-relaxed text-muted">
-      Hạng mục nào cần chống thấm (nhà vệ sinh, sân thượng, mái) hoặc chỉnh sửa điện nước, Gia Khánh làm cùng đội thi
-      công; xem thêm trang{" "}
-      <a href="/dich-vu/sua-chua-cai-tao-nha" class="font-semibold text-primary underline hover:text-primary-dark"
-        >Sửa chữa – cải tạo nhà</a
-      >.
-    </p>
+    <div class="mt-12 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <ImageSlot dir="hoan-thien-cho-ai" alt="Phối cảnh nhà 3 tầng hiện đại, mặt tiền ốp đá vân trắng" />
+      <div class="max-w-prose space-y-4 leading-relaxed">
+        <p>
+          Dịch vụ phù hợp với gia đình vừa xong phần thô nhà ống hoặc nhà phố, chủ nhà cũ muốn làm mới sàn, trần, tường,
+          cửa, và chủ cửa hàng, văn phòng nhỏ cần hoàn thiện mặt bằng kinh doanh. Trụ sở Gia Khánh ở Đông Anh, nên hoàn
+          thiện nhà Đông Anh và các huyện lân cận thuận tiện cho kỹ sư đến khảo sát.
+        </p>
+        <p class="text-muted">
+          Gia Khánh cũng nhận các hạng mục chống thấm và điện nước. Xem thêm{' '}
+          <a href="/dich-vu/sua-chua-cai-tao-nha/" class={link}>Sửa chữa – cải tạo nhà</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-reveal>
+  <div class="container-page">
+    <SectionHeading
+      title="Hoàn thiện nhà phần thô: chọn mức vật tư thế nào?"
+      subtitle="Chủng loại vật tư ảnh hưởng trực tiếp đến chi phí, nên cần chốt bằng văn bản trước khi thi công. Gia Khánh ghi chủng loại từng loại vật tư trong dự toán và hợp đồng, để bạn so sánh được các báo giá và nghiệm thu đúng loại đã chọn."
+    />
+    <div class="mx-auto max-w-prose">
+      <h3 class="font-semibold">Bốn yếu tố quyết định chi phí hoàn thiện</h3>
+      <ol class="mt-4 space-y-4">
+        {
+          [
+            ['Vật liệu bạn chọn:', 'gạch, sơn, cửa, thiết bị vệ sinh, thiết bị điện.'],
+            ['Độ phức tạp của hạng mục:', 'càng nhiều chi tiết, công thi công và thời gian càng tăng.'],
+            ['Điều kiện mặt bằng:', 'nhà ống, nhà trong ngõ nhỏ ở Hà Nội, vận chuyển vật liệu khó, số tầng.'],
+            ['Yêu cầu riêng:', 'đồ gỗ đặt theo thiết kế, thiết bị nhập riêng.'],
+          ].map(([b, t], i) => (
+            <li class="flex gap-4 leading-relaxed">
+              <span class="shrink-0 font-bold text-primary">{String(i + 1).padStart(2, '0')}</span>
+              <span><strong>{b}</strong> {t}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="mt-8 space-y-4 leading-relaxed">
+        <p class="rounded-lg bg-primary-light p-4">
+          Nên dồn ngân sách cho khu vực dùng nhiều và khó sửa lại, như nhà vệ sinh, bếp và sàn. Phòng ít dùng thì chọn
+          mức vừa phải. Bảng so sánh các mức vật liệu nằm trong bài{' '}
+          <a href="/cam-nang/chon-vat-lieu-hoan-thien-noi-that/" class={link}>Chọn vật liệu hoàn thiện nội thất</a>.
+        </p>
+        <p>
+          Khi hoàn thiện đi cùng gói xây nhà, có hai cách tính. Ở gói phần thô + nhân công hoàn thiện, chủ nhà mua vật tư
+          hoàn thiện còn Gia Khánh lo nhân công. Ở gói trọn gói, Gia Khánh lo cả vật tư theo bảng vật tư trong hợp đồng.
+          Xem so sánh hai gói ở trang <a href="/dich-vu/xay-nha-tron-goi/" class={link}>Xây nhà trọn gói</a>.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section bg-primary-light" data-reveal>
   <div class="container-page">
-    <SectionHeading
-      title="Mức vật tư và cách chọn"
-      subtitle="Cùng một hạng mục, chênh lệch chi phí chủ yếu đến từ vật tư. Khi báo giá, Gia Khánh ghi rõ chủng loại và thương hiệu từng loại vật tư để bạn so sánh được."
-    />
-    <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
-      <div>
-        <h3 class="font-semibold">Bốn yếu tố quyết định chi phí hoàn thiện</h3>
-        <ol class="mt-4 space-y-4">
-          {
-            [
-              ['Vật liệu bạn chọn:', 'gạch, sơn, cửa, thiết bị vệ sinh, thiết bị điện.'],
-              ['Phong cách và độ phức tạp:', 'trần giật cấp, ốp nhiều chủng loại, chi tiết phào chỉ.'],
-              ['Điều kiện mặt bằng:', 'nhà trong ngõ nhỏ, vận chuyển vật liệu khó, số tầng.'],
-              ['Yêu cầu riêng:', 'đồ gỗ đặt theo thiết kế, thiết bị nhập riêng.'],
-            ].map(([b, t], i) => (
-              <li class="flex gap-4 leading-relaxed">
-                <span class="shrink-0 font-bold text-primary">{String(i + 1).padStart(2, '0')}</span>
-                <span><strong>{b}</strong> {t}</span>
-              </li>
-            ))
-          }
-        </ol>
-        <p class="mt-6 rounded-lg bg-white p-4 leading-relaxed">
-          <strong>Gợi ý:</strong> dồn ngân sách cho khu vực dùng nhiều và khó sửa lại (nhà vệ sinh, bếp, sàn), với phòng ít
-          dùng thì chọn mức vừa phải.
-        </p>
-      </div>
-      <div>
-        <h3 class="font-semibold">Với gói xây nhà, hoàn thiện được tính theo hai cách</h3>
-        <ul class="mt-4 grid gap-6">
-          {
-            packs.map((p, i) => (
-              <li class="card p-6" data-reveal style={`--d:${i * 90}ms`}>
-                <h4 class="font-semibold text-primary">{p.name}</h4>
-                <p class="mt-3 text-sm font-semibold">Gia Khánh lo</p>
-                <p class="mt-1 text-sm leading-relaxed text-muted">{p.gk}</p>
-                <p class="mt-3 text-sm font-semibold">Chủ nhà tự lo</p>
-                <p class="mt-1 text-sm leading-relaxed text-muted">{p.owner}</p>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+    <SectionHeading title="Hoàn thiện nhà có tính theo m² không, giá bao nhiêu?" />
+    <div class="mx-auto max-w-prose space-y-4 leading-relaxed">
+      <p>
+        Gia Khánh báo giá hoàn thiện theo từng hạng mục sau khi khảo sát, vì mỗi nhà khác nhau về vật liệu, độ phức tạp
+        và mặt bằng. Hiện chưa công bố đơn giá hoàn thiện theo m². Kỹ sư đo đạc miễn phí, rồi gửi bảng dự toán trước khi
+        bạn ký hợp đồng.
+      </p>
+      <p>Bảng dự toán ghi từng hạng mục (ốp lát, sơn bả, trần, cửa, tủ bếp...), khối lượng và chủng loại vật tư.</p>
+      <p>
+        Giá hoàn thiện đi cùng gói xây nhà nằm trong đơn giá của gói đó, xem{' '}
+        <a href="/bao-gia/" class={link}>bảng báo giá</a>. Bạn cũng có thể gửi hiện trạng qua form{' '}
+        <a href="#bao-gia" class={link}>nhận báo giá miễn phí</a> để hẹn khảo sát.
+      </p>
+      <p class="rounded-lg bg-white p-4 font-medium">{company.priceNote}</p>
     </div>
-    <p class="mt-8 rounded-lg bg-white p-4 font-medium">{company.priceNote}</p>
   </div>
 </section>
 
-<ServiceSteps title="Quy trình làm việc" steps={steps} light={false}>
-  <p class="mx-auto mt-12 max-w-3xl rounded-lg bg-primary-light p-4 leading-relaxed">
-    Với nhà vừa xây xong, kỹ sư kiểm tra lại phần thô (độ phẳng tường, nền, vị trí ống điện nước âm) trước khi ốp lát,
-    sơn bả, để lỗi được xử lý trước khi bị che đi.
-  </p>
+<ServiceSteps title="Quy trình hoàn thiện và thi công nội thất tại Gia Khánh" steps={steps} light={false}>
+  <div class="mx-auto mt-12 max-w-prose space-y-4 leading-relaxed">
+    <p class="rounded-lg bg-primary-light p-4 font-medium">
+      Gia Khánh thi công hoàn thiện nhà ở Hà Nội theo quy trình 6 bước chung, từ tiếp nhận đến bảo hành. Kỹ sư khảo sát
+      miễn phí tại nhà rồi mới lập dự toán. Hợp đồng được ký sau khi bạn đã xem dự toán và chốt vật liệu, nghiệm thu theo
+      từng mốc thi công.
+    </p>
+    <p class="text-muted">
+      Ở bước khảo sát, kỹ sư xem hiện trạng phần thô trước khi lập dự toán. Ảnh các công trình Gia Khánh đã thi công xem
+      tại trang <a href="/du-an/" class={link}>Công trình</a>.
+    </p>
+  </div>
 </ServiceSteps>
 
 <section class="section bg-primary-light" data-reveal>
   <div class="container-page">
-    <SectionHeading title="Cam kết và bảo hành" subtitle="Bảo hành bằng văn bản, ghi trong hợp đồng." />
+    <SectionHeading
+      title="Cam kết và bảo hành khi hoàn thiện, làm nội thất"
+      subtitle="Gia Khánh bảo hành bằng văn bản, thời hạn ghi trong hợp đồng và tính riêng cho từng nhóm hạng mục. Thanh toán theo giai đoạn, chỉ sau khi hạng mục được nghiệm thu. Mỗi công trình có một kỹ sư phụ trách để bạn liên hệ trực tiếp khi cần xử lý việc gì."
+    />
     <div class="grid gap-8 lg:grid-cols-2">
-      <Bullets
-        items={[
-          ['Giá rõ:', 'dự toán chi tiết từng hạng mục; không phát sinh khi chưa được chủ nhà đồng ý.'],
-          ['Đúng vật tư:', 'dùng đúng chủng loại đã ghi trong hợp đồng.'],
-          ['Thanh toán theo giai đoạn:', 'chỉ thanh toán khi hạng mục đã nghiệm thu.'],
-          ['Có người chịu trách nhiệm:', 'mỗi công trình một kỹ sư phụ trách, bạn liên hệ trực tiếp.'],
-          ['Thấy được tiến độ:', 'ảnh công trình gửi qua Zalo hằng ngày, chủ nhà ở xa vẫn theo dõi được.'],
-          ['Bàn giao sạch:', 'vệ sinh công trình trước khi bàn giao.'],
-        ]}
-      />
       <InfoList rows={warrantyRows} />
+      <div>
+        <h3 class="font-semibold">Cam kết khác trong hợp đồng</h3>
+        <Bullets
+          class="mt-4"
+          items={[
+            'Dự toán chi tiết từng hạng mục, không phát sinh khi chưa được chủ nhà đồng ý.',
+            'Dùng đúng chủng loại vật tư đã ghi trong hợp đồng.',
+            'Ảnh công trình gửi qua Zalo hằng ngày, nên chủ nhà ở xa vẫn theo dõi được.',
+            'Vệ sinh công trình sạch sẽ trước khi bàn giao.',
+          ]}
+        />
+        <p class="mt-6 leading-relaxed text-muted">
+          Cách đọc và so sánh các mức vật tư có trong bài{' '}
+          <a href="/cam-nang/chon-vat-lieu-hoan-thien-noi-that/" class={link}>Chọn vật liệu hoàn thiện nội thất</a>.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
-<Faq items={faqs} />
+<Faq
+  title="Câu hỏi thường gặp về hoàn thiện và thi công nội thất"
+  subtitle="Gia Khánh khảo sát và báo giá miễn phí cho cả nhà mới xong phần thô lẫn nhà cũ cần làm mới. Tiến độ và bảo hành ghi trong hợp đồng. Kỹ sư đo đạc tại nhà ở Hà Nội rồi gửi dự toán từng hạng mục trước khi bạn ký hợp đồng."
+  items={faqs}
+/>
 
 <ServiceCta
-  title="Nhà đã xong phần thô, hoặc đang muốn làm mới nhà cũ?"
-  subtitle="Để lại số điện thoại, Gia Khánh sẽ gọi lại tư vấn miễn phí và hẹn khảo sát tận nơi."
+  title="Nhà đã xong phần thô, hoặc muốn làm mới nhà cũ?"
+  subtitle={`Để lại số điện thoại, ${company.name} sẽ gọi lại tư vấn miễn phí và hẹn khảo sát tận nơi. Kỹ sư xem hiện trạng rồi gửi dự toán từng hạng mục. Phục vụ Hà Nội, nội thành và các huyện lân cận.`}
 />

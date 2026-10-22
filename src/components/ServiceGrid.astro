@@ -14,7 +14,7 @@ const { cols = 4 } = Astro.props as { cols?: 2 | 4 };
       const img = imagesIn(s.slug)[0];
       return (
         <li data-reveal style={`--d:${(i % cols) * 90}ms`}>
-          <a href={`/dich-vu/${s.slug}`} class="card group flex h-full flex-col overflow-hidden">
+          <a href={`/dich-vu/${s.slug}/`} class="card group flex h-full flex-col overflow-hidden">
             <div class="aspect-[4/3] overflow-hidden bg-primary-light">
               {img ? (
                 <Image

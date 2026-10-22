@@ -5,7 +5,7 @@ import Icon from './Icon.astro';
 import { company, nav } from '../data/company';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href.replace(/\/$/, '')));
 ---
 
 <header id="site-header" class="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur transition-shadow">
@@ -58,7 +58,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
           <span class="block font-bold text-ink">{company.phoneDisplay}</span>
         </span>
       </a>
-      <a href="/lien-he" class="btn btn-primary whitespace-nowrap max-lg:mt-2">Nhận báo giá</a>
+      <a href="/lien-he/" class="btn btn-primary whitespace-nowrap max-lg:mt-2">Nhận báo giá</a>
     </nav>
   </div>
 </header>

@@ -13,7 +13,8 @@ interface Props {
   contentGroup?: string;
 }
 const { title, description, contentGroup } = Astro.props;
-const fullTitle = `${title} | ${company.brand}`;
+// Title đã có tên thương hiệu (vd. /gioi-thieu/) thì không thêm hậu tố, tránh lặp "Gia Khánh".
+const fullTitle = title.includes(company.brand) ? title : `${title} | ${company.brand}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(banner.src, Astro.site);
 // vd. G-XXXXXXXXXX, đặt trong .env; trống thì không nạp GA. Chỉ nạp ở bản build để `npm run dev` không làm bẩn số liệu
@@ -22,6 +23,7 @@ const gaId = import.meta.env.PROD ? import.meta.env.PUBLIC_GA_ID : undefined;
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
+  '@id': new URL('/#org', Astro.site).href,
   name: company.name,
   alternateName: company.brand,
   slogan: company.slogan,

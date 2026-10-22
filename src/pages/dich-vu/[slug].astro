@@ -18,14 +18,25 @@ const bodies: Record<string, any> = {
   'hoan-thien-thi-cong-noi-that': HoanThien,
 };
 const Body = bodies[service.slug];
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.name,
+  serviceType: service.name,
+  description: service.description,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  provider: { '@id': new URL('/#org', Astro.site).href },
+  areaServed: company.areaList.map((name) => ({ '@type': 'Place', name })),
+};
 ---
 
 <BaseLayout title={service.metaTitle} description={service.metaDescription}>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   <PageHeader
     title={service.heading}
     crumb={service.name}
     subtitle={service.lead}
-    parent={{ href: '/dich-vu', label: 'Dịch vụ' }}
+    parent={{ href: '/dich-vu/', label: 'Dịch vụ' }}
   >
     <div class="mt-8 flex flex-wrap gap-4">
       <a href="#bao-gia" class="btn btn-primary">Nhận báo giá miễn phí</a>

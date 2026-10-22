@@ -1,30 +1,98 @@
 ---
+// Nội dung: noi-dung/cam-nang.md
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import PostCard from '../../components/PostCard.astro';
+import ServiceCta from '../../components/ServiceCta.astro';
 import { categories, posts } from '../../data/posts';
+
+const link = 'font-semibold text-primary underline hover:text-primary-dark';
+
+// Mô tả chuyên mục theo slug trong noi-dung/chuyen-muc.json. Chuyên mục thêm qua CMS mà chưa có ở đây chỉ hiện tên + bài.
+const moTa: Record<string, { mo_ta: string; link: string; linkLabel: string }> = {
+  'chi-phi': {
+    mo_ta:
+      'Đơn giá theo mét vuông, cách quy đổi diện tích sàn và những khoản ngoài đơn giá, để gia đình dự trù ngân sách trước khi khảo sát.',
+    link: '/bao-gia/',
+    linkLabel: 'bảng báo giá',
+  },
+  'thiet-ke': {
+    mo_ta:
+      'Những điểm nên chốt sớm khi thiết kế nhà phố, nhà ống: ánh sáng, thông gió, cầu thang và công năng từng tầng.',
+    link: '/dich-vu/thiet-ke-kien-truc-noi-that/',
+    linkLabel: 'dịch vụ thiết kế kiến trúc và nội thất',
+  },
+  'sua-chua': {
+    mo_ta:
+      'Cần kiểm tra gì ở nhà cũ trước khi sửa: kết cấu, thấm dột, điện nước, và khi nào nên sửa hay xây lại.',
+    link: '/dich-vu/sua-chua-cai-tao-nha/',
+    linkLabel: 'dịch vụ sửa chữa cải tạo nhà',
+  },
+  'noi-that': {
+    mo_ta: 'Cách cân đối gỗ, sơn, gạch, trần và thiết bị theo ngân sách của gia đình.',
+    link: '/dich-vu/hoan-thien-thi-cong-noi-that/',
+    linkLabel: 'dịch vụ hoàn thiện và thi công nội thất',
+  },
+};
 ---
 
 <BaseLayout
-  title="Cẩm nang xây nhà"
-  description="Chi phí xây nhà, lưu ý khi thiết kế, sửa chữa cải tạo và hoàn thiện nội thất — cẩm nang từ đội ngũ Gia Khánh."
+  title="Cẩm nang xây nhà, kinh nghiệm sửa nhà ở Hà Nội"
+  description="Đọc cẩm nang xây nhà của Gia Khánh: chi phí, thiết kế, sửa chữa cải tạo, hoàn thiện nội thất cho gia chủ ở Hà Nội. Giá trong bài chỉ để tham khảo."
 >
-  <PageHeader title="Cẩm nang xây nhà" subtitle="Chi phí, thiết kế và những điều cần biết trước khi xây hoặc sửa nhà." />
+  <PageHeader
+    title="Cẩm nang xây nhà, sửa nhà cho gia đình ở Hà Nội"
+    crumb="Cẩm nang"
+    subtitle="Cẩm nang xây nhà do Công ty TNHH Xây dựng và Đầu tư Gia Khánh biên soạn cho gia chủ ở Hà Nội, gồm các bài về chi phí, thiết kế, sửa chữa cải tạo và hoàn thiện nội thất. Giá trong bài chỉ để tham khảo. Báo giá chính xác sau khi kỹ sư khảo sát thực tế."
+  />
+
+  <section class="section pb-0 md:pb-0" data-reveal>
+    <div class="container-page">
+      <SectionHeading
+        title="Cẩm nang gồm những chuyên mục nào?"
+        subtitle="Cẩm nang chia thành bốn chuyên mục theo từng giai đoạn làm nhà: dự trù chi phí, thiết kế, sửa chữa cải tạo và hoàn thiện nội thất. Mỗi chuyên mục có mô tả ngắn, danh sách bài viết và đường dẫn sang dịch vụ liên quan."
+      />
+    </div>
+  </section>
+
   {
-    categories.map((c, ci) => (
-      <section id={c.slug} class:list={['section scroll-mt-24', ci % 2 && 'bg-primary-light']} data-reveal>
-        <div class="container-page">
-          <SectionHeading title={c.name} />
-          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            {posts
-              .filter((p) => p.category === c.slug)
-              .map((p, i) => (
-                <PostCard post={p} index={i % 3} />
-              ))}
+    categories.map((c, ci) => {
+      const m = moTa[c.slug];
+      return (
+        <section id={c.slug} class:list={['section scroll-mt-24', ci % 2 === 0 && 'bg-primary-light']} data-reveal>
+          <div class="container-page">
+            <div class="mx-auto mb-12 max-w-2xl text-center">
+              <h3 class="text-2xl font-bold uppercase md:text-3xl">{c.name}</h3>
+              <span class="mx-auto mt-4 block h-1 w-16 rounded bg-primary-bright" aria-hidden="true" />
+              {m && (
+                <p class="mt-4 leading-relaxed text-muted">
+                  {m.mo_ta} Xem <a href={m.link} class={link}>{m.linkLabel}</a>.
+                </p>
+              )}
+            </div>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {posts
+                .filter((p) => p.category === c.slug)
+                .map((p, i) => (
+                  <PostCard post={p} index={i % 3} />
+                ))}
+            </div>
           </div>
-        </div>
-      </section>
-    ))
+        </section>
+      );
+    })
   }
+
+  <section class:list={['py-10 md:py-12', categories.length % 2 === 0 && 'bg-primary-light']} data-reveal>
+    <p class="container-page text-center leading-relaxed">
+      Xem thêm các <a href="/dich-vu/" class={link}>dịch vụ xây dựng và sửa chữa nhà</a> hoặc
+      <a href="/bao-gia/" class={link}>bảng báo giá</a>.
+    </p>
+  </section>
+
+  <ServiceCta
+    title="Cần báo giá cho ngôi nhà của bạn?"
+    subtitle="Giá trong cẩm nang chỉ để tham khảo. Để lại số điện thoại, kỹ sư Gia Khánh sẽ khảo sát và báo giá miễn phí."
+  />
 </BaseLayout>

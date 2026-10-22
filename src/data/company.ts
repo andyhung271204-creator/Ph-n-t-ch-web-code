@@ -46,12 +46,12 @@ export const company = {
 
 export const nav = [
   { href: '/', label: 'Trang chủ' },
-  { href: '/gioi-thieu', label: 'Giới thiệu' },
-  { href: '/dich-vu', label: 'Dịch vụ' },
-  { href: '/du-an', label: 'Công trình' },
-  { href: '/cam-nang', label: 'Cẩm nang' },
-  { href: '/bao-gia', label: 'Báo giá' },
-  { href: '/lien-he', label: 'Liên hệ' },
+  { href: '/gioi-thieu/', label: 'Giới thiệu' },
+  { href: '/dich-vu/', label: 'Dịch vụ' },
+  { href: '/du-an/', label: 'Công trình' },
+  { href: '/cam-nang/', label: 'Cẩm nang' },
+  { href: '/bao-gia/', label: 'Báo giá' },
+  { href: '/lien-he/', label: 'Liên hệ' },
 ];
 
 export const stats = [
@@ -131,7 +131,7 @@ export const packages = [
   },
 ];
 
-// Bảng giá 48 mẫu nhà (/bao-gia). Ảnh trong src/assets/mau-nha/<id>/ là ảnh mẫu sưu tầm, KHÔNG phải công trình của Gia Khánh.
+// Bảng giá 48 mẫu nhà (/bao-gia/). Ảnh trong src/assets/mau-nha/<id>/ là mẫu nhà Gia Khánh đã thi công (chủ đầu tư xác nhận 10/2026).
 // Giá ƯỚC TÍNH = diện tích sàn quy đổi × đơn giá/m² (bảng prices ở trên).
 // ponytail: diện tích đoán từ ảnh phối cảnh; thay số thật khi có hồ sơ thiết kế từng mẫu.
 const donGia = {
@@ -144,6 +144,7 @@ const mau = (id: string, name: string, loai: keyof typeof donGia, area: number) 
   id,
   name,
   area,
+  loai,
   rough: area * donGia[loai][0],
   full: area * donGia[loai][1],
 });

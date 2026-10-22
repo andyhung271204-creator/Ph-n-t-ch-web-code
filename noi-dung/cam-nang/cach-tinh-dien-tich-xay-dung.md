@@ -1,41 +1,43 @@
 ---
-title: Cách tính diện tích xây dựng để dự trù ngân sách
+title: Cách tính diện tích xây dựng nhà để dự trù ngân sách
 slug: cach-tinh-dien-tich-xay-dung
 category: chi-phi
 date: 2026-10-15T01:00:00.000Z
 draft: false
-excerpt: Hiểu cách quy đổi móng, sàn, mái ra diện tích để ước tính chi phí trước khi khảo sát.
+excerpt: Phân biệt diện tích đất, diện tích sàn và diện tích quy đổi, kèm bảng hệ số móng, mái, sân thượng để bạn ước tính ngân sách trước khi kỹ sư khảo sát.
 cover: /src/assets/cam-nang/cach-tinh-dien-tich-xay-dung/anh-bia.jpg
-meta_title: Cách tính diện tích xây dựng dự trù ngân sách | Gia Khánh
-meta_description: Phân biệt diện tích xây dựng, diện tích sàn và diện tích tính giá; bảng hệ số quy đổi móng, mái, sân thượng và ví dụ tính nhà 5x20m, 4 tầng + tum.
-url: /cam-nang/cach-tinh-dien-tich-xay-dung
+meta_title: 'Cách tính diện tích xây dựng nhà: hệ số và ví dụ | Gia Khánh'
+meta_description: 'Cách tính diện tích xây dựng nhà: phân biệt diện tích đất, sàn, quy đổi, hệ số móng, mái, sân thượng, ví dụ nhà 5x20 m. Nhận báo giá miễn phí từ Gia Khánh.'
+url: /cam-nang/cach-tinh-dien-tich-xay-dung/
 ---
 
-<!-- meta_title: 57 ký tự; meta_description: \~150 ký tự -->
+# Cách tính diện tích xây dựng nhà để dự trù ngân sách
 
-# Cách tính diện tích xây dựng để dự trù ngân sách
+**Sapo:** Diện tích tính tiền thi công là tổng diện tích sàn cộng móng, mái, sân và sân thượng sau khi nhân với hệ số, nên thường lớn hơn diện tích đất xây nhà. Bài này hướng dẫn quy đổi từng bộ phận để bạn tự ước tính ngân sách trước khi kỹ sư Gia Khánh đến khảo sát.
 
-**Sapo:** Báo giá xây nhà thường tính theo m², nhưng con số đó không phải diện tích mảnh đất hay diện tích bạn đứng trong nhà. Móng, mái, sân thượng đều được quy đổi theo tỷ lệ riêng. Bài này giải thích cách quy đổi để bạn tự ước tính ngân sách trước khi kỹ sư đến khảo sát.
+## Diện tích xây dựng, diện tích sàn và diện tích tính giá khác nhau thế nào?
 
-## 1. Ba loại "diện tích" dễ nhầm lẫn
+Ba loại diện tích này dễ nhầm vì đều đo bằng m². Diện tích xây dựng là phần đất công trình chiếm trên mặt bằng. Diện tích sàn là tổng sàn của mọi tầng. Diện tích tính giá, hay diện tích quy đổi, là con số nhân với đơn giá để ra chi phí thi công.
 
-- **Diện tích xây dựng:** phần đất mà công trình chiếm trên mặt bằng, tức diện tích tầng trệt (thường tính theo mép ngoài tường). Con số này dùng khi xin phép xây dựng và tính mật độ xây dựng.
-- **Diện tích sàn:** tổng diện tích sàn của tất cả các tầng cộng lại. Nhà 80 m² một tầng, xây 4 tầng thì tổng diện tích sàn khoảng 320 m².
-- **Diện tích tính tiền thi công (diện tích quy đổi):** là tổng diện tích sàn cộng thêm phần móng, mái, sân thượng, sân… sau khi nhân với hệ số. Đây là con số được nhân với đơn giá/m² để ra chi phí.
+- **Diện tích xây dựng:** thường tính theo mép ngoài tường tầng trệt. Con số này dùng khi xin phép xây dựng và tính mật độ xây dựng.
+- **Diện tích sàn:** nhà 80 m² một tầng, xây 4 tầng thì tổng diện tích sàn khoảng 320 m².
+- **Diện tích tính giá:** tổng diện tích sàn cộng thêm móng, mái, sân thượng, sân, sau khi nhân với hệ số của từng phần.
 
-Hiểu đúng ba khái niệm này giúp bạn so sánh báo giá của nhiều đơn vị trên cùng một mặt bằng, tránh chuyện đơn giá rẻ nhưng diện tích quy đổi lại cao.
+Hiểu đúng ba khái niệm giúp bạn so sánh báo giá trên cùng một mặt bằng, tránh đơn giá thấp nhưng diện tích quy đổi lại cao.
 
-[ẢNH: Hình vẽ minh họa phân biệt diện tích đất, diện tích xây dựng (tầng trệt) và tổng diện tích sàn — mặt bằng + mặt cắt đơn giản, màu thương hiệu]
+[ẢNH: Hình vẽ minh họa phân biệt diện tích đất, diện tích xây dựng (tầng trệt) và tổng diện tích sàn, mặt bằng + mặt cắt đơn giản, màu thương hiệu]
 
-## 2. Công thức chung
+## Công thức tính diện tích quy đổi và chi phí thi công là gì?
 
-> Chi phí thi công ≈ Tổng diện tích quy đổi × Đơn giá/m²
+Chi phí thi công xấp xỉ bằng tổng diện tích quy đổi nhân với đơn giá mỗi m². Diện tích quy đổi của từng bộ phận bằng diện tích thực tế nhân với hệ số, rồi cộng tất cả bộ phận lại. Khoản này chưa gồm phá dỡ nhà cũ, ép cọc và VAT.
 
-Diện tích quy đổi của từng bộ phận = diện tích thực tế × hệ số. Cộng tất cả bộ phận lại là ra tổng. Chi phí này chưa gồm phá dỡ nhà cũ, ép cọc và VAT.
+> Chi phí thi công ≈ tổng diện tích quy đổi (m²) x đơn giá (đồng/m²)
 
-## 3. Hệ số quy đổi: cách Gia Khánh tính
+Đơn giá hiện hành của từng gói xem tại trang [Báo giá](/bao-gia/). Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.
 
-Trang [Báo giá](/bao-gia) của Gia Khánh đang áp dụng ba quy tắc sau:
+## Gia Khánh quy đổi diện tích theo hệ số nào?
+
+Công ty TNHH Xây dựng và Đầu tư Gia Khánh tính móng bằng 40% diện tích, các tầng và tầng tum có mái che bằng 100%, sân và sân thượng không có mái che bằng 30%. Đây là ba quy tắc đang áp dụng trên trang [Báo giá](/bao-gia/).
 
 | Bộ phận | Hệ số tính trên diện tích |
 | --- | --- |
@@ -43,100 +45,99 @@ Trang [Báo giá](/bao-gia) của Gia Khánh đang áp dụng ba quy tắc sau:
 | Các tầng, tầng tum có mái che | 100% |
 | Sân, sân thượng không có mái che | 30% |
 
-Các hạng mục còn lại (ban công, mái, hầm, ô thông tầng…) được kỹ sư xác định sau khi khảo sát, vì phụ thuộc thiết kế thực tế.
+Ban công, mái, hầm, ô thông tầng và các hạng mục còn lại phụ thuộc thiết kế thực tế, nên kỹ sư xác định sau khi khảo sát.
 
-## 4. Hệ số phổ biến trên thị trường để bạn đối chiếu
+## Hệ số quy đổi phổ biến trên thị trường là bao nhiêu?
 
-Mỗi nhà thầu quy đổi một kiểu. Dưới đây là mức tham khảo phổ biến trên thị trường, tổng hợp từ các bài hướng dẫn công khai. Các con số chỉ để hình dung, không phải cam kết của Gia Khánh. [cần xác nhận: toàn bộ bảng này]
+Mỗi nhà thầu quy đổi một kiểu, nên không có bộ hệ số chung. Bảng dưới là mức tham khảo từ các bài hướng dẫn công khai, giúp bạn đối chiếu khi đọc báo giá khác. Các con số không phải cam kết của Gia Khánh.
 
 | Bộ phận | Hệ số tham khảo phổ biến |
 | --- | --- |
-| Móng đơn | 20% – 40% diện tích sàn tầng trệt |
-| Móng băng | 50% (một số nơi 30% – 50% tùy số băng) |
-| Móng cọc (đài móng trên cọc) | 30% – 50% |
-| Móng bè | 80% – 100% |
-| Tầng hầm | Theo độ sâu so với cốt vỉa hè: khoảng 150% (sâu dưới 1,3 m), 170% (1,3 – 1,7 m), 200% (1,7 – 2 m), 250% (từ 2 m trở lên) |
+| Móng đơn | 20% đến 40% diện tích sàn tầng trệt |
+| Móng băng | 20% đến 50% tùy số băng |
 | Sàn các tầng có mái che | 100% |
 | Ban công có mái che / không mái che | 70% / 50% |
-| Sân thượng | 50% – 100% tùy diện tích và mức hoàn thiện (nhỏ thì tính cao hơn) |
-| Mái tôn | 15% – 30% diện tích mái |
-| Mái bê tông cốt thép (không lát / có lát gạch) | 50% / 60% |
-| Mái ngói vì kèo sắt | 70% |
-| Mái bê tông dán ngói | 100% |
-| Sân trước, sân sau | 30% – 100%, thường giảm dần khi diện tích lớn |
-| Ô thông tầng, giếng trời | Dưới 8 m²: tính 100%; từ 8 m² trở lên: khoảng 50% |
-| Khoảng trống cầu thang | Thường tính 100% như sàn vì vẫn có kết cấu cầu thang; nên hỏi rõ từng nhà thầu [cần xác nhận] |
+| Sân thượng | 50% đến 100% tùy diện tích và mức hoàn thiện |
 
-> Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.
+[cần xác nhận: đối chiếu hệ số với nguồn chính thống]
 
-## 5. Ví dụ tính từng bước: nhà 5 × 20 m, 4 tầng + tum
+## Ví dụ: nhà 5x20 m, 4 tầng và tum quy đổi ra bao nhiêu m²?
 
-**Giả định:** đất 5 × 20 m (100 m²). Nhà xây 5 × 16 m = 80 m², chừa 4 m sân trước (5 × 4 = 20 m²). Móng băng. Nhà 4 tầng (tính cả tầng trệt) và 1 tum có mái che 20 m². Sân thượng không mái là phần còn lại (80 − 20 = 60 m²). Áp dụng đúng các hệ số ở mục 3.
+Nhà trên đất 5x20 m, xây 4 tầng và 1 tum, quy đổi ra khoảng 396 m² theo cách tính của Gia Khánh. Con số gồm 32 m² móng, 320 m² sàn bốn tầng, 20 m² tum, 18 m² sân thượng và 6 m² sân trước. Bảng dưới đi qua từng bước.
 
-[ẢNH: Mặt cắt minh họa nhà 5 × 20 m, 4 tầng + tum, ghi diện tích từng phần: móng, 4 sàn, tum, sân thượng, sân trước (hình vẽ)]
+**Giả định:** đất 5x20 m (100 m²). Nhà xây 5x16 m = 80 m², chừa 4 m sân trước (5x4 = 20 m²). Móng băng. Nhà 4 tầng (tính cả tầng trệt) và 1 tum có mái che 20 m². Sân thượng không mái là phần còn lại (80 - 20 = 60 m²). Hệ số lấy đúng như bảng của Gia Khánh ở trên.
+
+[ẢNH: Mặt cắt minh họa nhà 5x20 m, 4 tầng + tum, ghi diện tích từng phần: móng, 4 sàn, tum, sân thượng, sân trước (hình vẽ)]
 
 | Bộ phận | Diện tích thực | Hệ số | Quy đổi |
 | --- | --- | --- | --- |
-| Móng (băng) | 80 m² | 40% | 32 m² |
-| 4 tầng | 4 × 80 = 320 m² | 100% | 320 m² |
+| Móng | 80 m² | 40% | 32 m² |
+| 4 tầng | 4 x 80 = 320 m² | 100% | 320 m² |
 | Tum có mái che | 20 m² | 100% | 20 m² |
 | Sân thượng không mái | 60 m² | 30% | 18 m² |
 | Sân trước | 20 m² | 30% | 6 m² |
 | **Tổng** |  |  | **396 m²** |
 
-**Nhân đơn giá** (đơn giá nhà phố, nhà ống 2 – 5 tầng đang đăng trên trang [Báo giá](/bao-gia)):
+Con số này chưa tính mái và ban công, vì hai hạng mục này phụ thuộc thiết kế.
 
-- Gói trọn gói: 396 × 5.000.000 = **1.980 triệu đồng**
-- Gói phần thô + nhân công hoàn thiện: 396 × 3.300.000 = **1.306,8 triệu đồng**
+Nhân 396 m² với đơn giá nhà phố, nhà ống 2 đến 5 tầng đang đăng tại trang [Báo giá](/bao-gia/) là ra chi phí dự kiến của từng gói. Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.
 
 **Lưu ý khi đối chiếu báo giá khác:**
 
 - Nếu nhà thầu tính móng băng 50% thay vì 40%, diện tích quy đổi tăng thêm 8 m² (thành 404 m²).
-- Nếu có tính thêm mái tum (ví dụ mái tôn 30%, mái bê tông 50%), tổng sẽ cao hơn. [cần xác nhận: hệ số mái khi áp dụng cho công trình của Gia Khánh]
-- Nếu nhà có ô thông tầng hoặc giếng trời, phần này có thể được trừ bớt hoặc giữ nguyên tùy cách tính.
+- Nếu nhà thầu tính thêm hệ số cho mái (mái tum, mái tôn hoặc mái bê tông), tổng diện tích quy đổi sẽ cao hơn 396 m². Hãy hỏi rõ loại mái và hệ số mái áp dụng.
 - Kết quả trên chỉ là ước tính để dự trù ngân sách, chưa gồm VAT, phá dỡ, ép cọc và phát sinh do thay đổi thiết kế.
 
-## 6. Vì sao mỗi nhà thầu một hệ số, và nên hỏi gì
+## Vì sao mỗi nhà thầu một hệ số, và nên hỏi gì trước khi ký?
 
-Không có một văn bản bắt buộc áp dụng chung cho mọi báo giá. Các hệ số trên là thông lệ thị trường, mỗi đơn vị tự xây dựng bảng riêng dựa trên khối lượng bê tông, thép, nhân công thực tế của từng phần. Vì vậy hãy hỏi trước khi ký:
+Hệ số là thông lệ thị trường. Mỗi đơn vị tự xây dựng bảng riêng dựa trên khối lượng bê tông, thép và nhân công thực tế của từng phần. Vì vậy hãy yêu cầu nhà thầu ghi rõ năm điều dưới đây vào báo giá hoặc hợp đồng trước khi ký.
 
-1. Bảng hệ số cụ thể cho móng, mái, sân thượng, ban công, hầm. Yêu cầu ghi trong báo giá hoặc hợp đồng.
+1. Bảng hệ số cụ thể cho móng, mái, sân thượng, ban công, hầm.
 2. Diện tích quy đổi tổng là bao nhiêu m², và tính từ mặt bằng nào.
 3. Ô thông tầng, giếng trời, khoảng trống cầu thang có được trừ không.
 4. Đơn giá áp dụng cho gói nào (phần thô hay trọn gói), vật tư ghi rõ chủng loại hay chưa.
 5. Những khoản nào chưa gồm: VAT, phá dỡ, ép cọc, giấy phép, hoàn thiện ngoài phạm vi gói.
 
-## 7. Cách ước tính nhanh tại nhà
+## Làm thế nào để tự ước tính diện tích quy đổi tại nhà?
 
-1. Đo (hoặc lấy từ bản vẽ) diện tích xây dựng tầng trệt và số tầng.
-2. Liệt kê các bộ phận: móng, tầng, tum, sân thượng, sân, ban công, mái.
-3. Nhân từng bộ phận với hệ số, cộng lại.
-4. Nhân với đơn giá của gói bạn quan tâm. Ước tính thêm một khoản dự phòng cho các hạng mục chưa có trong báo giá.
-5. Gửi bản vẽ hoặc địa chỉ để kỹ sư khảo sát và chốt con số chính xác.
+Bạn chỉ cần ba thứ: diện tích xây dựng tầng trệt, số tầng và danh sách các bộ phận có trong nhà. Bốn bước dưới đây cho ra con số đủ để dự trù ngân sách, còn con số chính xác do kỹ sư chốt sau khảo sát.
 
-Muốn hiểu rộng hơn về các yếu tố ảnh hưởng tổng chi phí, đọc thêm [Chi phí xây nhà phố trọn gói: những yếu tố quyết định tổng chi phí](/cam-nang/chi-phi-xay-nha-pho-tron-goi).
+1. Đo hoặc lấy từ bản vẽ diện tích tầng trệt và số tầng, rồi liệt kê các bộ phận: móng, tầng, tum, sân thượng, sân, ban công, mái.
+2. Nhân từng bộ phận với hệ số, cộng lại.
+3. Nhân với đơn giá của gói bạn quan tâm, cộng một khoản dự phòng cho hạng mục chưa có trong báo giá.
+4. Gửi bản vẽ hoặc địa chỉ để kỹ sư khảo sát và chốt con số chính xác.
 
-## 8. Câu hỏi thường gặp
+Muốn hiểu rộng hơn về các yếu tố ảnh hưởng tổng chi phí, đọc thêm [Chi phí xây nhà phố trọn gói: những yếu tố quyết định tổng chi phí](/cam-nang/chi-phi-xay-nha-pho-tron-goi/). Nếu bạn định xây trọn gói, xem [dịch vụ xây nhà trọn gói](/dich-vu/xay-nha-tron-goi/) của Gia Khánh.
 
-<!-- dùng <details> -->
+## Câu hỏi thường gặp về cách tính diện tích xây dựng
+
+Sáu câu dưới đây là thắc mắc gia chủ hay gặp khi nhận báo giá: diện tích nào được tính tiền, móng và tầng hầm tính bao nhiêu phần trăm, vì sao hai nhà thầu cùng đơn giá lại ra tổng tiền khác nhau.
 
 **Diện tích tính tiền thi công có bằng diện tích đất không?**
-Không. Đó là tổng diện tích sàn cộng phần móng, mái, sân thượng, sân sau khi quy đổi theo hệ số, thường lớn hơn diện tích sàn.
+Diện tích tính tiền thi công không bằng diện tích đất: đó là tổng diện tích sàn cộng móng, mái, sân thượng, sân sau khi nhân hệ số, thường lớn hơn diện tích sàn.
+
+**Móng băng tính bao nhiêu phần trăm diện tích?**
+Gia Khánh tính móng bằng 40% diện tích. Trên thị trường, móng băng thường từ 20% đến 50% tùy số băng, nên hãy yêu cầu nhà thầu ghi hệ số này vào báo giá.
 
 **Tầng hầm tính hệ số bao nhiêu?**
-Thị trường thường tính từ khoảng 150% đến 250% tùy độ sâu. Hệ số cụ thể phụ thuộc thiết kế, địa chất và biện pháp thi công, nên cần khảo sát mới chốt được. [cần xác nhận]
+Mỗi nhà thầu tính một kiểu, thường cao hơn sàn tầng vì khối lượng đào và kết cấu lớn. Hệ số cụ thể phụ thuộc độ sâu, thiết kế và địa chất nên chỉ chốt được sau khi kỹ sư khảo sát.
 
 **Sân thượng không có mái có phải tính tiền không?**
 Có, nhưng với hệ số thấp hơn sàn có mái vì khối lượng thi công ít hơn. Gia Khánh đang tính 30% cho sân, sân thượng không có mái che.
 
 **Vì sao hai nhà thầu báo cùng đơn giá nhưng tổng tiền khác nhau?**
-Thường do khác cách quy đổi diện tích (hệ số móng, mái, sân thượng) hoặc khác phạm vi vật tư. Hãy so sánh tổng diện tích quy đổi và bảng vật tư, đừng chỉ so đơn giá/m².
+Thường do khác cách quy đổi diện tích (hệ số móng, mái, sân thượng) hoặc khác phạm vi vật tư. Hãy so sánh tổng diện tích quy đổi và bảng vật tư, đừng chỉ so đơn giá mỗi m².
 
-**Con số ước tính tự tính có chính xác không?**
-Chỉ là mức tham khảo để dự trù ngân sách. Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.
+**Con số tự ước tính có chính xác không?**
+Con số tự ước tính chỉ là mức tham khảo để dự trù ngân sách. Đơn giá chưa gồm VAT, chưa gồm phá dỡ và ép cọc. Báo giá chính xác sau khi khảo sát thực tế.
 
-## 9. Nhận báo giá miễn phí cho ngôi nhà của bạn
+## Nhận báo giá miễn phí cho ngôi nhà của bạn
 
-Gửi diện tích đất, số tầng và khu vực, kỹ sư Gia Khánh sẽ khảo sát miễn phí và gửi bảng quy đổi diện tích kèm dự toán chi tiết từng hạng mục.
+Gửi diện tích đất, số tầng và khu vực nhà bạn. Kỹ sư Gia Khánh sẽ khảo sát miễn phí, sau đó gửi bảng quy đổi diện tích kèm dự toán chi tiết từng hạng mục để bạn đối chiếu với các báo giá khác trước khi quyết định.
 
 **[Nhận báo giá miễn phí]** · Hotline / Zalo: **0964 531 577**
+
+## Nguồn tham khảo
+
+- Hệ số thị trường: tổng hợp từ các bài hướng dẫn công khai (wiki.batdongsan.com.vn, muaban.net, voh.com.vn; tra cứu 21/10/2026). Mỗi nơi ghi khác nhau; chưa đối chiếu từng con số với bản gốc.
+- Hệ số của Gia Khánh: `noi-dung/ho-so-doanh-nghiep.md` mục 2.2 và trang Báo giá.

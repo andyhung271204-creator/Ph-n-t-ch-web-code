@@ -4,11 +4,35 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import PostCard from '../../components/PostCard.astro';
 import { categories, posts } from '../../data/posts';
+import { company } from '../../data/company';
 
 export const getStaticPaths = () => posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 
 const { post } = Astro.props;
 const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const org = { '@type': 'Organization', name: company.name, url: new URL('/', Astro.site).href };
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.title,
+  description: post.metaDescription,
+  image: new URL(post.cover.src, Astro.site).href,
+  datePublished: post.date.toISOString(),
+  dateModified: post.date.toISOString(),
+  author: org,
+  publisher: org,
+  mainEntityOfPage: url,
+  inLanguage: 'vi',
+};
+const faqSchema = post.faqs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: post.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    }
+  : null;
 ---
 
 <BaseLayout
@@ -16,7 +40,9 @@ const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
   description={post.metaDescription}
   contentGroup={categories.find((c) => c.slug === post.category)?.name}
 >
-  <PageHeader title={post.title} crumb="Bài viết" parent={{ href: '/cam-nang', label: 'Cẩm nang' }} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(article)} />
+  {faqSchema && <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />}
+  <PageHeader title={post.title} crumb="Bài viết" parent={{ href: '/cam-nang/', label: 'Cẩm nang' }} />
 
   <section class="section" data-reveal>
     <article class="container-page max-w-3xl">
@@ -35,8 +61,8 @@ const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
         )
       }
       <div class="mt-12 flex flex-wrap gap-4">
-        {!post.body && <a href="/lien-he" class="btn btn-primary">Nhận báo giá miễn phí</a>}
-        <a href="/cam-nang" class="btn btn-outline">← Tất cả bài viết</a>
+        {!post.body && <a href="/lien-he/" class="btn btn-primary">Nhận báo giá miễn phí</a>}
+        <a href="/cam-nang/" class="btn btn-outline">← Tất cả bài viết</a>
       </div>
     </article>
   </section>

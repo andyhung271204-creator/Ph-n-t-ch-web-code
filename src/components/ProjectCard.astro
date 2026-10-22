@@ -11,7 +11,7 @@ const cover = imagesIn(project.slug)[0];
 ---
 
 <a
-  href={`/du-an/${project.slug}`}
+  href={`/du-an/${project.slug}/`}
   class="card group block overflow-hidden"
   data-reveal
   style={`--d:${(index % 3) * 90}ms`}
@@ -21,7 +21,7 @@ const cover = imagesIn(project.slug)[0];
       cover ? (
         <Image
           src={cover}
-          alt={`Công trình ${project.name} do Gia Khánh thi công`}
+          alt={`${project.name.replace(/^Công trình /, 'Công trình số ')} do Gia Khánh thi công`}
           width={Math.min(cover.width, 800)}
           class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />

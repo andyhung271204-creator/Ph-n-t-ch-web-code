@@ -5,26 +5,63 @@ import SectionHeading from '../components/SectionHeading.astro';
 import ServiceGrid from '../components/ServiceGridClassic.astro';
 import HeroSlider from '../components/HeroSlider.astro';
 import PostCard from '../components/PostCard.astro';
-import { company, stats, reasons, steps } from '../data/company';
+import Faq from '../components/Faq.astro';
+import { company, stats, reasons, steps, houseModels } from '../data/company';
 import { categories, posts } from '../data/posts';
 import { imagesIn } from '../data/images';
 
-const models = ['01', '03', '05', '06', '12', '16'].map((id) => ({ id, img: imagesIn(`mau-nha/${id}`)[0] }));
+const models = ['01', '03', '05', '06', '12', '16'].map((id) => ({ id, img: imagesIn(`mau-nha/${id}`)[0], name: houseModels.find((h) => h.id === id)!.name }));
 // Ảnh minh hoạ do Stitch sinh — chỉ trang trí, không phải công trình của Gia Khánh
 const reasonImages = imagesIn('stitch').filter((img) => img.src.includes('vi-sao-chon'));
-const [featured, ...more] = posts.slice(0, 5);
+// Vì sao chọn: 4 trong 6 lý do (chỉ số trong reasons), lời theo bản nháp
+const why = [
+  [0, 'Báo giá chia theo từng hạng mục, vật tư ghi rõ chủng loại.'],
+  [1, 'Chủ nhà liên hệ thẳng kỹ sư phụ trách công trình.'],
+  [4, 'Bảo hành bằng văn bản, Gia Khánh có mặt xử lý khi có sự cố.'],
+  [5, 'Đội ngũ quen nhà ống, nhà trong ngõ và quy định cấp phép tại Hà Nội.'],
+] as const;
+const slugs = ['chi-phi-xay-nha-pho-tron-goi', 'kiem-tra-truoc-khi-cai-tao-nha-cu', 'cach-tinh-dien-tich-xay-dung'];
+const [featured, ...more] = slugs.map((s) => posts.find((p) => p.slug === s)).filter((p) => p !== undefined);
+const nguoiDung = company.representative.split(' – ')[0].replace(/^Ông/, 'ông');
+const huyen = company.areaList.slice(1).join(', ');
+const faqs = [
+  {
+    q: 'Gia Khánh là công ty gì, ở đâu?',
+    a: `Gia Khánh là ${company.name}, mã số thuế ${company.taxCode}, trụ sở tại ${company.address}. Công ty nhận xây nhà, sửa chữa, thiết kế và hoàn thiện nội thất. Xem thêm ở trang Giới thiệu.`,
+  },
+  {
+    q: 'Gia Khánh nhận công trình ở khu vực nào?',
+    a: `Gia Khánh nhận công trình tại nội thành Hà Nội và các huyện lân cận như ${huyen}. Nếu địa chỉ của bạn nằm ngoài các khu vực này, hãy gửi qua Zalo hoặc form để Gia Khánh xác nhận.`,
+  },
+  {
+    q: 'Chọn nhà thầu xây nhà cần kiểm tra những gì?',
+    a: `Nên kiểm tra pháp lý, hợp đồng, người giám sát và bảo hành bằng văn bản. Với Gia Khánh, bạn đối chiếu được mã số thuế ${company.taxCode}, đọc dự toán và hợp đồng trước khi ký, mỗi công trình có kỹ sư phụ trách và bảo hành bằng văn bản.`,
+  },
+  {
+    q: 'Khảo sát và báo giá có mất phí không?',
+    a: `Không. Kỹ sư Gia Khánh đến tận nơi khảo sát và gửi báo giá chi tiết miễn phí. ${company.priceNote} Xem thêm ở trang Báo giá.`,
+  },
+  {
+    q: 'Làm việc với Gia Khánh theo quy trình nào?',
+    a: 'Quy trình có 6 bước: tiếp nhận và tư vấn, khảo sát miễn phí, thiết kế và báo giá, ký hợp đồng, thi công và giám sát, bàn giao và bảo hành. Bạn xem dự toán trước khi ký hợp đồng.',
+  },
+];
 ---
 
 <BaseLayout
-  title="Xây nhà trọn gói, sửa nhà tại Hà Nội"
-  description="Gia Khánh nhận xây nhà trọn gói, sửa chữa – cải tạo, hoàn thiện nội thất và chống thấm tại Hà Nội, Đông Anh. Báo giá minh bạch, khảo sát miễn phí, bảo hành bằng văn bản."
+  title="Công ty xây dựng nhà ở Hà Nội, khảo sát miễn phí"
+  description="Công ty xây dựng nhà ở Hà Nội: Gia Khánh nhận xây nhà, sửa chữa, thiết kế, hoàn thiện nội thất. Khảo sát miễn phí, hợp đồng rõ ràng. Nhận báo giá miễn phí."
 >
   <!-- 1. Hero: slider -->
   <HeroSlider />
 
-  <!-- 2. Con số -->
-  <section class="pt-12 md:pt-16" data-reveal>
+  <!-- 2. Đội ngũ + con số -->
+  <section class="section" data-reveal>
     <div class="container-page">
+      <SectionHeading
+        title="Đội ngũ Gia Khánh có bao nhiêu người, kinh nghiệm ra sao?"
+        subtitle={`${company.brand} (${company.name}, Đông Anh, Hà Nội) là nhà thầu xây dựng nhà ở, do ${nguoiDung} đứng đầu. Đội ngũ có hơn 10 người, gồm kỹ sư xây dựng, kiến trúc sư và quản lý thi công, với trên 10 năm kinh nghiệm thi công nhà ở.`}
+      />
       <ul class="grid grid-cols-2 rounded-lg border border-line bg-white shadow-md md:grid-cols-4 md:divide-x md:divide-line">
         {
           stats.map((s, i) => (
@@ -41,7 +78,10 @@ const [featured, ...more] = posts.slice(0, 5);
   <!-- 3. Dịch vụ -->
   <section class="section" data-reveal>
     <div class="container-page">
-      <SectionHeading title="Dịch vụ" subtitle="4 nhóm dịch vụ cho nhà ở dân dụng tại Hà Nội." />
+      <SectionHeading
+        title="Gia Khánh làm những dịch vụ nào?"
+        subtitle="Gia Khánh nhận bốn nhóm dịch vụ cho nhà ở dân dụng tại Hà Nội: xây nhà trọn gói, sửa chữa và cải tạo nhà, thiết kế kiến trúc và nội thất, hoàn thiện và thi công nội thất. Mỗi nhóm có một trang riêng ghi phạm vi công việc và cách nhận báo giá."
+      />
     </div>
     <ServiceGrid />
   </section>
@@ -49,16 +89,19 @@ const [featured, ...more] = posts.slice(0, 5);
   <!-- 4. Mẫu nhà đã thi công -->
   <section class="section bg-primary-light" data-reveal>
     <div class="container-page">
-      <SectionHeading title="Mẫu nhà đã thi công" subtitle="Thi công theo mẫu hoặc điều chỉnh theo diện tích, nhu cầu của gia đình." />
+      <SectionHeading
+        title="Mẫu nhà Gia Khánh đã thi công"
+        subtitle="Gia Khánh đã thi công những mẫu nhà dưới đây, từ nhà ống 5 tầng đến biệt thự 2 tầng mái Thái. Gia đình có thể xây theo mẫu hoặc điều chỉnh theo diện tích đất và nhu cầu ở. Các công trình còn lại nằm ở trang Công trình."
+      />
       <ul class="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3 lg:gap-8">
         {
           models.map((m, i) => (
             <li data-reveal style={`--d:${(i % 3) * 90}ms`}>
-              <a href="/du-an" class="card group block overflow-hidden">
+              <a href="/du-an/" class="card group block overflow-hidden">
                 <div class="aspect-[4/3] overflow-hidden">
                   <Image
                     src={m.img}
-                    alt={`Mẫu nhà ${Number(m.id)} Gia Khánh đã thi công`}
+                    alt={`${m.name}, mẫu nhà Gia Khánh đã thi công`}
                     width={600}
                     class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
@@ -72,7 +115,7 @@ const [featured, ...more] = posts.slice(0, 5);
         }
       </ul>
       <div class="mt-12 text-center">
-        <a href="/du-an" class="btn btn-outline bg-white px-7">Xem tất cả công trình</a>
+        <a href="/du-an/" class="btn btn-outline bg-white px-7">Xem tất cả công trình</a>
       </div>
     </div>
   </section>
@@ -80,17 +123,20 @@ const [featured, ...more] = posts.slice(0, 5);
   <!-- 5. Vì sao chọn + Quy trình -->
   <section class="section" data-reveal>
     <div class="container-page">
-      <SectionHeading title="Vì sao chọn Gia Khánh" subtitle="Nói rõ, làm đúng, bàn giao đủ — theo quy trình 6 bước." />
+      <SectionHeading
+        title="Vì sao chọn Gia Khánh và làm việc theo quy trình nào?"
+        subtitle={`Gia Khánh nêu sẵn những điều bạn có thể đối chiếu: mã số thuế ${company.taxCode}, hợp đồng ghi rõ giá trị, tiến độ, thanh toán, bảo hành, và kỹ sư phụ trách từng công trình. Kỹ sư gửi ảnh tiến độ hằng ngày qua Zalo, và mỗi đợt thanh toán đến sau khi hạng mục được nghiệm thu.`}
+      />
       <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
         <ul class="grid gap-5 sm:grid-cols-2">
           {
-            reasons.map((r, i) => (
+            why.map(([idx, text], i) => (
               <li class="group relative flex min-h-56 flex-col justify-end overflow-hidden rounded-lg p-6 shadow-sm transition-shadow hover:shadow-md" data-reveal style={`--d:${(i % 2) * 90}ms`}>
-                <Image src={reasonImages[i]} alt="" width={600} class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <Image src={reasonImages[idx]} alt="" width={600} class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-ink/70 to-ink/40" />
                 <div class="relative">
-                  <h3 class="font-semibold text-white">{r.name}</h3>
-                  <p class="mt-1 text-sm leading-relaxed text-white/85">{r.text}</p>
+                  <h3 class="font-semibold text-white">{reasons[idx].name}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-white/85">{text}</p>
                 </div>
               </li>
             ))
@@ -115,29 +161,28 @@ const [featured, ...more] = posts.slice(0, 5);
           </ol>
         </div>
       </div>
+      <p class="mx-auto mt-12 max-w-prose text-center leading-relaxed text-muted">
+        Thông tin pháp lý, người đại diện và đội ngũ có ở trang <a href="/gioi-thieu/" class="font-semibold text-primary underline">Giới thiệu</a>. Đơn giá và cách tính diện tích xem tại
+        <a href="/bao-gia/" class="font-semibold text-primary underline">Báo giá</a>. Muốn trao đổi ngay, vào trang
+        <a href="/lien-he/" class="font-semibold text-primary underline">Liên hệ</a>.
+      </p>
     </div>
   </section>
 
   <!-- 6. Cẩm nang xây nhà: 1 bài nổi bật + danh sách -->
   <section class="section bg-primary-light" data-reveal>
     <div class="container-page">
-      <SectionHeading title="Cẩm nang xây nhà" subtitle="Chi phí, thiết kế và những điều cần biết trước khi xây hoặc sửa nhà." />
-      <nav aria-label="Chủ đề cẩm nang" class="-mt-4 mb-10 flex flex-wrap justify-center gap-3">
-        {
-          categories.map((c) => (
-            <a href={`/cam-nang#${c.slug}`} class="inline-flex min-h-11 items-center rounded-full border border-primary/30 bg-white px-5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">
-              {c.name}
-            </a>
-          ))
-        }
-      </nav>
+      <SectionHeading
+        title="Cẩm nang cho gia chủ: chi phí, thiết kế, kiểm tra nhà cũ"
+        subtitle="Cẩm nang là các bài hướng dẫn ngắn của Gia Khánh về chi phí, thiết kế và những việc cần kiểm tra trước khi cải tạo hoặc xây nhà ở Hà Nội. Mỗi bài trả lời một câu hỏi gia chủ hay gặp, từ cách tính diện tích đến việc cần kiểm tra ở nhà cũ."
+      />
       <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
         <PostCard post={featured} large />
         <ul class="grid gap-4">
           {
             more.map((p, i) => (
               <li data-reveal style={`--d:${i * 90}ms`}>
-                <a href={`/cam-nang/${p.slug}`} class="card group flex items-center gap-4 p-3">
+                <a href={`/cam-nang/${p.slug}/`} class="card group flex items-center gap-4 p-3">
                   <div class="aspect-[4/3] w-28 shrink-0 overflow-hidden rounded-md md:w-36">
                     <Image src={p.cover} alt="" width={300} class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
                   </div>
@@ -152,9 +197,11 @@ const [featured, ...more] = posts.slice(0, 5);
         </ul>
       </div>
       <div class="mt-12 text-center">
-        <a href="/cam-nang" class="btn btn-outline bg-white px-7">Xem tất cả bài viết</a>
+        <a href="/cam-nang/" class="btn btn-outline bg-white px-7">Xem tất cả bài viết</a>
       </div>
     </div>
   </section>
 
+  <!-- 7. FAQ (có JSON-LD FAQPage), đặt cuối trang cho gọn -->
+  <Faq items={faqs} title="Câu hỏi thường gặp về Gia Khánh" />
 </BaseLayout>
