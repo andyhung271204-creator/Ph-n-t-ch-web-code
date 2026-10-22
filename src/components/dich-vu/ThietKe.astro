@@ -4,7 +4,6 @@ import SectionHeading from '../SectionHeading.astro';
 import Bullets from '../Bullets.astro';
 import ImageSlot from '../ImageSlot.astro';
 import Faq from '../Faq.astro';
-import ServiceCta from '../ServiceCta.astro';
 import { company } from '../../data/company';
 
 const th = 'bg-primary-light p-4 text-left font-semibold';
@@ -283,7 +282,7 @@ const faqs = [
     </div>
     <p class="mx-auto mt-10 max-w-prose leading-relaxed">
       Nếu bạn cần thiết kế nhà Đông Anh, trụ sở Gia Khánh nằm ngay tại xã Đông Anh, nên kiến trúc sư hoặc kỹ sư đến khảo
-      sát tận nơi khá thuận tiện. Gửi địa chỉ qua <a href="#bao-gia" class={link}>form báo giá</a> hoặc Zalo, Gia Khánh
+      sát tận nơi khá thuận tiện. Gửi địa chỉ qua <a href="/bao-gia/#nhan-bao-gia" class={link}>form báo giá</a> hoặc Zalo, Gia Khánh
       sẽ xác nhận lịch.
     </p>
   </div>
@@ -347,8 +346,3 @@ const faqs = [
 </section>
 
 <Faq title="Câu hỏi thường gặp về thiết kế kiến trúc nhà ở" items={faqs} />
-
-<ServiceCta
-  title="Bạn đang có ý tưởng cho ngôi nhà?"
-  subtitle="Để lại số điện thoại, Gia Khánh gọi lại tư vấn và hẹn khảo sát miễn phí tại nhà bạn. Bạn mô tả cách gia đình sinh hoạt, sau đó Gia Khánh gửi phương án và báo giá."
-/>

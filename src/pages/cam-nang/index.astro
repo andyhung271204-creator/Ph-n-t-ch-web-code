@@ -4,7 +4,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import PostCard from '../../components/PostCard.astro';
-import ServiceCta from '../../components/ServiceCta.astro';
 import { categories, posts } from '../../data/posts';
 
 const link = 'font-semibold text-primary underline hover:text-primary-dark';
@@ -90,9 +89,4 @@ const moTa: Record<string, { mo_ta: string; link: string; linkLabel: string }> =
       <a href="/bao-gia/" class={link}>bảng báo giá</a>.
     </p>
   </section>
-
-  <ServiceCta
-    title="Cần báo giá cho ngôi nhà của bạn?"
-    subtitle="Giá trong cẩm nang chỉ để tham khảo. Để lại số điện thoại, kỹ sư Gia Khánh sẽ khảo sát và báo giá miễn phí."
-  />
 </BaseLayout>

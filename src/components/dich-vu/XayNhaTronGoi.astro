@@ -6,7 +6,6 @@ import InfoList from '../InfoList.astro';
 import ImageSlot from '../ImageSlot.astro';
 import ServiceSteps from '../ServiceSteps.astro';
 import Faq from '../Faq.astro';
-import ServiceCta from '../ServiceCta.astro';
 import { company, daXacNhan, prices, packages, warranty } from '../../data/company';
 
 const th = 'bg-primary-light p-4 text-left font-semibold';
@@ -287,8 +286,3 @@ const faqs = [
 </section>
 
 <Faq title="Câu hỏi thường gặp về xây nhà trọn gói" items={faqs} />
-
-<ServiceCta
-  title="Nhận báo giá miễn phí cho ngôi nhà của bạn"
-  subtitle="Bạn đang có kế hoạch xây nhà? Để lại số điện thoại, Gia Khánh sẽ gọi lại tư vấn miễn phí. Phục vụ Hà Nội, nội thành và các huyện lân cận."
-/>

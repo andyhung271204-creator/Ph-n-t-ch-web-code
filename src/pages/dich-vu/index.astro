@@ -6,7 +6,6 @@ import PageHeader from '../../components/PageHeader.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import Icon from '../../components/Icon.astro';
 import Faq from '../../components/Faq.astro';
-import ServiceCta from '../../components/ServiceCta.astro';
 import { company } from '../../data/company';
 import { services } from '../../data/services';
 import { imagesIn } from '../../data/images';
@@ -73,7 +72,7 @@ const faqs = [
     subtitle={`${company.name} nhận bốn nhóm dịch vụ cho nhà ở Hà Nội: xây nhà trọn gói, sửa chữa cải tạo, thiết kế kiến trúc và nội thất, hoàn thiện và thi công nội thất. Mỗi nhóm có trang riêng với phạm vi và quy trình. Khảo sát, báo giá miễn phí.`}
   >
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="#bao-gia" class="btn btn-primary">Nhận báo giá miễn phí</a>
+      <a href="/bao-gia/#nhan-bao-gia" class="btn btn-primary">Nhận báo giá miễn phí</a>
       <a href={company.telUrl} class="btn btn-outline bg-white">Gọi ngay {company.phoneDisplay}</a>
       <a href={company.zaloUrl} class="btn btn-outline bg-white" target="_blank" rel="noopener">Chat Zalo</a>
     </div>
@@ -183,9 +182,4 @@ const faqs = [
   </section>
 
   <Faq title="Câu hỏi thường gặp về dịch vụ" items={faqs} />
-
-  <ServiceCta
-    title="Nhận báo giá miễn phí cho ngôi nhà của bạn"
-    subtitle="Bạn đang có kế hoạch xây hoặc sửa nhà? Để lại số điện thoại, Gia Khánh sẽ gọi lại tư vấn miễn phí. Phục vụ Hà Nội, nội thành và các huyện lân cận."
-  />
 </BaseLayout>

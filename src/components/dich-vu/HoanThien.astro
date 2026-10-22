@@ -6,7 +6,6 @@ import InfoList from '../InfoList.astro';
 import ImageSlot from '../ImageSlot.astro';
 import ServiceSteps from '../ServiceSteps.astro';
 import Faq from '../Faq.astro';
-import ServiceCta from '../ServiceCta.astro';
 import { company, daXacNhan, warranty } from '../../data/company';
 
 const th = 'bg-primary-light p-4 text-left font-semibold';
@@ -234,7 +233,7 @@ const warrantyRows = [
       <p>
         Giá hoàn thiện đi cùng gói xây nhà nằm trong đơn giá của gói đó, xem{' '}
         <a href="/bao-gia/" class={link}>bảng báo giá</a>. Bạn cũng có thể gửi hiện trạng qua form{' '}
-        <a href="#bao-gia" class={link}>nhận báo giá miễn phí</a> để hẹn khảo sát.
+        <a href="/bao-gia/#nhan-bao-gia" class={link}>nhận báo giá miễn phí</a> để hẹn khảo sát.
       </p>
       <p class="rounded-lg bg-white p-4 font-medium">{company.priceNote}</p>
     </div>
@@ -287,9 +286,4 @@ const warrantyRows = [
   title="Câu hỏi thường gặp về hoàn thiện và thi công nội thất"
   subtitle="Gia Khánh khảo sát và báo giá miễn phí cho cả nhà mới xong phần thô lẫn nhà cũ cần làm mới. Tiến độ và bảo hành ghi trong hợp đồng. Kỹ sư đo đạc tại nhà ở Hà Nội rồi gửi dự toán từng hạng mục trước khi bạn ký hợp đồng."
   items={faqs}
-/>
-
-<ServiceCta
-  title="Nhà đã xong phần thô, hoặc muốn làm mới nhà cũ?"
-  subtitle={`Để lại số điện thoại, ${company.name} sẽ gọi lại tư vấn miễn phí và hẹn khảo sát tận nơi. Kỹ sư xem hiện trạng rồi gửi dự toán từng hạng mục. Phục vụ Hà Nội, nội thành và các huyện lân cận.`}
 />
