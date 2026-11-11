@@ -5,7 +5,7 @@ category: chi-phi
 date: 2026-11-09T01:00:00.000Z
 draft: true
 excerpt: Ví dụ nhà 3 tầng, mỗi sàn 50 m², tính từng bước từ diện tích quy đổi đến chi phí phần thô và trọn gói, kèm các khoản gia chủ cần dự phòng thêm.
-cover: /src/assets/mau-nha/05/1.jpg
+cover: /src/assets/cam-nang/xay-nha-3-tang-50m2-het-bao-nhieu-tien/anh-bia.jpg
 meta_title: 'Xây nhà 3 tầng 50m² hết bao nhiêu tiền? | Gia Khánh'
 meta_description: 'Xây nhà 3 tầng 50m² hết bao nhiêu tiền: ví dụ tính diện tích quy đổi 185 m², chi phí phần thô, trọn gói và khoản phát sinh. Nhận báo giá miễn phí.'
 url: /cam-nang/xay-nha-3-tang-50m2-het-bao-nhieu-tien/

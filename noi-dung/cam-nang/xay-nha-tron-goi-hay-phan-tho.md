@@ -8,7 +8,7 @@ meta_description: 'Xây nhà trọn gói hay phần thô? So sánh hai gói: kh�
 url: /cam-nang/xay-nha-tron-goi-hay-phan-tho/
 draft: true
 date: 2026-11-12T01:00:00.000Z
-cover: /src/assets/mau-nha/10/1.jpg
+cover: /src/assets/cam-nang/xay-nha-tron-goi-hay-phan-tho/anh-bia.jpg
 ---
 
 # Xây nhà trọn gói hay phần thô: nên chọn gói nào?
