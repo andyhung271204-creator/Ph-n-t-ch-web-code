@@ -3,7 +3,7 @@ title: Xây nhà 3 tầng 50m² hết bao nhiêu tiền? Ví dụ tính từng b
 slug: xay-nha-3-tang-50m2-het-bao-nhieu-tien
 category: chi-phi
 date: 2026-11-09T01:00:00.000Z
-draft: true
+draft: false
 excerpt: Ví dụ nhà 3 tầng, mỗi sàn 50 m², tính từng bước từ diện tích quy đổi đến chi phí phần thô và trọn gói, kèm các khoản gia chủ cần dự phòng thêm.
 cover: /src/assets/cam-nang/xay-nha-3-tang-50m2-het-bao-nhieu-tien/anh-bia.jpg
 meta_title: 'Xây nhà 3 tầng 50m² hết bao nhiêu tiền? | Gia Khánh'
@@ -76,15 +76,15 @@ Có năm nhóm khoản gia chủ nên để riêng trong ngân sách, vì chúng
 - **Hạng mục theo thiết kế:** mái, ban công, giếng trời, hầm nếu có.
 - **Thay đổi trong lúc thi công:** đổi vật tư, thêm hoặc bớt hạng mục sau khi ký hợp đồng.
 
-Mức dự phòng nên để lại là [cần xác nhận: tỷ lệ dự phòng phát sinh Gia Khánh khuyến nghị]. Các yếu tố làm tổng chi phí tăng giảm được phân tích trong bài [Chi phí xây nhà phố trọn gói](/cam-nang/chi-phi-xay-nha-pho-tron-goi/).
+Nên để một khoản dự phòng cho các hạng mục này; mức cụ thể phụ thuộc thiết kế và địa chất, kỹ sư sẽ tư vấn sau khi khảo sát. Các yếu tố làm tổng chi phí tăng giảm được phân tích trong bài [Chi phí xây nhà phố trọn gói](/cam-nang/chi-phi-xay-nha-pho-tron-goi/).
 
 ![Mẫu nhà 2 tầng Gia Khánh đã thi công, nhìn từ trên cao thấy cổng sắt, tường rào và sân vườn](/uploads/cam-nang/xay-nha-3-tang-50m2-het-bao-nhieu-tien/mau-nha-05-3.webp)
 
 ## Làm sao tính cho đúng nhà của mình?
 
-Muốn tính cho nhà mình, nhân diện tích từng bộ phận với hệ số rồi nhân đơn giá của gói bạn chọn. Thay ba con số trong ví dụ bằng số của bạn: diện tích tầng trệt, số tầng và các bộ phận có trong nhà. Sau đó nhân với hệ số, cộng lại, rồi nhân đơn giá của gói bạn chọn. Kết quả đủ để dự trù ngân sách, còn con số chốt do kỹ sư tính sau khi khảo sát.
+Muốn tính cho nhà mình, nhân diện tích từng bộ phận với hệ số rồi nhân đơn giá của gói bạn chọn. Thay các số trong ví dụ bằng số của bạn: diện tích tầng trệt, số tầng và các bộ phận có trong nhà. Kết quả đủ để dự trù ngân sách, còn con số chốt do kỹ sư tính sau khi khảo sát.
 
-Thời gian thi công cho nhà quy mô này là [cần xác nhận: thời gian thi công nhà 3 tầng 50 m²]. Bảo hành công trình là [cần xác nhận: thời hạn và phạm vi bảo hành]. Nếu cần hỗ trợ hồ sơ xin phép xây dựng, phạm vi hỗ trợ là [cần xác nhận: phạm vi hỗ trợ pháp lý].
+Thời gian thi công, thời hạn bảo hành và việc hỗ trợ hồ sơ xin phép xây dựng được trao đổi cụ thể và ghi trong hợp đồng sau khi khảo sát. Gọi 0964 531 577 hoặc chat Zalo để được tư vấn.
 
 ## Câu hỏi thường gặp
 
