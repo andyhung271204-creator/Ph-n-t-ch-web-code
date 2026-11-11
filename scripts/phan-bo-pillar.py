@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parent.parent
 PILLAR_FILE = ROOT / "noi-dung/Content-pillar-Facebook-Threads-Gia-Khanh-text.xlsx"
 HISTORY = ROOT / "noi-dung/mang-xa-hoi/lich-su.md"
 POSTS_PER_WEEK = 7
+# Pillar không đưa vào lịch gợi ý: công trình thật (chủ doanh nghiệp tự đăng),
+# minh bạch chi phí (không để lộ giá/cách định giá cho đối thủ)
+BO_QUA = {"Công trình thật – Trước, trong, sau", "Minh bạch chi phí & quy trình"}
 
 
 def read_pillars(ws):
@@ -59,7 +62,8 @@ def main():
     wb = load_workbook(PILLAR_FILE, data_only=False)
     out = {}
     for platform in ("Facebook", "Threads"):
-        out[platform] = allocate(read_pillars(wb[platform]), past_counts(platform))
+        pillars = [p for p in read_pillars(wb[platform]) if p["pillar"] not in BO_QUA]
+        out[platform] = allocate(pillars, past_counts(platform))
         assert sum(p["so_bai"] for p in out[platform]) == POSTS_PER_WEEK
     json.dump(out, sys.stdout, ensure_ascii=False, indent=2)
 

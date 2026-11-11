@@ -13,6 +13,7 @@ npm run build    # output: dist/
 
 - Deploy = push lên `main` (Cloudflare Workers Builds tự build). Không chạy `npm run deploy` từ máy khi chưa pull.
 - Bài Cẩm nang soạn qua `/admin` (Sveltia CMS, `public/admin/config.yml`) và được commit thẳng lên GitHub → luôn `git pull` trước khi sửa trên máy.
+- Mỗi thứ Hai, routine cloud chạy skill `viet-cam-nang` để tự viết 2 bài Cẩm nang và push lên `main` ở dạng nháp (`draft: true`). Đề tài lấy từ bảng "Đề xuất bài cẩm nang mới" trong `noi-dung/seo/tu-khoa.md`, cột Trạng thái. Duyệt rồi bỏ tích "Bản nháp" trong `/admin` thì bài mới lên web.
 
 ## Rules
 
