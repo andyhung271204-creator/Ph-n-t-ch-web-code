@@ -8,7 +8,7 @@ meta_description: 'Hợp đồng xây nhà trọn gói cần ghi rõ phạm vi, 
 url: /cam-nang/hop-dong-xay-nha-tron-goi/
 draft: true
 date: 2026-11-16T01:00:00.000Z
-cover: /src/assets/mau-nha/01/1.jpg
+cover: /src/assets/cam-nang/hop-dong-xay-nha-tron-goi/anh-bia.jpg
 ---
 
 # Hợp đồng xây nhà trọn gói: những điều khoản cần có

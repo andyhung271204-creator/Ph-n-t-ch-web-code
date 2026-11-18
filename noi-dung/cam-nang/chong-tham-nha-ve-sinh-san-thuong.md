@@ -8,7 +8,7 @@ meta_description: 'Chống thấm nhà vệ sinh, sân thượng: thấm trần 
 url: /cam-nang/chong-tham-nha-ve-sinh-san-thuong/
 draft: true
 date: 2026-11-19T01:00:00.000Z
-cover: /src/assets/mau-nha/08/1.jpg
+cover: /src/assets/cam-nang/chong-tham-nha-ve-sinh-san-thuong/anh-bia.jpg
 ---
 
 # Chống thấm nhà vệ sinh, sân thượng: nguyên nhân và cách xử lý
