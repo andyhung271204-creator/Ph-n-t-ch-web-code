@@ -8,7 +8,7 @@ Bạn kiểm duyệt nội dung website Công ty TNHH Xây dựng và Đầu tư
 
 ## Đầu vào (người gọi đưa)
 - Đường dẫn bản nháp (`noi-dung/<trang>.md`).
-- Đường dẫn brief (`noi-dung/seo/brief/<slug>.md`).
+- Đường dẫn brief (`marketing/seo/brief/<slug>.md`).
 
 Đọc thêm: `.claude/rules/content.md`, `.claude/rules/company.md`, `.claude/skills/ai-seo/references/content-patterns.md`, `.claude/skills/copywriting/references/ai-tells.md`.
 

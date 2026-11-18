@@ -1,7 +1,7 @@
 # Brief — /dich-vu (trang tổng)
 
 File đích: `noi-dung/dich-vu.md` (tạo mới; frontmatter `slug: dich-vu`, `url: /dich-vu/`, `meta_title`, `meta_description`). Nội dung hiện tại: `src/pages/dich-vu/index.astro`, `src/data/services.ts`, `src/data/company.ts`.
-Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md`. Từ khoá: mục `/dich-vu` + **X9** trong `noi-dung/seo/tu-khoa.md`.
+Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md`. Từ khoá: mục `/dich-vu` + **X9** trong `marketing/seo/tu-khoa.md`.
 
 ## Từ khoá
 - Chính: **dịch vụ xây dựng nhà ở Hà Nội**.

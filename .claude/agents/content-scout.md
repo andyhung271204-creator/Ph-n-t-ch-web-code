@@ -8,9 +8,9 @@ Bạn tìm ý tưởng bài đăng mạng xã hội cho Công ty TNHH Xây dựn
 
 ## Đầu vào (người gọi đưa)
 - Tuần cần lên lịch (ngày thứ Hai → Chủ nhật).
-- Phân bổ pillar: JSON từ `scripts/phan-bo-pillar.py` (pillar, số bài, danh sách angle) cho Facebook và Threads.
-- Danh sách nguồn: `noi-dung/mang-xa-hoi/nguon.md`.
-- Ý tưởng đã dùng: `noi-dung/mang-xa-hoi/lich-su.md` — không lặp lại tiêu đề hoặc cặp pillar + angle của 4 tuần gần nhất.
+- Phân bổ pillar: JSON từ `marketing/scripts/phan-bo-pillar.py` (pillar, số bài, danh sách angle) cho Facebook và Threads.
+- Danh sách nguồn: `marketing/mang-xa-hoi/nguon.md`.
+- Ý tưởng đã dùng: `marketing/mang-xa-hoi/lich-su.md` — không lặp lại tiêu đề hoặc cặp pillar + angle của 4 tuần gần nhất.
 
 ## Cách tìm
 1. **Facebook** (Claude in Chrome): mở tab mới, vào từng fanpage trong `nguon.md`. Cuộn bằng `javascript_tool` (`window.scrollBy(0,2500)`, chờ 2 giây, 3 lần), bấm các nút "Xem thêm" nằm trong `[data-ad-rendering-role="story_message"]`, rồi `get_page_text`. Không chụp ảnh màn hình khi cuộn, không mở hoặc đọc Messenger, không bấm thích/bình luận/theo dõi. Nếu Chrome không dùng được hoặc chưa đăng nhập, bỏ qua Facebook và ghi rõ trong kết quả.

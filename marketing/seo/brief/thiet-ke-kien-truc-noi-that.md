@@ -1,8 +1,8 @@
 # Brief — /dich-vu/thiet-ke-kien-truc-noi-that
 
 File đích: `noi-dung/dich-vu-thiet-ke-kien-truc-noi-that.md` (ghi đè, giữ frontmatter `slug`, `url`, `meta_title`, `meta_description`).
-Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`, `noi-dung/seo/brief/xay-nha-tron-goi.md`. **Quy tắc chung** (kinh nghiệm 10 năm đã chốt, ảnh đã thi công, không bịa, link có `/` cuối…) ở mục cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md` — đọc và áp dụng.
-Từ khoá: mục `/dich-vu/thiet-ke-kien-truc-noi-that` trong `noi-dung/seo/tu-khoa.md`.
+Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`, `marketing/seo/brief/xay-nha-tron-goi.md`. **Quy tắc chung** (kinh nghiệm 10 năm đã chốt, ảnh đã thi công, không bịa, link có `/` cuối…) ở mục cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md` — đọc và áp dụng.
+Từ khoá: mục `/dich-vu/thiet-ke-kien-truc-noi-that` trong `marketing/seo/tu-khoa.md`.
 
 ## Từ khoá
 - Chính: **thiết kế kiến trúc nhà ở Hà Nội**.

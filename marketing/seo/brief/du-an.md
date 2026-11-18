@@ -1,7 +1,7 @@
 # Brief — /du-an
 
 File đích: `noi-dung/du-an.md` (tạo mới; frontmatter `slug: du-an`, `url: /du-an/`, `meta_title`, `meta_description`). Nội dung hiện tại: `src/pages/du-an/index.astro`, `src/pages/du-an/[slug].astro`, `src/data/projects.ts`, `houseModels` trong `src/data/company.ts`.
-Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md`. Từ khoá: mục `/du-an` + X15 trong `noi-dung/seo/tu-khoa.md`.
+Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md`. Từ khoá: mục `/du-an` + X15 trong `marketing/seo/tu-khoa.md`.
 
 ## Từ khoá
 - Chính: **mẫu nhà đã thi công Hà Nội**.

@@ -1,8 +1,8 @@
 # Brief — /bao-gia
 
 File đích: `noi-dung/bao-gia.md` (chưa có, tạo mới theo format frontmatter `slug`, `url`, `meta_title`, `meta_description` như `noi-dung/dich-vu-xay-nha-tron-goi.md`). Nội dung hiện tại trên web: `src/pages/bao-gia.astro`, dữ liệu `src/data/company.ts` (`packages`, `prices`, bảng 48 mẫu nhà).
-Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở mục cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md` — đọc và áp dụng.
-Từ khoá: mục `/bao-gia` + X1, X2, X15, X17 trong `noi-dung/seo/tu-khoa.md`.
+Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở mục cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md` — đọc và áp dụng.
+Từ khoá: mục `/bao-gia` + X1, X2, X15, X17 trong `marketing/seo/tu-khoa.md`.
 
 ## Từ khoá
 - Chính: **báo giá xây nhà Hà Nội**.

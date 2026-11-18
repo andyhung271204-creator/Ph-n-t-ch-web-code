@@ -1,5 +1,5 @@
 # Tính số bài mỗi content pillar cho 1 tuần (7 bài/nền tảng) theo tỉ lệ trong file pillar.
-# Chạy: python scripts/phan-bo-pillar.py  → in JSON {Facebook: [...], Threads: [...]}
+# Chạy: python marketing/scripts/phan-bo-pillar.py  → in JSON {Facebook: [...], Threads: [...]}
 # Dồn theo lịch sử: pillar tuần trước thiếu bài (vd. 5% → 0 bài) sẽ được ưu tiên tuần sau,
 # để tỉ lệ cộng dồn qua các tuần khớp với % trong file.
 import json
@@ -9,9 +9,9 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
-ROOT = Path(__file__).resolve().parent.parent
-PILLAR_FILE = ROOT / "noi-dung/Content-pillar-Facebook-Threads-Gia-Khanh-text.xlsx"
-HISTORY = ROOT / "noi-dung/mang-xa-hoi/lich-su.md"
+ROOT = Path(__file__).resolve().parent.parent.parent
+PILLAR_FILE = ROOT / "marketing/mang-xa-hoi/Content-pillar-Facebook-Threads-Gia-Khanh-text.xlsx"
+HISTORY = ROOT / "marketing/mang-xa-hoi/lich-su.md"
 POSTS_PER_WEEK = 7
 # Pillar không đưa vào lịch gợi ý: công trình thật (chủ doanh nghiệp tự đăng),
 # minh bạch chi phí (không để lộ giá/cách định giá cho đối thủ)

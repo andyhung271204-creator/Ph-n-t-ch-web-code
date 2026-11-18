@@ -1,0 +1,182 @@
+﻿=== 2026-11-16 01:54 ===
+## Báo cáo quét seeding
+
+**Đã quét 5 nguồn** (từ khoá, chưa có nhóm Facebook nào được thêm — 2 dòng `[Link nhóm]` trong `nguon.md` vẫn là placeholder nên bỏ qua):
+1. cần tư vấn sửa nhà hà nội
+2. nhà bị thấm dột
+3. nhà bị nứt tường
+4. xin báo giá xây nhà hà nội
+5. cải tạo nhà cũ hà nội
+
+Facebook đã đăng nhập sẵn trong Chrome, không gặp checkpoint/captcha.
+
+**Kết quả**: đa số bài tìm được qua các từ khoá trên đều cũ (từ tháng 8–10/2026) hoặc là bài quảng cáo của công ty khác (GT Home, Chống Thấm Anh Phát, Cải Tạo Nhà Hà Nội...) nên không đạt tiêu chí "trong 24 giờ". Chỉ **ghi được 1 bài** đạt đủ điều kiện:
+
+- Bài của **Lê Hải**, nhóm "SỬA CHỮA CẢI TẠO NHÀ HÀ NỘI", đăng cách đây 20 giờ: đang sửa nhà cũ, hỏi nên làm trần thạch cao hay trần nhựa nano cho phòng khách tầng 1. Mới có 3 like / 5 bình luận — còn ít người trả lời. Đã soạn bình luận tư vấn và ghi vào `hang-doi.md`, trạng thái `Chờ duyệt`.
+
+**Cần bạn chú ý**: không có bài nào hỏi giá hay tình huống khẩn cấp (dột/nứt) trong đợt quét này.
+
+**Hạn chế đáng lưu ý**: giao diện tìm kiếm Facebook hiện tại (trong Chrome của bạn) không có bộ lọc "mới nhất", kết quả xếp theo mức tương tác nên nhiều bài cũ nổi lên trước bài mới — lần quét sau nhiều khả năng vẫn gặp tình trạng này trừ khi có link nhóm cụ thể (nguồn ổn định hơn để bắt bài mới). Bạn có thể cân nhắc bổ sung link nhóm thật vào `nguon.md` để cải thiện.
+=== 2026-11-16 03:51 ===
+=== 2026-11-16 14:45 ===
+**B├ío c├ío qu├⌐t seeding 16/11/2026 14:49**
+
+**Ghi mß╗¢i: 1 b├ái** (`Chß╗¥ duyß╗çt` trong `marketing/seeding/hang-doi.md`)
+- Chß╗º nh├á ─æang x├óy, ─æß╗ïnh l├ám 2 giß║┐ng trß╗¥i, sß╗ú m╞░a thß║Ñm dß╗Öt ΓÇö b├¼nh luß║¡n t╞░ vß║Ñn chi tiß║┐t gß╗¥ chß║»n n╞░ß╗¢c, m├íng xß╗æi, phß╗àu tho├ít. Kh├┤ng n├¬u gi├í, kh├┤ng d├ín S─ÉT (b├ái hß╗Åi kß╗╣ thuß║¡t, ch╞░a t├¼m thß╗ú).
+
+**5 nguß╗ôn ─æ├ú qu├⌐t** (─æß╗üu l├á tß╗½ kho├í, lß╗ìc "B├ái mß╗¢i nhß║Ñt"):
+| Tß╗½ kho├í | Kß║┐t quß║ú |
+|---|---|
+| cß║ºn t╞░ vß║Ñn sß╗¡a nh├á h├á nß╗Öi | To├án b├ái quß║úng c├ío c├┤ng ty nß╗Öi thß║Ñt/cß║úi tß║ío ΓÇö 0 b├ái |
+| nh├á bß╗ï thß║Ñm dß╗Öt | **1 b├ái ─æß║ít** |
+| nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng | Quß║úng c├ío chß╗æng thß║Ñm + b├ín phß╗Ñ gia ΓÇö 0 b├ái |
+| xin b├ío gi├í x├óy nh├á h├á nß╗Öi | Quß║úng c├ío nh├á thß║ºu, b├ái kh├┤ng li├¬n quan ΓÇö 0 b├ái |
+| chß╗æng thß║Ñm trß║ºn nh├á | Kß║┐t quß║ú bß╗ï truyß╗çn ng├┤n t├¼nh chiß║┐m chß╗ù ΓÇö 0 b├ái |
+
+**Cß║ºn ch├║ ├╜**
+- Hai nh├│m Facebook trong `nguon.md` vß║½n l├á `[Link nh├│m]` ΓåÆ ch╞░a qu├⌐t ─æ╞░ß╗úc. Hai b├ái tr╞░ß╗¢c lß║Ñy ─æ╞░ß╗úc ─æß╗üu tß╗½ nh├│m, n├¬n bß╗ò sung link nh├│m sß║╜ cß║úi thiß╗çn kß║┐t quß║ú r├╡ rß╗çt.
+- T├¼m theo tß╗½ kho├í ─æang bß╗ï b├ái quß║úng c├ío v├á truyß╗çn d├ái ├íp ─æß║úo; tß╗½ kho├í "chß╗æng thß║Ñm trß║ºn nh├á" v├á "xin b├ío gi├í x├óy nh├á h├á nß╗Öi" gß║ºn nh╞░ v├┤ dß╗Ñng, n├¬n c├ón nhß║»c ─æß╗òi th├ánh c├óu hß╗Åi tß╗▒ nhi├¬n h╞ín (vd. "nh├á em bß╗ï dß╗Öt", "c├íc b├íc t╞░ vß║Ñn gi├║p em x├óy nh├á").
+- Kh├┤ng c├│ b├ái khß║⌐n cß║Ñp (dß╗Öt/nß╗⌐t ─æang xß║úy ra) trong lß║ºn qu├⌐t n├áy.
+=== 2026-11-17 08:17 ===
+─É├ú qu├⌐t xong, kh├┤ng ghi th├¬m d├▓ng n├áo v├áo `hang-doi.md` v├¼ kh├┤ng c├│ b├ái n├áo ─æß║ít ti├¬u ch├¡.
+
+**B├ío c├ío qu├⌐t seeding (2026-11-17)**
+
+─É├ú qu├⌐t 5 tß╗½ kho├í (2 nh├│m trong `nguon.md` vß║½n l├á placeholder `[Link nh├│m]` n├¬n bß╗Å qua):
+- cß║ºn t╞░ vß║Ñn sß╗¡a nh├á h├á nß╗Öi
+- chß╗æng thß║Ñm trß║ºn nh├á
+- xin b├ío gi├í x├óy nh├á h├á nß╗Öi
+- nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng
+- cß║úi tß║ío nh├á c┼⌐ h├á nß╗Öi (tß╗½ kho├í ─æ├ú qu├⌐t l├óu nhß║Ñt trong 3 tß╗½ kho├í d├╣ng h├┤m 16/11, n├¬n ╞░u ti├¬n qu├⌐t lß║íi)
+
+Kß║┐t quß║ú: **0 b├ái mß╗¢i ─æß║ít ti├¬u ch├¡**. Tß║Ñt cß║ú b├ái xuß║Ñt hiß╗çn ─æß╗üu l├á:
+- B├ái quß║úng c├ío cß╗ºa c├┤ng ty/fanpage kh├íc (chß╗æng thß║Ñm, nß╗Öi thß║Ñt, kiß║┐n tr├║c...), hoß║╖c
+- B├ái hß╗Åi thß║¡t cß╗ºa ng╞░ß╗¥i d├╣ng nh╞░ng ─æ├ú c┼⌐ (c┼⌐ nhß║Ñt v├ái tuß║ºn, gß║ºn nhß║Ñt c┼⌐ng "2 ng├áy tr╞░ß╗¢c" ΓÇô v├¡ dß╗Ñ b├ái cß╗ºa "L├¬ Hß║úi" trong nh├│m "Sß╗¼A CHß╗«A Cß║óI Tß║áO NH├Ç H├Ç Nß╗ÿI Γ£à" hß╗Åi trß║ºn thß║ích cao vs trß║ºn nhß╗▒a nano, ─æ─âng Chß╗º Nhß║¡t 15/11 l├║c 05:39, ngo├ái cß╗¡a sß╗ò 5 giß╗¥).
+
+Facebook Search (post) hiß╗çn kh├┤ng c├│ bß╗Ö lß╗ìc sß║»p xß║┐p "mß╗¢i nhß║Ñt" qua URL hay UI, n├¬n kß║┐t quß║ú trß║ú vß╗ü theo mß╗⌐c ─æß╗Ö li├¬n quan chß╗⌐ kh├┤ng theo thß╗¥i gian ΓÇö khiß║┐n kh├│ bß║»t ─æ╞░ß╗úc b├ái vß╗½a ─æ─âng trong 5 giß╗¥ gß║ºn nhß║Ñt bß║▒ng c├ích qu├⌐t tß╗½ kho├í. Hai d├▓ng nh├│m trong `nguon.md` vß║½n trß╗æng (`[Link nh├│m]`) ΓÇö nß║┐u bß╗ò sung link nh├│m chß╗º nh├á/x├óy dß╗▒ng thß║¡t th├¼ khß║ú n─âng bß║»t b├ái mß╗¢i trong khung 5 giß╗¥ sß║╜ cao h╞ín nhiß╗üu so vß╗¢i search tß╗½ kho├í.
+
+Kh├┤ng c├│ d├▓ng n├áo cß║ºn duyß╗çt gß║Ñp lß║ºn n├áy.
+=== 2026-11-17 08:59 ===
+**B├ío c├ío qu├⌐t seeding ΓÇö 2026-11-17**
+
+**B├ái mß╗¢i ghi v├áo `hang-doi.md`: 0.** File giß╗» nguy├¬n, kh├┤ng c├│ thay ─æß╗òi.
+
+**Nguß╗ôn ─æ├ú qu├⌐t (5/5, ─æß╗üu v├áo ─æ╞░ß╗úc, Facebook ─æ├ú ─æ─âng nhß║¡p, kh├┤ng gß║╖p checkpoint):**
+| Tß╗½ kho├í | Kß║┐t quß║ú |
+|---|---|
+| cß║ºn t╞░ vß║Ñn sß╗¡a nh├á h├á nß╗Öi | To├án b├ái quß║úng c├ío (thiß║┐t bß╗ï vß╗ç sinh, sß╗¡a kho├í, chß╗æng thß║Ñm, nß╗Öi thß║Ñt) + 1 b├ái b├ín chung c╞░ mini. B├ái gß║ºn nhß║Ñt c┼⌐ng ─æ├ú 9 giß╗¥ tr╞░ß╗¢c |
+| chß╗æng thß║Ñm trß║ºn nh├á | 10 b├ái: quß║úng c├ío vß║¡t liß╗çu/dß╗ïch vß╗Ñ chß╗æng thß║Ñm, 1 b├ái b├ín ga chß╗æng thß║Ñm nß╗çm, 2 b├ái truyß╗çn c├óu view. Tß║Ñt cß║ú ─æß╗üu >5 giß╗¥ |
+| nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng | 7 b├ái trong 5 giß╗¥ nh╞░ng ─æß╗üu l├á quß║úng c├ío (d├▓ r├▓ rß╗ë ß╗æng n╞░ß╗¢c H├á Nam, s╞ín, trß║ºn thß║ích cao, truyß╗çn) |
+| xin b├ío gi├í x├óy nh├á h├á nß╗Öi | To├án b├ái 1 ng├áy tr╞░ß╗¢c, chß╗º yß║┐u b├ái giß╗¢i thiß╗çu c├┤ng tr├¼nh cß╗ºa ─æ╞ín vß╗ï thiß║┐t kß║┐ |
+| cß║úi tß║ío nh├á c┼⌐ h├á nß╗Öi | To├án b├ái 2ΓÇô3 ng├áy tr╞░ß╗¢c, cß╗ºa nh├á thß║ºu/cß╗¡a h├áng |
+
+**Cß║ºn bß║ín ch├║ ├╜:**
+- Hai nh├│m Facebook trong `marketing/seeding/nguon.md` vß║½n l├á `[Link nh├│m]` ΓåÆ bß╗ï bß╗Å qua. Mß║Ñy b├ái chß║Ñt l╞░ß╗úng nhß║Ñt cß╗ºa 2 lß║ºn chß║íy tr╞░ß╗¢c ─æß╗üu ─æß║┐n tß╗½ nh├│m (Sß╗¼A CHß╗«A Cß║óI Tß║áO NH├Ç H├Ç Nß╗ÿI, Hß╗Öi thß╗ú x├óy v├á nh├ón c├┤ng x├óy dß╗▒ng H├á Nß╗Öi). Th├¬m link nh├│m v├áo file sß║╜ cß║úi thiß╗çn r├╡ tß╗ë lß╗ç t├¼m ─æ╞░ß╗úc b├ái thß║¡t.
+- T├¼m theo tß╗½ kho├í ─æang bß╗ï quß║úng c├ío lß║Ñn gß║ºn hß║┐t; tß╗½ kho├í dß║íng "chß╗æng thß║Ñm trß║ºn nh├á", "nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng" h├║t to├án b├ái b├ín dß╗ïch vß╗Ñ. C├│ thß╗â ─æß╗òi sang tß╗½ kho├í giß╗ìng ng╞░ß╗¥i hß╗Åi h╞ín, v├¡ dß╗Ñ "nh├á m├¼nh bß╗ï thß║Ñm", "nhß╗¥ c├íc b├íc t╞░ vß║Ñn sß╗¡a nh├á", "c├│ n├¬n cß║úi tß║ío hay x├óy mß╗¢i".
+- 3 b├ái `Chß╗¥ duyß╗çt` tß╗½ h├┤m qua (16/11) vß║½n ch╞░a ─æß╗òi trß║íng th├íi ΓÇö b├ái giß║┐ng trß╗¥i v├á b├ái t├¼m thß╗ú m├│ng b─âng ß╗ƒ ─É├┤ng Anh n├¬n ─æ─âng sß╗¢m kß║╗o nguß╗Öi.
+=== 2026-11-17 13:59 ===
+## B├ío c├ío qu├⌐t seeding ΓÇö 2026-11-17
+
+**Kß║┐t quß║ú: 0 b├ái mß╗¢i.** Kh├┤ng th├¬m d├▓ng n├áo v├áo `hang-doi.md`.
+
+**5 nguß╗ôn ─æ├ú qu├⌐t** (Chrome OK, Facebook ─æ├ú ─æ─âng nhß║¡p, kh├┤ng gß║╖p checkpoint/captcha):
+
+| Tß╗½ kho├í | Kß║┐t quß║ú |
+|---|---|
+| cß║ºn t╞░ vß║Ñn sß╗¡a nh├á h├á nß╗Öi | 9 b├ái ΓÇö to├án quß║úng c├ío c├┤ng ty nß╗Öi thß║Ñt/thiß║┐t kß║┐, tin tuyß╗ân dß╗Ñng, sang nh╞░ß╗úng cß╗¡a h├áng, b├ín c─ân hß╗Ö |
+| chß╗æng thß║Ñm trß║ºn nh├á | 12 b├ái ΓÇö truyß╗çn ng├┤n t├¼nh, tin y tß║┐ x├ú, quß║úng c├ío t├ú/LED/thß╗▒c phß║⌐m; chß╗ë 2 b├ái ─æ├║ng chß╗º ─æß╗ü nh╞░ng l├á quß║úng c├ío ─æß╗Öi chß╗æng thß║Ñm Hß║úi Ph├▓ng |
+| nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng | 3 b├ái ΓÇö kh├┤ng li├¬n quan (sß╗▒ kiß╗çn, truyß╗çn, chuyß╗çn c├┤ng ty) |
+| xin b├ío gi├í x├óy nh├á h├á nß╗Öi | 9 b├ái ΓÇö to├án fanpage x├óy dß╗▒ng/nß╗Öi thß║Ñt tß╗▒ quß║úng c├ío |
+| cß║úi tß║ío nh├á c┼⌐ h├á nß╗Öi | 7 b├ái ΓÇö quß║úng c├ío nh├á thß║ºu, 2 b├ái rao ─æß╗Öi thß╗ú tr├╣ng nhau |
+
+**Cß║ºn bß║ín ch├║ ├╜:**
+
+1. **Nguy├¬n nh├ón ch├¡nh: ch╞░a c├│ link nh├│m.** Mß╗Ñc "Nh├│m Facebook" trong `nguon.md` vß║½n l├á 2 d├▓ng `[Link nh├│m]` n├¬n bß╗ï bß╗Å qua. T├¼m theo tß╗½ kho├í + lß╗ìc "B├ái mß╗¢i nhß║Ñt" tr├¬n to├án Facebook gß║ºn nh╞░ chß╗ë ra b├ái quß║úng c├ío v├á nß╗Öi dung r├íc, v├¼ b├ái hß╗Åi thß║¡t cß╗ºa chß╗º nh├á nß║▒m trong nh├│m k├¡n. Hai b├ái tß╗æt nhß║Ñt cß╗ºa lß║ºn chß║íy tr╞░ß╗¢c (16/11) ─æß╗üu ─æß║┐n tß╗½ nh├│m ΓÇö nh╞░ng l├á nh├│m t├¼nh cß╗¥ lß╗ìt v├áo kß║┐t quß║ú t├¼m kiß║┐m, kh├┤ng phß║úi nguß╗ôn cß╗æ ─æß╗ïnh.
+
+   Gß╗úi ├╜: th├¬m thß║│ng v├áo `nguon.md` 2 nh├│m ─æ├ú tß╗½ng cho kß║┐t quß║ú, bß║ín xin v├áo th├ánh vi├¬n tr╞░ß╗¢c:
+   - `https://www.facebook.com/groups/1429994398591175` ΓÇö Sß╗¼A CHß╗«A Cß║óI Tß║áO NH├Ç H├Ç Nß╗ÿI
+   - `https://www.facebook.com/groups/613220295906931` ΓÇö Hß╗Öi thß╗ú x├óy v├á nh├ón c├┤ng x├óy dß╗▒ng H├á nß╗Öi
+
+2. **3 b├ái tß╗½ lß║ºn chß║íy 16/11 vß║½n ─æang `Chß╗¥ duyß╗çt`** trong `hang-doi.md` (giß║┐ng trß╗¥i, m├│ng b─âng ─É├┤ng Anh, trß║ºn thß║ích cao/nhß╗▒a nano). B├ái m├│ng b─âng ─É├┤ng Anh l├á b├ái s├ít nhu cß║ºu nhß║Ñt ΓÇö ng╞░ß╗¥i ta ─æang t├¼m thß║ºu, n├¬n ─æ─âng sß╗¢m.
+
+3. Trong l├║c qu├⌐t, DOM trang c├│ lß║½n nß╗Öi dung Messenger c├í nh├ón cß╗ºa bß║ín (thanh chat b├¬n phß║úi). T├┤i kh├┤ng mß╗ƒ Messenger v├á kh├┤ng ghi lß║íi g├¼ tß╗½ ─æ├│; nh╞░ng nß║┐u muß╗æn sß║ích h╞ín cho c├íc lß║ºn chß║íy sau th├¼ thu gß╗ìn/─æ├│ng thanh chat trong Chrome.
+=== 2026-11-18 01:12 ===
+=== 2026-11-18 02:44 ===
+=== 2026-11-18 02:46 ===
+## Báo cáo — lần quét 2026-11-18 02:47
+
+**0 bài mới.** Không ghi dòng nào vào `hang-doi.md`, không xuất Excel, không gửi Zalo (đúng quy tắc: chỉ gửi khi có bài mới).
+
+**Nguồn đã quét (5/5, đều thành công, không lỗi, không checkpoint):**
+
+| Từ khoá | Bài trong 5 giờ | Kết quả |
+|---|---|---|
+| cần tư vấn sửa nhà hà nội | có vài bài | toàn quảng cáo công ty XD, tin tuyển dụng, tin thời sự |
+| chống thấm trần nhà | 0 | bài mới nhất đã 9–12 giờ |
+| xin báo giá xây nhà hà nội | 3 | quảng cáo nội thất, bài trường học, bài nghề UIUX |
+| nhà bị nứt tường | 3 | bài tuyên truyền phường, truyện ngôn tình — lạc đề |
+| cải tạo nhà cũ hà nội | 5 | quảng cáo thầu, tin cho thuê nhà |
+
+**Cần chú ý:**
+- Khung giờ chạy này (21:47 → 02:47) gần như không có chủ nhà đăng bài — đây là lý do chính khiến mẻ quét trắng, không phải lỗi hệ thống. Lần chạy ban ngày sẽ có kết quả tốt hơn.
+- `nguon.md` vẫn còn 2 dòng `[Link nhóm]` chưa điền. Tìm kiếm từ khoá công khai bị quảng cáo lấn gần hết; thêm được 2–3 nhóm chủ nhà Hà Nội mà tài khoản đã tham gia thì tỉ lệ ra bài thật sẽ cải thiện rõ.
+=== 2026-11-18 02:52 ===
+## B├ío c├ío qu├⌐t seeding ΓÇö 2026-11-18 02:52
+
+**B├ái mß╗¢i ghi: 0.** Kh├┤ng c├│ d├▓ng n├áo th├¬m v├áo `hang-doi.md`, kh├┤ng xuß║Ñt Excel, kh├┤ng gß╗¡i Zalo.
+
+**5 nguß╗ôn ─æ├ú qu├⌐t** (tß║Ñt cß║ú l├á tß╗½ kho├í, lß╗ìc "B├ái mß╗¢i nhß║Ñt"):
+
+| Nguß╗ôn | Kß║┐t quß║ú |
+|---|---|
+| cß║ºn t╞░ vß║Ñn sß╗¡a nh├á h├á nß╗Öi | Qu├⌐t ─æ╞░ß╗úc ΓÇö to├án quß║úng c├ío c├┤ng ty thiß║┐t kß║┐/nß╗Öi thß║Ñt, tin tß╗⌐c |
+| chß╗æng thß║Ñm trß║ºn nh├á | Qu├⌐t ─æ╞░ß╗úc ΓÇö b├ái hß╗Åi thß║¡t c├│ 2 b├ái nh╞░ng ß╗ƒ Cß╗º Chi v├á Q1 TPHCM (tß╗ënh kh├íc), c├▓n lß║íi l├á dß╗ïch vß╗Ñ chß╗æng thß║Ñm |
+| xin b├ío gi├í x├óy nh├á h├á nß╗Öi | Qu├⌐t ─æ╞░ß╗úc ΓÇö kh├┤ng c├│ b├ái ng╞░ß╗¥i thß║¡t hß╗Åi |
+| nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng | Qu├⌐t ─æ╞░ß╗úc ΓÇö kß║┐t quß║ú lß╗çch chß╗º ─æß╗ü (truyß╗çn, tin tß╗⌐c), c├▓n lß║íi l├á b├ái cß╗ºa thß╗ú |
+| cß║úi tß║ío nh├á c┼⌐ h├á nß╗Öi | Qu├⌐t ─æ╞░ß╗úc ΓÇö to├án fanpage x├óy dß╗▒ng tß╗▒ quß║úng c├ío |
+
+Kh├┤ng gß║╖p lß╗ùi Chrome, kh├┤ng checkpoint/captcha. Facebook vß║½n ─æ─âng nhß║¡p b├¼nh th╞░ß╗¥ng.
+
+**Cß║ºn ch├║ ├╜:**
+- Giß╗¥ chß║íy r╞íi v├áo 2ΓÇô3h s├íng n├¬n khung "5 giß╗¥ gß║ºn nhß║Ñt" (tß╗½ ~21:52) gß║ºn nh╞░ kh├┤ng c├│ chß╗º nh├á n├áo ─æ─âng b├ái hß╗Åi; phß║ºn lß╗¢n kß║┐t quß║ú l├á 7ΓÇô19 giß╗¥ tr╞░ß╗¢c. C├íc lß║ºn chß║íy ban ng├áy sß║╜ cho kß║┐t quß║ú tß╗æt h╞ín.
+- Hai nguß╗ôn nh├│m Facebook trong `nguon.md` vß║½n l├á `[Link nh├│m]` ΓÇö ch╞░a c├│ link n├¬n bß╗ï bß╗Å qua. Bß╗ò sung link nh├│m chß╗º nh├á H├á Nß╗Öi sß║╜ t─âng ─æ├íng kß╗â sß╗æ b├ái hß╗úp lß╗ç, v├¼ t├¼m theo tß╗½ kho├í hiß╗çn bß╗ï quß║úng c├ío lß║Ñn ├ít.
+- 3 b├ái `Chß╗¥ duyß╗çt` tß╗½ 16/11 vß║½n ch╞░a ─æß╗òi trß║íng th├íi trong `hang-doi.md`.
+=== 2026-11-18 04:59 ===
+## B├ío c├ío lß║ºn qu├⌐t 2026-11-18 04:59
+
+**B├ái mß╗¢i ghi v├áo `hang-doi.md`: 0.** Kh├┤ng gß╗¡i Excel/Zalo (─æ├║ng quy tß║»c: chß╗ë gß╗¡i khi c├│ b├ái mß╗¢i). File `hang-doi.md` giß╗» nguy├¬n 3 d├▓ng `Chß╗¥ duyß╗çt` tß╗½ 16/11.
+
+**5 nguß╗ôn ─æ├ú qu├⌐t** (Chrome ─æ─âng nhß║¡p b├¼nh th╞░ß╗¥ng, kh├┤ng gß║╖p checkpoint/captcha):
+
+| Tß╗½ kho├í | Kß║┐t quß║ú |
+|---|---|
+| cß║ºn t╞░ vß║Ñn sß╗¡a nh├á h├á nß╗Öi | 7 b├ái ΓÇö to├án fanpage nß╗Öi thß║Ñt/kiß║┐n tr├║c quß║úng c├ío + tin thß╗¥i sß╗▒ |
+| chß╗æng thß║Ñm trß║ºn nh├á | 12 b├ái ΓÇö 1 b├ái hß╗Åi thß║¡t ("tß║ºng ├óm nh├á em bß╗ï thß║Ñm xß╗¡ l├╜ c├ích n├áo") nh╞░ng **16 giß╗¥ tr╞░ß╗¢c** ΓåÆ ngo├ái cß╗¡a sß╗ò 5 giß╗¥; c├▓n lß║íi l├á b├ín b─âng keo, phß╗Ñ gia, thß╗ú chß╗æng thß║Ñm |
+| nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng | 7 b├ái ΓÇö quß║úng c├ío thiß║┐t kß║┐, truyß╗çn, 1 b├ái kß╗╣ thuß║¡t cß║ºu ─æ╞░ß╗¥ng |
+| xin b├ío gi├í x├óy nh├á h├á nß╗Öi | 20 b├ái ΓÇö kh├┤ng li├¬n quan (du hß╗ìc, thß╗¥i sß╗▒, ca nhß║íc); tß╗½ kho├í d├ái n├¬n Facebook trß║ú kß║┐t quß║ú rß╗¥i rß║íc |
+| nh├á bß╗ï thß║Ñm dß╗Öt | 12 b├ái ΓÇö truyß╗çn ng├┤n t├¼nh, thß╗¥i sß╗▒, quß║úng c├ío villa |
+
+**Cß║ºn ng╞░ß╗¥i d├╣ng ch├║ ├╜**
+
+- Nh├│m Facebook trong `nguon.md` vß║½n l├á `[Link nh├│m]` n├¬n bß╗ï bß╗Å qua. Ba b├ái c├│ gi├í trß╗ï nhß║Ñt cß╗ºa lß║ºn chß║íy tr╞░ß╗¢c ─æß╗üu ─æß║┐n tß╗½ nh├│m (t├¼m qua tß╗½ kho├í); th├¬m link 2ΓÇô3 nh├│m chß╗º nh├á/sß╗¡a nh├á H├á Nß╗Öi v├áo `nguon.md` sß║╜ t─âng kß║┐t quß║ú r├╡ rß╗çt.
+- Hai tß╗½ kho├í d├ái ΓÇö `cß║ºn t╞░ vß║Ñn sß╗¡a nh├á h├á nß╗Öi` v├á `xin b├ío gi├í x├óy nh├á h├á nß╗Öi` ΓÇö gß║ºn nh╞░ kh├┤ng ra b├ái ─æ├║ng ngß╗» cß║únh. N├¬n ─æß╗òi th├ánh cß╗Ñm ngß║»n, giß╗æng lß╗¥i ng╞░ß╗¥i hß╗Åi thß║¡t: `sß╗¡a nh├á cß║Ñp 4`, `trß║ºn nh├á bß╗ï dß╗Öt`, `cß║úi tß║ío nh├á`, `thu├¬ thß║ºu x├óy nh├á`.
+- Cß╗¡a sß╗ò 5 giß╗¥ ─æang lß╗ìc ─æi phß║ºn lß╗¢n b├ái tß╗æt: lß║ºn n├áy b├ái duy nhß║Ñt ─æ├íng b├¼nh luß║¡n chß╗ë h╞ín mß╗æc 11 giß╗¥. Nß║┐u muß╗æn nhiß╗üu h├áng ─æß╗úi h╞ín, c├ón nhß║»c nß╗¢i l├¬n 12 hoß║╖c 24 giß╗¥ trong skill.
+=== 2026-11-18 09:59 ===
+## B├ío c├ío lß║ºn qu├⌐t 2026-11-18 09:59
+
+**0 b├ái mß╗¢i** ΓåÆ kh├┤ng ghi d├▓ng n├áo v├áo `hang-doi.md`, kh├┤ng xuß║Ñt Excel, kh├┤ng gß╗¡i Zalo.
+
+**Nguß╗ôn ─æ├ú qu├⌐t (5/5, Chrome + Facebook ─æ─âng nhß║¡p b├¼nh th╞░ß╗¥ng, kh├┤ng gß║╖p checkpoint):**
+
+| Tß╗½ kho├í | Kß║┐t quß║ú |
+|---|---|
+| cß║ºn t╞░ vß║Ñn sß╗¡a nh├á h├á nß╗Öi | 8 b├ái ΓÇö to├án quß║úng c├ío c├┤ng ty nß╗Öi thß║Ñt/kiß║┐n tr├║c, b├ái kh├┤ng li├¬n quan (hß╗ì tß╗Öc, nha khoa, cho thu├¬ c─ân hß╗Ö) |
+| chß╗æng thß║Ñm trß║ºn nh├á | 7 b├ái ΓÇö 2 b├ái ng╞░ß╗¥i thß║¡t nh╞░ng ß╗ƒ TP.HCM (phß╗æt thß╗ú chß╗æng thß║Ñm s├ón th╞░ß╗úng) v├á Long Kh├ính (bß╗ôn cß║ºu h├┤i), c├▓n lß║íi b├ín vß║¡t liß╗çu/b─âng keo |
+| nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng | 9 b├ái ΓÇö kh├┤ng c├│ b├ái n├áo vß╗ü nh├á ß╗ƒ; khß╗¢p tß╗½ kho├í do b├ái gi├í v├áng, truyß╗çn, b├ái nghi├¬n cß╗⌐u t├óm l├╜ |
+| xin b├ío gi├í x├óy nh├á h├á nß╗Öi | 7 b├ái ΓÇö tin tß╗⌐c, b├ín nh├á ─æß║Ñt, quß║úng c├ío thiß║┐t kß║┐ |
+| cß║úi tß║ío nh├á c┼⌐ h├á nß╗Öi | 13 b├ái ΓÇö quß║úng c├ío thiß║┐t kß║┐/thi c├┤ng, tuyß╗ân dß╗Ñng, b├ín phim d├ín nß╗Öi thß║Ñt, thß╗▒c phß║⌐m |
+
+**Cß║ºn bß║ín ch├║ ├╜:**
+- Ch╞░a c├│ b├ái n├áo khß║⌐n cß║Ñp (dß╗Öt/nß╗⌐t) ß╗ƒ H├á Nß╗Öi trong 5 giß╗¥ gß║ºn nhß║Ñt.
+- 3 b├ái `Chß╗¥ duyß╗çt` tß╗½ 16/11 vß║½n ch╞░a ─æß╗òi trß║íng th├íi ΓÇö ─æ├ú 2 ng├áy, b├¼nh luß║¡n v├áo b├ái c┼⌐ hiß╗çu quß║ú thß║Ñp dß║ºn, n├¬n duyß╗çt/bß╗Å sß╗¢m.
+- Hiß╗çu suß║Ñt qu├⌐t bß║▒ng tß╗½ kho├í ─æang rß║Ñt thß║Ñp: c├íc tß╗½ kho├í chung ("nh├á bß╗ï nß╗⌐t t╞░ß╗¥ng", "chß╗æng thß║Ñm trß║ºn nh├á") bß╗ï b├ái kh├┤ng li├¬n quan chiß║┐m hß║┐t kß║┐t quß║ú, v├á t├¼m kiß║┐m kh├┤ng giß╗¢i hß║ín ─æ╞░ß╗úc khu vß╗▒c H├á Nß╗Öi. Hai d├▓ng `[Link nh├│m]` trong `nguon.md` vß║½n trß╗æng ΓÇö bß╗ò sung 2ΓÇô3 nh├│m chß╗º nh├á/c╞░ d├ón H├á Nß╗Öi (t├ái khoß║ún Chrome cß║ºn ─æ├ú l├á th├ánh vi├¬n) sß║╜ cß║úi thiß╗çn r├╡ nhß║Ñt.

@@ -1,8 +1,8 @@
 # Brief — / (trang chủ)
 
 File đích: `noi-dung/trang-chu.md` (chưa có, tạo mới theo format frontmatter `slug`, `url`, `meta_title`, `meta_description`; `slug: trang-chu`, `url: /`). Nội dung hiện tại: `src/pages/index.astro`, `src/components/HeroSlider.astro`, `src/data/company.ts`.
-Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở mục cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md` — đọc và áp dụng. Bố cục: `.claude/rules/homepage.md` (tối đa ~7 section, không bảng giá đầy đủ, không tin tức/khuyến mãi; **không làm trang dày**).
-Từ khoá: mục `/ (trang chủ)` + X8, X14, X16 trong `noi-dung/seo/tu-khoa.md`.
+Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở mục cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md` — đọc và áp dụng. Bố cục: `.claude/rules/homepage.md` (tối đa ~7 section, không bảng giá đầy đủ, không tin tức/khuyến mãi; **không làm trang dày**).
+Từ khoá: mục `/ (trang chủ)` + X8, X14, X16 trong `marketing/seo/tu-khoa.md`.
 
 ## Từ khoá
 - Chính: **công ty xây dựng nhà ở Hà Nội**.

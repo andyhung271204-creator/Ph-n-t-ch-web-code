@@ -1,7 +1,7 @@
 # Brief — /dich-vu/xay-nha-tron-goi
 
 File đích: `noi-dung/dich-vu-xay-nha-tron-goi.md` (giữ frontmatter `slug`, `url`, `meta_title`, `meta_description`).
-Nguồn dữ kiện: `noi-dung/ho-so-doanh-nghiep.md`, `src/data/company.ts` (`prices`, `packages`, `warranty`, `daXacNhan`). Bản đồ từ khoá: `noi-dung/seo/tu-khoa.md` (đã duyệt). Audit: `noi-dung/seo/audit.md`.
+Nguồn dữ kiện: `noi-dung/ho-so-doanh-nghiep.md`, `src/data/company.ts` (`prices`, `packages`, `warranty`, `daXacNhan`). Bản đồ từ khoá: `marketing/seo/tu-khoa.md` (đã duyệt). Audit: `marketing/seo/audit.md`.
 
 ## Từ khoá
 

@@ -131,7 +131,7 @@ Bạn đang có kế hoạch xây hoặc sửa nhà ở Hà Nội? Để lại s
 - Mục 3: tên cột "Chủ nhà nhận được" là diễn đạt; 5 dòng giá trị lấy gần nguyên văn từ `values` trong `company.ts`. Câu "cách công ty làm việc với chủ nhà" là diễn giải.
 - Mục 4: mô tả ngắn 4 dịch vụ rút từ bảng dịch vụ trong hồ sơ; không nhắc phá dỡ, ép cọc.
 - Mục 5: vai trò chi tiết của kiến trúc sư (lập phương án thiết kế, phối cảnh 3D) và quản lý thi công (theo dõi tiến độ theo mốc) suy từ tên chức danh và quy trình; hồ sơ chỉ ghi chung "gồm kỹ sư xây dựng, kiến trúc sư, quản lý thi công". Câu "quen với nhà ống, nhà trong ngõ, quy định cấp phép" lấy từ `reasons`.
-- Mục 6: câu "Nhiều doanh nghiệp mang tên Gia Khánh" lấy từ ghi chú nghiên cứu trong `noi-dung/seo/tu-khoa.md`, không có trong hồ sơ; "Loại hình: công ty trách nhiệm hữu hạn" bỏ chữ "ngoài nhà nước" cho gọn.
+- Mục 6: câu "Nhiều doanh nghiệp mang tên Gia Khánh" lấy từ ghi chú nghiên cứu trong `marketing/seo/tu-khoa.md`, không có trong hồ sơ; "Loại hình: công ty trách nhiệm hữu hạn" bỏ chữ "ngoài nhà nước" cho gọn.
 - Mục 7 và FAQ: "kỹ sư đến xem hiện trạng trước rồi mới lập báo giá" suy từ bước 2 và 3 của quy trình; "dự toán chi tiết trước khi ký" lấy từ dịch vụ xây nhà trọn gói. FAQ "tra cứu thế nào" chỉ nói chung "cổng tra cứu thông tin doanh nghiệp", không nêu tên cổng cụ thể.
 - FAQ cuối: "gọi để trao đổi với kỹ sư" là diễn đạt; trang không hứa dẫn khách đi xem công trình thực tế.
 - Không dùng email trong `company.ts` (hồ sơ ghi email chưa có), không dùng giờ làm việc, thời gian phản hồi, bảo hành, số công trình, chứng chỉ.

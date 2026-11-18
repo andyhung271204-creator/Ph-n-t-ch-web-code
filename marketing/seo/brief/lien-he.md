@@ -1,7 +1,7 @@
 # Brief — /lien-he
 
 File đích: `noi-dung/lien-he.md` (tạo mới; frontmatter `slug: lien-he`, `url: /lien-he/`, `meta_title`, `meta_description`). Nội dung hiện tại: `src/pages/lien-he.astro`, `src/data/company.ts`.
-Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md`. Từ khoá: mục `/lien-he` + X14.
+Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`. **Quy tắc chung** ở cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md`. Từ khoá: mục `/lien-he` + X14.
 
 ## Từ khoá
 - Chính: **liên hệ Gia Khánh xây dựng**.

@@ -1,7 +1,7 @@
 # Brief — /gioi-thieu
 
 File đích: `noi-dung/gioi-thieu.md` (tạo mới; frontmatter `slug: gioi-thieu`, `url: /gioi-thieu/`, `meta_title`, `meta_description` như `noi-dung/dich-vu-xay-nha-tron-goi.md`). Nội dung hiện tại: `src/pages/gioi-thieu.astro`, `src/data/company.ts` (`about`, `vision`, `mission`, `values`, `team`…).
-Chuẩn: bản mẫu `noi-dung/dich-vu-xay-nha-tron-goi.md`, `noi-dung/trang-chu.md`. **Quy tắc chung** ở cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md`. Từ khoá: mục `/gioi-thieu` + X6, X14 trong `noi-dung/seo/tu-khoa.md`.
+Chuẩn: bản mẫu `noi-dung/dich-vu-xay-nha-tron-goi.md`, `noi-dung/trang-chu.md`. **Quy tắc chung** ở cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md`. Từ khoá: mục `/gioi-thieu` + X6, X14 trong `marketing/seo/tu-khoa.md`.
 
 ## Từ khoá
 - Chính: **Công ty TNHH Xây dựng và Đầu tư Gia Khánh**.

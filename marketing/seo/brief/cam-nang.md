@@ -1,6 +1,6 @@
 # Brief — /cam-nang (trang danh sách) + 5 bài cẩm nang
 
-**Quy tắc chung** ở cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md` áp dụng cho tất cả. Từ khoá từng bài: mục tương ứng trong `noi-dung/seo/tu-khoa.md` (đã duyệt), cùng các xung đột X1, X2, X10, X11, X13, X17, X18.
+**Quy tắc chung** ở cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md` áp dụng cho tất cả. Từ khoá từng bài: mục tương ứng trong `marketing/seo/tu-khoa.md` (đã duyệt), cùng các xung đột X1, X2, X10, X11, X13, X17, X18.
 
 ## A. Trang danh sách `/cam-nang/`
 File đích: `noi-dung/cam-nang.md` (tạo mới; `slug: cam-nang`, `url: /cam-nang/`, `meta_title`, `meta_description`). Hiện tại: `src/pages/cam-nang/index.astro`, `noi-dung/chuyen-muc.json`.

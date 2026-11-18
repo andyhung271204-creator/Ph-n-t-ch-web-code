@@ -1,8 +1,8 @@
 # Brief — /dich-vu/sua-chua-cai-tao-nha
 
 File đích: `noi-dung/dich-vu-sua-chua-cai-tao-nha.md` (ghi đè, giữ frontmatter `slug`, `url`, `meta_title`, `meta_description`).
-Chuẩn giọng văn + cấu trúc: `noi-dung/dich-vu-xay-nha-tron-goi.md` và `noi-dung/seo/brief/xay-nha-tron-goi.md` (đã duyệt). **Đọc "Quy tắc chung" ở cuối brief này trước.**
-Từ khoá: mục `/dich-vu/sua-chua-cai-tao-nha` trong `noi-dung/seo/tu-khoa.md` (đã duyệt). Audit: `noi-dung/seo/audit.md`.
+Chuẩn giọng văn + cấu trúc: `noi-dung/dich-vu-xay-nha-tron-goi.md` và `marketing/seo/brief/xay-nha-tron-goi.md` (đã duyệt). **Đọc "Quy tắc chung" ở cuối brief này trước.**
+Từ khoá: mục `/dich-vu/sua-chua-cai-tao-nha` trong `marketing/seo/tu-khoa.md` (đã duyệt). Audit: `marketing/seo/audit.md`.
 
 ## Từ khoá
 - Chính: **sửa chữa cải tạo nhà Hà Nội** (meta title, H1, câu đầu trang, 1 H2).

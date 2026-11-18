@@ -6,21 +6,21 @@ description: Viết lại nội dung website Gia Khánh theo chuẩn SEO và AI 
 # Viết lại nội dung web chuẩn SEO + AI SEO
 
 Tham số: tên trang (`xay-nha-tron-goi`, `bao-gia`, `trang-chu`…) hoặc `tat-ca`. Không có → hỏi.
-Thư mục làm việc: `noi-dung/seo/`. Luôn `git pull` trước khi bắt đầu (bài cẩm nang có thể được sửa qua CMS).
+Thư mục làm việc: `marketing/seo/`. Luôn `git pull` trước khi bắt đầu (bài cẩm nang có thể được sửa qua CMS).
 
 Thứ tự khi `tat-ca`: 4 trang dịch vụ → `/bao-gia` → `/` → `/gioi-thieu` → `/du-an`, `/lien-he`, `/dich-vu` → cẩm nang. Làm **1 trang dịch vụ trước làm mẫu**, người dùng duyệt giọng văn rồi mới làm song song phần còn lại.
 
-## 0. Kiểm tra hiện trạng (bỏ qua nếu `noi-dung/seo/audit.md` < 30 ngày)
+## 0. Kiểm tra hiện trạng (bỏ qua nếu `marketing/seo/audit.md` < 30 ngày)
 - `npm run build`, đọc HTML trong `dist/` của các trang cần làm: title, description, H1–H3, JSON-LD, link nội bộ.
 - Áp dụng skill `seo-audit` (on-page, local SEO) và `ai-seo` (`references/agent-readiness.md`, `content-patterns.md`).
-- Ghi `noi-dung/seo/audit.md`: lỗi kỹ thuật + điểm yếu nội dung từng trang.
+- Ghi `marketing/seo/audit.md`: lỗi kỹ thuật + điểm yếu nội dung từng trang.
 
 ## 1. Bản đồ từ khoá — BẮT BUỘC dừng
-- Gọi agent `seo-keyword` (chờ kết quả) với danh sách trang + audit → `noi-dung/seo/tu-khoa.md`.
+- Gọi agent `seo-keyword` (chờ kết quả) với danh sách trang + audit → `marketing/seo/tu-khoa.md`.
 - Hiện bảng tổng hợp + xung đột từ khoá, hỏi người dùng duyệt. Kết thúc lượt. Bỏ qua bước này nếu file đã có và người dùng đã duyệt.
 
 ## 2. Brief từng trang
-Ghi `noi-dung/seo/brief/<slug>.md`: từ khoá chính/phụ/địa phương, dàn ý H1–H3 (H2 dạng câu hỏi khi hợp), câu hỏi FAQ, link nội bộ, schema cần có (`Service`, `FAQPage`, `BreadcrumbList`, `Article`), điểm yếu cần sửa từ audit, nguồn dữ kiện (`noi-dung/ho-so-doanh-nghiep.md`, `src/data/company.ts`).
+Ghi `marketing/seo/brief/<slug>.md`: từ khoá chính/phụ/địa phương, dàn ý H1–H3 (H2 dạng câu hỏi khi hợp), câu hỏi FAQ, link nội bộ, schema cần có (`Service`, `FAQPage`, `BreadcrumbList`, `Article`), điểm yếu cần sửa từ audit, nguồn dữ kiện (`noi-dung/ho-so-doanh-nghiep.md`, `src/data/company.ts`).
 
 ## 3. Viết
 Gọi agent `contentweb` cho từng trang (nhiều trang → gọi song song trong một lượt), prompt gồm:

@@ -1,5 +1,5 @@
 # Xuất bài viết tuần ra Excel và ghi vào lịch sử nội dung.
-# Chạy: python scripts/xuat-bai-viet.py noi-dung/mang-xa-hoi/<yyyy-mm-dd>/bai-viet.json
+# Chạy: python marketing/scripts/xuat-bai-viet.py marketing/mang-xa-hoi/<yyyy-mm-dd>/bai-viet.json
 # JSON: danh sách bài, mỗi bài có ngay, nen_tang, pillar, angle, tieu_de, noi_dung, anh, nguon, ghi_chu.
 # In cảnh báo nếu bài Threads quá 500 ký tự, đường dẫn ảnh không tồn tại, hoặc bài có đơn giá.
 import json
@@ -10,8 +10,8 @@ from pathlib import Path
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
-ROOT = Path(__file__).resolve().parent.parent
-HISTORY = ROOT / "noi-dung/mang-xa-hoi/lich-su.md"
+ROOT = Path(__file__).resolve().parent.parent.parent
+HISTORY = ROOT / "marketing/mang-xa-hoi/lich-su.md"
 COLS = [  # (khoá JSON, tiêu đề cột, độ rộng)
     ("ngay", "Ngày", 12), ("nen_tang", "Nền tảng", 11), ("pillar", "Pillar", 22), ("angle", "Angle", 22),
     ("tieu_de", "Tiêu đề / hook", 32), ("noi_dung", "Nội dung", 70), ("anh", "Ảnh đề xuất", 40),

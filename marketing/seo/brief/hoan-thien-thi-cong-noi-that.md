@@ -1,8 +1,8 @@
 # Brief — /dich-vu/hoan-thien-thi-cong-noi-that
 
 File đích: `noi-dung/dich-vu-hoan-thien-thi-cong-noi-that.md` (ghi đè, giữ frontmatter `slug`, `url`, `meta_title`, `meta_description`).
-Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`, `noi-dung/seo/brief/xay-nha-tron-goi.md`. **Quy tắc chung** ở mục cuối `noi-dung/seo/brief/sua-chua-cai-tao-nha.md` — đọc và áp dụng.
-Từ khoá: mục `/dich-vu/hoan-thien-thi-cong-noi-that` trong `noi-dung/seo/tu-khoa.md`.
+Chuẩn: `noi-dung/dich-vu-xay-nha-tron-goi.md`, `marketing/seo/brief/xay-nha-tron-goi.md`. **Quy tắc chung** ở mục cuối `marketing/seo/brief/sua-chua-cai-tao-nha.md` — đọc và áp dụng.
+Từ khoá: mục `/dich-vu/hoan-thien-thi-cong-noi-that` trong `marketing/seo/tu-khoa.md`.
 
 ## Từ khoá
 - Chính: **thi công hoàn thiện nhà ở Hà Nội**.
