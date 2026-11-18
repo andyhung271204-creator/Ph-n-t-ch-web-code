@@ -21,6 +21,7 @@ Quy tắc chi tiết nằm trong `.claude/rules/`:
 
 | File | Chủ đề | Nạp khi |
 |---|---|---|
+| `quy-trinh-tinh-nang.md` | Ý tưởng → tài liệu (`docs/specs/`) → duyệt → code → test → handoff | Luôn luôn |
 | `workflow.md` | Thiết kế UI qua Stitch, screenshot so sánh design, mobile-friendly (bắt buộc) | Luôn luôn |
 | `company.md` | Thông tin công ty, dịch vụ, quy trình, CTA, logo | Luôn luôn |
 | `content.md` | Sự thật & pháp lý, ngôn ngữ, giọng văn | Luôn luôn |
