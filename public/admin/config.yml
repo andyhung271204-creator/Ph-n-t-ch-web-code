@@ -14,15 +14,17 @@ media_libraries:
       raster_image: { format: webp, quality: 85, width: 2000, height: 2000 } # nén ảnh điện thoại khi tải lên
 
 collections:
-  - name: cam-nang
-    label: Cẩm nang
-    label_singular: Bài viết
+  # Hai nhóm cùng thư mục, tách theo trường draft. Bỏ tích "Bản nháp" → bài chuyển sang "Đã đăng".
+  - name: cam-nang-chua-duyet
+    label: Chưa duyệt
+    label_singular: Bài chờ duyệt
     folder: noi-dung/cam-nang
+    filter: { field: draft, value: true }
     extension: md
     format: frontmatter
-    create: true
+    create: true # bài tạo mới luôn là bản nháp (draft mặc định true)
     slug: '{{fields.slug}}'
-    fields:
+    fields: &cam-nang-fields
       - { name: title, label: Tiêu đề, widget: string }
       - name: slug
         label: Đường dẫn URL
@@ -38,7 +40,7 @@ collections:
         display_fields: ['items.*.name']
         search_fields: ['items.*.name']
       - { name: date, label: Ngày đăng, widget: datetime, hint: 'Bài mới nhất hiện đầu tiên ở trang chủ' }
-      - { name: draft, label: Bản nháp (ẩn khỏi web), widget: boolean, default: false, required: false }
+      - { name: draft, label: Bản nháp (ẩn khỏi web), widget: boolean, default: true, required: false }
       - { name: excerpt, label: Tóm tắt, widget: text, hint: '1–2 câu, hiện trên thẻ bài và đầu bài viết' }
       - name: cover
         label: Ảnh bìa
@@ -57,6 +59,17 @@ collections:
           câu hỏi in đậm kết thúc bằng "?", Shift+Enter rồi viết trả lời = mục hỏi đáp thu gọn ·
           một dòng chứa [Nhận báo giá miễn phí] = cụm nút báo giá/gọi/Zalo ·
           mục "Nguồn tham khảo" cuối bài không hiện trên web.
+
+  - name: cam-nang-da-dang
+    label: Đã đăng
+    label_singular: Bài đã đăng
+    folder: noi-dung/cam-nang
+    filter: { field: draft, value: false }
+    extension: md
+    format: frontmatter
+    create: false
+    slug: '{{fields.slug}}'
+    fields: *cam-nang-fields
 
   - name: cai-dat
     label: Cài đặt
