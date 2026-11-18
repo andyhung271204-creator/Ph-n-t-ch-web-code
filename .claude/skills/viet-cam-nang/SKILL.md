@@ -10,7 +10,7 @@ Chạy không cần người dùng trả lời: **không dừng hỏi**, chỗ n
 
 ## 1. Chuẩn bị
 - `git pull` (bài có thể vừa được sửa qua CMS).
-- Đọc bảng "Đề xuất bài cẩm nang mới" và "Danh sách xung đột từ khoá" trong `noi-dung/seo/tu-khoa.md`.
+- Đọc bảng "Đề xuất bài cẩm nang mới" và "Danh sách xung đột từ khoá" trong `marketing/seo/tu-khoa.md`.
 - Liệt kê `noi-dung/cam-nang/*.md` (slug đã có).
 - Ảnh: chạy `node scripts/anh-cam-nang.mjs` để liệt kê ảnh công trình thật (`src/assets/mau-nha/`, `src/assets/du-an/`) đủ lớn và chưa bài nào dùng. Người dùng thêm ảnh mới vào hai thư mục này hằng tuần. Tên mẫu nhà theo thư mục (`mau-nha/05` …) có trong `houseModels` ở `src/data/company.ts`.
   - Mỗi bài cần 1 ảnh bìa + 2–3 ảnh trong bài, tổng cộng 6–8 ảnh cho 2 bài, không trùng nhau.
@@ -61,7 +61,7 @@ Gọi 2 agent `contentweb` song song trong một lượt. Prompt mỗi agent g�
 
 ## 6. Ghi trạng thái & commit
 - Cột `Trạng thái` của dòng đề tài trong `tu-khoa.md`: `nháp: <slug> (<tuan>)`.
-- Commit chỉ các file `noi-dung/cam-nang/<slug>.md` mới, thư mục `public/uploads/cam-nang/<slug>/` và `noi-dung/seo/tu-khoa.md`, message `Cẩm nang tuần <tuan>: <slug1>, <slug2> (nháp)`, rồi `git push origin main`.
+- Commit chỉ các file `noi-dung/cam-nang/<slug>.md` mới, thư mục `public/uploads/cam-nang/<slug>/` và `marketing/seo/tu-khoa.md`, message `Cẩm nang tuần <tuan>: <slug1>, <slug2> (nháp)`, rồi `git push origin main`.
 - Push bị từ chối → `git pull --rebase` rồi push lại. Không dùng `--force`.
 
 ## 7. Báo cáo
