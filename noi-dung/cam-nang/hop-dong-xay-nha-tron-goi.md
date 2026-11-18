@@ -6,7 +6,7 @@ excerpt: Hợp đồng trọn gói chỉ bảo vệ bạn khi phạm vi, vật t
 meta_title: 'Hợp đồng xây nhà trọn gói: điều khoản cần có | Gia Khánh'
 meta_description: 'Hợp đồng xây nhà trọn gói cần ghi rõ phạm vi, vật tư, tiến độ, thanh toán theo mốc, bảo hành, phát sinh. Xem từng điều khoản, nhận báo giá miễn phí.'
 url: /cam-nang/hop-dong-xay-nha-tron-goi/
-draft: true
+draft: false
 date: 2026-11-16T01:00:00.000Z
 cover: /src/assets/cam-nang/hop-dong-xay-nha-tron-goi/anh-bia.jpg
 ---
@@ -21,7 +21,7 @@ Cần sáu nhóm: phạm vi công việc, phụ lục vật tư, tiến độ, t
 
 Điều khoản chung về hai bên, địa chỉ và giá trị hợp đồng thì hợp đồng nào cũng có. Chỗ phân biệt hợp đồng chặt với hợp đồng lỏng nằm ở sáu nhóm trên và ở các phụ lục đính kèm: bản vẽ, dự toán, bảng vật tư.
 
-Nếu bạn còn đang cân nhắc giữa trọn gói và phần thô, hãy đọc bài [xây nhà trọn gói hay phần thô](/cam-nang/xay-nha-tron-goi-hay-phan-tho/) trước. Bài này dành cho người đã chọn trọn gói.
+Nếu bạn còn đang cân nhắc giữa trọn gói và phần thô, hãy đọc bài "xây nhà trọn gói hay phần thô" trước. Bài này dành cho người đã chọn trọn gói.
 
 ## Điều khoản phạm vi công việc cần ghi những gì?
 

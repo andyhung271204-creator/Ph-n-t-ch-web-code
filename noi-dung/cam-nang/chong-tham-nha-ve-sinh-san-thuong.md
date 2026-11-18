@@ -6,7 +6,7 @@ excerpt: Thấm trần tầng dưới thường đi qua cổ ống, chân tườ
 meta_title: 'Chống thấm nhà vệ sinh, sân thượng: nguyên nhân | Gia Khánh'
 meta_description: 'Chống thấm nhà vệ sinh, sân thượng: thấm trần tầng dưới do đâu, có phải đục cả sàn không, xử lý cổ ống, chân tường. Khảo sát miễn phí tại Hà Nội.'
 url: /cam-nang/chong-tham-nha-ve-sinh-san-thuong/
-draft: true
+draft: false
 date: 2026-11-19T01:00:00.000Z
 cover: /src/assets/cam-nang/chong-tham-nha-ve-sinh-san-thuong/anh-bia.jpg
 ---
