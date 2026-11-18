@@ -2,13 +2,13 @@
 title: 'Xây nhà trọn gói hay phần thô: nên chọn gói nào?'
 slug: xay-nha-tron-goi-hay-phan-tho
 category: chi-phi
+date: 2026-11-12T01:00:00.000Z
+draft: false
 excerpt: Trọn gói do nhà thầu lo cả vật tư hoàn thiện. Phần thô và nhân công hoàn thiện để gia chủ tự mua vật tư. Bài này giúp bạn chọn theo thời gian, ngân sách và mức muốn kiểm soát.
+cover: /src/assets/cam-nang/xay-nha-tron-goi-hay-phan-tho/anh-bia.jpg
 meta_title: 'Xây nhà trọn gói hay phần thô: nên chọn gói nào? | Gia Khánh'
 meta_description: 'Xây nhà trọn gói hay phần thô? So sánh hai gói: khác nhau ở đâu, hợp ai, gia chủ tự lo phần nào và rủi ro mỗi gói. Nhận báo giá miễn phí từ Gia Khánh.'
 url: /cam-nang/xay-nha-tron-goi-hay-phan-tho/
-draft: true
-date: 2026-11-12T01:00:00.000Z
-cover: /src/assets/cam-nang/xay-nha-tron-goi-hay-phan-tho/anh-bia.jpg
 ---
 
 # Xây nhà trọn gói hay phần thô: nên chọn gói nào?
