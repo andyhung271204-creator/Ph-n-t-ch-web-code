@@ -2,13 +2,13 @@
 title: 'Cách chọn nhà thầu xây nhà: những điều cần kiểm tra trước khi ký'
 slug: cach-chon-nha-thau-xay-nha
 category: chi-phi
+date: 2026-11-19T01:00:00.000Z
+draft: false
 excerpt: 'Năm việc gia chủ tự kiểm tra được trước khi ký: pháp lý, năng lực, công trình đã bàn giao, hợp đồng và bảo hành. Mỗi việc kèm câu hỏi cụ thể để hỏi nhà thầu.'
+cover: /src/assets/cam-nang/cach-chon-nha-thau-xay-nha/anh-bia.jpg
 meta_title: 'Cách chọn nhà thầu xây nhà: cần kiểm tra gì | Gia Khánh'
 meta_description: 'Cách chọn nhà thầu xây nhà: kiểm tra MST, ngành nghề, năng lực, công trình đã bàn giao, hợp đồng và bảo hành trước khi ký. Xem checklist, nhận báo giá miễn phí.'
 url: /cam-nang/cach-chon-nha-thau-xay-nha/
-draft: true
-date: 2026-11-19T01:00:00.000Z
-cover: /src/assets/cam-nang/cach-chon-nha-thau-xay-nha/anh-bia.jpg
 ---
 
 # Cách chọn nhà thầu xây nhà: những điều cần kiểm tra trước khi ký
