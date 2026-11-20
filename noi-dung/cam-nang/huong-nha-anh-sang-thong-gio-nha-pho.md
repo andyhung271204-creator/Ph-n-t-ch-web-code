@@ -8,7 +8,7 @@ meta_description: 'Chọn hướng nhà phố, che nắng tây, lấy sáng bằ
 url: /cam-nang/huong-nha-anh-sang-thong-gio-nha-pho/
 draft: false
 date: 2026-11-16T01:00:00.000Z
-cover: /src/assets/mau-nha/09/1.jpg
+cover: /src/assets/cam-nang/huong-nha-anh-sang-thong-gio-nha-pho/anh-bia.jpg
 ---
 
 # Hướng nhà, ánh sáng và thông gió cho nhà phố ở Hà Nội

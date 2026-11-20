@@ -8,7 +8,7 @@ meta_description: 'Cách bố trí công năng nhà ống mặt tiền hẹp: ph
 url: /cam-nang/bo-tri-cong-nang-nha-ong/
 draft: false
 date: 2026-11-15T01:00:00.000Z
-cover: /src/assets/mau-nha/04/1.jpg
+cover: /src/assets/cam-nang/bo-tri-cong-nang-nha-ong/anh-bia.jpg
 ---
 
 # Bố trí công năng nhà ống: phòng nào đặt ở đâu

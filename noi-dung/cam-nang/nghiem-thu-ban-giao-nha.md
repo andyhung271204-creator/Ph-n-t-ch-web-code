@@ -2,13 +2,13 @@
 title: 'Nghiệm thu bàn giao nhà: danh sách cần kiểm tra'
 slug: nghiem-thu-ban-giao-nha
 category: sua-chua
-excerpt: Danh sách soát khi nhận nhà mới hoặc nhà vừa cải tạo: hồ sơ, tường, sàn, cửa, điện nước, chống thấm, cách ghi lỗi vào biên bản trước khi ký nhận.
+excerpt: 'Danh sách soát khi nhận nhà mới hoặc nhà vừa cải tạo: hồ sơ, tường, sàn, cửa, điện nước, chống thấm, cách ghi lỗi vào biên bản trước khi ký nhận.'
 meta_title: 'Nghiệm thu bàn giao nhà: checklist kiểm tra | Gia Khánh'
 meta_description: 'Nghiệm thu bàn giao nhà cần soát hồ sơ, tường, sàn, cửa, điện nước, chống thấm và ghi lỗi vào biên bản. Xem checklist, nhận báo giá miễn phí.'
 url: /cam-nang/nghiem-thu-ban-giao-nha/
 draft: false
 date: 2026-11-17T01:00:00.000Z
-cover: /src/assets/mau-nha/15/3.jpg
+cover: /src/assets/cam-nang/nghiem-thu-ban-giao-nha/anh-bia.jpg
 ---
 
 # Nghiệm thu bàn giao nhà: danh sách cần kiểm tra

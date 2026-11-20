@@ -8,7 +8,7 @@ meta_description: 'Chọn thiết bị vệ sinh cho nhà phố: bồn cầu m�
 url: /cam-nang/chon-thiet-bi-ve-sinh-nha-pho/
 draft: false
 date: 2026-11-18T01:00:00.000Z
-cover: /src/assets/mau-nha/16/1.jpg
+cover: /src/assets/cam-nang/chon-thiet-bi-ve-sinh-nha-pho/anh-bia.jpg
 ---
 
 # Chọn thiết bị vệ sinh cho nhà phố: bồn cầu, lavabo, sen vòi

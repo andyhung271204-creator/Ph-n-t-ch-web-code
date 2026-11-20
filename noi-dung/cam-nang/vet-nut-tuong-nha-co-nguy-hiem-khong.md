@@ -5,7 +5,7 @@ category: sua-chua
 date: 2026-11-16T01:00:00.000Z
 draft: false
 excerpt: Phân biệt nứt chân chim, nứt chéo, nứt ngang và nứt do lún, cách theo dõi tại nhà và những dấu hiệu cần mời kỹ sư giám định.
-cover: /src/assets/mau-nha/17/1.jpg
+cover: /src/assets/cam-nang/vet-nut-tuong-nha-co-nguy-hiem-khong/anh-bia.jpg
 meta_title: Vết nứt tường nhà có nguy hiểm không? | Gia Khánh
 meta_description: Vết nứt tường nhà có nguy hiểm không? Phân biệt nứt chân chim, chéo, ngang, nứt do lún và dấu hiệu cần kỹ sư giám định. Nhận báo giá miễn phí.
 url: /cam-nang/vet-nut-tuong-nha-co-nguy-hiem-khong/

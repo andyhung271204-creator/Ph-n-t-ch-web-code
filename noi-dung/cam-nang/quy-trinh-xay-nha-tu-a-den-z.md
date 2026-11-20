@@ -8,7 +8,7 @@ meta_description: 'Các bước xây nhà theo thứ tự: giấy tờ đất, t
 url: /cam-nang/quy-trinh-xay-nha-tu-a-den-z/
 draft: false
 date: 2026-11-14T01:00:00.000Z
-cover: /src/assets/mau-nha/01/1.jpg
+cover: /src/assets/cam-nang/quy-trinh-xay-nha-tu-a-den-z/anh-bia.jpg
 ---
 
 # Quy trình xây nhà từ A đến Z: các bước từ chuẩn bị đến bàn giao
