@@ -1,14 +1,14 @@
 ---
-title: 'Vết nứt tường nhà có nguy hiểm không? Khi nào xem nhẹ, khi nào gọi kỹ sư'
+title: Vết nứt tường nhà có nguy hiểm không? Khi nào xem nhẹ, khi nào gọi kỹ sư
 slug: vet-nut-tuong-nha-co-nguy-hiem-khong
 category: sua-chua
-excerpt: Phân biệt nứt chân chim, nứt chéo, nứt ngang và nứt do lún, cách theo dõi tại nhà và những dấu hiệu cần mời kỹ sư giám định.
-meta_title: 'Vết nứt tường nhà có nguy hiểm không? | Gia Khánh'
-meta_description: 'Vết nứt tường nhà có nguy hiểm không? Phân biệt nứt chân chim, chéo, ngang, nứt do lún và dấu hiệu cần kỹ sư giám định. Nhận báo giá miễn phí.'
-url: /cam-nang/vet-nut-tuong-nha-co-nguy-hiem-khong/
-draft: true
 date: 2026-11-16T01:00:00.000Z
+draft: false
+excerpt: Phân biệt nứt chân chim, nứt chéo, nứt ngang và nứt do lún, cách theo dõi tại nhà và những dấu hiệu cần mời kỹ sư giám định.
 cover: /src/assets/mau-nha/17/1.jpg
+meta_title: Vết nứt tường nhà có nguy hiểm không? | Gia Khánh
+meta_description: Vết nứt tường nhà có nguy hiểm không? Phân biệt nứt chân chim, chéo, ngang, nứt do lún và dấu hiệu cần kỹ sư giám định. Nhận báo giá miễn phí.
+url: /cam-nang/vet-nut-tuong-nha-co-nguy-hiem-khong/
 ---
 
 # Vết nứt tường nhà có nguy hiểm không? Khi nào xem nhẹ, khi nào gọi kỹ sư
