@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent lên lịch nội dung</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f5;--card:#fff;--ink:#1c2420;--muted:#5d6b63;--line:#d9dfdb;
+--claude:#2f6b4f;--sub:#6b4fa8;--script:#2f5f9e;--user:#b7791f;--meta:#3b5998;--glow:#e8f3ec}
+@media (prefers-color-scheme:dark){:root{--bg:#141816;--card:#1d2320;--ink:#e6ece8;--muted:#9aa8a0;--line:#2e3632;--glow:#22332a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Be Vietnam Pro",system-ui,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 16px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;font-size:.85rem}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.wrap{display:grid;grid-template-columns:1fr 380px;gap:20px}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}}
+.node{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:10px;padding:12px 14px;transition:.3s;opacity:.55}
+.node.done{opacity:1}
+.node.on{opacity:1;background:var(--glow);box-shadow:0 0 0 2px var(--c);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 5px var(--c)}}
+@media (prefers-reduced-motion:reduce){.node.on{animation:none}}
+.node .who{font-size:.75rem;font-weight:600;color:var(--c);text-transform:uppercase;letter-spacing:.04em}
+.node h3{margin:2px 0 4px;font-size:1rem}
+.node p{margin:0;color:var(--muted);font-size:.88rem}
+.node code{font-size:.8rem;background:var(--bg);padding:1px 5px;border-radius:4px;word-break:break-all}
+.gate{border-style:dashed}
+.arrow{height:26px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;gap:6px}
+.arrow::before{content:"↓";font-size:1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+aside{position:sticky;top:16px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+@media (max-width:860px){aside{position:static}}
+#status{font-weight:600;margin:0 0 4px}
+#status::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--muted);margin-right:8px}
+#status.run::before{background:#2fa36b}#status.wait::before{background:var(--user)}
+.hint{color:var(--muted);font-size:.85rem;margin:0 0 10px}
+#log{list-style:none;margin:0;padding:0;font-size:.85rem;max-height:70vh;overflow:auto}
+#log li{padding:8px 0;border-top:1px solid var(--line);word-break:break-word}
+#log li.tool{color:var(--muted);font-size:.8rem;padding:4px 0}
+#log b{color:var(--c)}
+#log time{color:var(--muted);font-size:.75rem;margin-right:6px}
+</style>
+</head>
+<body>
+<main>
+<h1>Các agent đang làm việc</h1>
+<p class="sub">Theo dõi trực tiếp lượt chạy <code>/len-lich-noi-dung</code> gần nhất. Gõ lệnh trong Claude Code, trang tự cập nhật.</p>
+
+<div class="legend">
+  <span><i style="background:var(--claude)"></i>Claude (điều phối)</span>
+  <span><i style="background:var(--sub)"></i>Subagent</span>
+  <span><i style="background:var(--script)"></i>Script Python</span>
+  <span><i style="background:var(--user)"></i>Bạn duyệt</span>
+  <span><i style="background:var(--meta)"></i>Facebook (Meta)</span>
+</div>
+
+<div class="wrap">
+<div>
+  <div class="node" style="--c:var(--claude)" data-id="claude">
+    <div class="who">Claude · điều phối</div><h3>Chuẩn bị, kiểm tra, ghi file</h3>
+    <p>Đọc <code>nguon.md</code>, <code>lich-su.md</code>; kiểm tra kết quả các subagent</p>
+  </div>
+  <div class="arrow">gọi script</div>
+  <div class="node" style="--c:var(--script)" data-id="phan-bo-pillar">
+    <div class="who">Script · bước 1</div><h3>phan-bo-pillar.py</h3>
+    <p>Mỗi pillar bao nhiêu bài, angle nào đăng ít gần đây</p>
+  </div>
+  <div class="arrow">giao việc</div>
+  <div class="node" style="--c:var(--sub)" data-id="content-scout">
+    <div class="who">Subagent · bước 2</div><h3>content-scout</h3>
+    <p>Tìm 14 ý tưởng từ đối thủ</p>
+  </div>
+  <div class="arrow">dừng lượt</div>
+  <div class="node gate" style="--c:var(--user)" data-id="user">
+    <div class="who">Bạn · cổng duyệt</div><h3>Duyệt ý tưởng / duyệt hẹn giờ</h3>
+    <p>Skill dừng ở đây 2 lần, chờ bạn trả lời</p>
+  </div>
+  <div class="arrow">giao y-tuong.md đã chốt</div>
+  <div class="node" style="--c:var(--sub)" data-id="contentsocial">
+    <div class="who">Subagent · bước 4</div><h3>contentsocial</h3>
+    <p>Viết 14 bài → <code>bai-viet.json</code></p>
+  </div>
+  <div class="arrow">gọi script</div>
+  <div class="row">
+    <div class="node" style="--c:var(--script)" data-id="xuat-bai-viet">
+      <div class="who">Script · bước 5</div><h3>xuat-bai-viet.py</h3>
+      <p>Xuất Excel, ghi lịch sử, cảnh báo</p>
+    </div>
+    <div class="node" style="--c:var(--script)" data-id="dang-facebook">
+      <div class="who">Script · bước 6–7</div><h3>dang-facebook.py</h3>
+      <p>Chạy thử, rồi hẹn giờ lên Page</p>
+    </div>
+  </div>
+  <div class="arrow">Graph API</div>
+  <div class="node" style="--c:var(--meta)" data-id="meta">
+    <div class="who">Meta</div><h3>Lịch nội dung của Page</h3>
+    <p>Tự đăng 11:30 mỗi ngày</p>
+  </div>
+</div>
+
+<aside>
+  <p id="status">Chưa có lượt chạy</p>
+  <p class="hint" id="hint">Gõ <code>/len-lich-noi-dung</code> trong Claude Code để bắt đầu.</p>
+  <ol id="log"></ol>
+</aside>
+</div>
+</main>
+<script>
+const color={claude:"var(--claude)",user:"var(--user)","content-scout":"var(--sub)",contentsocial:"var(--sub)",
+  "phan-bo-pillar":"var(--script)","xuat-bai-viet":"var(--script)","dang-facebook":"var(--script)"};
+const name={claude:"Claude",user:"Bạn"};
+const nodes=[...document.querySelectorAll(".node")],log=document.getElementById("log"),
+  status=document.getElementById("status"),hint=document.getElementById("hint");
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+let last="";
+async function poll(){
+  let txt="";
+  try{txt=await (await fetch("nhat-ky.jsonl?"+Date.now(),{cache:"no-store"})).text()}catch{}
+  if(txt===last)return;last=txt;
+  const ev=txt.split("\n").filter(Boolean).map(l=>{try{return JSON.parse(l)}catch{return null}}).filter(Boolean);
+  if(!ev.length){status.textContent="Chưa có lượt chạy";status.className="";hint.hidden=false;log.innerHTML="";return}
+  const seen=new Set(ev.flatMap(e=>[e.from,e.to])),cur=ev.at(-1);
+  if(/ĐÃ HẸN: [1-9]/.test(txt))seen.add("meta");
+  nodes.forEach(n=>{n.classList.toggle("done",seen.has(n.dataset.id));n.classList.toggle("on",n.dataset.id===cur.to)});
+  const waiting=cur.to==="user";
+  status.textContent=waiting?"Đang chờ bạn trả lời":`Đang chạy · ${name[cur.to]||cur.to}`;
+  status.className=waiting?"wait":"run";
+  hint.textContent=`${ev.length} sự kiện · bắt đầu ${ev[0].t} · mới nhất ${cur.t}`;hint.hidden=false;
+  log.innerHTML=ev.slice().reverse().map(e=>{
+    const self=e.from===e.to&&e.from!=="user";
+    const head=self?`<b style="--c:${color[e.from]||"var(--muted)"}">${name[e.from]||e.from}</b> `:
+      `<b style="--c:${color[e.from]||"var(--muted)"}">${name[e.from]||e.from}</b> → <b style="--c:${color[e.to]||"var(--muted)"}">${name[e.to]||e.to}</b><br>`;
+    return `<li class="${self?"tool":""}"><time>${e.t}</time>${head}${esc(e.text)}</li>`}).join("");
+}
+poll();setInterval(poll,1500);
+</script>
+</body>
+</html>

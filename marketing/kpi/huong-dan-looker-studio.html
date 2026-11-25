@@ -1,0 +1,599 @@
+<title>Báo cáo KPI Gia Khánh trên Looker Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap">
+<style>
+/* Layout: sổ tay dựng báo cáo — đầu trang → mục lục bước → nguyên tắc → theme → dữ liệu → 3 bản phác trang báo cáo (canvas sáng như Looker) kèm bảng cấu hình → cập nhật hằng tuần. */
+:root {
+  --bg: #f4f6f5; --surface: #ffffff; --ink: #1a2433; --muted: #5b6b7f; --line: #e3e8ef;
+  --green: #178a3e; --green-dark: #0d5a2c; --green-soft: #ecf7ee;
+  --amber: #8a5600; --amber-soft: #fff4dc; --red: #b42318; --red-soft: #fdecea;
+  --code-bg: #f0f4f1;
+  --font: "Be Vietnam Pro", system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  /* Bản phác Looker: luôn nền sáng vì báo cáo Looker Studio là nền sáng */
+  --ls-page: #f4f6f5; --ls-card: #ffffff; --ls-line: #e3e8ef; --ls-ink: #1a2433; --ls-muted: #5b6b7f;
+  --ls-head: #0d5a2c; --ls-c1: #178a3e; --ls-c2: #2563a8; --ls-c3: #b26a00; --ls-c4: #9b4fa8;
+  --ls-soft: #ecf7ee; --ls-target: #cfd8d2; --ls-up: #178a3e; --ls-down: #b42318;
+  --ls-font: Roboto, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1512; --surface: #17201b; --ink: #e6ece8; --muted: #9aa9a0; --line: #2a3530;
+  --green: #4cc46e; --green-dark: #8fe0a6; --green-soft: #1c2e22;
+  --amber: #f0b75a; --amber-soft: #2d2412; --red: #f2877c; --red-soft: #351a17; --code-bg: #1d2822; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1512; --surface: #17201b; --ink: #e6ece8; --muted: #9aa9a0; --line: #2a3530;
+  --green: #4cc46e; --green-dark: #8fe0a6; --green-soft: #1c2e22;
+  --amber: #f0b75a; --amber-soft: #2d2412; --red: #f2877c; --red-soft: #351a17; --code-bg: #1d2822; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.6 }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 56px }
+h1, h2, h3 { margin: 0; line-height: 1.25; text-wrap: balance }
+h1 { font-size: clamp(26px, 4.2vw, 38px); font-weight: 700 }
+h2 { font-size: clamp(20px, 2.6vw, 24px); font-weight: 700 }
+h3 { font-size: 16px; font-weight: 600 }
+p, ul, ol { margin: 0 }
+a { color: var(--green) }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px }
+.muted { color: var(--muted) }
+.num { font-variant-numeric: tabular-nums }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--green) }
+code { font-family: var(--mono); font-size: 13px; background: var(--code-bg); padding: 1px 6px; border-radius: 4px; overflow-wrap: anywhere }
+kbd { font-family: var(--font); font-size: 13px; font-weight: 600; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 0 6px; background: var(--surface); white-space: nowrap }
+section { display: grid; gap: 20px; scroll-margin-top: 16px }
+.sec-head { display: grid; gap: 6px; max-width: 72ch }
+.sec-head .step { font-size: 13px; font-weight: 700; color: var(--green) }
+
+/* Đầu trang */
+.head { display: grid; gap: 14px }
+.head .lede { max-width: 70ch; color: var(--muted); font-size: 16px }
+.chips { display: flex; flex-wrap: wrap; gap: 8px }
+.chip { font-size: 13px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 12px }
+.toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-top: 6px; padding: 0; list-style: none; counter-reset: s }
+.toc a { display: flex; gap: 10px; align-items: baseline; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 14px; font-weight: 500; min-height: 44px }
+.toc a:hover { border-color: var(--green) }
+.toc b { color: var(--green); font-variant-numeric: tabular-nums }
+
+/* Cảnh báo */
+.alert { border-radius: 12px; padding: 14px 16px; display: grid; gap: 6px; border: 1px solid }
+.alert.warn { background: var(--amber-soft); border-color: var(--amber); color: var(--ink) }
+.alert.warn strong { color: var(--amber) }
+.alert.info { background: var(--green-soft); border-color: var(--green) }
+
+/* Nguyên tắc */
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px }
+.rule { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 6px; align-content: start }
+.rule p { font-size: 14px; color: var(--muted) }
+
+/* Bảng màu */
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px }
+.sw { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: grid; grid-template-rows: 56px auto }
+.sw i { display: block; border-bottom: 1px solid var(--line) }
+.sw div { padding: 10px 12px; display: grid; gap: 2px; font-size: 13px }
+.sw b { font-family: var(--mono); font-size: 14px }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0 }
+.steps { padding-left: 20px; display: grid; gap: 8px; font-size: 14px }
+.steps li::marker { color: var(--green); font-weight: 700 }
+
+/* Bảng */
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px }
+table { border-collapse: collapse; width: 100%; font-size: 14px }
+.tbl.wide table { min-width: 860px }
+.tbl.mid table { min-width: 560px }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; background: var(--surface) }
+tr:last-child td { border-bottom: 0 }
+td.id { font-weight: 700; color: var(--green); white-space: nowrap }
+
+/* Khối công thức */
+.formula { display: grid; gap: 8px }
+.code { position: relative; background: var(--code-bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 84px 12px 14px; font-family: var(--mono); font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; min-width: 0 }
+.copy { position: absolute; top: 6px; right: 6px; min-height: 32px; font: 600 12px var(--font); color: var(--green-dark); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer }
+.copy:hover { border-color: var(--green) }
+
+/* ===== Bản phác dashboard Looker Studio (canvas luôn sáng, kiểu thẻ màu + thẻ trắng) ===== */
+.mock-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--line) }
+.dash { min-width: 1040px; background: #e9edf3; color: #1f2937; font-family: var(--ls-font); font-size: 12px; line-height: 1.4; padding: 16px; display: grid; gap: 14px }
+.dash .tag { position: absolute; top: -8px; left: -8px; width: 22px; height: 22px; border-radius: 50%; background: #6d28d9; color: #fff; font: 700 11px var(--ls-font); display: grid; place-items: center; z-index: 2; box-shadow: 0 0 0 2px #fff }
+.dash .panel, .dash .card2 { position: relative; background: #fff; border-radius: 6px; box-shadow: 0 1px 3px rgba(15, 23, 42, .08) }
+.dash .panel { padding: 14px 16px 16px; display: grid; gap: 12px }
+.dash .ph { display: flex; justify-content: space-between; align-items: center; gap: 12px }
+.dash .ph h4 { margin: 0; font-size: 15px; font-weight: 500; color: #1f2937 }
+.dash .ph .date { border: 1px solid #d6dce5; border-radius: 6px; padding: 5px 10px; color: #374151; white-space: nowrap }
+.dash .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px }
+.dash .k { border-radius: 6px; padding: 14px 16px 16px; color: #fff; display: grid; gap: 6px; min-height: 96px; background: linear-gradient(135deg, var(--a), var(--b)) }
+.dash .k span { font-size: 14px; font-weight: 500 }
+.dash .k b { font-size: 34px; font-weight: 500; line-height: 1; font-variant-numeric: tabular-nums; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap }
+.dash .k b small { font-size: 18px; font-weight: 500 }
+.dash .k em { font-style: normal; font-size: 11px; font-weight: 700; background: #fff; color: var(--b); border-radius: 3px; padding: 1px 6px; align-self: center }
+.dash .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px }
+.dash .card2 { padding: 14px 16px 12px; display: grid; gap: 6px; align-content: start; min-width: 0 }
+.dash .card2 h5 { margin: 0; font-size: 14px; font-weight: 500; color: #1f2937 }
+.dash .hero { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap }
+.dash .hero b { font-size: 26px; font-weight: 500; color: #111827; font-variant-numeric: tabular-nums }
+.dash .hero b small { font-size: 14px; color: #4b5563 }
+.dash .chip2 { font-size: 11px; font-weight: 700; color: #15803d }
+.dash .chip2.n { color: #6b7280; font-weight: 500 }
+.dash .split { display: flex; gap: 14px; margin-left: 6px; padding-left: 12px; border-left: 1px solid #e5e7eb }
+.dash .split div { display: grid; font-size: 11px; color: #6b7280 }
+.dash .split strong { font-size: 15px; font-weight: 500; color: var(--c) }
+.dash .cv { position: relative; height: 200px }
+.dash .lg { display: flex; justify-content: center; gap: 14px; font-size: 11px; color: #4b5563 }
+.dash .lg span { display: inline-flex; gap: 5px; align-items: center }
+.dash .lg i { width: 9px; height: 9px; border-radius: 50%; background: var(--c) }
+.dash .list { display: grid; margin-top: 4px }
+.dash .list div { display: grid; grid-template-columns: 30px 1fr 34px; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid #eef0f3 }
+.dash .list div:last-child { border-bottom: 0 }
+.dash .list i { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 700 11px var(--ls-font); font-style: normal; background: var(--s); color: var(--c) }
+.dash .list p { margin: 0; display: grid; gap: 4px; font-size: 12px; color: #1f2937; font-weight: 500 }
+.dash .list p u { display: block; height: 5px; border-radius: 3px; background: #eef0f3; text-decoration: none; overflow: hidden }
+.dash .list p u::before { content: ""; display: block; height: 100%; width: var(--w); background: var(--c); border-radius: 3px }
+.dash .list strong { text-align: right; font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums }
+.dash .foot2 { display: flex; justify-content: space-between; gap: 12px; font-size: 11px; color: #6b7280 }
+.dash .minis { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px }
+.dash .minis div { background: #f5f7fa; border-left: 3px solid var(--c); border-radius: 4px; padding: 8px 12px; display: grid; gap: 2px }
+.dash .minis span { font-size: 11px; color: #6b7280 }
+.dash .minis b { font-size: 18px; font-weight: 500; color: #111827; font-variant-numeric: tabular-nums }
+.dash .minis b small { font-size: 11px; color: #6b7280; font-weight: 400 }
+.dash .zone2 { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #4b5563; margin-bottom: -4px }
+.dash .grid2d { display: grid; grid-template-columns: 1fr 1.3fr; gap: 14px }
+.dash table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 0 }
+.dash th { font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: #6b7280; font-weight: 600; padding: 6px 8px; border-bottom: 1px solid #e5e7eb; background: #fff; text-align: left }
+.dash td { padding: 6px 8px; border-bottom: 1px solid #f0f2f5; color: #1f2937; font-variant-numeric: tabular-nums }
+.dash tr:last-child td { border-bottom: 0 }
+.dash .r { text-align: right }
+.dash td.hm { background: linear-gradient(90deg, rgba(30, 79, 148, .16) var(--p), transparent var(--p)) }
+.dash td.hm.o { background: linear-gradient(90deg, rgba(234, 106, 42, .2) var(--p), transparent var(--p)) }
+.dash td.lnk { color: #1e4f94; text-decoration: underline; max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.wire { display: grid; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px }
+.wire div { display: grid; gap: 6px; grid-template-columns: repeat(3, 1fr) }
+.wire span { border: 1px solid var(--line); border-radius: 4px; padding: 14px 6px; text-align: center; font-size: 12px; color: var(--muted); background: var(--bg) }
+.wire .t { grid-template-columns: 1fr }
+.wire .t span { padding: 6px; font-weight: 600; color: var(--ink); border-top: 3px solid var(--green) }
+.wire .k { grid-template-columns: 1fr }
+.wire .k span { border: 2px solid var(--green); color: var(--ink); font-weight: 600; background: var(--surface) }
+.cap { font-size: 13px; color: var(--muted) }
+.src { font-size: 14px; display: grid; gap: 6px; padding-left: 20px }
+.check { list-style: none; padding: 0; display: grid; gap: 8px; font-size: 14px }
+.check li { display: grid; grid-template-columns: 22px 1fr; gap: 8px }
+.check li::before { content: ""; width: 16px; height: 16px; margin-top: 3px; border: 2px solid var(--green); border-radius: 4px }
+
+@media (max-width: 760px) {
+  .grid2 { grid-template-columns: 1fr }
+  .toc { grid-template-columns: 1fr 1fr }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }
+html { scroll-behavior: smooth }
+</style>
+
+<div class="wrap">
+
+<header class="head">
+  <p class="eyebrow">Gia Khánh · Sổ tay dựng báo cáo</p>
+  <h1>Báo cáo KPI GA4 và Facebook trên Looker Studio</h1>
+  <p class="lede">Bản thiết kế một trang dashboard tổng hợp Website (GA4) và Facebook, nhìn hết trong một màn hình, kèm cấu hình từng biểu đồ, bảng màu, công thức và cách chuẩn bị dữ liệu. Làm lần lượt 5 bước dưới đây là dựng xong báo cáo trên Looker Studio (tên mới của Google Data Studio), không cần connector trả phí.</p>
+  <div class="chips">
+    <span class="chip">GA4: property <b class="num">557869409</b> “Xây dựng Gia Khánh”</span>
+    <span class="chip">Facebook: Google Sheets từ script <code>lay-chi-so-facebook.py</code></span>
+    <span class="chip">Lead: Google Sheets nhập tay</span>
+    <span class="chip">Số trên bản phác: thật, 01/10 – 23/11/2026</span>
+  </div>
+  <ol class="toc">
+    <li><a href="#nguyen-tac"><b>1</b> Nguyên tắc</a></li>
+    <li><a href="#mau-sac"><b>2</b> Màu và theme</a></li>
+    <li><a href="#du-lieu"><b>3</b> Chuẩn bị dữ liệu</a></li>
+    <li><a href="#trang-1"><b>4</b> Trang tổng hợp</a></li>
+    <li><a href="#cap-nhat"><b>5</b> Cập nhật hằng tuần</a></li>
+  </ol>
+</header>
+
+<div class="alert warn" role="note">
+  <p><strong>Cần sửa trong GA4 trước khi dựng báo cáo.</strong> Ba sự kiện web đang chạy (<code>generate_lead</code>: 4 lần, <code>click_zalo</code>: 2 lần, <code>click_call</code>: 0 lần) <b>chưa được đánh dấu là Key event</b>. Key event hiện có chỉ là <code>qualify_lead</code>, <code>close_convert_lead</code>, <code>purchase</code> (GA4 tự tạo, web không gửi). Vì vậy chỉ số “Key events” trong báo cáo đang bằng 0. Cách sửa ở bước 3.1.</p>
+</div>
+
+<!-- 1. NGUYÊN TẮC -->
+<section id="nguyen-tac">
+  <div class="sec-head">
+    <span class="step">Bước 1</span>
+    <h2>Nguyên tắc làm báo cáo KPI</h2>
+    <p class="muted">Báo cáo này để chủ doanh nghiệp đọc trong 1 phút và biết tuần này cần làm gì. Mọi lựa chọn ở các bước sau đều theo 8 quy tắc này.</p>
+  </div>
+  <div class="grid2">
+    <div class="wire" aria-label="Khung bố cục trang">
+      <div class="t"><span>Tổng quan · bộ chọn ngày</span></div>
+      <div class="k" style="grid-template-columns:repeat(5,1fr)"><span>Lead</span><span>Phiên web</span><span>Gửi form</span><span>Lượt xem FB</span><span>Theo dõi FB</span></div>
+      <div style="grid-template-columns:repeat(6,1fr)"><span>phụ</span><span>phụ</span><span>phụ</span><span>phụ</span><span>phụ</span><span>phụ</span></div>
+      <div><span>Xu hướng web</span><span>Xu hướng FB</span><span>Tương tác</span></div>
+            <div><span>Lead</span><span>Top bài</span><span>Hành động</span></div>
+      <div><span>Kênh</span><span>Reel vs bài</span><span>Trang giữ chân</span></div>
+      <div style="grid-template-columns:1fr 1.3fr"><span>Bảng trang web</span><span>Bảng bài Facebook</span></div>
+    </div>
+    <div class="card">
+      <h3>Bố cục: thẻ KPI màu trên cùng, thẻ chi tiết bên dưới</h3>
+      <p class="muted" style="font-size:14px">Cả báo cáo là một trang dài 1280 × 1700, cuộn dọc như một bản tin. Trên cùng là 5 thẻ KPI màu (thẻ Lead đứng đầu bên trái) và 6 chỉ số phụ. Bên dưới chia theo khu, mỗi khu trả lời một câu hỏi: xu hướng theo tuần → lead và nội dung → kênh và nội dung hiệu quả → bảng chi tiết. Thẻ trắng nào cũng có tiêu đề, một số chính kèm chip phụ, rồi biểu đồ giải thích số đó.</p>
+      <p class="muted" style="font-size:14px">Màu theo nguồn: xanh dương là Website, cam là Facebook, xanh lá là Lead. Nhìn màu là biết số của kênh nào, không cần đọc tiêu đề.</p>
+    </div>
+  </div>
+  <div class="rules">
+    <div class="rule"><h3>Mỗi trang trả lời một câu hỏi</h3><p>Ghi câu hỏi ngay dưới tên trang. Biểu đồ nào không giúp trả lời câu hỏi đó thì bỏ.</p></div>
+    <div class="rule"><h3>Quy tắc 5 giây</h3><p>Mở trang lên trong 5 giây phải thấy được đang đạt hay hụt. Tối đa 5 thẻ số liệu một hàng.</p></div>
+    <div class="rule"><h3>Số nào cũng có so sánh</h3><p>Kèm mục tiêu (20 lead) hoặc kỳ trước (mũi tên tăng/giảm). Một con số đứng một mình không nói được tốt hay xấu.</p></div>
+    <div class="rule"><h3>Thẻ KPI chỉ giữ số quan trọng</h3><p>Tối đa 5 thẻ màu, số phụ để hàng nhỏ bên dưới. Lead là KPI chính nên luôn có mặt; các chỉ số khác nằm trong biểu đồ.</p></div>
+    <div class="rule"><h3>Tiêu đề ngắn, rõ đo gì</h3><p>Ghi rõ chỉ số, đơn vị và cách chia: “Tỷ lệ tương tác theo tuần (%)”. Kết luận viết trong tin nhắn gửi kèm báo cáo.</p></div>
+    <div class="rule"><h3>Màu theo nguồn, không tô bừa</h3><p>Mỗi nguồn một họ màu, dùng giống nhau ở thẻ KPI và biểu đồ. Chip xanh/đỏ chỉ dùng cho tăng/giảm.</p></div>
+    <div class="rule"><h3>Chọn đúng loại biểu đồ</h3><p>Xu hướng: cột/đường theo thời gian. So sánh: thanh ngang xếp giảm dần. Không dùng biểu đồ tròn quá 4 phần, không biểu đồ 3D, không 2 trục Y.</p></div>
+    <div class="rule"><h3>Ghi nguồn và ngày cập nhật</h3><p>Chân mỗi trang ghi nguồn (GA4, Meta) và ngày dán số liệu Facebook gần nhất. Số làm tròn, có đơn vị, dấu chấm phân cách hàng nghìn.</p></div>
+  </div>
+</section>
+
+<!-- 2. MÀU & THEME -->
+<section id="mau-sac">
+  <div class="sec-head">
+    <span class="step">Bước 2</span>
+    <h2>Bảng màu, chữ và khung trang</h2>
+    <p class="muted">Màu lấy từ nhận diện Gia Khánh (xanh lá). Bốn màu biểu đồ đã kiểm tra bằng công cụ mô phỏng mù màu: phân biệt được với cả người mù màu đỏ – lục, và đủ tương phản trên nền trắng.</p>
+  </div>
+  <div class="swatches">
+    <div class="sw"><i style="background:#15703a"></i><div><b>#15703A</b><span>Lead, thẻ KPI chính</span></div></div>
+    <div class="sw"><i style="background:#1e4f94"></i><div><b>#1E4F94</b><span>Website: màu chính</span></div></div>
+    <div class="sw"><i style="background:#1592a8"></i><div><b>#1592A8</b><span>Website: màu phụ</span></div></div>
+    <div class="sw"><i style="background:#ea6a2a"></i><div><b>#EA6A2A</b><span>Facebook: màu chính</span></div></div>
+    <div class="sw"><i style="background:#b23c0b"></i><div><b>#B23C0B</b><span>Facebook đậm: Reel</span></div></div>
+    <div class="sw"><i style="background:#e0a526"></i><div><b>#E0A526</b><span>Facebook vàng: bài ảnh/chữ</span></div></div>
+    <div class="sw"><i style="background:#a0640a"></i><div><b>#A0640A</b><span>Thẻ Người theo dõi FB</span></div></div>
+    <div class="sw"><i style="background:#15803d"></i><div><b>#15803D</b><span>Chip “tăng”</span></div></div>
+    <div class="sw"><i style="background:#b42318"></i><div><b>#B42318</b><span>Chip “giảm”</span></div></div>
+    <div class="sw"><i style="background:#e9edf3"></i><div><b>#E9EDF3</b><span>Nền trang báo cáo</span></div></div>
+    <div class="sw"><i style="background:#ffffff"></i><div><b>#FFFFFF</b><span>Nền thẻ (không viền, có bóng)</span></div></div>
+    <div class="sw"><i style="background:#1f2937"></i><div><b>#1F2937</b><span>Chữ chính; chữ phụ #6B7280</span></div></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Cài theme (làm 1 lần)</h3>
+      <ol class="steps">
+        <li>Mở báo cáo → menu <kbd>Theme and layout</kbd> → tab <kbd>Theme</kbd> → <kbd>Customize</kbd>.</li>
+        <li><b>Primary color</b>: <code>#1E4F94</code>. <b>Font family</b>: <b>Roboto</b> (hiện đủ dấu tiếng Việt; Looker Studio không có Be Vietnam Pro). Màu chữ <code>#1F2937</code>.</li>
+        <li><b>Chart palette</b>: điền theo thứ tự <code>#1E4F94</code>, <code>#EA6A2A</code>, <code>#15703A</code>, <code>#1592A8</code>. Quy ước: xanh dương = Website, cam = Facebook, xanh lá = Lead.</li>
+        <li><b>Report background</b> <code>#E9EDF3</code>. <b>Component</b>: nền <code>#FFFFFF</code>, không viền, bật <b>Border shadow</b>, bo góc 6.</li>
+        <li>Tab <kbd>Layout</kbd>: Canvas size <b>Custom 1280 × 1700</b>, Grid size <b>8</b>, bật <b>Snap to grid</b>.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Cỡ chữ và khoảng cách</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Thành phần</th><th>Cỡ</th><th>Đậm</th></tr></thead>
+        <tbody>
+          <tr><td>Tên panel Tổng quan</td><td class="num">16</td><td>Medium, căn trái</td></tr>
+                    <tr><td>Tiêu đề thẻ biểu đồ</td><td class="num">14</td><td>Medium, căn trái</td></tr>
+          <tr><td>Số trên thẻ KPI màu</td><td class="num">32–34</td><td>Medium, trắng</td></tr>
+          <tr><td>Số chính trong thẻ biểu đồ</td><td class="num">26</td><td>Medium</td></tr>
+          <tr><td>Chip phụ (25% mục tiêu, ▲ 4)</td><td class="num">11</td><td>Bold</td></tr>
+          <tr><td>Nhãn, trục, bảng</td><td class="num">11–12</td><td>Regular</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cap">Khung 1280 × 1700: panel Tổng quan cao 230px (5 thẻ màu cao 100px, hàng chỉ số phụ cao 56px); 3 hàng thẻ biểu đồ, mỗi hàng 3 thẻ rộng bằng nhau, cao 340px; hàng bảng chi tiết cao 330px; tên khu (XU HƯỚNG THEO TUẦN…) 11px in hoa; lề 16px, khoảng cách giữa các thẻ 14px. Các thẻ cùng hàng phải cùng chiều cao, thẳng mép.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. DỮ LIỆU -->
+<section id="du-lieu">
+  <div class="sec-head">
+    <span class="step">Bước 3</span>
+    <h2>Chuẩn bị dữ liệu</h2>
+    <p class="muted">Báo cáo dùng 4 nguồn: 1 GA4 + 3 tab của một Google Sheet. Facebook không có connector miễn phí của Google nên đi qua Sheet.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>3.1 Đánh dấu Key event trong GA4</h3>
+      <ol class="steps">
+        <li>Vào <a href="https://analytics.google.com" target="_blank" rel="noopener">analytics.google.com</a> → property <b>Xây dựng Gia Khánh</b>.</li>
+        <li><kbd>Admin</kbd> (bánh răng) → <kbd>Data display</kbd> → <kbd>Events</kbd>.</li>
+        <li>Ở dòng <code>generate_lead</code>, <code>click_call</code>, <code>click_zalo</code>: bấm dấu ⋮ → <b>Mark as key event</b>. <code>click_call</code> chưa có lượt nào nên chưa hiện: vào tab <b>Key events</b> → <b>New key event</b> → gõ <code>click_call</code>.</li>
+        <li>GA4 chỉ tính Key event từ ngày đánh dấu, không tính lùi. Số cũ vẫn xem được qua <b>Event count</b> lọc theo <b>Event name</b>, cách này dùng ở Trang 2.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>3.2 Tạo Google Sheet “Gia Khánh – Số liệu KPI”</h3>
+      <ol class="steps">
+        <li>Chạy <code>python marketing/scripts/lay-chi-so-facebook.py</code> để có 2 file CSV mới trong <code>marketing/kpi/</code>.</li>
+        <li>Tạo Sheet mới, đặt tên 3 tab đúng như bảng dưới (không dấu, không khoảng trắng).</li>
+        <li>Tab <code>fb_trang</code>: <kbd>File</kbd> → <kbd>Import</kbd> → <kbd>Upload</kbd> <code>trang-theo-ngay.csv</code> → chọn <b>Replace current sheet</b>. Tab <code>fb_bai</code> làm tương tự với <code>bai-viet.csv</code>.</li>
+        <li>Tab <code>lead</code>: gõ tiêu đề cột như bảng dưới, rồi nhập tay.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="tbl wide"><table>
+    <thead><tr><th>Tab</th><th>Cột (dòng 1)</th><th>Mỗi dòng là</th><th>Ví dụ / ghi chú</th></tr></thead>
+    <tbody>
+      <tr><td class="id">fb_trang</td><td><code>ngay</code>, <code>page_follows</code>, <code>page_daily_follows_unique</code>, <code>page_total_media_view_unique</code>, <code>page_media_view</code>, <code>page_post_engagements</code></td><td>1 ngày của fanpage</td><td>Script tạo sẵn. Ngày tính theo giờ Pacific (cách Meta tính), có thể lệch 1 ngày so với giờ Việt Nam.</td></tr>
+      <tr><td class="id">fb_bai</td><td><code>ngay_dang</code>, <code>noi_dung</code>, <code>link</code>, <code>post_media_view</code>, <code>post_total_media_view_unique</code>, <code>post_reactions_by_type_total</code>, <code>chia_se</code></td><td>1 bài đăng</td><td>Script tạo sẵn. Hiện có 20 bài từ 14/10.</td></tr>
+      <tr><td class="id">lead</td><td><code>ngay</code>, <code>kenh</code>, <code>cach_lien_he</code>, <code>hang_muc</code>, <code>trang_thai</code>, <code>ghi_chu</code></td><td>1 khách để lại số</td><td><code>kenh</code> chọn 1 trong: Website và Tìm kiếm Google · Seeding nhóm Facebook · Fanpage và Threads · Giới thiệu · Chưa rõ nguồn. <code>cach_lien_he</code>: Form báo giá · Gọi điện · Zalo · Messenger. <code>trang_thai</code>: Hợp lệ · Không hợp lệ. Dùng <kbd>Data</kbd> → <kbd>Data validation</kbd> → <b>Dropdown</b> để khỏi gõ sai chính tả.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid2">
+    <div class="card" style="grid-column:1/-1">
+      <h3>3.3 Nối dữ liệu vào Looker Studio</h3>
+      <ol class="steps">
+        <li>Vào <a href="https://lookerstudio.google.com" target="_blank" rel="noopener">lookerstudio.google.com</a> → <kbd>Blank report</kbd>.</li>
+        <li><kbd>Add data</kbd> → <b>Google Analytics</b> → chọn account → property <b>Xây dựng Gia Khánh</b> → <kbd>Add</kbd>.</li>
+        <li><kbd>Add data</kbd> → <b>Google Sheets</b> → chọn Sheet → tab <code>fb_trang</code> → để tích <b>Use first row as headers</b> → <kbd>Add</kbd>. Lặp lại cho <code>fb_bai</code> và <code>lead</code>.</li>
+        <li><kbd>Resource</kbd> → <kbd>Manage added data sources</kbd> → <kbd>Edit</kbd> từng nguồn Sheet, sửa kiểu trường:
+          <br><code>ngay</code> → Date (YYYYMMDD) · <code>ngay_dang</code> → Date &amp; Time · <code>link</code> → URL · các cột số → Number.
+          <br><b>Riêng <code>page_follows</code>: đổi Aggregation thành Max</b>. Đây là tổng người theo dõi mỗi ngày, cộng dồn sẽ ra số sai (hàng chục nghìn).</li>
+      </ol>
+    </div>
+  <div class="card">
+    <h3>3.4 Trường tính toán: copy dán vào <kbd>Add a field</kbd> trong từng nguồn</h3>
+    <div class="grid2">
+      <div class="formula"><p><b>Lead hợp lệ</b> · nguồn <code>lead</code> · kiểu Number</p><div class="code">SUM(CASE WHEN trang_thai = "Hợp lệ" THEN 1 ELSE 0 END)</div></div>
+      <div class="formula"><p><b>Tỷ lệ tương tác FB</b> · nguồn <code>fb_trang</code> · kiểu Percent</p><div class="code">SUM(page_post_engagements) / SUM(page_media_view)</div></div>
+      <div class="formula"><p><b>Loại bài</b> · nguồn <code>fb_bai</code> · kiểu Text</p><div class="code">CASE WHEN CONTAINS_TEXT(link, "/reel/") THEN "Reel" ELSE "Bài ảnh/chữ" END</div></div>
+      <div class="formula"><p><b>Số bài</b> · nguồn <code>fb_bai</code> · kiểu Number</p><div class="code">COUNT(link)</div></div>
+      <div class="formula"><p><b>Tiêu đề ngắn</b> · nguồn <code>fb_bai</code> · kiểu Text</p><div class="code">LEFT_TEXT(noi_dung, 40)</div></div>
+      <div class="formula"><p><b>Hành động</b> (tên tiếng Việt cho sự kiện) · nguồn GA4 · kiểu Text</p><div class="code">CASE Event name WHEN "form_start" THEN "Mở form" WHEN "generate_lead" THEN "Gửi form" WHEN "click_zalo" THEN "Bấm Zalo" WHEN "click_call" THEN "Bấm gọi" ELSE Event name END</div></div>
+    </div>
+    <p class="cap">Số lần gửi form trong dải KPI lấy bằng bộ lọc <b>Event name</b> (tạo ở <kbd>Resource</kbd> → <kbd>Manage filters</kbd>): lọc <b>Lead form</b> = Include · Event name · Equal to · <code>generate_lead</code>; lọc <b>Bấm Zalo</b>, <b>Bấm gọi</b> làm tương tự với <code>click_zalo</code>, <code>click_call</code>.</p>
+  </div>
+</section>
+
+<!-- 4. TRANG TỔNG HỢP -->
+<section id="trang-1">
+  <div class="sec-head">
+    <span class="step">Bước 4</span>
+    <h2>Trang báo cáo tổng hợp: Website (GA4) và Facebook</h2>
+    <p class="muted">Câu hỏi của trang: <b>Đã có bao nhiêu khách để lại số, web và fanpage đang kéo được bao nhiêu người, nội dung nào hiệu quả?</b> Đọc từ trên xuống: tổng quan → xu hướng → lead và nội dung → kênh và nội dung hiệu quả → bảng chi tiết. Số trong ô tím khớp với bảng cấu hình bên dưới.</p>
+  </div>
+
+  <div class="mock-wrap"><div class="dash" role="img" aria-label="Bản phác dashboard tổng hợp: 5 thẻ KPI màu, 6 chỉ số phụ, 9 thẻ biểu đồ, 2 bảng chi tiết">
+    <div class="panel"><span class="tag">1</span>
+      <div class="ph"><h4>Tổng quan KPI Gia Khánh · Website và Fanpage</h4><span class="date">01/10/2026 – 23/11/2026 ▾</span></div>
+      <div class="kpis">
+        <div class="k" style="--a:#22a052;--b:#15703a"><span>Lead hợp lệ</span><b>5 <small>/20</small><em>25% mục tiêu</em></b></div>
+        <div class="k" style="--a:#3b7dd8;--b:#1e4f94"><span>Phiên truy cập web</span><b>133 <em>85 người</em></b></div>
+        <div class="k" style="--a:#1592a8;--b:#0b5f6e"><span>Gửi form báo giá</span><b>4 <em>3,0% phiên</em></b></div>
+        <div class="k" style="--a:#ea6a2a;--b:#b23c0b"><span>Lượt xem Facebook</span><b>1.757 <em>11,3% tương tác</em></b></div>
+        <div class="k" style="--a:#e0a526;--b:#a0640a"><span>Người theo dõi FB</span><b>835 <em>▲ 4</em></b></div>
+      </div>
+      <div class="minis"><span class="tag">2</span>
+        <div style="--c:#1e4f94"><span>Lượt xem trang</span><b>261</b></div>
+        <div style="--c:#1e4f94"><span>Trang / phiên</span><b>1,96</b></div>
+        <div style="--c:#1e4f94"><span>Thời lượng phiên TB</span><b>2 phút 10 giây</b></div>
+        <div style="--c:#1e4f94"><span>Tỷ lệ tương tác web</span><b>44%</b></div>
+        <div style="--c:#ea6a2a"><span>Lượt tương tác FB</span><b>199</b></div>
+        <div style="--c:#ea6a2a"><span>Bài FB đã đăng</span><b>20 <small>/ 49 kế hoạch</small></b></div>
+      </div>
+    </div>
+
+    <div class="zone2">Xu hướng theo tuần</div>
+    <div class="grid3">
+      <div class="card2"><span class="tag">3</span><h5>Phiên truy cập web theo tuần</h5>
+        <div class="hero"><b>133</b><span class="chip2 n">85 người dùng</span></div>
+        <div class="cv"><canvas id="c1"></canvas></div></div>
+      <div class="card2"><span class="tag">4</span><h5>Lượt xem nội dung Facebook theo tuần</h5>
+        <div class="hero"><b>1.757</b><span class="chip2">▲ 390% tuần 16/11</span></div>
+        <div class="cv"><canvas id="c2"></canvas></div></div>
+      <div class="card2"><span class="tag">5</span><h5>Tỷ lệ tương tác theo tuần: web và Facebook</h5>
+        <div class="hero"><b>44%</b><span class="chip2 n">web</span><b style="font-size:20px">11,3%</b><span class="chip2 n">Facebook</span></div>
+        <div class="cv"><canvas id="c6"></canvas></div></div>
+    </div>
+
+    <div class="zone2">Lead và nội dung</div>
+    <div class="grid3">
+      <div class="card2"><span class="tag">6</span><h5>Lead theo cách liên hệ</h5>
+        <div class="hero"><b>5 <small>lead</small></b><span class="chip2 n">Zalo, Messenger: 0</span></div>
+        <div class="cv"><canvas id="c4"></canvas></div></div>
+      <div class="card2"><span class="tag">7</span><h5>Top 5 bài Facebook theo lượt xem</h5>
+        <div class="hero"><b>20 <small>bài</small></b>
+          <div class="split"><div style="--c:#b23c0b"><strong>2</strong>Reel</div><div style="--c:#e0a526"><strong>18</strong>Bài ảnh/chữ</div></div></div>
+        <div class="cv"><canvas id="c5"></canvas></div>
+        <div class="lg"><span style="--c:#b23c0b"><i></i>Reel</span><span style="--c:#e0a526"><i></i>Bài ảnh/chữ</span></div></div>
+      <div class="card2"><span class="tag">8</span><h5>Hành động liên hệ trên web</h5>
+        <div class="hero"><b>12 <small>lượt</small></b><span class="chip2 n">mở form, gửi form, bấm Zalo, bấm gọi</span></div>
+        <div class="list">
+          <div style="--c:#1e4f94;--s:#e3edfb;--w:100%"><i>F</i><p>Mở form báo giá<u></u></p><strong>6</strong></div>
+          <div style="--c:#15703a;--s:#e3f3e8;--w:67%"><i>✓</i><p>Gửi form báo giá<u></u></p><strong>4</strong></div>
+          <div style="--c:#0b5f6e;--s:#ddf1f4;--w:33%"><i>Z</i><p>Bấm nút Zalo<u></u></p><strong>2</strong></div>
+          <div style="--c:#b23c0b;--s:#fde9df;--w:0%"><i>☎</i><p>Bấm nút gọi<u></u></p><strong>0</strong></div>
+        </div></div>
+    </div>
+    <div class="zone2">Kênh và nội dung hiệu quả</div>
+    <div class="grid3">
+      <div class="card2"><span class="tag">9</span><h5>Phiên web theo kênh</h5>
+        <div class="hero"><b>47</b><span class="chip2 n">phiên từ mạng xã hội (35%)</span></div>
+        <div class="cv"><canvas id="c3"></canvas></div></div>
+      <div class="card2"><span class="tag">10</span><h5>Lượt xem trung bình mỗi bài theo loại</h5>
+        <div class="hero"><b>×6,7</b><span class="chip2 n">Reel so với bài ảnh/chữ</span></div>
+        <div class="cv"><canvas id="c11"></canvas></div></div>
+      <div class="card2"><span class="tag">11</span><h5>Trang web giữ chân khách lâu nhất</h5>
+        <div class="hero"><b>73 giây</b><span class="chip2 n">trang Thiết kế kiến trúc, nội thất</span></div>
+        <div class="cv"><canvas id="c12"></canvas></div></div>
+    </div>
+
+    <div class="zone2">Bảng chi tiết</div>
+    <div class="grid2d">
+      <div class="card2"><span class="tag">12</span><h5>Trang web được xem nhiều nhất</h5>
+        <table><thead><tr><th>Trang</th><th class="r">Lượt xem</th><th class="r">Người xem</th><th class="r">Thời gian TB / người</th></tr></thead><tbody>
+          <tr><td>/ (Trang chủ)</td><td class="r hm" style="--p:100%">123</td><td class="r">81</td><td class="r">9 giây</td></tr>
+          <tr><td>/du-an/</td><td class="r hm" style="--p:23%">28</td><td class="r">10</td><td class="r">62 giây</td></tr>
+          <tr><td>/lien-he/</td><td class="r hm" style="--p:23%">28</td><td class="r">11</td><td class="r">68 giây</td></tr>
+          <tr><td>/gioi-thieu/</td><td class="r hm" style="--p:18%">22</td><td class="r">4</td><td class="r">50 giây</td></tr>
+          <tr><td>/dich-vu/</td><td class="r hm" style="--p:14%">17</td><td class="r">4</td><td class="r">30 giây</td></tr>
+          <tr><td>/cam-nang/</td><td class="r hm" style="--p:11%">14</td><td class="r">9</td><td class="r">19 giây</td></tr>
+          <tr><td>/bao-gia/</td><td class="r hm" style="--p:10%">12</td><td class="r">5</td><td class="r">60 giây</td></tr>
+          <tr><td>/dich-vu/thiet-ke-kien-truc-noi-that/</td><td class="r hm" style="--p:6%">7</td><td class="r">3</td><td class="r">73 giây</td></tr>
+        </tbody></table></div>
+      <div class="card2"><span class="tag">13</span><h5>Hiệu quả từng bài Facebook</h5>
+        <table><thead><tr><th>Ngày</th><th>Bài đăng</th><th>Loại</th><th class="r">Lượt xem</th><th class="r">Người xem</th><th class="r">Cảm xúc</th></tr></thead><tbody>
+          <tr><td>23/11</td><td class="lnk">Khảo sát chọn phương án bơm bê tông</td><td>Reel</td><td class="r hm o" style="--p:100%">447</td><td class="r">384</td><td class="r">5</td></tr>
+          <tr><td>22/11</td><td class="lnk">Tổ chức đổ bê tông hạng mục móng</td><td>Reel</td><td class="r hm o" style="--p:63%">280</td><td class="r">240</td><td class="r">4</td></tr>
+          <tr><td>15/11</td><td class="lnk">4 chỗ lỗi phần móng chủ nhà nên tự xem</td><td>Bài</td><td class="r hm o" style="--p:20%">89</td><td class="r">16</td><td class="r">5</td></tr>
+          <tr><td>14/10</td><td class="lnk">Gia Khánh: Xây niềm tin, dựng tương lai</td><td>Bài</td><td class="r hm o" style="--p:17%">78</td><td class="r">9</td><td class="r">6</td></tr>
+          <tr><td>14/10</td><td class="lnk">Xây nhà phố: chỉ nhìn đơn giá/m² là chưa đủ</td><td>Bài</td><td class="r hm o" style="--p:17%">76</td><td class="r">7</td><td class="r">5</td></tr>
+          <tr><td>08/11</td><td class="lnk">Đổ sàn rồi mọi người ơi</td><td>Bài</td><td class="r hm o" style="--p:16%">72</td><td class="r">19</td><td class="r">7</td></tr>
+          <tr><td>31/10</td><td class="lnk">Sửa nhà xong lại phải sửa tiếp: vì đâu</td><td>Bài</td><td class="r hm o" style="--p:15%">66</td><td class="r">12</td><td class="r">4</td></tr>
+          <tr><td>31/10</td><td class="lnk">Kỹ sư khảo sát nhà bạn, họ nhìn gì?</td><td>Bài</td><td class="r hm o" style="--p:15%">65</td><td class="r">8</td><td class="r">3</td></tr>
+        </tbody></table></div>
+    </div>
+    <div class="foot2"><span>Nguồn: Google Analytics 4 (property 557869409) · Meta Graph API qua Google Sheet · Sổ lead Gia Khánh</span><span>Số Facebook cập nhật: 24/11/2026</span></div>
+  </div></div>
+  <p class="cap">Số thật: GA4 và Facebook từ 01/10 đến 23/11/2026 (tuần ghi theo ngày thứ Hai đầu tuần; tuần 23/11 chưa đủ ngày nên không vẽ). Lead 5/20 và cách liên hệ là số tự đếm đến 18/11. Kế hoạch đăng bài: 7 bài/tuần × 7 tuần = 49.</p>
+
+  <div class="tbl wide"><table>
+    <thead><tr><th>Ô</th><th>Thành phần trong Looker Studio</th><th>Nguồn</th><th>Dimension</th><th>Metric</th><th>Thiết lập chính</th></tr></thead>
+    <tbody>
+      <tr><td class="id">1</td><td>Rectangle trắng + Text + <b>Date range control</b> + 5 <b>Scorecard</b> màu</td><td>lead; GA4; fb_trang</td><td>–</td><td>Lead hợp lệ · Sessions · Event count (filter Lead form) · <code>page_media_view</code> · <code>page_follows</code> (Max)</td><td>Mỗi scorecard: Background màu đặc (Lead <code>#15703A</code>, Web <code>#1E4F94</code> và <code>#0B5F6E</code>, Facebook <code>#B23C0B</code> và <code>#A0640A</code>), chữ trắng, số 32, bo góc 6. Muốn chuyển màu (gradient) như bản phác: chèn Image ảnh nền chuyển màu (làm trong Canva/PowerPoint) phía sau, scorecard để Background trong suốt. Chip “25% mục tiêu” là Text; thẻ Người theo dõi bật Comparison <b>Previous period · Absolute change</b>. Mọi biểu đồ lấy từ Sheet: Setup → <b>Date range dimension</b> = <code>ngay</code> / <code>ngay_dang</code>.</td></tr>
+      <tr><td class="id">2</td><td>6 <b>Scorecard</b> nhỏ</td><td>GA4; fb_trang; fb_bai</td><td>–</td><td>Views · Views per session · Average session duration · Engagement rate · <code>page_post_engagements</code> · Số bài</td><td>Background <code>#F5F7FA</code>, không viền, số 18 Medium, tên chỉ số 11 xám. Kẻ một vạch màu 3px bên trái (Line dọc) xanh dương cho số web, cam cho số Facebook. Thẻ Số bài thêm Text “/ 49 kế hoạch”.</td></tr>
+      <tr><td class="id">3</td><td>Scorecard + <b>Time series chart</b></td><td>GA4</td><td>Date, Granularity <b>ISO Week</b></td><td>Sessions</td><td>Màu <code>#1E4F94</code>, Line bật <b>Smooth</b>, Show points, Show data labels. Gom tiêu đề + scorecard + biểu đồ trên Rectangle trắng, bật <b>Border shadow</b>, không viền.</td></tr>
+      <tr><td class="id">4</td><td>Scorecard + <b>Column chart</b></td><td>fb_trang</td><td><code>ngay</code>, ISO Week</td><td><code>page_media_view</code></td><td>Màu <code>#EA6A2A</code>, Show data labels.</td></tr>
+      <tr><td class="id">5</td><td>2 Scorecard + 2 <b>Time series chart</b> chồng nhau</td><td>GA4; fb_trang</td><td>Date / <code>ngay</code>, ISO Week</td><td>Engagement rate · Tỷ lệ tương tác FB</td><td>Looker không vẽ 2 nguồn trong một biểu đồ nếu không Blend. Cách nhanh: <b>Blend</b> GA4 và fb_trang, join key = tuần (Date ISO Week ↔ <code>ngay</code> ISO Week), rồi vẽ 1 Time series với 2 metric, cùng trục % (Min 0). Màu web <code>#1E4F94</code>, Facebook <code>#EA6A2A</code>.</td></tr>
+      <tr><td class="id">6</td><td>Scorecard + <b>Pie chart</b> (Donut)</td><td>lead</td><td><code>cach_lien_he</code></td><td>Lead hợp lệ</td><td>Slice label: <b>Label and percentage</b>, Legend none. Màu: Form báo giá <code>#15703A</code>, Gọi điện <code>#3B7DD8</code>, Zalo <code>#1592A8</code>, Messenger <code>#E0A526</code>.</td></tr>
+      <tr><td class="id">7</td><td>Scorecard + 2 scorecard nhỏ + <b>Bar chart</b> (ngang, Stacked)</td><td>fb_bai</td><td>Tiêu đề ngắn · Breakdown: Loại bài</td><td><code>post_media_view</code></td><td>2 scorecard nhỏ: Số bài lọc Loại bài = Reel / = Bài ảnh/chữ. Biểu đồ: <b>Stacked bars</b>, Bars: 5, sort giảm dần, màu Reel <code>#B23C0B</code>, Bài ảnh/chữ <code>#E0A526</code>.</td></tr>
+      <tr><td class="id">8</td><td>Scorecard + <b>Table</b> (dạng danh sách)</td><td>GA4</td><td>Hành động (trường tính toán 3.4)</td><td>Event count</td><td>Filter Event name In <code>form_start, generate_lead, click_zalo, click_call</code>. Tắt Header, Row numbers, viền ô. Metric Style <b>Bar</b>, Show number.</td></tr>
+      <tr><td class="id">9</td><td>Scorecard + <b>Bar chart</b> (ngang)</td><td>GA4</td><td>Session default channel group</td><td>Sessions</td><td>Color by: <b>Dimension values</b>: Organic Social <code>#EA6A2A</code>, kênh khác <code>#1592A8</code>. Scorecard: Sessions, filter Session default channel group = Organic Social.</td></tr>
+      <tr><td class="id">10</td><td>Scorecard + <b>Column chart</b></td><td>fb_bai</td><td>Loại bài</td><td><code>post_media_view</code>, Aggregation <b>Average</b></td><td>Color by Dimension values (Reel <code>#B23C0B</code>, Bài <code>#E0A526</code>), Show data labels.</td></tr>
+      <tr><td class="id">11</td><td>Scorecard + <b>Bar chart</b> (ngang)</td><td>GA4</td><td>Page path</td><td><b>Average engagement time</b> (có sẵn trong GA4)</td><td>Sort giảm dần, Bars: 6, màu <code>#1592A8</code>. Filter: Total users ≥ 3 để bỏ trang chỉ 1–2 người xem.</td></tr>
+      <tr><td class="id">12</td><td><b>Table with heatmap</b></td><td>GA4</td><td>Page path</td><td>Views, Total users, Average engagement time</td><td>Rows per page 8, sort Views giảm dần, heatmap chỉ cột Views màu <code>#1E4F94</code>.</td></tr>
+      <tr><td class="id">13</td><td><b>Table with heatmap</b></td><td>fb_bai</td><td><code>ngay_dang</code> (Date), Bài đăng (hyperlink), Loại bài</td><td><code>post_media_view</code>, <code>post_total_media_view_unique</code>, <code>post_reactions_by_type_total</code></td><td>Rows per page 8, sort Lượt xem giảm dần, heatmap cột Lượt xem màu <code>#EA6A2A</code>. Bấm tiêu đề mở bài trên Facebook.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 5. CẬP NHẬT -->
+<section id="cap-nhat">
+  <div class="sec-head">
+    <span class="step">Bước 5</span>
+    <h2>Cập nhật hằng tuần và tự kiểm tra</h2>
+    <p class="muted">GA4 tự cập nhật. Facebook và lead cần làm tay khoảng 10 phút mỗi thứ Hai.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Mỗi thứ Hai</h3>
+      <ol class="steps">
+        <li>Chạy <code>python marketing/scripts/lay-chi-so-facebook.py</code>.</li>
+        <li>Import 2 file CSV vào tab <code>fb_trang</code>, <code>fb_bai</code>, chọn <b>Replace current sheet</b> (giữ nguyên tên tab).</li>
+        <li>Thêm lead mới trong tuần vào tab <code>lead</code>, hỏi rõ khách biết Gia Khánh qua đâu để điền <code>kenh</code>.</li>
+        <li>Mở báo cáo → <kbd>⋮</kbd> → <b>Refresh data</b>.</li>
+        <li>Sửa ngày cập nhật số Facebook ở chân trang.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Soát trước khi gửi báo cáo</h3>
+      <ul class="check">
+        <li>5 thẻ KPI màu trên cùng, thẻ Lead hợp lệ đứng đầu bên trái.</li>
+        <li>Mỗi thẻ số liệu có mục tiêu hoặc so sánh kỳ trước.</li>
+        <li>Người theo dõi FB khoảng 835, không phải hàng chục nghìn (Aggregation Max).</li>
+        <li>Tiêu đề biểu đồ ghi rõ đo gì, có đơn vị (%, lượt).</li>
+        <li>Một kênh luôn một màu ở mọi trang.</li>
+        <li>Không có biểu đồ 2 trục Y, không biểu đồ tròn quá 4 phần.</li>
+        <li>Xem thử ở chế độ <b>View</b> trên điện thoại: chữ nhỏ nhất vẫn đọc được.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tbl mid"><table>
+    <thead><tr><th>Lỗi hay gặp</th><th>Nguyên nhân</th><th>Cách sửa</th></tr></thead>
+    <tbody>
+      <tr><td>Key events = 0 dù có người gửi form</td><td>Chưa đánh dấu Key event, hoặc mới đánh dấu (không tính lùi)</td><td>Làm bước 3.1; số cũ xem bằng Event count + filter Event name</td></tr>
+      <tr><td>Biểu đồ Facebook trống hoặc chỉ 1 cột</td><td>Cột <code>ngay</code> đang là Text</td><td>Edit data source → đổi <code>ngay</code> sang Date (YYYYMMDD)</td></tr>
+      <tr><td>Sau khi dán CSV, báo lỗi thiếu trường</td><td>Đổi tên tab hoặc tên cột</td><td>Giữ đúng tên tab và dòng tiêu đề như bảng ở bước 3.2</td></tr>
+      <tr><td>Số Facebook lệch 1 ngày so với Meta Business Suite</td><td>Script tính ngày theo giờ Pacific như API của Meta</td><td>Không cần sửa; ghi chú ở chân trang</td></tr>
+      <tr><td>Tên kênh lead bị tách đôi (“Google” và “Tìm kiếm Google”)</td><td>Gõ tay khác nhau</td><td>Dùng dropdown (Data validation) cho cột <code>kenh</code>, <code>cach_lien_he</code>, <code>trang_thai</code></td></tr>
+    </tbody>
+  </table></div>
+  <div class="card">
+    <h3>Tài liệu đã tham khảo</h3>
+    <ul class="src">
+      <li><a href="https://blog.coupler.io/looker-studio-best-practices/" target="_blank" rel="noopener">Coupler.io: Looker Studio best practices</a> (đi từ tổng quan đến chi tiết, tránh nhồi biểu đồ)</li>
+      <li><a href="https://supermetrics.com/blog/google-data-studio-design" target="_blank" rel="noopener">Supermetrics: Google Data Studio design</a> (bảng màu, khoảng cách, nhất quán)</li>
+      <li><a href="https://searchengineland.com/google-looker-studio-ppc-dashboard-must-haves-389191" target="_blank" rel="noopener">Search Engine Land: dashboard must-haves</a> (tiêu đề, thẻ KPI, theo dõi mục tiêu, so sánh kỳ trước)</li>
+      <li><a href="https://www.metricswatch.com/blog/looker-studio-tutorial" target="_blank" rel="noopener">MetricsWatch: Looker Studio tutorial</a> (hàng thẻ Users, Sessions, Engagement rate trên cùng)</li>
+      <li><a href="https://www.databloo.com/blog/looker-studio-fonts-themes/" target="_blank" rel="noopener">Data Bloo: fonts và themes trong Looker Studio</a> (danh sách font có giới hạn)</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<script>
+document.querySelectorAll('.code').forEach(function (box) {
+  var btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'copy'; btn.textContent = 'Sao chép';
+  btn.addEventListener('click', function () {
+    var text = box.firstChild.textContent.trim();
+    var done = function () { btn.textContent = 'Đã chép'; setTimeout(function () { btn.textContent = 'Sao chép'; }, 1500); };
+    var pick = function () { var r = document.createRange(); r.selectNodeContents(box.firstChild); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Nhấn Ctrl+C'; };
+    try { navigator.clipboard.writeText(text).then(done, pick); } catch (e) { pick(); }
+  });
+  box.appendChild(btn);
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script>
+// Vẽ bản phác bằng số thật (GA4 + CSV Facebook, 01/10 – 23/11/2026). Màu theo bảng màu ở Bước 2.
+(function () {
+  if (!window.Chart) return;
+  Chart.register(window.ChartDataLabels);
+  var G = '#178a3e', B = '#2563a8', A = '#b26a00', P = '#9b4fa8', GR = '#8a96a3', GRID = '#eef1f4';
+  Chart.defaults.font.family = 'Roboto, Arial, sans-serif';
+  Chart.defaults.font.size = 11;
+  Chart.defaults.color = '#5b6b7f';
+  var weeks = ['05/10', '12/10', '19/10', '26/10', '02/11', '09/11', '16/11'];
+  var num = function (v) { return v.toLocaleString('vi-VN'); };
+
+  function opts(o) {
+    o = o || {};
+    var h = !!o.h;
+    return {
+      responsive: true, maintainAspectRatio: false, animation: false, indexAxis: h ? 'y' : 'x',
+      layout: { padding: { top: 18, right: h ? 30 : 4 } },
+      plugins: {
+        legend: { display: !!o.legend, position: o.legendPos || 'bottom', labels: { boxWidth: 10, boxHeight: 10 } },
+        datalabels: { anchor: 'end', align: h ? 'right' : 'top', offset: 1, color: '#1a2433', font: { size: 10, weight: 500 }, formatter: o.fmt || num }
+      },
+      scales: {
+        x: { grid: { display: h, color: GRID }, beginAtZero: true, ticks: h ? { display: false } : { maxRotation: 0, autoSkip: false } },
+        y: { grid: { display: !h, color: GRID }, beginAtZero: true, max: o.max, ticks: h ? { autoSkip: false, callback: function (v) { var s = this.getLabelForValue(v); return s.length > 24 ? s.slice(0, 23) + '…' : s; } } : { callback: o.tick } }
+      }
+    };
+  }
+  function draw(id, cfg) { var el = document.getElementById(id); if (el) new Chart(el, cfg); }
+  function bars(d) { return Object.assign({ borderRadius: 3, maxBarThickness: 36, categoryPercentage: 0.75, barPercentage: 0.9 }, d); }
+  function line(data, color) { return { label: '', data: data, borderColor: color, backgroundColor: color, borderWidth: 2, pointRadius: 4, tension: 0 }; }
+  var pct = function (v) { return v.toLocaleString('vi-VN', { maximumFractionDigits: 1 }) + '%'; };
+  var pctTick = function (v) { return v + '%'; };
+
+  // ===== Trang tổng hợp (kiểu thẻ màu) =====
+  var WEB = '#1e4f94', WEB2 = '#1592a8', FB = '#ea6a2a', FBD = '#b23c0b', FBL = '#e0a526', LEAD = '#15703a';
+  var o1 = opts({ max: 70 });
+  draw('c1', { type: 'line', data: { labels: weeks, datasets: [Object.assign(line([54, 23, 17, 9, 5, 6, 18], WEB), { tension: 0.4, fill: true, backgroundColor: 'rgba(30,79,148,.08)', pointBackgroundColor: WEB })] }, options: o1 });
+  draw('c2', { type: 'bar', data: { labels: weeks, datasets: [
+    bars({ data: [49, 70, 14, 77, 83, 166, 814], backgroundColor: FB })] }, options: opts() });
+  draw('c3', { type: 'bar', data: { labels: ['Direct', 'Organic Social', 'Referral', 'Organic Search'], datasets: [
+    bars({ data: [84, 47, 2, 0], backgroundColor: [WEB2, FB, WEB2, WEB2], maxBarThickness: 22 })] }, options: opts({ h: true }) });
+  var o4 = opts(); delete o4.scales; delete o4.indexAxis;
+  o4.cutout = '55%'; o4.layout = { padding: { top: 26, bottom: 26, left: 70, right: 70 } };
+  o4.plugins.datalabels = { anchor: 'end', align: 'end', offset: 8, color: '#1f2937', font: { size: 11, weight: 500 }, textAlign: 'center',
+    formatter: function (v, c) { return c.chart.data.labels[c.dataIndex] + '\n' + Math.round(v / 5 * 100) + '%'; } };
+  draw('c4', { type: 'doughnut', data: { labels: ['Form báo giá', 'Gọi điện'], datasets: [{ data: [3, 2], backgroundColor: [LEAD, '#3b7dd8'], borderColor: '#fff', borderWidth: 2 }] }, options: o4 });
+  draw('c5', { type: 'bar', data: { labels: ['Khảo sát bơm bê tông', 'Đổ bê tông móng', '4 chỗ lỗi phần móng', 'Giới thiệu Gia Khánh', 'Đơn giá/m² chưa đủ'], datasets: [
+    bars({ data: [447, 280, 89, 78, 76], backgroundColor: [FBD, FBD, FBL, FBL, FBL], maxBarThickness: 18 })] }, options: opts({ h: true }) });
+  // ===== Thẻ thêm =====
+  var o6 = opts({ legend: true, max: 100, fmt: pct, tick: pctTick });
+  o6.plugins.datalabels.font = { size: 9 };
+  draw('c6', { type: 'line', data: { labels: weeks, datasets: [
+    Object.assign(line([35, 57, 41, 44, 20, 83, 56], WEB), { label: 'Web', tension: 0.35 }),
+    Object.assign(line([0, 14.3, 7.1, 9.1, 9.6, 20.5, 15.4], FB), { label: 'Facebook', tension: 0.35 })] }, options: o6 });
+  draw('c11', { type: 'bar', data: { labels: ['Reel', 'Bài ảnh/chữ'], datasets: [
+    bars({ data: [364, 54], backgroundColor: [FBD, FBL], maxBarThickness: 60 })] }, options: opts() });
+  draw('c12', { type: 'bar', data: { labels: ['/dich-vu/thiet-ke-…', '/lien-he/', '/du-an/', '/bao-gia/', '/gioi-thieu/', '/dich-vu/'], datasets: [
+    bars({ data: [73, 68, 62, 60, 50, 30], backgroundColor: WEB2, maxBarThickness: 18 })] }, options: opts({ h: true, fmt: function (v) { return v + ' giây'; } }) });
+})();
+</script>

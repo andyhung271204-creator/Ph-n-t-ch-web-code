@@ -1,0 +1,242 @@
+<title>KPI 20 lead Gia Khánh</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: tổng quan → cây KPI (kế hoạch và thực tế từng kênh) → tiến độ lead theo tháng → số liệu từng bài → nhận xét, việc tiếp theo. */
+:root {
+  --bg: #f6f8f6; --surface: #ffffff; --ink: #1a2433; --muted: #5b6b7f; --line: #e3e8ef;
+  --green: #178a3e; --green-dark: #0d5a2c; --green-soft: #ecf7ee;
+  --amber: #9a6100; --amber-soft: #fff4dc; --red: #b42318; --red-soft: #fdecea; --grey-soft: #eef1f4;
+  --font: "Be Vietnam Pro", system-ui, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1512; --surface: #17201b; --ink: #e6ece8; --muted: #9aa9a0; --line: #2a3530;
+  --green: #4cc46e; --green-dark: #8fe0a6; --green-soft: #1c2e22;
+  --amber: #f0b75a; --amber-soft: #2d2412; --red: #f2877c; --red-soft: #351a17; --grey-soft: #222b27; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1512; --surface: #17201b; --ink: #e6ece8; --muted: #9aa9a0; --line: #2a3530;
+  --green: #4cc46e; --green-dark: #8fe0a6; --green-soft: #1c2e22;
+  --amber: #f0b75a; --amber-soft: #2d2412; --red: #f2877c; --red-soft: #351a17; --grey-soft: #222b27; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 32px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 40px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.25 }
+h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 700 }
+h2 { font-size: 21px; font-weight: 700; margin-bottom: 14px }
+h3 { font-size: 16px; font-weight: 600 }
+p { margin: 0 }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--green) }
+.muted { color: var(--muted) }
+.num { font-variant-numeric: tabular-nums }
+code { font-size: 13px; background: var(--green-soft); color: var(--green-dark); padding: 1px 6px; border-radius: 4px }
+
+.head .lede { max-width: 68ch; margin-top: 10px; color: var(--muted) }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px }
+.chip { font-size: 13px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 12px }
+
+.pill { display: inline-block; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 2px 10px; white-space: nowrap }
+.ok { background: var(--green-soft); color: var(--green-dark) }
+.warn { background: var(--amber-soft); color: var(--amber) }
+.bad { background: var(--red-soft); color: var(--red) }
+.na { background: var(--grey-soft); color: var(--muted) }
+
+/* Tổng quan */
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 6px; align-content: start }
+.tile.main { background: var(--green); border-color: var(--green); color: #fff }
+.tile.main .muted { color: #fff; opacity: .9 }
+.tile b { font-size: 34px; line-height: 1.05; font-weight: 700 }
+.tile b small { font-size: 16px; font-weight: 500 }
+.tile p { font-size: 13px }
+
+/* Cây KPI */
+.tree { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px }
+.branch { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: grid; grid-template-rows: auto auto 1fr; min-width: 0 }
+.branch header { padding: 14px 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; align-items: start }
+.branch header .n { font-size: 30px; font-weight: 700; color: var(--green); line-height: 1; text-align: right }
+.branch header .n small { display: block; font-size: 12px; font-weight: 500; color: var(--muted) }
+.lvl { padding: 12px 16px; display: grid; gap: 8px; align-content: start }
+.lvl + .lvl { border-top: 1px dashed var(--line) }
+.tag { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted) }
+.lvl ul { margin: 0; padding-left: 18px; display: grid; gap: 6px }
+.kv { display: grid; gap: 6px; font-size: 14px }
+.kv div { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center }
+.kv .v { font-weight: 600 }
+
+/* Tiến độ */
+.ramp { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 18px 14px; overflow-x: auto }
+.bars { display: grid; grid-template-columns: repeat(4, minmax(90px, 1fr)); gap: 18px; align-items: end; height: 180px; min-width: 420px; border-bottom: 1px solid var(--line) }
+.bars > div { position: relative; height: 100%; display: flex; align-items: end }
+.bars .plan { width: 100%; background: var(--green-soft); border: 1px solid var(--green); border-bottom: 0; border-radius: 6px 6px 0 0; position: relative }
+.bars .plan b { position: absolute; top: -22px; left: 0; right: 0; text-align: center; font-size: 13px }
+.bars .now { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--amber) }
+.bars .now span { position: absolute; right: 0; top: -20px; font-size: 12px; color: var(--amber); font-weight: 600 }
+.months { display: grid; grid-template-columns: repeat(4, minmax(90px, 1fr)); gap: 18px; min-width: 420px; padding-top: 6px; font-size: 12px; color: var(--muted); text-align: center }
+.months strong { display: block; color: var(--ink); font-size: 13px }
+.note { margin-top: 14px; font-size: 14px; display: grid; gap: 6px }
+
+/* Bảng */
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14px }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600 }
+td.r, th.r { text-align: right }
+tr:last-child td { border-bottom: 0 }
+tfoot td { font-weight: 600; background: var(--green-soft) }
+
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px }
+.list { margin: 0; padding-left: 20px; display: grid; gap: 8px }
+
+@media (max-width: 960px) { .tree, .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+@media (max-width: 640px) { .two, .tree, .tiles { grid-template-columns: 1fr } }
+</style>
+
+<main class="wrap">
+
+  <section class="head">
+    <p class="eyebrow">Gia Khánh · Báo cáo KPI ngày 18/11/2026</p>
+    <h1>20 lead xây, sửa nhà: kết quả 01/10 – 18/11/2026</h1>
+    <p class="lede">Cây KPI chia 20 lead cho 4 kênh, đặt cạnh số liệu thực tế từ 01/10 đến 18/11/2026. Số liệu Facebook và Threads được quét từ trang công khai ngày 18/11. Số lead do Gia Khánh tự đếm. Lượt tiếp cận, tin nhắn fanpage và số liệu GA4 chưa lấy được vì chưa có quyền truy cập.</p>
+    <div class="chips">
+      <span class="chip num">Kỳ báo cáo: 01/10 – 18/11/2026</span>
+      <span class="chip">Ngân sách quảng cáo: 0 đ</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tổng quan đến 18/11</h2>
+    <div class="tiles">
+      <div class="tile main"><span class="tag" style="color:#fff">Lead hợp lệ</span><b class="num">5<small> / 20</small></b><p class="muted">3 từ form báo giá, 2 cuộc gọi. Đạt 25% mục tiêu.</p></div>
+      <div class="tile"><span class="tag">Fanpage Facebook</span><b class="num">12<small> bài</small></b><p class="muted">835 người theo dõi · 27 cảm xúc · 5 bình luận · 0 chia sẻ</p></div>
+      <div class="tile"><span class="tag">Threads</span><b class="num">4<small> bài</small></b><p class="muted">7 người theo dõi · 5 lượt thích · 1 trả lời</p></div>
+      <div class="tile"><span class="tag">Website</span><b class="num">9<small> bài Cẩm nang</small></b><p class="muted">Web chạy từ 05/10. Form, nút gọi, nút Zalo đã gắn đo GA4.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cây KPI: kế hoạch và thực tế từng kênh</h2>
+    <div class="tree">
+
+      <article class="branch">
+        <header><div><p class="eyebrow">Kênh 1</p><h3>Seeding nhóm Facebook</h3></div><div class="n num">6<small>lead mục tiêu</small></div></header>
+        <div class="lvl">
+          <p class="tag">Chỉ số dẫn đến 18/11</p>
+          <div class="kv num">
+            <div><span>Bình luận đã đăng</span><span class="v">0</span><span class="pill bad">Chưa chạy</span></div>
+            <div><span>Bình luận chờ duyệt</span><span class="v">3</span><span class="pill warn">Từ 16/11</span></div>
+            <div><span>Lead từ seeding</span><span class="v">0</span><span class="pill bad">0 / 6</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="branch">
+        <header><div><p class="eyebrow">Kênh 2</p><h3>Fanpage và Threads</h3></div><div class="n num">5<small>lead mục tiêu</small></div></header>
+        <div class="lvl">
+          <p class="tag">Chỉ số dẫn (02/11 – 15/11)</p>
+          <div class="kv num">
+            <div><span>Bài Facebook: 7 / 14 kế hoạch</span><span class="v">50%</span><span class="pill warn">Thiếu</span></div>
+            <div><span>Bài Threads: 3 / 14 kế hoạch</span><span class="v">21%</span><span class="pill bad">Thiếu nhiều</span></div>
+            <div><span>Cảm xúc trung bình mỗi bài FB</span><span class="v">2,3</span><span class="pill warn">Thấp</span></div>
+            <div><span>Tin nhắn Messenger</span><span class="v">[?]</span><span class="pill na">Cần quyền Page</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="branch">
+        <header><div><p class="eyebrow">Kênh 3</p><h3>Tìm kiếm Google</h3></div><div class="n num">5<small>lead mục tiêu</small></div></header>
+        <div class="lvl">
+          <p class="tag">Chỉ số dẫn đến 18/11</p>
+          <div class="kv num">
+            <div><span>Lead từ form báo giá trên web</span><span class="v">3</span><span class="pill warn">3 / 5</span></div>
+            <div><span>Bài Cẩm nang đã đăng</span><span class="v">9</span><span class="pill ok">Đạt</span></div>
+            <div><span>Phiên từ Google</span><span class="v">[?]</span><span class="pill na">Xem GA4</span></div>
+            <div><span><code>generate_lead</code>, <code>click_call</code>, <code>click_zalo</code></span><span class="v">[?]</span><span class="pill na">Xem GA4</span></div>
+            <div><span>Google Business Profile</span><span class="v">[?]</span><span class="pill na">Chưa rõ có chưa</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="branch">
+        <header><div><p class="eyebrow">Kênh 4</p><h3>Giới thiệu, quan hệ</h3></div><div class="n num">4<small>lead mục tiêu</small></div></header>
+        <div class="lvl">
+          <p class="tag">Chỉ số dẫn đến 18/11</p>
+          <div class="kv num">
+            <div><span>Người đã được nhắn nhờ giới thiệu</span><span class="v">[?]</span><span class="pill na">Chưa ghi nhận</span></div>
+            <div><span>Lead từ giới thiệu</span><span class="v">[?]</span><span class="pill na">Chưa rõ nguồn</span></div>
+            <div><span>Đánh giá trên fanpage</span><span class="v">1</span><span class="pill warn">Ít</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <p class="muted" style="margin-top:12px">2 lead gọi điện chưa ghi khách biết Gia Khánh qua đâu, nên chưa gán được vào kênh 2, 3 hay 4. Không có lead nào qua Zalo, Messenger.</p>
+  </section>
+
+  <section>
+    <h2>Fanpage Facebook: 12 bài từ 01/10</h2>
+    <div class="tbl">
+      <table class="num">
+        <thead><tr><th>Ngày</th><th>Bài</th><th class="r">Cảm xúc</th><th class="r">Bình luận</th><th class="r">Chia sẻ</th></tr></thead>
+        <tbody>
+          <tr><td>14/10</td><td>Xây nhà phố: chỉ nhìn đơn giá/m² là chưa đủ</td><td class="r">2</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>14/10</td><td>Gia Khánh: Xây niềm tin, dựng tương lai (giới thiệu)</td><td class="r">2</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>27/10</td><td>Tường vừa trát, sơn xong phải đục ra vì đi sai dây điện</td><td class="r">2</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>31/10</td><td>Kỹ sư bước vào nhà bạn để khảo sát, họ nhìn gì?</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>31/10</td><td>Sửa nhà xong lại phải sửa tiếp: vì đâu</td><td class="r">2</td><td class="r">1</td><td class="r">0</td></tr>
+          <tr><td>03/11</td><td>Trần thạch cao khung chìm hay khung nổi</td><td class="r">1</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>03/11</td><td>Nhà có vết thấm, nứt hay định sửa trước Tết? Đặt lịch khảo sát</td><td class="r">2</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>08/11</td><td>Đổ sàn rồi mọi người ơi</td><td class="r">4</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>11/11</td><td>Trần thạch cao khung chìm hay khung nổi (đăng lại)</td><td class="r">3</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>11/11</td><td>"Nhà cần đủ ấm, đủ chỗ cho cả nhà"</td><td class="r">2</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>15/11</td><td>Xây mới, đổ nền, nâng tầng: việc nào cần giấy phép</td><td class="r">3</td><td class="r">0</td><td class="r">0</td></tr>
+          <tr><td>15/11</td><td>Có giấy phép rồi vẫn lỗi ở phần móng: 4 chỗ nên tự xem</td><td class="r">4</td><td class="r">4</td><td class="r">0</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">Tổng 12 bài</td><td class="r">27</td><td class="r">5</td><td class="r">0</td></tr></tfoot>
+      </table>
+    </div>
+    <p class="muted" style="margin-top:10px">Không có bài nào từ 01/10 đến 13/10. Số bình luận gồm cả trả lời của fanpage. Lượt tiếp cận chỉ xem được trong Meta Business Suite.</p>
+  </section>
+
+  <section>
+    <h2>Threads: 4 bài từ 01/10</h2>
+    <div class="tbl">
+      <table class="num">
+        <thead><tr><th>Ngày</th><th>Bài</th><th class="r">Thích</th><th class="r">Trả lời</th></tr></thead>
+        <tbody>
+          <tr><td>07/11</td><td>Xây nhà, sửa nhà hay hoàn thiện nội thất? Gia Khánh sẵn sàng trao đổi</td><td class="r">1</td><td class="r">0</td></tr>
+          <tr><td>11/11</td><td>Khảo sát, nói chuyện với gia chủ cả tuần mới chốt phương án</td><td class="r">1</td><td class="r">0</td></tr>
+          <tr><td>11/11</td><td>Một không gian đẹp được tạo nên từ nhiều hạng mục</td><td class="r">1</td><td class="r">0</td></tr>
+          <tr><td>17/11</td><td>Gia Khánh: Xây niềm tin, dựng tương lai (giới thiệu)</td><td class="r">2</td><td class="r">1</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">Tổng 4 bài · 7 người theo dõi</td><td class="r">5</td><td class="r">1</td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section class="two">
+    <div>
+      <h2>Nhận xét</h2>
+      <ul class="list">
+        <li>Đạt 5 / 20 lead (25%): 3 qua form báo giá, 2 qua gọi điện.</li>
+        <li>Website và Cẩm nang đúng tiến độ, và là kênh duy nhất có lead xác định được nguồn (3 lead form).</li>
+        <li>Fanpage có 835 người theo dõi nhưng mỗi bài chỉ được khoảng 2 cảm xúc và chưa có lượt chia sẻ nào. Khả năng cao là bài tiếp cận ít người hoặc người theo dõi chưa đúng khách mục tiêu. Cần số liệu tiếp cận để kết luận.</li>
+        <li>Lịch đăng mới làm được một nửa ở Facebook và khoảng 1/5 ở Threads.</li>
+        <li>Seeding và giới thiệu chưa bắt đầu, trong khi 2 kênh này gánh 10/20 lead.</li>
+        <li>Seeding chưa đăng bình luận nào nên chưa có lead.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Số liệu còn thiếu và cách lấy</h2>
+      <ul class="list">
+        <li><b>Nguồn của 2 lead gọi điện:</b> hỏi lại khách biết Gia Khánh qua đâu</li>
+        <li><b>Phiên, sự kiện web:</b> GA4 → Báo cáo → Sự kiện, kỳ 01/10 – 18/11</li>
+        <li><b>Tiếp cận, tin nhắn fanpage:</b> cần tài khoản quản trị Page vào Meta Business Suite</li>
+        <li><b>Google Business Profile:</b> đã có hay chưa</li>
+      </ul>
+    </div>
+  </section>
+
+</main>

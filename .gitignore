@@ -8,3 +8,8 @@ KPI-*.docx
 .wrangler/
 .dev.vars
 __pycache__/
+
+# nhật ký agent (local)
+.claude/settings.local.json
+design/agent-workflow/nhat-ky.jsonl
+design/agent-workflow/.phien-dang-chay
