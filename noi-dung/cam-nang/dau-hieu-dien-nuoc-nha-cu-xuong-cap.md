@@ -2,13 +2,13 @@
 title: 'Dấu hiệu điện nước nhà cũ xuống cấp: khi nào cần thay, khi nào chỉ sửa nhỏ'
 slug: dau-hieu-dien-nuoc-nha-cu-xuong-cap
 category: sua-chua
+date: 2026-11-26T01:00:00.000Z
+draft: false
 excerpt: Aptomat nhảy liên tục, ổ cắm nóng, mùi khét, ống rỉ, tường ẩm mốc là những dấu hiệu điện nước nhà cũ xuống cấp. Bài này chỉ rõ dấu hiệu nào chỉ cần sửa nhỏ, dấu hiệu nào phải thay và gọi thợ.
+cover: /src/assets/mau-nha/04/1.jpg
 meta_title: 'Điện nước nhà cũ xuống cấp: sửa hay thay | Gia Khánh'
 meta_description: 'Dấu hiệu điện nước nhà cũ xuống cấp: aptomat nhảy, ổ cắm nóng, mùi khét, ống rỉ, tường ẩm. Khi nào sửa nhỏ, khi nào thay. Khảo sát miễn phí tại Hà Nội.'
 url: /cam-nang/dau-hieu-dien-nuoc-nha-cu-xuong-cap/
-draft: true
-date: 2026-11-26T01:00:00.000Z
-cover: /src/assets/mau-nha/04/1.jpg
 ---
 
 # Dấu hiệu điện nước nhà cũ xuống cấp: khi nào cần thay, khi nào chỉ sửa nhỏ
