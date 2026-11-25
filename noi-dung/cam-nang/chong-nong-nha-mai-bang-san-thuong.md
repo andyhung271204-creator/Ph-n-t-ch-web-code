@@ -2,13 +2,13 @@
 title: 'Chống nóng cho nhà phố mái bằng, sân thượng: các cách và khi nào dùng'
 slug: chong-nong-nha-mai-bang-san-thuong
 category: sua-chua
+date: 2026-11-23T01:00:00.000Z
+draft: false
 excerpt: Tầng trên cùng của nhà mái bằng nóng vì bê tông hấp thụ nắng cả ngày rồi tỏa nhiệt xuống phòng. Bài này so sánh các lớp cách nhiệt, sơn phản xạ, trần, thông gió và cây xanh, và nói rõ khi nào nên dùng cách nào.
+cover: /src/assets/mau-nha/01/1.jpg
 meta_title: 'Chống nóng cho nhà mái bằng: các cách phổ biến | Gia Khánh'
 meta_description: 'Chống nóng cho nhà mái bằng, sân thượng: so sánh lớp cách nhiệt, sơn phản xạ, trần thạch cao, thông gió, cây xanh và cách chọn. Gọi Gia Khánh khảo sát miễn phí.'
 url: /cam-nang/chong-nong-nha-mai-bang-san-thuong/
-draft: true
-date: 2026-11-23T01:00:00.000Z
-cover: /src/assets/mau-nha/01/1.jpg
 ---
 
 # Chống nóng cho nhà phố mái bằng, sân thượng: các cách và khi nào dùng
