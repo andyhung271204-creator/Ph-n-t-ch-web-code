@@ -5,7 +5,7 @@ description: Viết 2 bài Cẩm nang mỗi tuần cho website Gia Khánh, chấ
 
 # Viết bài Cẩm nang tuần
 
-Tham số tuỳ chọn: ngày thứ Hai của tuần (`yyyy-mm-dd`). Không có → thứ Hai của tuần hiện tại (giờ VN). Gọi là `<tuan>`.
+Tham số tuỳ chọn: ngày bắt đầu `yyyy-mm-dd` (bài 1 đăng ngày này, bài 2 sau 3 ngày). Không có → thứ Hai của tuần hiện tại (giờ VN). Gọi là `<tuan>`.
 Chạy không cần người dùng trả lời: **không dừng hỏi**, chỗ nào thiếu dữ kiện thì để placeholder và ghi vào báo cáo.
 
 ## 1. Chuẩn bị
